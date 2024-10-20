@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,15 @@ namespace Project_Nhom8
             InitializeComponent();
             customizeDesing();
         }
-
+        public string Data { get; set; }
+        public string tenTaiKhoan;
+        public frmMain(string taiKhoan)
+        {
+            InitializeComponent();
+            Data = taiKhoan;
+            // Bạn có thể thao tác với dữ liệu ở đây, ví dụ hiển thị lên một control nào đó
+            tenTaiKhoan = Data;
+        }
         private void customizeDesing()
         {
             pnlBenhNhan.Visible = false;
@@ -123,10 +132,16 @@ namespace Project_Nhom8
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            DialogResult kq = MessageBox.Show("Bạn có chắc muốn tắt chương trình?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult kq = MessageBox.Show("Bạn có đăng xuất không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (kq == DialogResult.OK)
             {
-                this.Close();
+                // Mở lại form đăng nhập
+                frm_Login formLogin = new frm_Login(); // Khởi tạo lại form đăng nhập
+                this.Hide(); // Ẩn form hiện tại (form chính)
+                formLogin.ShowDialog(); // Mở form đăng nhập dưới dạng dialog
+
+                // Đóng form chính sau khi đăng xuất
+                this.Close(); // Đóng form hiện tại (form chính)
             }
         }
 
@@ -246,7 +261,25 @@ namespace Project_Nhom8
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            hideSubMenu();
+            if (BUS_TaiKhoan.Instance.KiemTraPhanQuyen(tenTaiKhoan) == true)
+            {
+                btnQuanTri.Visible = true;
+                btnNoiTru.Visible = false;
+                btnBN.Visible = false;
+                btnKhamBenh.Visible = false;
+                btnTraCuu.Visible = false;
+                btnBaoCao.Visible = false;
+            }
+            else
+            {
+                btnQuanTri.Visible = false;
+                btnNoiTru.Visible = true;
+                btnBN.Visible = true;
+                btnKhamBenh.Visible = true;
+                btnTraCuu.Visible = true;
+                btnBaoCao.Visible = true;
+            }
         }
     }
 }

@@ -155,14 +155,7 @@ namespace Project_Nhom8
             BUS_NhanVien.Instance.HienThiNhanVien(dgvNhanVien);
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            DialogResult kq = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (kq == DialogResult.OK)
-            {
-                this.Close();
-            }
-        }
+
 
         private void txtHoTenNV_TextChanged(object sender, EventArgs e)
         {
@@ -230,6 +223,15 @@ namespace Project_Nhom8
 
                 // Đặt con trỏ chuột ở cuối văn bản
                 txtSDT.SelectionStart = txtSDT.Text.Length;
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult kq = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (kq == DialogResult.OK)
+            {
+                this.Close();
             }
         }
     }

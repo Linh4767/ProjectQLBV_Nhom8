@@ -117,6 +117,13 @@ namespace DAL
                     SDT = eT_NhanVien.SDT
                 };
                 db.NhanViens.InsertOnSubmit(nhanVien);
+
+                TaiKhoan tk = new TaiKhoan { 
+                    TenTaiKhoan = eT_NhanVien.MaNV,
+                    MatKhau = eT_NhanVien.MaNV,
+                    MaNV = eT_NhanVien.MaNV
+                };
+                db.TaiKhoans.InsertOnSubmit(tk);
                 return true;
             }
             finally
@@ -133,11 +140,20 @@ namespace DAL
                 var delete = from nv in db.NhanViens
                              where nv.MaNV == maNV
                              select nv;
+                var deleteTaiKhoan = from tk in db.TaiKhoans
+                                     where tk.MaNV == maNV
+                                     select tk;
+                foreach (var j in deleteTaiKhoan)
+                {
+                    db.TaiKhoans.DeleteOnSubmit(j);
+                    db.SubmitChanges();
+                }
                 foreach (var i in delete)
                 {
                     db.NhanViens.DeleteOnSubmit(i);
                     db.SubmitChanges();
                 }
+                
                 return true;
             }
             catch (System.Data.SqlClient.SqlException ex)
