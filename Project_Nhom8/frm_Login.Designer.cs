@@ -250,6 +250,7 @@
             this.Controls.Add(this.pnlOverlay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_Login";
             this.Load += new System.EventHandler(this.frm_Login_Load);
             this.pnlOverlay.ResumeLayout(false);
