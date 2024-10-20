@@ -840,6 +840,7 @@
             this.Name = "frmMain";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlQuanTri.ResumeLayout(false);
             this.pnlBaoCao.ResumeLayout(false);
             this.pnlKhambenh.ResumeLayout(false);
