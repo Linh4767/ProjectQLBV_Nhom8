@@ -153,6 +153,7 @@ namespace Project_Nhom8
             {
                 btnThemPhong.Enabled = true;
                 btnCapNhapPhong.Enabled = true;
+                
             }
             else
             {
@@ -168,7 +169,7 @@ namespace Project_Nhom8
                 e.Handled = true;
                 MessageBox.Show("Không thể nhập kí tự đặc biệt(trừ dấu -)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (BUS_BatLoi.Instance.KiemTraGioiHanKyTu(txtTenPhong.Text, 90))
+            if (txtTenPhong.Text.Length > 89 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 MessageBox.Show("Bạn đang nhập quá ký tự cho phép là 90", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

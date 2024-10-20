@@ -46,10 +46,5 @@ namespace BUS
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(chuanHoaKhoangTrang.ToLower()).Trim();
         }
 
-        //Kiểm tra giới hạn ký tự
-        public bool KiemTraGioiHanKyTu(string input, int number)
-        {
-            return input.Length >= number;
-        }
     }
 }

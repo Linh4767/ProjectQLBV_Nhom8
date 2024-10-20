@@ -96,6 +96,7 @@ namespace Project_Nhom8
             {
                 btnThemChucVu.Enabled = true;
                 btnCapNhatChucVu.Enabled = true;
+                
             }
             else
             {
@@ -111,7 +112,7 @@ namespace Project_Nhom8
                 e.Handled = true;
                 MessageBox.Show("Không thể nhập kí tự đặc hay số", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (BUS_BatLoi.Instance.KiemTraGioiHanKyTu(txtTenChucVu.Text, 150))
+            if(txtMaChucVu.Text.Length > 149 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 MessageBox.Show("Bạn đang nhập quá ký tự cho phép là 150", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
