@@ -45,6 +45,5 @@ namespace BUS
             // Bước 2: Viết hoa ký tự đầu tiên của mỗi từ và loại bỏ khoảng trắng ở đầu và cuối
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(chuanHoaKhoangTrang.ToLower()).Trim();
         }
-
     }
 }

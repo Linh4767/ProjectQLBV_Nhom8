@@ -33,5 +33,16 @@ namespace DAL.Properties {
                 return ((string)(this["QLBVConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-05J7C3L\\SQLEXPRESS;Initial Catalog=QLBV;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
+        public string QLBVConnectionString1 {
+            get {
+                return ((string)(this["QLBVConnectionString1"]));
+            }
+        }
     }
 }
