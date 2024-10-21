@@ -52,9 +52,17 @@ namespace Project_Nhom8
                     gioiTinh = "Nữ";
                 }
                 DateTime ngaySinh = dtpNgaySinh.Value;
-                if (ngaySinh.Year >= 2002 || ngaySinh.Year <= 1964)
+                int tuoi = DateTime.Now.Year - ngaySinh.Year;
+
+                // Kiểm tra nếu sinh nhật chưa xảy ra trong năm nay thì giảm tuổi đi 1
+                if (DateTime.Now.DayOfYear < ngaySinh.DayOfYear)
                 {
-                    MessageBox.Show("Ngày sinh của bạn không hợp lệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tuoi--;
+                }
+
+                if (tuoi < 22 || tuoi > 60)
+                {
+                    MessageBox.Show("Tuổi của bạn không hợp lệ (phải từ 22 đến 60)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
@@ -127,9 +135,17 @@ namespace Project_Nhom8
                     gioiTinh = "Nữ";
                 }
                 DateTime ngaySinh = dtpNgaySinh.Value;
-                if (ngaySinh.Year >= 2002)
+                int tuoi = DateTime.Now.Year - ngaySinh.Year;
+
+                // Kiểm tra nếu sinh nhật chưa xảy ra trong năm nay thì giảm tuổi đi 1
+                if (DateTime.Now.DayOfYear < ngaySinh.DayOfYear)
                 {
-                    MessageBox.Show("Ngày sinh của bạn không hợp lệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tuoi--;
+                }
+
+                if (tuoi < 22 || tuoi > 60)
+                {
+                    MessageBox.Show("Tuổi của bạn không hợp lệ (phải từ 22 đến 60)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
@@ -208,6 +224,11 @@ namespace Project_Nhom8
                 // Hủy việc nhập ký tự
                 e.Handled = true;
             }
+            if (txtSDT.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                // Hủy việc nhập thêm ký tự
+                e.Handled = true;
+            }
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -217,19 +238,17 @@ namespace Project_Nhom8
 
         private void txtSDT_TextChanged(object sender, EventArgs e)
         {
-            // Kiểm tra nếu số điện thoại ít hơn 10 ký tự
-            if (txtSDT.Text.Length < 10)
+            
+            
+        }
+
+        private void txtSDT_Leave(object sender, EventArgs e)
+        {
+            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 10)
             {
                 // Hiển thị thông báo cảnh báo
-                MessageBox.Show("Số điện thoại phải đủ 10 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else if (txtSDT.Text.Length > 10)
-            {
-                // Cắt chuỗi về 10 ký tự
-                txtSDT.Text = txtSDT.Text.Substring(0, 10);
-
-                // Đặt con trỏ chuột ở cuối văn bản
-                txtSDT.SelectionStart = txtSDT.Text.Length;
+                MessageBox.Show("Số điện thoại phải đủ 10 ký tự hoặc không nhập", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }
     }
