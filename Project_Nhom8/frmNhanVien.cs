@@ -137,10 +137,11 @@ namespace Project_Nhom8
             txtHoTenNV.Clear();
             radNam.Checked = true;
             txtSDT.Clear();
+            txtTimKiem.Clear();
             dtpNgaySinh.Value = DateTime.Now;
             cboCV.SelectedIndex = 0;
             cboChuyenNganh.SelectedIndex = 0;
-            btnThem.Enabled = true;
+            btnThem.Enabled = false;
             btnCapNhat.Enabled = false;
             btnXoa.Enabled = false;
             BUS_NhanVien.Instance.HienThiNhanVien(dgvNhanVien);
