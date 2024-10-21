@@ -243,5 +243,10 @@ namespace Project_Nhom8
             openChildForm(new frmDichVu());
             hideSubMenu();
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
