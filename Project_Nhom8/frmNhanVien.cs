@@ -208,6 +208,11 @@ namespace Project_Nhom8
                 // Hủy việc nhập ký tự
                 e.Handled = true;
             }
+            if (txtSDT.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                // Hủy việc nhập thêm ký tự
+                e.Handled = true;
+            }
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -217,19 +222,17 @@ namespace Project_Nhom8
 
         private void txtSDT_TextChanged(object sender, EventArgs e)
         {
-            // Kiểm tra nếu số điện thoại ít hơn 10 ký tự
-            if (txtSDT.Text.Length < 10)
+            
+            
+        }
+
+        private void txtSDT_Leave(object sender, EventArgs e)
+        {
+            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 10)
             {
                 // Hiển thị thông báo cảnh báo
-                MessageBox.Show("Số điện thoại phải đủ 10 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else if (txtSDT.Text.Length > 10)
-            {
-                // Cắt chuỗi về 10 ký tự
-                txtSDT.Text = txtSDT.Text.Substring(0, 10);
-
-                // Đặt con trỏ chuột ở cuối văn bản
-                txtSDT.SelectionStart = txtSDT.Text.Length;
+                MessageBox.Show("Số điện thoại phải đủ 10 ký tự hoặc không nhập", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }
     }
