@@ -85,8 +85,9 @@ namespace Project_Nhom8
             txtMaCN.Clear();
             txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong();
             txtTenChuyenNganh.Clear();
+            txtTimKiem.Clear();
             cboKhoa.SelectedIndex = 0;
-            btnThem.Enabled = true;
+            btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
             BUS_ChuyenNganh.Instance.HienThiChuyenNganh(dgvChuyenNganh);
