@@ -144,6 +144,7 @@ namespace Project_Nhom8
             btnXoaPhong.Enabled = false;
             btnCapNhapPhong.Enabled = false;
             txtTK.Clear();
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
         }
 
         private void txtTenPhong_TextChanged(object sender, EventArgs e)
