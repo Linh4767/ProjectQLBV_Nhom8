@@ -52,9 +52,17 @@ namespace Project_Nhom8
                     gioiTinh = "Nữ";
                 }
                 DateTime ngaySinh = dtpNgaySinh.Value;
-                if (ngaySinh.Year >= 2002 || ngaySinh.Year <= 1964)
+                int tuoi = DateTime.Now.Year - ngaySinh.Year;
+
+                // Kiểm tra nếu sinh nhật chưa xảy ra trong năm nay thì giảm tuổi đi 1
+                if (DateTime.Now.DayOfYear < ngaySinh.DayOfYear)
                 {
-                    MessageBox.Show("Ngày sinh của bạn không hợp lệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tuoi--;
+                }
+
+                if (tuoi < 22 || tuoi > 60)
+                {
+                    MessageBox.Show("Tuổi của bạn không hợp lệ (phải từ 22 đến 60)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
@@ -127,9 +135,17 @@ namespace Project_Nhom8
                     gioiTinh = "Nữ";
                 }
                 DateTime ngaySinh = dtpNgaySinh.Value;
-                if (ngaySinh.Year >= 2002)
+                int tuoi = DateTime.Now.Year - ngaySinh.Year;
+
+                // Kiểm tra nếu sinh nhật chưa xảy ra trong năm nay thì giảm tuổi đi 1
+                if (DateTime.Now.DayOfYear < ngaySinh.DayOfYear)
                 {
-                    MessageBox.Show("Ngày sinh của bạn không hợp lệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tuoi--;
+                }
+
+                if (tuoi < 22 || tuoi > 60)
+                {
+                    MessageBox.Show("Tuổi của bạn không hợp lệ (phải từ 22 đến 60)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
