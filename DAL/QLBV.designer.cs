@@ -5372,7 +5372,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
 		public System.DateTime NgayYeuCau
 		{
 			get

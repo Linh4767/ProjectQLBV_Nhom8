@@ -121,6 +121,7 @@
             this.btnThoat.TabIndex = 9;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseTransparentBackground = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // guna2CirclePictureBox1
             // 
@@ -200,6 +201,8 @@
             this.txtMatKhau.SelectedText = "";
             this.txtMatKhau.Size = new System.Drawing.Size(424, 48);
             this.txtMatKhau.TabIndex = 2;
+            this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
+            this.txtMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatKhau_KeyPress);
             // 
             // txtTaiKhoan
             // 
@@ -221,6 +224,8 @@
             this.txtTaiKhoan.SelectedText = "";
             this.txtTaiKhoan.Size = new System.Drawing.Size(424, 48);
             this.txtTaiKhoan.TabIndex = 1;
+            this.txtTaiKhoan.TextChanged += new System.EventHandler(this.txtTaiKhoan_TextChanged);
+            this.txtTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaiKhoan_KeyPress);
             // 
             // label1
             // 
@@ -250,6 +255,7 @@
             this.Controls.Add(this.pnlOverlay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_Login";
             this.Load += new System.EventHandler(this.frm_Login_Load);
             this.pnlOverlay.ResumeLayout(false);

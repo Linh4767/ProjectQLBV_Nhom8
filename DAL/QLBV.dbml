@@ -233,7 +233,7 @@
       <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaDV" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NgayThucHien" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="NgayYeuCau" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NgayYeuCau" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MSPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaNVThucHien" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="KetQua" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
