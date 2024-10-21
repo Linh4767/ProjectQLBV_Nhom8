@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ET_BenhNhan.cs" />
     <Compile Include="ET_ChuyenNganh.cs" />
     <Compile Include="ET_Khoa.cs" />
     <Compile Include="ET_NhanVien.cs" />
     <Compile Include="ET_ChucVu.cs" />
     <Compile Include="ET_Khoa.cs" />
     <Compile Include="ET_Phong.cs" />
+    <Compile Include="ET_TheBHYT.cs" />
     <Compile Include="ET_TaiKhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -158,12 +158,12 @@
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgaySinh.Location = new System.Drawing.Point(317, 414);
             this.dtpNgaySinh.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.dtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpNgaySinh.MaxDate = new System.DateTime(2080, 2, 1, 0, 0, 0, 0);
+            this.dtpNgaySinh.MinDate = new System.DateTime(1950, 12, 31, 0, 0, 0, 0);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
             this.dtpNgaySinh.Size = new System.Drawing.Size(435, 45);
             this.dtpNgaySinh.TabIndex = 90;
-            this.dtpNgaySinh.Value = new System.DateTime(2024, 9, 26, 22, 35, 54, 437);
+            this.dtpNgaySinh.Value = new System.DateTime(2024, 10, 21, 0, 0, 0, 0);
             // 
             // cboCV
             // 
@@ -439,6 +439,7 @@
             this.txtSDT.TabIndex = 114;
             this.txtSDT.TextChanged += new System.EventHandler(this.txtSDT_TextChanged);
             this.txtSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDT_KeyPress);
+            this.txtSDT.Leave += new System.EventHandler(this.txtSDT_Leave);
             // 
             // dgvNhanVien
             // 
