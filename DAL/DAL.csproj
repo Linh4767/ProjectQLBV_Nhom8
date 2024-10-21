@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="DAL_BenhNhan.cs" />
     <Compile Include="DAL_ChuyenNganh.cs" />
+    <Compile Include="DAL_DichVu.cs" />
+    <Compile Include="DAL_GiuongBenh.cs" />
     <Compile Include="DAL_Khoa.cs" />
     <Compile Include="DAL_NhanVien.cs" />
     <Compile Include="DAL_ChucVu.cs" />
