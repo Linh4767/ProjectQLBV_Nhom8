@@ -95,31 +95,6 @@ namespace Project_Nhom8
 
         }
 
-        private void dgvNhanVien_Click(object sender, EventArgs e)
-        {
-            if (dgvNhanVien.CurrentRow != null && !dgvNhanVien.Rows[dgvNhanVien.CurrentRow.Index].IsNewRow)
-            {
-                int dong = dgvNhanVien.CurrentCell.RowIndex;
-                txtMaNV.Text = dgvNhanVien.Rows[dong].Cells[0].Value.ToString();
-                txtHoTenNV.Text = dgvNhanVien.Rows[dong].Cells[1].Value.ToString();
-                if (dgvNhanVien.Rows[dong].Cells[2].Value.ToString() == "Nam")
-                {
-                    radNam.Checked = true;
-                }
-                else
-                {
-                    radNu.Checked = true;
-                }
-                dtpNgaySinh.Text = dgvNhanVien.Rows[dong].Cells[3].Value.ToString();
-                cboCV.SelectedValue = dgvNhanVien.Rows[dong].Cells[4].Value.ToString();
-                cboChuyenNganh.SelectedValue = dgvNhanVien.Rows[dong].Cells[5].Value.ToString();
-                txtSDT.Text = dgvNhanVien.Rows[dong].Cells[6].Value.ToString();
-                btnThem.Enabled = false;
-                btnXoa.Enabled = true;
-                btnCapNhat.Enabled = true;
-            }
-        }
-
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             DialogResult ret = MessageBox.Show("Bạn có muốn sửa không ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -251,6 +226,31 @@ namespace Project_Nhom8
             if (kq == DialogResult.OK)
             {
                 this.Close();
+            }
+        }
+
+        private void dgvNhanVien_Click(object sender, EventArgs e)
+        {
+            if (dgvNhanVien.CurrentRow != null && !dgvNhanVien.Rows[dgvNhanVien.CurrentRow.Index].IsNewRow)
+            {
+                int dong = dgvNhanVien.CurrentCell.RowIndex;
+                txtMaNV.Text = dgvNhanVien.Rows[dong].Cells[0].Value.ToString();
+                txtHoTenNV.Text = dgvNhanVien.Rows[dong].Cells[1].Value.ToString();
+                if (dgvNhanVien.Rows[dong].Cells[2].Value.ToString() == "Nam")
+                {
+                    radNam.Checked = true;
+                }
+                else
+                {
+                    radNu.Checked = true;
+                }
+                dtpNgaySinh.Text = dgvNhanVien.Rows[dong].Cells[3].Value.ToString();
+                cboCV.SelectedValue = dgvNhanVien.Rows[dong].Cells[4].Value.ToString();
+                cboChuyenNganh.SelectedValue = dgvNhanVien.Rows[dong].Cells[5].Value.ToString();
+                txtSDT.Text = dgvNhanVien.Rows[dong].Cells[6].Value.ToString();
+                btnThem.Enabled = false;
+                btnXoa.Enabled = true;
+                btnCapNhat.Enabled = true;
             }
         }
     }
