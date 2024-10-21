@@ -99,7 +99,7 @@ namespace DAL
     #endregion
 		
 		public QLBVDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLBVConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLBVConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -5372,7 +5372,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
 		public System.DateTime NgayYeuCau
 		{
 			get
