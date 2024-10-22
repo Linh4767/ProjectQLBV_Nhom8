@@ -44,6 +44,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnTimNV = new Guna.UI2.WinForms.Guna2Button();
+            this.txtTimNV = new Guna.UI2.WinForms.Guna2TextBox();
+            this.bntThoat = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaTruc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +67,7 @@
             this.cboChonKhoa.Name = "cboChonKhoa";
             this.cboChonKhoa.Size = new System.Drawing.Size(393, 36);
             this.cboChonKhoa.TabIndex = 85;
+            this.cboChonKhoa.SelectedIndexChanged += new System.EventHandler(this.cboChonKhoa_SelectedIndexChanged);
             // 
             // label40
             // 
@@ -99,12 +103,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCaTruc.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCaTruc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvCaTruc.Location = new System.Drawing.Point(586, 56);
+            this.dgvCaTruc.Location = new System.Drawing.Point(606, 82);
             this.dgvCaTruc.Name = "dgvCaTruc";
             this.dgvCaTruc.RowHeadersVisible = false;
             this.dgvCaTruc.RowHeadersWidth = 51;
             this.dgvCaTruc.RowTemplate.Height = 24;
-            this.dgvCaTruc.Size = new System.Drawing.Size(479, 400);
+            this.dgvCaTruc.Size = new System.Drawing.Size(461, 420);
             this.dgvCaTruc.TabIndex = 83;
             this.dgvCaTruc.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvCaTruc.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -194,6 +198,7 @@
             this.btnThemCaTruc.Size = new System.Drawing.Size(128, 49);
             this.btnThemCaTruc.TabIndex = 80;
             this.btnThemCaTruc.Text = "Thêm";
+            this.btnThemCaTruc.Click += new System.EventHandler(this.btnThemCaTruc_Click);
             // 
             // btnSuaCaTruc
             // 
@@ -204,7 +209,7 @@
             this.btnSuaCaTruc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnSuaCaTruc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnSuaCaTruc.ForeColor = System.Drawing.Color.White;
-            this.btnSuaCaTruc.Location = new System.Drawing.Point(319, 502);
+            this.btnSuaCaTruc.Location = new System.Drawing.Point(329, 502);
             this.btnSuaCaTruc.Margin = new System.Windows.Forms.Padding(4);
             this.btnSuaCaTruc.Name = "btnSuaCaTruc";
             this.btnSuaCaTruc.Size = new System.Drawing.Size(128, 49);
@@ -281,11 +286,69 @@
             this.label9.TabIndex = 73;
             this.label9.Text = "Phòng";
             // 
+            // btnTimNV
+            // 
+            this.btnTimNV.BorderRadius = 4;
+            this.btnTimNV.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTimNV.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTimNV.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTimNV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTimNV.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnTimNV.ForeColor = System.Drawing.Color.White;
+            this.btnTimNV.Location = new System.Drawing.Point(928, 39);
+            this.btnTimNV.Name = "btnTimNV";
+            this.btnTimNV.Size = new System.Drawing.Size(106, 34);
+            this.btnTimNV.TabIndex = 87;
+            this.btnTimNV.Text = "Tìm";
+            this.btnTimNV.Click += new System.EventHandler(this.btnTimNV_Click);
+            // 
+            // txtTimNV
+            // 
+            this.txtTimNV.BorderColor = System.Drawing.Color.Black;
+            this.txtTimNV.BorderRadius = 3;
+            this.txtTimNV.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTimNV.DefaultText = "";
+            this.txtTimNV.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTimNV.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTimNV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTimNV.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTimNV.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTimNV.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTimNV.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTimNV.Location = new System.Drawing.Point(606, 39);
+            this.txtTimNV.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTimNV.Name = "txtTimNV";
+            this.txtTimNV.PasswordChar = '\0';
+            this.txtTimNV.PlaceholderText = "Mã Nhân Viên";
+            this.txtTimNV.SelectedText = "";
+            this.txtTimNV.Size = new System.Drawing.Size(315, 34);
+            this.txtTimNV.TabIndex = 86;
+            this.txtTimNV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimNV_KeyPress);
+            // 
+            // bntThoat
+            // 
+            this.bntThoat.BorderRadius = 4;
+            this.bntThoat.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bntThoat.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bntThoat.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bntThoat.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bntThoat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.bntThoat.ForeColor = System.Drawing.Color.White;
+            this.bntThoat.Location = new System.Drawing.Point(902, 516);
+            this.bntThoat.Margin = new System.Windows.Forms.Padding(4);
+            this.bntThoat.Name = "bntThoat";
+            this.bntThoat.Size = new System.Drawing.Size(165, 49);
+            this.bntThoat.TabIndex = 79;
+            this.bntThoat.Text = "Thoát";
+            this.bntThoat.Click += new System.EventHandler(this.bntThoat_Click);
+            // 
             // frmCaTruc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 578);
+            this.Controls.Add(this.btnTimNV);
+            this.Controls.Add(this.txtTimNV);
             this.Controls.Add(this.cboChonKhoa);
             this.Controls.Add(this.label40);
             this.Controls.Add(this.dgvCaTruc);
@@ -293,6 +356,7 @@
             this.Controls.Add(this.cboCaTruc);
             this.Controls.Add(this.cboMaNV);
             this.Controls.Add(this.btnThemCaTruc);
+            this.Controls.Add(this.bntThoat);
             this.Controls.Add(this.btnSuaCaTruc);
             this.Controls.Add(this.dtpCaTruc);
             this.Controls.Add(this.cboPhong);
@@ -301,6 +365,7 @@
             this.Controls.Add(this.label9);
             this.Name = "frmCaTruc";
             this.Text = "Ca Trực";
+            this.Load += new System.EventHandler(this.frmCaTruc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaTruc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -322,5 +387,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private Guna.UI2.WinForms.Guna2Button btnTimNV;
+        private Guna.UI2.WinForms.Guna2TextBox txtTimNV;
+        private Guna.UI2.WinForms.Guna2Button bntThoat;
     }
 }
