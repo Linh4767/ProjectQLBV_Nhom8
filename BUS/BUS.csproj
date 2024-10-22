@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BUS_BatLoi.cs" />
     <Compile Include="BUS_BenhNhan.cs" />
+    <Compile Include="BUS_CaTruc.cs" />
     <Compile Include="BUS_ChuyenNganh.cs" />
     <Compile Include="BUS_NhanVien.cs" />
     <Compile Include="BUS_ChucVu.cs" />
