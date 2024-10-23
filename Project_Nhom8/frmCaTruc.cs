@@ -139,5 +139,16 @@ namespace Project_Nhom8
                 cboChonKhoa.Enabled = true;
             }
         }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            cboChonKhoa.SelectedIndex = 0;
+            cboCaTruc.SelectedIndex = 0;
+            cboPhong.Enabled = true;
+            cboMaNV.Enabled = true;
+            cboChonKhoa.Enabled = true;
+            btnSuaCaTruc.Enabled = false;
+            dtpNgayTruc.Value = DateTime.Now;
+        }
     }
 }
