@@ -94,7 +94,7 @@ namespace DAL
         //Sửa thông tin bệnh nhân
         public bool SuaBenhNhan(ET_BenhNhan eT_BenhNhan)
         {
-            BenhNhan benhNhan = db.BenhNhans.Single(e => e.MSBN == eT_BenhNhan.MaBN);
+            BenhNhan benhNhan = db.BenhNhans.SingleOrDefault(e => e.MSBN == eT_BenhNhan.MaBN);
             //ktra trung ma
             if (benhNhan != null)
             {

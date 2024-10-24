@@ -29,9 +29,6 @@ namespace Project_Nhom8
             //tải danh sách ca trực
             TaiDuLieu();
             dgvCaTruc.ColumnHeadersHeight = 40;
-            //ẩn cột
-            dgvCaTruc.Columns[4].Visible = false;
-            dgvCaTruc.Columns[5].Visible = false;
 
             //lấy dữ liệu cho cboKhoa
             BUS_CaTruc.Instance.LayDanhSachKhoa(cboChonKhoa);
@@ -54,19 +51,21 @@ namespace Project_Nhom8
 
             //chọn item đầu tiên
             cboCaTruc.SelectedIndex = 0;
+            btnSuaCaTruc.Enabled = false;
         }
 
         //Tải dữ liệu cho form ca trực
         private void TaiDuLieu()
         {
             BUS_CaTruc.Instance.LayDSCaTruc(dgvCaTruc);
+            txtMaCT.Text = BUS_CaTruc.Instance.TaoMa();
         }
         private void btnThemCaTruc_Click(object sender, EventArgs e)
         {
             DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
-                string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpCaTruc.Text)));
+                string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
                 MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TaiDuLieu();
             }
@@ -102,6 +101,54 @@ namespace Project_Nhom8
             {
                 this.Close();
             }
+        }
+
+        private void dgvCaTruc_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu có dòng được chọn và dòng đó không phải là dòng trống
+            if (dgvCaTruc.CurrentRow != null && !dgvCaTruc.Rows[dgvCaTruc.CurrentRow.Index].IsNewRow)
+            {
+                btnSuaCaTruc.Enabled = true;
+                cboPhong.Enabled = false;
+                cboMaNV.Enabled = false;
+
+                int dong = dgvCaTruc.CurrentCell.RowIndex;
+                txtMaCT.Text = dgvCaTruc.Rows[dong].Cells[0].Value.ToString();
+                cboPhong.SelectedValue = dgvCaTruc.Rows[dong].Cells[1].Value.ToString();
+                cboMaNV.SelectedValue = dgvCaTruc.SelectedCells[2].Value.ToString();
+                cboCaTruc.SelectedItem = dgvCaTruc.SelectedCells[3].Value.ToString();
+                dtpNgayTruc.Text = dgvCaTruc.Rows[dong].Cells[4].Value.ToString();
+
+                string maKhoa = dgvCaTruc.Rows[dong].Cells[5].Value.ToString();
+                BUS_CaTruc.Instance.LayKhoa(maKhoa, cboChonKhoa);
+                cboChonKhoa.Enabled = false;
+            }
+        }
+
+        private void btnSuaCaTruc_Click(object sender, EventArgs e)
+        {
+            DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (tb == DialogResult.Yes)
+            {
+                string kq = BUS_CaTruc.Instance.CapNhatCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
+                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TaiDuLieu();
+                btnSuaCaTruc.Enabled = false;
+                cboPhong.Enabled = true;
+                cboMaNV.Enabled = true;
+                cboChonKhoa.Enabled = true;
+            }
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            cboChonKhoa.SelectedIndex = 0;
+            cboCaTruc.SelectedIndex = 0;
+            cboPhong.Enabled = true;
+            cboMaNV.Enabled = true;
+            cboChonKhoa.Enabled = true;
+            btnSuaCaTruc.Enabled = false;
+            dtpNgayTruc.Value = DateTime.Now;
         }
     }
 }

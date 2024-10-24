@@ -51,6 +51,12 @@ namespace BUS
             cbo.DataSource = DAL_CaTruc.Instance.LayDanhSachNhanVien(maKhoa);
         }
 
+        //Tạo mã
+        public string TaoMa()
+        {
+            return DAL_CaTruc.Instance.TaoMaTuDong();
+        }
+
         //Thêm ca trực mới
         public string ThemCatruc(ET_CaTruc eT_CaTruc)
         {
@@ -65,7 +71,27 @@ namespace BUS
         }
 
         //Cập nhật ca trực
+        public string CapNhatCatruc(ET_CaTruc eT_CaTruc)
+        {
+            if (DAL_CaTruc.Instance.CapNhatNhatCaTruc(eT_CaTruc))
+            {
+                return "Cập nhật thành công";
+            }
+            else
+            {
+                return "Cập nhật không thành công";
+            }
+        }
 
+        //Lấy khoa
+        public void LayKhoa(string maK, ComboBox cbo)
+        {
+            var khoa = DAL_CaTruc.Instance.LayKhoa(maK);
+
+            // Gán trực tiếp giá trị của đối tượng khoa vào ComboBox
+            cbo.Text = khoa.TenKhoa;
+            cbo.SelectedValue = khoa.MaKhoa;
+        }
 
         //Tìm nhân viên
         public void TimNhanVien(string key, DataGridView data)
