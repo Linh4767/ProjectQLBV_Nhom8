@@ -38,6 +38,10 @@ namespace Project_Nhom8
             txtMaBHYT.Clear();
             txtTenBN.Focus();
             btnSua.Enabled = false;
+            dtpNgaySinh.Value = DateTime.Now;
+            dtpNgayCap.Value = DateTime.Now;
+            dtpNgayHH.Value = DateTime.Now;
+            radNam.Checked = true;
         }
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
@@ -103,6 +107,9 @@ namespace Project_Nhom8
 
                     // Xử lý tên bệnh nhân (viết hoa và bỏ khoảng trắng thừa)
                     txtTenBN.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtTenBN.Text);
+                    txtDiaChi.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtDiaChi.Text);
+                    txtNgheNghiep.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtNgheNghiep.Text);
+                    txtDanToc.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtDanToc.Text);
 
                     //Thêm bệnh nhân
                     string kq = BUS_BenhNhan.Instance.ThemBenhNhan(new ET_BenhNhan(txtMaBN.Text.Trim(), txtTenBN.Text, gioiTinh, ngaySinh, txtDiaChi.Text, txtNgheNghiep.Text, txtSDT.Text, txtDanToc.Text, txtTTLH.Text), new ET_TheBHYT(txtMaBHYT.Text, Convert.ToDateTime(dtpNgayCap.Text), Convert.ToDateTime(dtpNgayHH.Text), txtMaBN.Text));
@@ -152,6 +159,10 @@ namespace Project_Nhom8
                     gioiTinh = "Nữ";
                 }
                 txtTenBN.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtTenBN.Text);
+                txtDiaChi.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtDiaChi.Text);
+                txtNgheNghiep.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtNgheNghiep.Text);
+                txtDanToc.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtDanToc.Text);
+
                 string kq = BUS_BenhNhan.Instance.SuaTTBenhNhan(new ET_BenhNhan(txtMaBN.Text.Trim(), txtTenBN.Text, gioiTinh, Convert.ToDateTime(dtpNgaySinh.Text), txtDiaChi.Text, txtNgheNghiep.Text, txtSDT.Text, txtDanToc.Text, txtTTLH.Text), new ET_TheBHYT(txtMaBHYT.Text, Convert.ToDateTime(dtpNgayCap.Text), Convert.ToDateTime(dtpNgayHH.Text), txtMaBN.Text));
                 MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LayDanhSachBenhNhan();
