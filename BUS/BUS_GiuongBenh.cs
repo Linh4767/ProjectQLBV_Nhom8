@@ -25,10 +25,18 @@ namespace BUS
             }
         }
 
-        //Hiển thị danh sách giường bênh
+        //Hiển thị danh sách giường bệnh
         public void HienThiGiuongBenh(DataGridView dgv)
         {
             dgv.DataSource = DAL_GiuongBenh.Instance.HienThiDanhSachGiuongBenh();
+        }
+
+        //Hiển thị combobox khoa
+        public void HienThiComboboxKhoa(ComboBox cboKhoa)
+        {
+            cboKhoa.DataSource = DAL_GiuongBenh.Instance.HienThiComboboxKhoa();
+            cboKhoa.ValueMember = "MaKhoa";
+            cboKhoa.DisplayMember = "TenKhoa";
         }
 
         //Hiển thị combobox Phòng
@@ -39,30 +47,52 @@ namespace BUS
             cboPhong.DisplayMember = "TenPhong";
         }
 
+        //Hiển thị tên Khoa theo Phòng
+        public string HienThiTenKhoa(string maPhong)
+        {
+            return DAL_GiuongBenh.Instance.HienThiTenKhoa(maPhong);
+        }
+
+
         //Tìm kiếm giường bệnh
         public void TimKiemGiuongBenh(string keyword, DataGridView dgv)
         {
             dgv.DataSource = DAL_GiuongBenh.Instance.TimKiemPhong(keyword);
         }
 
+
         //Tạo mã tự động
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(int numberic, string maPhong)
         {
-            return DAL_GiuongBenh.Instance.TaoMaTuDong();
+            return DAL_GiuongBenh.Instance.TaoMaTuDong(numberic, maPhong);
         }
+
+        //Hiển thị combobox Phòng
+        //public string HienThiMaPhong(string tenPhong)
+        //{
+        //    return DAL_GiuongBenh.Instance.HienThiMaPhong(tenPhong);
+        //}
 
         //Thêm Giường Bệnh
         public void ThemGiuongBenh(ET_GiuongBenh et_giuongbenh)
         {
-            if (DAL_GiuongBenh.Instance.ThemGiuongBenh(et_giuongbenh) == true)
+            if (DAL_GiuongBenh.Instance.KiemTraSoGiuong(et_giuongbenh.MaPhong) == true)
             {
-                MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (DAL_GiuongBenh.Instance.ThemGiuongBenh(et_giuongbenh) == true)
+                {
+                    MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                }
+                else
+                {
+                    MessageBox.Show("Thêm không thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Thêm không thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Số lượng giường trong phòng đã đạt tối đa !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
         }
 
         //Xóa Giường Bệnh

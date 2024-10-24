@@ -29,6 +29,8 @@ namespace Project_Nhom8
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
             dgvChuyenNganh.Columns[3].Visible = false;
+            cboKhoa.DropDownWidth = 150;  // Chiều rộng của phần danh sách khi bấm vào
+            cboKhoa.DropDownHeight = 300; // Chiều cao của phần danh sách thả xuống
         }
 
         private void btnThem_Click(object sender, EventArgs e)
