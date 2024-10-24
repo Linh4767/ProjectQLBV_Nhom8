@@ -121,7 +121,7 @@ namespace Project_Nhom8
 
         private void txtTenDV_TextChanged(object sender, EventArgs e)
         {
-            var textbox = new List<string> { txtTenDV.Text };
+            var textbox = new List<string> { txtTenDV.Text, txtGiaDV.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThem.Enabled = true;
@@ -149,6 +149,40 @@ namespace Project_Nhom8
         {
             // Chỉ cho phép nhập chữ, xóa và khoảng trắng
             if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back && !char.IsWhiteSpace(e.KeyChar))
+            {
+                // Hủy việc nhập ký tự
+                e.Handled = true;
+            }
+        }
+
+        private void txtGiaDV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtGiaDV_Leave(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu dữ liệu đã nhập là hợp lệ
+            if (int.TryParse(txtGiaDV.Text, out int giaDV))
+            {
+                // Kiểm tra giá trị có nằm trong khoảng từ 50.000 đến 500.000.000 không
+                if (giaDV < 50000 || giaDV > 500000000)
+                {
+                    MessageBox.Show("Giá dịch vụ phải nằm trong khoảng từ 50.000 đến 500.000.000", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGiaDV.Focus(); // Đưa con trỏ về lại ô nhập liệu
+                }
+            }
+            else
+            {
+                MessageBox.Show("Giá dịch vụ không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGiaDV.Focus(); // Đưa con trỏ về lại ô nhập liệu
+            }
+        }
+
+        private void txtGiaDV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Chỉ cho phép nhập số
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 // Hủy việc nhập ký tự
                 e.Handled = true;

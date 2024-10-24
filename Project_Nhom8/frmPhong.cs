@@ -31,6 +31,7 @@ namespace Project_Nhom8
             dgvDSPhong.Columns[0].Width = 70;
             dgvDSPhong.Columns[1].Width = 200;
             nudSoGiuong.DecimalPlaces = 0;
+            nudSoGiuong.Maximum = 7;
             txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong();
             btnThemPhong.Enabled = false;
             btnXoaPhong.Enabled = false;
@@ -186,7 +187,7 @@ namespace Project_Nhom8
         private void btnThoat_Click(object sender, EventArgs e)
         {
             DialogResult kq = MessageBox.Show("Bạn có chắc muốn thoát khỏi giao diện quản lý phòng không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (kq == DialogResult.OK)
+            if (kq == DialogResult.Yes)
             {
                 this.Close();
             }

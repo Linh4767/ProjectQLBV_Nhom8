@@ -29,39 +29,89 @@ namespace DAL
         public IQueryable HienThiDanhSachGiuongBenh()
         {
             IQueryable giuongBenh = from gb in db.GiuongBenhs
-                                    select gb;
+                                    join pb in db.Phongs
+                                    on gb.MSPhong equals pb.MSPhong
+                                    join k in db.Khoas
+                                    on pb.MaKhoa equals k.MaKhoa
+                                    select new {gb.MaGiuong, gb.SoGiuong, pb.MSPhong, pb.TenPhong};
             return giuongBenh;
         }
 
         //Tạo mã tự động 
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(int numberic, string maPhong)
         {
-            //Lấy tất cả mã dưới dạng chuỗi
-            var dsGiuongBenh = db.GiuongBenhs.Select(gb => gb.MaGiuong).ToList();
-            //Tìm mã lớn nhất và lấy phần số
-            int maLonNhat = dsGiuongBenh.Select(maGB => int.Parse(maGB.Substring(2))).Max();
-            //Lấy mã hiện tại
-            int maHienTai = maLonNhat + 1;
-            //Tạo mã mới
-            string maMoi = "DV" + maHienTai.ToString("D3");//Lấy 3 số phía sau 
+
+            // Tách mã phòng để lấy số
+            string soPhong = maPhong.Split('P')[1]; // Lấy phần sau chữ 'P'
+
+            // Tạo mã mới với "G" thay cho "P"
+            string maMoi = "G" + soPhong + "." + numberic;
+
             return maMoi;
         }
+
+        //Hiển thị combobox Mã Phòng
+        //public string HienThiMaPhong(string tenPhong)
+        //{
+        //    string maPhong = (from p in db.Phongs
+        //                      where p.TenPhong == tenPhong
+        //                      select p.MSPhong).SingleOrDefault();
+        //    return maPhong;
+        //}
 
         //Hiển thị combobox Phòng
         public IQueryable HienThiComboboxPhong()
         {
             IQueryable phong = from p in db.Phongs
-                               select new { p.MSPhong, p.TenPhong };
+                               where p.Loai == "Phòng bệnh"
+                               select p;
             return phong;
+        }
+
+        //Hiển thị combobox Khoa
+        public IQueryable HienThiComboboxKhoa()
+        {
+            IQueryable khoa = from k in db.Khoas
+                              select k;
+            return khoa;
+        }
+
+        //Hiển thị combobox tên Khoa theo Phòng
+        public string HienThiTenKhoa(string maPhong)
+        {
+            var khoa = (from k in db.Khoas
+                        join p in db.Phongs
+                        on k.MaKhoa equals p.MaKhoa
+                        where p.MSPhong == maPhong
+                        select k.TenKhoa).FirstOrDefault();
+            return khoa;
         }
 
         //Tìm phòng
         public IQueryable TimKiemPhong(string searchTerm)
         {
             IQueryable ds = from dl in db.Phongs
+                            join gb in db.GiuongBenhs
+                            on dl.MSPhong equals gb.MSPhong
                             where dl.TenPhong.Contains(searchTerm)
-                            select dl;
+                            select new { gb.MaGiuong, gb.SoGiuong, dl.MSPhong, dl.TenPhong};
             return ds;
+        }
+
+        //Kiểm tra số lượng giường trong phòng
+        public bool KiemTraSoGiuong(string maPB)
+        {
+            int soLuongGioiHan = (from pb in db.Phongs
+                                  where pb.MSPhong == maPB
+                                  select Convert.ToInt32(pb.SoGiuong)).FirstOrDefault();
+            int soGiuong = (from gb in db.GiuongBenhs
+                            where gb.MSPhong == maPB
+                            select Convert.ToInt32(gb.SoGiuong)).Count();
+            if (soGiuong >= soLuongGioiHan)
+            {
+                return false;
+            }
+            return true;
         }
 
         //Thêm giường bệnh

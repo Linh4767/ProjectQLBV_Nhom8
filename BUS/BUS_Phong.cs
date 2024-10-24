@@ -62,7 +62,7 @@ namespace BUS
             else
             {
                 // Hiện lên thông báo khi xóa không thành công
-                MessageBox.Show("Dữ liệu đang được đối chiếu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Xóa không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
