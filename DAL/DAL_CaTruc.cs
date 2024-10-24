@@ -68,7 +68,7 @@ namespace DAL
                               join cn in db.ChuyenNganhs
                               on nv.MaChuyenNganh equals cn.MaChuyenNganh
                               where cn.MaKhoa == maKhoa && nv.MaCV != "CV5"
-                              select new { nv.MaNV, nv.TenNV };
+                              select new { nv.MaNV, HienThi = nv.MaNV +"-"+nv.TenNV };
             return dsNV;
         }
 

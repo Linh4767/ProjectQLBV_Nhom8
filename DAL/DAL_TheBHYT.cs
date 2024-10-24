@@ -60,11 +60,12 @@ namespace DAL
         //Cập nhật thẻ BHYT
         public bool SuaBHYT(ET_TheBHYT eT_TheBHYT)
         {
-            BHYT sua = db.BHYTs.Single(e => e.MaSoBHYT == eT_TheBHYT.MaBHYT);
+            BHYT sua = db.BHYTs.SingleOrDefault(e => e.MSBN == eT_TheBHYT.MaBN);
             if (sua != null)
             {
                 try
                 {
+                    sua.MaSoBHYT = eT_TheBHYT.MaBHYT;
                     sua.NgayCap = eT_TheBHYT.NgayCap;
                     sua.NgayHetHan = eT_TheBHYT.NgayHetHan;
 

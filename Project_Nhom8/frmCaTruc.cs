@@ -46,12 +46,21 @@ namespace Project_Nhom8
             cboPhong.DisplayMember = "TenPhong";
             cboPhong.ValueMember = "MSPhong";
 
-            cboMaNV.DisplayMember = "TenNV";
+            cboMaNV.DisplayMember = "HienThi";
             cboMaNV.ValueMember = "MaNV";
 
             //chọn item đầu tiên
             cboCaTruc.SelectedIndex = 0;
             btnSuaCaTruc.Enabled = false;
+            cboChonKhoa.DropDownWidth = 150;
+            cboChonKhoa.DropDownHeight = 300;
+
+            cboPhong.DropDownWidth = 150;
+            cboPhong.DropDownHeight = 300;
+
+            cboMaNV.DropDownWidth = 150;
+            cboMaNV.DropDownHeight = 300;
+            dtpNgayTruc.Value = DateTime.Now;
         }
 
         //Tải dữ liệu cho form ca trực
@@ -62,13 +71,20 @@ namespace Project_Nhom8
         }
         private void btnThemCaTruc_Click(object sender, EventArgs e)
         {
-            DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (tb == DialogResult.Yes)
+            if (dtpNgayTruc.Value.Date < DateTime.Now.Date)
             {
-                string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
-                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TaiDuLieu();
+                MessageBox.Show("Ngày trực không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else
+            {
+                DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tb == DialogResult.Yes)
+                {
+                    string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
+                    MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TaiDuLieu();
+                }
+            }          
         }
 
         private void txtTimNV_KeyPress(object sender, KeyPressEventArgs e)
@@ -127,17 +143,25 @@ namespace Project_Nhom8
 
         private void btnSuaCaTruc_Click(object sender, EventArgs e)
         {
-            DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (tb == DialogResult.Yes)
+            if (dtpNgayTruc.Value.Date < DateTime.Now.Date)
             {
-                string kq = BUS_CaTruc.Instance.CapNhatCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
-                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TaiDuLieu();
-                btnSuaCaTruc.Enabled = false;
-                cboPhong.Enabled = true;
-                cboMaNV.Enabled = true;
-                cboChonKhoa.Enabled = true;
+                MessageBox.Show("Ngày trực không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else
+            {
+                DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tb == DialogResult.Yes)
+                {
+                    string kq = BUS_CaTruc.Instance.CapNhatCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
+                    MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TaiDuLieu();
+                    btnSuaCaTruc.Enabled = false;
+                    cboPhong.Enabled = true;
+                    cboMaNV.Enabled = true;
+                    cboChonKhoa.Enabled = true;
+                }
+            }
+            
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -149,6 +173,12 @@ namespace Project_Nhom8
             cboChonKhoa.Enabled = true;
             btnSuaCaTruc.Enabled = false;
             dtpNgayTruc.Value = DateTime.Now;
+            TaiDuLieu();
+        }
+
+        private void dtpNgayTruc_ValueChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

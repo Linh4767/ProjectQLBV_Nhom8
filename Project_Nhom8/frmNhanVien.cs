@@ -35,6 +35,8 @@ namespace Project_Nhom8
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
+            cboChuyenNganh.DropDownWidth = 150;
+            cboChuyenNganh.DropDownHeight = 300;
         }
 
         private void btnThem_Click(object sender, EventArgs e)

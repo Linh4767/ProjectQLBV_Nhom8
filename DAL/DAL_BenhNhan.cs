@@ -100,7 +100,6 @@ namespace DAL
             {
                 try
                 {
-                    benhNhan.MSBN = eT_BenhNhan.MaBN;
                     benhNhan.TenBN = eT_BenhNhan.TenBN;
                     benhNhan.GioiTinh = eT_BenhNhan.GioiTinh;
                     benhNhan.NgSinh = eT_BenhNhan.NgaySinh;

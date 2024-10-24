@@ -30,6 +30,8 @@ namespace Project_Nhom8
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
             dgvDichVu.Columns[4].Visible = false;
+            cboKhoa.DropDownWidth = 150;
+            cboKhoa.DropDownHeight = 300;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -157,25 +159,31 @@ namespace Project_Nhom8
 
         private void txtGiaDV_TextChanged(object sender, EventArgs e)
         {
-
+            if (long.TryParse(txtGiaDV.Text, out long giaDV))
+            {
+                // Nếu giá trị vượt quá 500.000.000, tự động gán lại giá trị tối đa
+                if (giaDV > 500000000)
+                {
+                    txtGiaDV.Text = "500000000";  // Giới hạn không cho phép nhập hơn 500.000.000
+                    txtGiaDV.SelectionStart = txtGiaDV.Text.Length;  // Đặt con trỏ ở cuối chuỗi
+                }
+            }
+            else if (txtGiaDV.Text != "")  // Nếu không phải số, xóa nội dung
+            {
+                txtGiaDV.Text = "0";  // Đặt giá trị mặc định là 0
+            }
         }
 
         private void txtGiaDV_Leave(object sender, EventArgs e)
         {
-            // Kiểm tra nếu dữ liệu đã nhập là hợp lệ
-            if (int.TryParse(txtGiaDV.Text, out int giaDV))
+            // Khi người dùng rời khỏi ô nhập, kiểm tra giá trị tối thiểu
+            if (long.TryParse(txtGiaDV.Text, out long giaDV))
             {
-                // Kiểm tra giá trị có nằm trong khoảng từ 50.000 đến 500.000.000 không
-                if (giaDV < 50000 || giaDV > 500000000)
+                if (giaDV < 50000)  // Kiểm tra giá trị có nhỏ hơn 50.000 hay không
                 {
-                    MessageBox.Show("Giá dịch vụ phải nằm trong khoảng từ 50.000 đến 500.000.000", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtGiaDV.Focus(); // Đưa con trỏ về lại ô nhập liệu
+                    MessageBox.Show("Giá trị phải lớn hơn hoặc bằng 50.000", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGiaDV.Text = "50000";  // Gán lại giá trị tối thiểu nếu nhỏ hơn 50.000
                 }
-            }
-            else
-            {
-                MessageBox.Show("Giá dịch vụ không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtGiaDV.Focus(); // Đưa con trỏ về lại ô nhập liệu
             }
         }
 

@@ -36,6 +36,8 @@ namespace Project_Nhom8
             btnThemPhong.Enabled = false;
             btnXoaPhong.Enabled = false;
             btnCapNhapPhong.Enabled = false;
+            cboKhoa.DropDownWidth = 150;
+            cboKhoa.DropDownHeight = 300;
         }
 
         private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,28 +93,32 @@ namespace Project_Nhom8
 
         private void dgvDSPhong_Click(object sender, EventArgs e)
         {
-            int dong = dgvDSPhong.CurrentCell.RowIndex;
-            txtMaPhong.Text = dgvDSPhong.Rows[dong].Cells[0].Value?.ToString() ?? "";
-            txtTenPhong.Text = dgvDSPhong.Rows[dong].Cells[1].Value?.ToString() ?? "";
-            cboKhoa.SelectedValue = dgvDSPhong.Rows[dong].Cells[2].Value?.ToString() ?? "";
-            nudSoGiuong.Value = Convert.ToInt32(dgvDSPhong.Rows[dong].Cells[3].Value ?? 0);
-            string cellValue = Convert.ToString(dgvDSPhong.Rows[dong].Cells[4].Value);
+            if (dgvDSPhong.CurrentRow != null && !dgvDSPhong.Rows[dgvDSPhong.CurrentRow.Index].IsNewRow)
+            {
+                int dong = dgvDSPhong.CurrentCell.RowIndex;
+                txtMaPhong.Text = dgvDSPhong.Rows[dong].Cells[0].Value?.ToString() ?? "";
+                txtTenPhong.Text = dgvDSPhong.Rows[dong].Cells[1].Value?.ToString() ?? "";
+                cboKhoa.SelectedValue = dgvDSPhong.Rows[dong].Cells[2].Value?.ToString() ?? "";
+                nudSoGiuong.Value = Convert.ToInt32(dgvDSPhong.Rows[dong].Cells[3].Value ?? 0);
+                string cellValue = Convert.ToString(dgvDSPhong.Rows[dong].Cells[4].Value);
 
-            if (cellValue == radPhongKham.Text)
-            {
-                radPhongKham.Checked = true;
+                if (cellValue == radPhongKham.Text)
+                {
+                    radPhongKham.Checked = true;
+                }
+                if (cellValue == radPhongChucNang.Text)
+                {
+                    radPhongChucNang.Checked = true;
+                }
+                if (cellValue == radPhongBenh.Text)
+                {
+                    radPhongBenh.Checked = true;
+                }
+                btnThemPhong.Enabled = false;
+                btnCapNhapPhong.Enabled = true;
+                btnXoaPhong.Enabled = true;
             }
-            if (cellValue == radPhongChucNang.Text)
-            {
-                radPhongChucNang.Checked = true;
-            }
-            if (cellValue == radPhongBenh.Text)
-            {
-                radPhongBenh.Checked = true;
-            }
-            btnThemPhong.Enabled = false;
-            btnCapNhapPhong.Enabled = true;
-            btnXoaPhong.Enabled = true;
+            
         }
 
         private void btnCapNhapPhong_Click(object sender, EventArgs e)
@@ -190,6 +196,14 @@ namespace Project_Nhom8
             if (kq == DialogResult.Yes)
             {
                 this.Close();
+            }
+        }
+
+        private void nudSoGiuong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Chặn nhập dấu thập phân
             }
         }
     }

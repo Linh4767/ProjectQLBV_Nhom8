@@ -63,7 +63,7 @@ namespace Project_Nhom8
             DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
-                if (txtTenBN.Text == "" || txtDanToc.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "" || txtTTLH.Text == "")
+                if (txtTenBN.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -179,6 +179,8 @@ namespace Project_Nhom8
             LayDanhSachBenhNhan();
             btnSua.Enabled = false;
             dgvBenhNhan.ColumnHeadersHeight = 40;
+            dgvBenhNhan.Columns[9].Visible = false;
+            dtpNgaySinh.Value = DateTime.Now;
         }
 
         private void dgvBenhNhan_Click(object sender, EventArgs e)

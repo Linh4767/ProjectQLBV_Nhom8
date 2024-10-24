@@ -42,7 +42,7 @@ namespace DAL
         //Thêm phòng
         public bool ThemPhong(ET_Phong etPhong)
         {
-            if (db.Phongs.Any(p => p.MSPhong == etPhong.MSPhong || p.TenPhong == etPhong.TenPhong && p.Loai == "Phòng khám"))
+            if (db.Phongs.Any(p => p.MSPhong == etPhong.MSPhong || p.TenPhong == etPhong.TenPhong && (p.Loai == "Phòng khám" || p.Loai == "Phòng chức năng")))
             {
                 return false;
             }
