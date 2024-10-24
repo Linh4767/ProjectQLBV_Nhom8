@@ -331,7 +331,7 @@ namespace DAL
 		
 		private EntitySet<TheoDoiDieuTri> _TheoDoiDieuTris;
 		
-		private EntitySet<BHYT> _BHYTs;
+		private EntityRef<BHYT> _BHYT;
 		
 		private EntitySet<PhanGiuong> _PhanGiuongs;
 		
@@ -368,7 +368,7 @@ namespace DAL
 		public BenhNhan()
 		{
 			this._TheoDoiDieuTris = new EntitySet<TheoDoiDieuTri>(new Action<TheoDoiDieuTri>(this.attach_TheoDoiDieuTris), new Action<TheoDoiDieuTri>(this.detach_TheoDoiDieuTris));
-			this._BHYTs = new EntitySet<BHYT>(new Action<BHYT>(this.attach_BHYTs), new Action<BHYT>(this.detach_BHYTs));
+			this._BHYT = default(EntityRef<BHYT>);
 			this._PhanGiuongs = new EntitySet<PhanGiuong>(new Action<PhanGiuong>(this.attach_PhanGiuongs), new Action<PhanGiuong>(this.detach_PhanGiuongs));
 			this._PhieuKhamBenhs = new EntitySet<PhieuKhamBenh>(new Action<PhieuKhamBenh>(this.attach_PhieuKhamBenhs), new Action<PhieuKhamBenh>(this.detach_PhieuKhamBenhs));
 			this._SoBenhAns = new EntitySet<SoBenhAn>(new Action<SoBenhAn>(this.attach_SoBenhAns), new Action<SoBenhAn>(this.detach_SoBenhAns));
@@ -569,16 +569,32 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_BHYT", Storage="_BHYTs", ThisKey="MSBN", OtherKey="MSBN")]
-		public EntitySet<BHYT> BHYTs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_BHYT", Storage="_BHYT", ThisKey="MSBN", OtherKey="MSBN", IsUnique=true, IsForeignKey=false)]
+		public BHYT BHYT
 		{
 			get
 			{
-				return this._BHYTs;
+				return this._BHYT.Entity;
 			}
 			set
 			{
-				this._BHYTs.Assign(value);
+				BHYT previousValue = this._BHYT.Entity;
+				if (((previousValue != value) 
+							|| (this._BHYT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BHYT.Entity = null;
+						previousValue.BenhNhan = null;
+					}
+					this._BHYT.Entity = value;
+					if ((value != null))
+					{
+						value.BenhNhan = this;
+					}
+					this.SendPropertyChanged("BHYT");
+				}
 			}
 		}
 		
@@ -661,18 +677,6 @@ namespace DAL
 		}
 		
 		private void detach_TheoDoiDieuTris(TheoDoiDieuTri entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = null;
-		}
-		
-		private void attach_BHYTs(BHYT entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = this;
-		}
-		
-		private void detach_BHYTs(BHYT entity)
 		{
 			this.SendPropertyChanging();
 			entity.BenhNhan = null;
@@ -1051,7 +1055,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSoBHYT", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSoBHYT", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
 		public string MaSoBHYT
 		{
 			get
@@ -1111,7 +1115,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSBN", DbType="NVarChar(16) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSBN", DbType="NVarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MSBN
 		{
 			get
@@ -1152,12 +1156,12 @@ namespace DAL
 					if ((previousValue != null))
 					{
 						this._BenhNhan.Entity = null;
-						previousValue.BHYTs.Remove(this);
+						previousValue.BHYT = null;
 					}
 					this._BenhNhan.Entity = value;
 					if ((value != null))
 					{
-						value.BHYTs.Add(this);
+						value.BHYT = this;
 						this._MSBN = value.MSBN;
 					}
 					else
@@ -1196,11 +1200,13 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private string _MaCT;
+		
 		private string _MaPhong;
 		
 		private string _MaNV;
 		
-		private string _CaTruc1;
+		private string _Ca;
 		
 		private System.DateTime _NgayTruc;
 		
@@ -1212,12 +1218,14 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnMaCTChanging(string value);
+    partial void OnMaCTChanged();
     partial void OnMaPhongChanging(string value);
     partial void OnMaPhongChanged();
     partial void OnMaNVChanging(string value);
     partial void OnMaNVChanged();
-    partial void OnCaTruc1Changing(string value);
-    partial void OnCaTruc1Changed();
+    partial void OnCaChanging(string value);
+    partial void OnCaChanged();
     partial void OnNgayTrucChanging(System.DateTime value);
     partial void OnNgayTrucChanged();
     #endregion
@@ -1229,7 +1237,27 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPhong", DbType="NVarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaCT", DbType="VarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaCT
+		{
+			get
+			{
+				return this._MaCT;
+			}
+			set
+			{
+				if ((this._MaCT != value))
+				{
+					this.OnMaCTChanging(value);
+					this.SendPropertyChanging();
+					this._MaCT = value;
+					this.SendPropertyChanged("MaCT");
+					this.OnMaCTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPhong", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
 		public string MaPhong
 		{
 			get
@@ -1253,7 +1281,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="NVarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
 		public string MaNV
 		{
 			get
@@ -1277,27 +1305,27 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="CaTruc", Storage="_CaTruc1", DbType="NVarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string CaTruc1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ca", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
+		public string Ca
 		{
 			get
 			{
-				return this._CaTruc1;
+				return this._Ca;
 			}
 			set
 			{
-				if ((this._CaTruc1 != value))
+				if ((this._Ca != value))
 				{
-					this.OnCaTruc1Changing(value);
+					this.OnCaChanging(value);
 					this.SendPropertyChanging();
-					this._CaTruc1 = value;
-					this.SendPropertyChanged("CaTruc1");
-					this.OnCaTruc1Changed();
+					this._Ca = value;
+					this.SendPropertyChanged("Ca");
+					this.OnCaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTruc", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTruc", DbType="DateTime NOT NULL")]
 		public System.DateTime NgayTruc
 		{
 			get
@@ -5372,7 +5400,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayYeuCau", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
 		public System.DateTime NgayYeuCau
 		{
 			get

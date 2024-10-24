@@ -12,7 +12,7 @@
       <Column Name="DanToc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="TTLienHe" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Association Name="BenhNhan_TheoDoiDieuTri" Member="TheoDoiDieuTris" ThisKey="MSBN" OtherKey="MaBN" Type="TheoDoiDieuTri" />
-      <Association Name="BenhNhan_BHYT" Member="BHYTs" ThisKey="MSBN" OtherKey="MSBN" Type="BHYT" />
+      <Association Name="BenhNhan_BHYT" Member="BHYT" ThisKey="MSBN" OtherKey="MSBN" Type="BHYT" Cardinality="One" />
       <Association Name="BenhNhan_PhanGiuong" Member="PhanGiuongs" ThisKey="MSBN" OtherKey="MaBN" Type="PhanGiuong" />
       <Association Name="BenhNhan_PhieuKhamBenh" Member="PhieuKhamBenhs" ThisKey="MSBN" OtherKey="MaBN" Type="PhieuKhamBenh" />
       <Association Name="BenhNhan_SoBenhAn" Member="SoBenhAns" ThisKey="MSBN" OtherKey="MaBN" Type="SoBenhAn" />
@@ -34,19 +34,20 @@
   </Table>
   <Table Name="dbo.BHYT" Member="BHYTs">
     <Type Name="BHYT">
-      <Column Name="MaSoBHYT" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSoBHYT" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="NgayCap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="NgayHetHan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="BenhNhan_BHYT" Member="BenhNhan" ThisKey="MSBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CaTruc" Member="CaTrucs">
     <Type Name="CaTruc">
-      <Column Name="MaPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CaTruc" Member="CaTruc1" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NgayTruc" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaCT" Type="System.String" DbType="VarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="Ca" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayTruc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="NhanVien_CaTruc" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
       <Association Name="Phong_CaTruc" Member="Phong" ThisKey="MaPhong" OtherKey="MSPhong" Type="Phong" IsForeignKey="true" />
     </Type>
@@ -233,7 +234,7 @@
       <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaDV" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NgayThucHien" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="NgayYeuCau" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NgayYeuCau" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MSPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaNVThucHien" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="KetQua" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
