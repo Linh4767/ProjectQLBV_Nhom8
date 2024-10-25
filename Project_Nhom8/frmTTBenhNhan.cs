@@ -38,6 +38,7 @@ namespace Project_Nhom8
             txtMaBHYT.Clear();
             txtTenBN.Focus();
             btnSua.Enabled = false;
+            btnThem.Enabled = true;
             dtpNgaySinh.Value = DateTime.Now;
             dtpNgayCap.Value = DateTime.Now;
             dtpNgayHH.Value = DateTime.Now;
@@ -63,7 +64,7 @@ namespace Project_Nhom8
             DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
-                if (txtTenBN.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "")
+                if (txtTenBN.Text == "" || txtDiaChi.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -129,6 +130,11 @@ namespace Project_Nhom8
             DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
+                if (txtTenBN.Text == "" || txtDiaChi.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 //kiểm tra ngày sinh
                 DateTime nS = dtpNgaySinh.Value;
                 if (nS.Date > DateTime.Now.Date)
@@ -189,6 +195,7 @@ namespace Project_Nhom8
             if (dgvBenhNhan.CurrentRow != null && !dgvBenhNhan.Rows[dgvBenhNhan.CurrentRow.Index].IsNewRow)
             {
                 btnSua.Enabled = true;
+                btnThem.Enabled = false;
 
                 int dong = dgvBenhNhan.CurrentCell.RowIndex;
                 txtMaBN.Text = dgvBenhNhan.Rows[dong].Cells[0].Value.ToString();
@@ -366,6 +373,16 @@ namespace Project_Nhom8
             {
                 // Hiển thị thông báo cảnh báo
                 MessageBox.Show("Thông tin liên hệ phải đủ 10 ký tự hoặc không nhập", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
+            }
+        }
+
+        private void txtMaBHYT_Leave(object sender, EventArgs e)
+        {
+            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 15)
+            {
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Mã BHYT phải đủ 15 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }

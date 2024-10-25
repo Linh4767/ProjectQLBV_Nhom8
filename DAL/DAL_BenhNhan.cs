@@ -64,7 +64,10 @@ namespace DAL
         //thêm bệnh nhân
         public bool ThemBenhNhan(ET_BenhNhan eT_BenhNhan)
         {
-            //eT_BenhNhan.MaBN = TaoMaTuDong();
+            if (db.BenhNhans.Any(benhNhan => benhNhan.MSBN == eT_BenhNhan.MaBN))
+            {
+                return false;
+            }
             try
             {
                 BenhNhan bn = new BenhNhan
@@ -85,8 +88,7 @@ namespace DAL
                 return true;
             }
             catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi " + ex.Message);
+            {            
                 return false;
             }
         }

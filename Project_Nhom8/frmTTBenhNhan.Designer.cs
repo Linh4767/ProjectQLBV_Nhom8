@@ -483,6 +483,7 @@
             this.txtMaBHYT.TabIndex = 27;
             this.txtMaBHYT.TextChanged += new System.EventHandler(this.txtMaBHYT_TextChanged);
             this.txtMaBHYT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaBHYT_KeyPress);
+            this.txtMaBHYT.Leave += new System.EventHandler(this.txtMaBHYT_Leave);
             // 
             // btnThem
             // 
