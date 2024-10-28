@@ -144,17 +144,32 @@ namespace Project_Nhom8
                 this.Close(); // Đóng form hiện tại (form chính)
             }
         }
-
+        private frmTTBenhNhan ttbn;
         private void btnTTBenhNhan_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmTTBenhNhan());
-            hideSubMenu();
+            if (ttbn == null || ttbn.IsDisposed)
+            {
+                openChildForm(new frmTTBenhNhan(this));
+                hideSubMenu();
+            }
+            else
+            {
+                ttbn.BringToFront();
+            }
         }
-
+        private frmSoBenhAn sba;
         private void btnSBA_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmSoBenhAn());
-            hideSubMenu();
+            if (sba == null || sba.IsDisposed)
+            {
+                sba = new frmSoBenhAn(this);
+                openChildForm(sba);
+                hideSubMenu();
+            }
+            else
+            {
+                sba.BringToFront();
+            }
         }
 
         private void btnPKB_Click(object sender, EventArgs e)
