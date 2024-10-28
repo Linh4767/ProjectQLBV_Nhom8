@@ -24,9 +24,9 @@ namespace BUS
             }
         }
         // Hiển thị danh sách lên DataGridView
-        public void HienThiDSPhong(DataGridView dgvDSPhong, string maKhoa)
+        public void HienThiDSPhong(DataGridView dgvDSPhong, string maKhoa, string loaiPhong)
         {
-            dgvDSPhong.DataSource = DAL_Phong.Instance.HienThiDSPhong(maKhoa);
+            dgvDSPhong.DataSource = DAL_Phong.Instance.HienThiDSPhong(maKhoa, loaiPhong);
         }
         //Đổ dữ liệu khoa lên combobox
         public void DoDLKhoaLenComboBox(ComboBox cboKhoa)
@@ -78,10 +78,15 @@ namespace BUS
                 MessageBox.Show("Sửa không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        //Tạo mã tự động
-        public string TaoMaPhongTuDong()
+        //Lay ten khoa nho ma khoa
+        public string LayTenKhoaNhoMaKhoa(string maKhoa)
         {
-            return DAL_Phong.Instance.TaoMaPhongTuDong();
+            return DAL_Phong.Instance.LayTenKhoaNhoMaKhoa(maKhoa);
+        }
+        //Tạo mã tự động
+        public string TaoMaPhongTuDong(string tenKhoa)
+        {
+            return DAL_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
         }
         public void TimKiemPhong(string keyword, DataGridView dgv)
         {
@@ -89,3 +94,4 @@ namespace BUS
         }
     }
 }
+

@@ -25,14 +25,15 @@ namespace Project_Nhom8
             cboKhoa.Items.Clear();
             BUS_Phong.Instance.DoDLKhoaLenComboBox(cboKhoa);
             cboKhoa.SelectedIndex = 0;
-            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(),layLoaiPhong());
             dgvDSPhong.Columns[5].Visible = false;
             dgvDSPhong.ColumnHeadersHeight = 40;
             dgvDSPhong.Columns[0].Width = 70;
             dgvDSPhong.Columns[1].Width = 200;
             nudSoGiuong.DecimalPlaces = 0;
             nudSoGiuong.Maximum = 7;
-            txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong();
+            string tenKhoa = BUS_Phong.Instance.LayTenKhoaNhoMaKhoa(cboKhoa.SelectedValue.ToString());
+            txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
             btnThemPhong.Enabled = false;
             btnXoaPhong.Enabled = false;
             btnCapNhapPhong.Enabled = false;
@@ -44,7 +45,18 @@ namespace Project_Nhom8
         {
             if (cboKhoa.SelectedIndex != -1)
             {
-                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
+                //txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong(cboKhoa.SelectedValue.ToString()); ;
+            }
+            if (cboKhoa.SelectedValue != null && cboKhoa.SelectedIndex >= 0)
+            {
+                string maKhoa = cboKhoa.SelectedValue.ToString();
+                string tenKhoa = BUS_Phong.Instance.LayTenKhoaNhoMaKhoa(maKhoa);
+
+                if (tenKhoa != null)
+                {
+                    txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
+                }
             }
         }
         public string layLoaiPhong()
@@ -73,7 +85,7 @@ namespace Project_Nhom8
             {
                 txtTenPhong.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtTenPhong.Text);
                 BUS_Phong.Instance.ThemPhong(new ET_Phong(txtMaPhong.Text, txtTenPhong.Text, cboKhoa.SelectedValue.ToString(), Convert.ToInt32(nudSoGiuong.Value), loaiPhong));
-                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
                 ClearInputFields_Phong();
             }
         }
@@ -84,7 +96,7 @@ namespace Project_Nhom8
             if (ret == DialogResult.Yes)
             {
                 BUS_Phong.Instance.XoaPhong(dgvDSPhong);
-                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
                 ClearInputFields_Phong();
                 btnXoaPhong.Enabled = false;
                 btnCapNhapPhong.Enabled = false;
@@ -117,8 +129,9 @@ namespace Project_Nhom8
                 btnThemPhong.Enabled = false;
                 btnCapNhapPhong.Enabled = true;
                 btnXoaPhong.Enabled = true;
+                cboKhoa.Enabled = false;
             }
-            
+
         }
 
         private void btnCapNhapPhong_Click(object sender, EventArgs e)
@@ -129,7 +142,7 @@ namespace Project_Nhom8
             {
                 txtTenPhong.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtTenPhong.Text);
                 BUS_Phong.Instance.SuaPhong(new ET_Phong(txtMaPhong.Text, txtTenPhong.Text, cboKhoa.SelectedValue.ToString(), Convert.ToInt32(nudSoGiuong.Value), loaiPhong));
-                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+                BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
                 ClearInputFields_Phong();
                 btnXoaPhong.Enabled = false;
                 btnCapNhapPhong.Enabled = false;
@@ -137,21 +150,23 @@ namespace Project_Nhom8
         }
         private void ClearInputFields_Phong()
         {
-            txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong();
             txtTenPhong.Text = string.Empty;
-            cboKhoa.SelectedIndex = 0;
             nudSoGiuong.Value = 0;
-            radPhongKham.Checked = true;
-            radPhongChucNang.Checked = false;
-            radPhongBenh.Checked = false;
+            string tenKhoa = BUS_Phong.Instance.LayTenKhoaNhoMaKhoa(cboKhoa.SelectedValue.ToString());
+            txtMaPhong.Text = BUS_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
+            cboKhoa.Enabled = true;
         }
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            cboKhoa.SelectedIndex = 0;
             ClearInputFields_Phong();
             btnXoaPhong.Enabled = false;
             btnCapNhapPhong.Enabled = false;
             txtTK.Clear();
-            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString());
+            radPhongKham.Checked = true;
+            radPhongChucNang.Checked = false;
+            radPhongBenh.Checked = false;
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
         }
 
         private void txtTenPhong_TextChanged(object sender, EventArgs e)
@@ -205,6 +220,21 @@ namespace Project_Nhom8
             {
                 e.Handled = true; // Chặn nhập dấu thập phân
             }
+        }
+
+        private void radPhongKham_CheckedChanged(object sender, EventArgs e)
+        {
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
+        }
+
+        private void radPhongChucNang_CheckedChanged(object sender, EventArgs e)
+        {
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
+        }
+
+        private void radPhongBenh_CheckedChanged(object sender, EventArgs e)
+        {
+            BUS_Phong.Instance.HienThiDSPhong(dgvDSPhong, cboKhoa.SelectedValue.ToString(), layLoaiPhong());
         }
     }
 }
