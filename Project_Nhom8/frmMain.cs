@@ -171,11 +171,19 @@ namespace Project_Nhom8
                 sba.BringToFront();
             }
         }
-
+        private frmPhieuKhamBenh pkb;
         private void btnPKB_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmPhieuKhamBenh());
-            hideSubMenu();
+            if (pkb == null || pkb.IsDisposed)
+            {
+                pkb = new frmPhieuKhamBenh(this);
+                openChildForm(pkb);
+                hideSubMenu();
+            }
+            else
+            {
+                sba.BringToFront();
+            }
         }
 
         private void btnKB_Click(object sender, EventArgs e)

@@ -51,6 +51,7 @@
     <Compile Include="BUS_Khoa.cs" />
     <Compile Include="BUS_NhanVien.cs" />
     <Compile Include="BUS_ChucVu.cs" />
+    <Compile Include="BUS_PhieuKB.cs" />
     <Compile Include="BUS_Phong.cs" />
     <Compile Include="BUS_SoBenhAn.cs" />
     <Compile Include="BUS_TheBHYT.cs" />
