@@ -1,6 +1,7 @@
 ﻿using ET;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -71,6 +72,24 @@ namespace DAL
         //Tạo mã phòng tự động
         public string TaoMaPhongTuDong(string tenKhoa)
         {
+            // Bỏ từ "Khoa" ở đầu nếu có
+            if (tenKhoa.StartsWith("Khoa "))
+            {
+                tenKhoa = tenKhoa.Substring(5);
+            }
+            // Loại bỏ dấu tiếng Việt
+            var normalizedString = tenKhoa.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            tenKhoa = sb.ToString().Normalize(NormalizationForm.FormC); // Chuẩn hóa về dạng bình thường
             // Lấy tất cả mã phòng dưới dạng chuỗi từ database
             var danhSachMaPhong = db.Phongs
                                     .Select(p => p.MSPhong)
@@ -84,9 +103,9 @@ namespace DAL
                              return match.Success ? int.Parse(match.Value) : 0; // Nếu không tìm thấy, trả về 0
                          })
                          .Max();
-            var chuCaiDauKhoa = string.Concat(tenKhoa
-                                               .Split(' ')
-                                               .Select(word => char.ToUpper(word[0])));
+            string chuCaiDauKhoa = tenKhoa.Contains(" ")
+                           ? string.Concat(tenKhoa.Split(' ').Select(word => char.ToUpper(word[0])))
+                           : tenKhoa;
             // Tăng số phòng hiện tại lên 1
             int soPhongHienTai = soPhongLonNhat + 1;
             // Tạo mã phòng mới với phần số mới, đảm bảo 3 chữ số
@@ -100,6 +119,10 @@ namespace DAL
         {
             try
             {
+                if (db.CaTrucs.Any(ct => ct.MaPhong == maPhong))
+                {
+                    return false; // Không thể xóa, vì có bản ghi tham chiếu
+                }
                 var xoa = from p in db.Phongs
                           where p.MSPhong == maPhong
                           select p;
@@ -141,7 +164,7 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Lỗi: " + ex.Message);
+                    return false;
                 }
             }
             return false;
