@@ -155,7 +155,8 @@ namespace Project_Nhom8
 
         private void btnPhieuKB_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new frmPhieuKhamBenh());
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmKhamBenh());
         }
     }
 }
