@@ -151,7 +151,8 @@ namespace Project_Nhom8
                             if (ret == DialogResult.Yes)
                             {
                                 string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                                mainForm.openChildForm(new frmSoBenhAn(dataToSend));
+                                frmMain frmMain = (frmMain)this.ParentForm;
+                                frmMain.openChildForm(new frmSoBenhAn(dataToSend));
                             }
                         }
                         else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == false)
@@ -160,7 +161,8 @@ namespace Project_Nhom8
                             if (ret == DialogResult.Yes)
                             {
                                 //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                                mainForm.openChildForm(new frmPhieuKhamBenh());
+                                frmMain frmMain = (frmMain)this.ParentForm;
+                                frmMain.openChildForm(new frmPhieuKhamBenh());
                             }
                         }
                     }
@@ -224,7 +226,8 @@ namespace Project_Nhom8
                         if (ret == DialogResult.Yes)
                         {
                             string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                            mainForm.openChildForm(new frmSoBenhAn(dataToSend));
+                            frmMain frmMain = (frmMain)this.ParentForm;
+                            frmMain.openChildForm(new frmSoBenhAn(dataToSend));
                         }
                     }
                     else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == false)
@@ -233,7 +236,8 @@ namespace Project_Nhom8
                         if (ret == DialogResult.Yes)
                         {
                             //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                            mainForm.openChildForm(new frmPhieuKhamBenh());
+                            frmMain frmMain = (frmMain)this.ParentForm;
+                            frmMain.openChildForm(new frmPhieuKhamBenh());
                         }
                     }
                 }
@@ -250,7 +254,8 @@ namespace Project_Nhom8
                     if (ret == DialogResult.Yes)
                     {
                         string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                        mainForm.openChildForm(new frmSoBenhAn(dataToSend));
+                        frmMain frmMain = (frmMain)this.ParentForm;
+                        frmMain.openChildForm(new frmSoBenhAn(dataToSend));
                     }
                 }
                 else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(txtMaBN.Text) == false)
@@ -259,7 +264,8 @@ namespace Project_Nhom8
                     if (ret == DialogResult.Yes)
                     {
                         //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
-                        mainForm.openChildForm(new frmPhieuKhamBenh());
+                        frmMain frmMain = (frmMain)this.ParentForm;
+                        frmMain.openChildForm(new frmPhieuKhamBenh());
                     }
                 }
             }
