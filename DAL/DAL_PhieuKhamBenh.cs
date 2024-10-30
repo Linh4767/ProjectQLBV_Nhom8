@@ -82,11 +82,8 @@ namespace DAL
             // Tạo chuỗi query để lấy số lượng phiếu khám bệnh trong ngày hôm nay
             string query = $"PKB{datePrefix}-{maBN}";
 
-            // Đếm số lượng phiếu khám bệnh trong ngày hôm nay
-            int countToday = db.PhieuKhamBenhs.Count(h => h.MaPhieuKB.StartsWith(query));
-
             // Tạo mã mới, thêm số thứ tự cho mỗi phiếu khám trong ngày
-            string newCode = $"PKB{datePrefix}-{maBN}.{(countToday + 1).ToString("D3")}";
+            string newCode = $"PKB{datePrefix}-{maBN}";
 
             return newCode;
         }
