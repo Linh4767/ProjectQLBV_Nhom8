@@ -161,10 +161,19 @@ namespace Project_Nhom8
                 cboBenhNhan.Enabled = false;
                 btnThemPhieuKB.Enabled = false;
                 btnXoa.Enabled = true;
+                btnCapNhapPhieuKhamBenh.Enabled = true;
             }
             btnThemPhieuKB.Enabled = false;
-            btnCapNhapPhieuKhamBenh.Enabled = false;
-            
+            var textbox = new List<string> { txtTrieuChung.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnCapNhapPhieuKhamBenh.Enabled = true;
+            }
+            else
+            {
+                btnCapNhapPhieuKhamBenh.Enabled = false;
+            }
+
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -193,6 +202,7 @@ namespace Project_Nhom8
                     BUS_PhieuKB.Instance.HienThiDSPhieuKB(dgvDSPhieuKB, cboBenhNhan.SelectedValue.ToString());
                     ClearInputPKB();
                     btnXoa.Enabled = false;
+                    btnCapNhapPhieuKhamBenh.Enabled = false;
                 }
             }
             else
