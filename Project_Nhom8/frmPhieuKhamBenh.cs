@@ -73,7 +73,7 @@ namespace Project_Nhom8
                 e.Handled = true;
                 MessageBox.Show("Không được nhập ký tự đặc biệt trừ dấu (, hoặc / hay .)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (txtTrieuChung.Text.Length > 99 && !char.IsControl(e.KeyChar))
+            if (txtThongTinLamSang.Text.Length > 99 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
                 MessageBox.Show("Bạn đang nhập quá ký tự cho phép là 100", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
