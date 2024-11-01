@@ -67,24 +67,19 @@ namespace Project_Nhom8
         private void TaiDuLieu()
         {
             BUS_CaTruc.Instance.LayDSCaTruc(dgvCaTruc);
-            txtMaCT.Text = BUS_CaTruc.Instance.TaoMa();
         }
         private void btnThemCaTruc_Click(object sender, EventArgs e)
         {
-            if (dtpNgayTruc.Value.Date < DateTime.Now.Date)
+            DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (tb == DialogResult.Yes)
             {
-                MessageBox.Show("Ngày trực không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string ca = cboCaTruc.SelectedItem.ToString();
+                string maCT = BUS_CaTruc.Instance.TaoMa(ca);
+                string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(maCT, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), ca, Convert.ToDateTime(dtpNgayTruc.Text)));
+                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TaiDuLieu();
             }
-            else
-            {
-                DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (tb == DialogResult.Yes)
-                {
-                    string kq = BUS_CaTruc.Instance.ThemCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
-                    MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    TaiDuLieu();
-                }
-            }          
+
         }
 
         private void txtTimNV_KeyPress(object sender, KeyPressEventArgs e)
@@ -101,10 +96,12 @@ namespace Project_Nhom8
         {
             string maKhoa = cboChonKhoa.SelectedValue.ToString();
 
+            //tải dữ liêu cho combobox Phòng
             BUS_CaTruc.Instance.LayDanhSachPhong(maKhoa, cboPhong);
             cboPhong.DisplayMember = "TenPhong";
             cboPhong.ValueMember = "MSPhong";
 
+            //tải dữ liêu cho combobox MaNV
             BUS_CaTruc.Instance.LayDanhSachNhanVien(maKhoa, cboMaNV);
             cboMaNV.DisplayMember = "TenNV";
             cboMaNV.ValueMember = "MaNV";
@@ -143,12 +140,6 @@ namespace Project_Nhom8
 
         private void btnSuaCaTruc_Click(object sender, EventArgs e)
         {
-            if (dtpNgayTruc.Value.Date < DateTime.Now.Date)
-            {
-                MessageBox.Show("Ngày trực không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
                 DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
@@ -160,12 +151,11 @@ namespace Project_Nhom8
                     cboMaNV.Enabled = true;
                     cboChonKhoa.Enabled = true;
                 }
-            }
-            
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            txtMaCT.Text = "";
             cboChonKhoa.SelectedIndex = 0;
             cboCaTruc.SelectedIndex = 0;
             cboPhong.Enabled = true;
@@ -178,7 +168,7 @@ namespace Project_Nhom8
 
         private void dtpNgayTruc_ValueChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

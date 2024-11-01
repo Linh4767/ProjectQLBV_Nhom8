@@ -82,14 +82,12 @@ namespace DAL
                     DanToc = eT_BenhNhan.DanToc,
                     TTLienHe = eT_BenhNhan.TTLienHe
                 };
-
                 db.BenhNhans.InsertOnSubmit(bn);
-                db.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
-            {            
-                return false;
+            finally
+            {
+                db.SubmitChanges();
             }
         }
 
@@ -97,7 +95,6 @@ namespace DAL
         public bool SuaBenhNhan(ET_BenhNhan eT_BenhNhan)
         {
             BenhNhan benhNhan = db.BenhNhans.SingleOrDefault(e => e.MSBN == eT_BenhNhan.MaBN);
-            //ktra trung ma
             if (benhNhan != null)
             {
                 try
@@ -116,8 +113,7 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi " + ex.Message);
-                    return false;
+                    throw new Exception("Lỗi " + ex.Message);
                 }
             }
             return false;

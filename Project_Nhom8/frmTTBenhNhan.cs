@@ -82,6 +82,37 @@ namespace Project_Nhom8
             }
         }
 
+        //Kiểm tra tính hợp lệ của mã BHYT
+        private bool KiemTraMaBHYT(string maBHYT)
+        {
+            // Kiểm tra hai ký tự đầu
+            string tienTo = maBHYT.Substring(0, 2);
+            if (tienTo != "GD" && tienTo != "TE" && tienTo != "HS" && tienTo != "SV")
+            {
+                MessageBox.Show("Hai ký tự đầu của mã BHYT phải là GD, TE, HS, hoặc SV.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Kiểm tra ký tự thứ ba phải là số từ 1 đến 5
+            char kyTuThuBa = maBHYT[2];
+            if (kyTuThuBa < '1' || kyTuThuBa > '5')
+            {
+                MessageBox.Show("Ký tự thứ ba của mã BHYT phải là số từ 1 đến 5.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Kiểm tra 12 ký tự còn lại phải là số
+            string phanConLai = maBHYT.Substring(3);
+            if (!phanConLai.All(char.IsDigit))
+            {
+                MessageBox.Show("12 ký tự cuối của mã BHYT phải là số.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Mã BHYT hợp lệ
+            return true;
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -103,6 +134,12 @@ namespace Project_Nhom8
 
                     if (txtMaBHYT.Text != "")
                     {
+                        //Kiểm tra tính hợp lệ của mã BHYT
+                        if (!KiemTraMaBHYT(txtMaBHYT.Text))
+                        {
+                            return;
+                        }
+
                         // Kiểm tra ngày cấp và ngày hết hạn của thẻ BHYT
                         DateTime ngayCap = dtpNgayCap.Value;
 
@@ -191,6 +228,11 @@ namespace Project_Nhom8
 
                 if (txtMaBHYT.Text != "")
                 {
+                    //Kiểm tra tính hợp lệ của mã BHYT
+                    if (!KiemTraMaBHYT(txtMaBHYT.Text))
+                    {
+                        return;
+                    }
                     // Kiểm tra ngày cấp và ngày hết hạn của thẻ BHYT
                     DateTime ngayCap = Convert.ToDateTime(dtpNgayCap.Text);
                     DateTime ngayHH = Convert.ToDateTime(dtpNgayHH.Text);
@@ -420,7 +462,7 @@ namespace Project_Nhom8
                 // Hủy việc nhập ký tự
                 e.Handled = true;
             }
-            if (txtSDT.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            if (txtTTLH.Text.Length >= 10 && !char.IsControl(e.KeyChar))
             {
                 // Hủy việc nhập thêm ký tự
                 e.Handled = true;
@@ -468,21 +510,21 @@ namespace Project_Nhom8
 
         private void txtTTLH_Leave(object sender, EventArgs e)
         {
-            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 10)
+            if (txtTTLH.Text.Length > 0 && txtTTLH.Text.Length < 10)
             {
                 // Hiển thị thông báo cảnh báo
                 MessageBox.Show("Thông tin liên hệ phải đủ 10 ký tự hoặc không nhập", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
+                txtTTLH.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }
 
         private void txtMaBHYT_Leave(object sender, EventArgs e)
         {
-            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 15)
+            if (txtMaBHYT.Text.Length > 0 && txtMaBHYT.Text.Length < 15)
             {
                 // Hiển thị thông báo cảnh báo
                 MessageBox.Show("Mã BHYT phải đủ 15 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
+                txtMaBHYT.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }
     }
