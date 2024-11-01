@@ -73,22 +73,44 @@ namespace DAL
         }
 
         //Tạo mã tự động
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string caTruc)
         {
-            // Lấy tất cả các mã bệnh nhân hiện tại
-            var dscaTruc = db.CaTrucs.Select(n => n.MaCT).ToList();
+            // Lấy tất cả mã ca trực hiện tại dựa trên ca làm việc
+            var tienTo = "CA";
+            string maCa;
 
-            // Nếu danh sách trống, bắt đầu từ 1
-            int maCTLonNhat = 0;
-            if (dscaTruc.Count > 0)
+            // Xác định mã ca dựa trên thời gian ca trực
+            switch (caTruc)
             {
-                // Tìm mã lớn nhất dựa trên phần số sau chữ "BN"
-                maCTLonNhat = dscaTruc.Select(maCT => int.Parse(maCT.Substring(2))).Max();
+                case "6h-14h":
+                    maCa = "01";
+                    break;
+                case "14h-22h":
+                    maCa = "02";
+                    break;
+                case "22h-6h":
+                    maCa = "03";
+                    break;
+                default:
+                    throw new ArgumentException("Ca trực không hợp lệ.");
             }
 
-            // Tạo mã mới với số lớn hơn mã lớn nhất
-            int maCTHientai = maCTLonNhat + 1;
-            string maCTMoi = "CT" + maCTHientai.ToString("D3"); // đảm bảo ít nhất 3 chữ số
+            // Xác định mã bắt đầu cho ca trực hiện tại
+            string tienToCa = tienTo + maCa;
+
+            // Lọc các mã có tiền tố mong muốn
+            var dscaTruc = db.CaTrucs.Where(n => n.MaCT.StartsWith(tienToCa)).Select(n => n.MaCT).ToList();
+
+            // Tìm mã lớn nhất trong danh sách
+            int maLonNhat = 0;
+            if (dscaTruc.Count > 0)
+            {
+                maLonNhat = dscaTruc.Select(maCT => int.Parse(maCT.Substring(tienToCa.Length))).Max();
+            }
+
+            // Tạo mã mới với số tăng dần
+            int maHienTai = maLonNhat + 1;
+            string maCTMoi = tienToCa + "CT" + maHienTai.ToString("D3"); // đảm bảo ít nhất 3 chữ số
             return maCTMoi;
         }
 
@@ -112,13 +134,11 @@ namespace DAL
                     NgayTruc = eT_CaTruc.NgayTruc
                 };
                 db.CaTrucs.InsertOnSubmit(caTruc);
-                db.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            finally
             {
-                MessageBox.Show("Lỗi " + ex.Message);
-                return false;
+                db.SubmitChanges();
             }
         }
 
@@ -132,13 +152,13 @@ namespace DAL
                 try
                 {
                     // Kiểm tra trùng lịch
-                    bool isDuplicate = db.CaTrucs.Any(c =>
+                    bool trungLap = db.CaTrucs.Any(c =>
                         c.MaNV == eT_CaTruc.MaNV &&  // Cùng nhân viên
                         c.NgayTruc == eT_CaTruc.NgayTruc &&  // Cùng ngày
                         c.Ca == eT_CaTruc.Ca && // Cùng ca
                         c.MaCT != eT_CaTruc.MaCT); // Bỏ qua chính ca trực hiện tại
 
-                    if (isDuplicate)
+                    if (trungLap)
                     {
                         MessageBox.Show("Lịch trực bị trùng với ca trực khác của nhân viên!");
                         return false;
@@ -154,8 +174,7 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi " + ex.Message);
-                    return false;
+                    throw new Exception("Lỗi " + ex.Message);
                 }
             }
             return false;

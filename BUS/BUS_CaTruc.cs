@@ -52,9 +52,9 @@ namespace BUS
         }
 
         //Tạo mã
-        public string TaoMa()
+        public string TaoMa(string ca)
         {
-            return DAL_CaTruc.Instance.TaoMaTuDong();
+            return DAL_CaTruc.Instance.TaoMaTuDong(ca);
         }
 
         //Thêm ca trực mới

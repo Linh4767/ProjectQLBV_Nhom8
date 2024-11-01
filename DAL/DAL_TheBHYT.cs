@@ -35,7 +35,6 @@ namespace DAL
             {
                 return false;
             }
-
             try
             {
                 BHYT bhyt = new BHYT
@@ -46,13 +45,11 @@ namespace DAL
                     MSBN = eT_TheBHYT.MaBN
                 };
                 db.BHYTs.InsertOnSubmit(bhyt);
-                db.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            finally
             {
-                MessageBox.Show("Lỗi " + ex.Message);
-                return false;
+                db.SubmitChanges();
             }
 
         }
@@ -74,10 +71,8 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi " + ex.Message);
-                    return false;
+                    throw new Exception("Lỗi " + ex.Message);
                 }
-
             }
             return false;
         }
