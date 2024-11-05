@@ -105,7 +105,7 @@ namespace DAL
             int maLonNhat = 0;
             if (dscaTruc.Count > 0)
             {
-                maLonNhat = dscaTruc.Select(maCT => int.Parse(maCT.Substring(tienToCa.Length))).Max();
+                maLonNhat = dscaTruc.Select(maCT => int.Parse(maCT.Substring(tienToCa.Length + 2))).Max();
             }
 
             // Tạo mã mới với số tăng dần
