@@ -16,5 +16,15 @@ namespace Project_Nhom8
         {
             InitializeComponent();
         }
+        private frmMain mainForm;
+        public frmSuDungDichVu(frmMain mainForm)
+        {
+            InitializeComponent();
+            this.mainForm = mainForm;
+        }
+        private void frmSuDungDichVu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
