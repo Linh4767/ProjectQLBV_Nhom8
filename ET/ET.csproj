@@ -53,6 +53,7 @@
     <Compile Include="ET_PhieuKhamBenh.cs" />
     <Compile Include="ET_Phong.cs" />
     <Compile Include="ET_SoBA.cs" />
+    <Compile Include="ET_SuDungDV.cs" />
     <Compile Include="ET_TheBHYT.cs" />
     <Compile Include="ET_TaiKhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
