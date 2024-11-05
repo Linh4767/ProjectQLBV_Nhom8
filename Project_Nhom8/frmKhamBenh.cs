@@ -68,10 +68,7 @@ namespace Project_Nhom8
                 BUS_KhamBenh.Instance.HienThiDSKhamBenhTheoNgay(dgvDSKhamBenhTheoNgay, dtpNgay.Value, cboPhong.SelectedValue.ToString());
                 dgvDSKhamBenhTheoNgay.ColumnHeadersHeight = 40;
                 bool isEmpty = dgvDSKhamBenhTheoNgay.Rows.Count == 0;
-                if(isEmpty == false)
-                {
-                    dgvDSKhamBenhTheoNgay.Enabled = false;
-                }
+                dgvDSKhamBenhTheoNgay.Enabled = !isEmpty;
             }
             else
             {
@@ -116,7 +113,7 @@ namespace Project_Nhom8
             {
                 BUS_KhamBenh.Instance.HienThiDSKhamBenhTheoNgay(dgvDSKhamBenhTheoNgay, dtpNgay.Value, cboPhong.SelectedValue.ToString());
                 bool isEmpty = dgvDSKhamBenhTheoNgay.Rows.Count == 0;
-                dgvDSKhamBenhTheoNgay.Enabled = isEmpty;
+                dgvDSKhamBenhTheoNgay.Enabled = !isEmpty;
             }
             else
             {
