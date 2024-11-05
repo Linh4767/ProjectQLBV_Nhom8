@@ -185,11 +185,19 @@ namespace Project_Nhom8
                 pkb.BringToFront();
             }
         }
-
+        private frmKhamBenh kb;
         private void btnKB_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmKhamBenh());
-            hideSubMenu();
+            if (kb == null || kb.IsDisposed)
+            {
+                kb = new frmKhamBenh(this);
+                openChildForm(kb);
+                hideSubMenu();
+            }
+            else
+            {
+                kb.BringToFront();
+            }
         }
 
         private void btnDonThuoc_Click(object sender, EventArgs e)
@@ -197,17 +205,33 @@ namespace Project_Nhom8
             openChildForm(new frmDonThuoc());
             hideSubMenu();
         }
-
+        private frmChuanDoan cd;
         private void btnChuanDoan_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmChuanDoan());
-            hideSubMenu();
+            if (cd == null || cd.IsDisposed)
+            {
+                cd = new frmChuanDoan(this);
+                openChildForm(cd);
+                hideSubMenu();
+            }
+            else
+            {
+                cd.BringToFront();
+            }
         }
-
+        private frmSuDungDichVu sddv;
         private void btnSuDungDichVu_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmSuDungDichVu());
-            hideSubMenu();
+            if (sddv == null || sddv.IsDisposed)
+            {
+                sddv = new frmSuDungDichVu(this);
+                openChildForm(sddv);
+                hideSubMenu();
+            }
+            else
+            {
+                sddv.BringToFront();
+            }
         }
 
         private void btnTaiKham_Click(object sender, EventArgs e)

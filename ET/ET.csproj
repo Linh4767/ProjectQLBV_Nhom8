@@ -46,6 +46,7 @@
     <Compile Include="ET_ChuyenNganh.cs" />
     <Compile Include="ET_DichVu.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
+    <Compile Include="ET_KhamBenh.cs" />
     <Compile Include="ET_Khoa.cs" />
     <Compile Include="ET_NhanVien.cs" />
     <Compile Include="ET_ChucVu.cs" />
