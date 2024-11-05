@@ -79,6 +79,10 @@ namespace Project_Nhom8
             btnSuaKB.Enabled = false;
 
             btnLamMoi.Enabled = false;
+            if(cboPhong.SelectedValue == null)
+            {
+                dgvDSKhamBenhTheoNgay.Enabled = false;
+            }
         }
 
         private void dtpNgay_ValueChanged(object sender, EventArgs e)
@@ -118,6 +122,10 @@ namespace Project_Nhom8
             else
             {
                 dgvDSKhamBenhTheoNgay.DataSource = null;
+                if (cboPhong.SelectedValue == null)
+                {
+                    dgvDSKhamBenhTheoNgay.Enabled = false;
+                }
             }
             if (cboPKB.SelectedValue == null)
             {

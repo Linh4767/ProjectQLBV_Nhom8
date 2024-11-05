@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ET_BenhNhan.cs" />
     <Compile Include="ET_CaTruc.cs" />
+    <Compile Include="ET_ChuanDoan.cs" />
     <Compile Include="ET_ChuyenNganh.cs" />
     <Compile Include="ET_DichVu.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="ET_PhieuKhamBenh.cs" />
     <Compile Include="ET_Phong.cs" />
     <Compile Include="ET_SoBA.cs" />
+    <Compile Include="ET_SuDungDV.cs" />
     <Compile Include="ET_TheBHYT.cs" />
     <Compile Include="ET_TaiKhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
