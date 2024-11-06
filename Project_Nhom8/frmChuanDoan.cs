@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,23 +79,24 @@ namespace Project_Nhom8
                     DateTime thoiGianCD = dtpTGCD.Value;
                     TimeSpan tgCDKhongGiay = new TimeSpan(thoiGianCD.Hour, thoiGianCD.Minute, 0);
                     bool isTimeGreater = tgCDKhongGiay > thoiGianKhamKhongGiay;
-                    if (DateTime.Parse(formattedDate).Date >= BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text).Date)
+                    string ngayCD = tgKham.ToString("MM/dd/yyyy");
+                    DateTime ngayChuanDoan = DateTime.ParseExact(ngayCD, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    bool isSameDate = dtpNgayChuanDoan.Value.Date == ngayChuanDoan.Date;
+                    if (isSameDate && !isTimeGreater)
                     {
-                        if (isTimeGreater)
-                        {
-                            string chuanDoan = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtChuanDoan.Text);
-                            BUS_ChuanDoan.Instance.ThemTTChuanDoan(new ET_ChuanDoan(txtPhieuKhamBenh.Text, cboNVCD.SelectedValue.ToString(), chuanDoan, ngayGioThucHien));
-                            BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
-                            bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
-                            dgvDSChuanDoan.Enabled = !isEmpty;
-                        }
-                        else
-                        {
-                            DateTime ngayKham = BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text);
-                            string time = ngayKham.ToString("HH:mm tt");
-                            MessageBox.Show("Thời gian chuẩn đoán phải lớn hơn thời gian của phiếu khám là " +
-                            time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        DateTime ngayKham = BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text);
+                        string time = ngayKham.ToString("HH:mm tt");
+                        MessageBox.Show("Do cùng ngày khám nên thời gian chuẩn đoán phải lớn hơn thời gian của phiếu khám là " +
+                        time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (DateTime.Parse(formattedDate).Date >= BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text).Date)
+                    {
+                        string chuanDoan = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtChuanDoan.Text);
+                        BUS_ChuanDoan.Instance.ThemTTChuanDoan(new ET_ChuanDoan(txtPhieuKhamBenh.Text, cboNVCD.SelectedValue.ToString(), chuanDoan, ngayGioThucHien));
+                        BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
+                        bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
+                        dgvDSChuanDoan.Enabled = !isEmpty;
+
                     }
                     else
                     {
@@ -127,25 +129,24 @@ namespace Project_Nhom8
                     DateTime thoiGianCD = dtpTGCD.Value;
                     TimeSpan tgCDKhongGiay = new TimeSpan(thoiGianCD.Hour, thoiGianCD.Minute, 0);
                     bool isTimeGreater = tgCDKhongGiay > thoiGianKhamKhongGiay;
-                    //MessageBox.Show(formattedDate);
-                    //MessageBox.Show(Convert.ToString(BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text)));
-                    if (DateTime.Parse(formattedDate).Date >= BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text).Date)
+                    string ngayCD = tgKham.ToString("MM/dd/yyyy");
+                    DateTime ngayChuanDoan = DateTime.ParseExact(ngayCD, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    bool isSameDate = dtpNgayChuanDoan.Value.Date == ngayChuanDoan.Date;
+                    if (isSameDate && !isTimeGreater)
                     {
-                        if (isTimeGreater)
-                        {
-                            string chuanDoan = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtChuanDoan.Text);
-                            BUS_ChuanDoan.Instance.CapNhatTTChuanDoan(new ET_ChuanDoan(txtPhieuKhamBenh.Text, cboNVCD.SelectedValue.ToString(), chuanDoan, ngayGioThucHien));
-                            BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
-                            bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
-                            dgvDSChuanDoan.Enabled = !isEmpty;
-                        }
-                        else
-                        {
-                            DateTime ngayKham = BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text);
-                            string time = ngayKham.ToString("HH:mm tt");
-                            MessageBox.Show("Thời gian chuẩn đoán phải lớn hơn thời gian của phiếu khám là " +
-                            time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        DateTime ngayKham = BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text);
+                        string time = ngayKham.ToString("HH:mm tt");
+                        MessageBox.Show("Do cùng ngày khám nên thời gian chuẩn đoán phải lớn hơn thời gian của phiếu khám là " +
+                        time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (DateTime.Parse(formattedDate).Date >= BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(txtPhieuKhamBenh.Text).Date)
+                    {
+
+                        string chuanDoan = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtChuanDoan.Text);
+                        BUS_ChuanDoan.Instance.CapNhatTTChuanDoan(new ET_ChuanDoan(txtPhieuKhamBenh.Text, cboNVCD.SelectedValue.ToString(), chuanDoan, ngayGioThucHien));
+                        BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
+                        bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
+                        dgvDSChuanDoan.Enabled = !isEmpty;
                     }
                     else
                     {
@@ -215,14 +216,23 @@ namespace Project_Nhom8
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtPhieuKhamBenh.Clear();
-            txtBN.Clear();
-            txtTC.Clear();
-            txtTK.Clear();
+            txtPhieuKhamBenh.Text = string.Empty; ;
+            txtBN.Text = string.Empty;
+            txtTC.Text = string.Empty;
+            txtTK.Text = string.Empty;
+            txtChuanDoan.Clear();
             btnThemChuanDoan.Enabled = false;
             btnCapNhapChuanDoan.Enabled = false;
             btnLamMoi.Enabled = false;
             BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
+            if (!string.IsNullOrEmpty(txtPhieuKhamBenh.Text))
+            {
+                BUS_SuDungDV.Instance.LayNhanVienThucHienKhamChoPhieuKhamBenh(cboNVCD, txtPhieuKhamBenh.Text);
+            }
+            else
+            {
+                cboNVCD.DataSource = null;
+            }
             bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
             dgvDSChuanDoan.Enabled = !isEmpty;
         }
