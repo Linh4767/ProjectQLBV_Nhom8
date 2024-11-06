@@ -454,8 +454,10 @@ namespace Project_Nhom8
 
         private void btnTaiKham_Click(object sender, EventArgs e)
         {
+            string maPKB = cboPKB.SelectedValue.ToString();
+            string maNV = cboNVKhamBenh.SelectedValue.ToString();
             frmMain frmMain = (frmMain)this.ParentForm;
-            frmMain.openChildForm(new frmTaiKham());
+            frmMain.openChildForm(new frmTaiKham(maPKB, maNV));
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -465,6 +467,15 @@ namespace Project_Nhom8
             {
                 this.Close();
             }
+        }
+
+        private void btnDatLich_Click(object sender, EventArgs e)
+        {
+            string maPKB = cboPKB.SelectedValue.ToString();
+            // Tạo tham chiếu đến frmMain
+            frmMain mainForm = (frmMain)this.ParentForm;
+            // Gọi phương thức mở frmKhamBenh từ frmMain
+            mainForm.openChildForm(new frmTaiKham(maPKB));
         }
     }
 }
