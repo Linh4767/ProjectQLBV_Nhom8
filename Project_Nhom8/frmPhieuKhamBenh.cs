@@ -41,6 +41,7 @@ namespace Project_Nhom8
             BUS_PhieuKB.Instance.HienThiDSPhieuKB(dgvDSPhieuKB, cboBenhNhan.SelectedValue.ToString());
             dgvDSPhieuKB.Columns[6].Visible = false;
             dgvDSPhieuKB.Columns[7].Visible = false;
+            cboBenhNhan.DropDownHeight = 300;
         }
 
         private void txtTrieuChung_KeyPress(object sender, KeyPressEventArgs e)
