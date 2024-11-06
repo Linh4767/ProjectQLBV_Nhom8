@@ -122,5 +122,18 @@ namespace BUS
                 return "Cập nhật không thành công";
             }
         }
+
+        //Tìm kiếm bệnh nhân
+        public void TimKiemBenhNhan(string keyword, DataGridView dgv)
+        {
+            if (DAL_BenhNhan.Instance.KiemTraTonTai(keyword))
+            {
+                dgv.DataSource = DAL_BenhNhan.Instance.TimKiemBenhNhan(keyword);
+            }
+            else
+            {
+                MessageBox.Show("Bệnh nhân không tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

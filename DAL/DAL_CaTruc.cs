@@ -33,8 +33,10 @@ namespace DAL
             IQueryable caTruc = from ct in db.CaTrucs
                                 join phong in db.Phongs
                                 on ct.MaPhong equals phong.MSPhong
+                                join nv in db.NhanViens
+                                on ct.MaNV equals nv.MaNV
                                 orderby ct.NgayTruc descending
-                                select new { ct.MaCT, ct.MaPhong, ct.MaNV, ct.Ca, ct.NgayTruc, phong.MaKhoa };
+                                select new { ct.MaCT, ct.MaPhong, phong.TenPhong, ct.MaNV, nv.TenNV, ct.Ca, ct.NgayTruc, phong.MaKhoa };
             return caTruc;
         }
         //Lấy khoa
@@ -181,22 +183,26 @@ namespace DAL
         }
 
         //Kiểm tra có tồn tại nhân viên không
-        public bool KiemTraTonTai(string maNV)
+        public bool KiemTraTonTai(string key)
         {
-            //ktra trung ma
-            if (db.NhanViens.Any(e => e.MaNV == maNV))
+            if (db.NhanViens.Any(e => e.MaNV == key || e.TenNV.Contains(key)))
             {
                 return true;
             }
             return false;
         }
 
-        //Tìm ca trực của nhân viên
+        //Tìm nhân viên
         public IQueryable TimNhanVien(string key)
         {
-            IQueryable nhanVien = from nv in db.CaTrucs
-                                  where nv.MaNV == key
-                                  select nv;
+            IQueryable nhanVien = from ca in db.CaTrucs
+                                  join nv in db.NhanViens
+                                  on ca.MaNV equals nv.MaNV
+                                  join phong in db.Phongs
+                                  on ca.MaPhong equals phong.MSPhong
+                                  where nv.MaNV == key || nv.TenNV.Contains(key)
+                                  orderby ca.NgayTruc descending
+                                  select new { ca.MaCT, ca.MaPhong, phong.TenPhong, ca.MaNV, nv.TenNV, ca.Ca, ca.NgayTruc, phong.MaKhoa };
             return nhanVien;
         }
     }

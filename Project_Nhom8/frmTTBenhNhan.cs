@@ -527,5 +527,10 @@ namespace Project_Nhom8
                 txtMaBHYT.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            BUS_BenhNhan.Instance.TimKiemBenhNhan(txtTimKiem.Text, dgvBenhNhan);
+        }
     }
 }

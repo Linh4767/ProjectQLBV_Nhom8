@@ -57,6 +57,7 @@
     <Compile Include="DAL_Phong.cs" />
     <Compile Include="DAL_SoBA.cs" />
     <Compile Include="DAL_SuDungDV.cs" />
+    <Compile Include="DAL_TaiKham.cs" />
     <Compile Include="DAL_TheBHYT.cs" />
     <Compile Include="DAL_TaiKhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

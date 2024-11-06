@@ -118,5 +118,24 @@ namespace DAL
             }
             return false;
         }
+
+        //Kiểm tra có tồn tại bệnh nhân không
+        public bool KiemTraTonTai(string key)
+        {
+            if (db.BenhNhans.Any(e => e.TenBN.Contains(key)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Tìm bệnh nhân
+        public IQueryable TimKiemBenhNhan(string key)
+        {
+            IQueryable ds = from bn in db.BenhNhans
+                            where bn.TenBN.Contains(key)
+                            select bn;
+            return ds;
+        }
     }
 }

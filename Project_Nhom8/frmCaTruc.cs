@@ -19,6 +19,7 @@ namespace Project_Nhom8
             InitializeComponent();
         }
 
+        private string maCT { get; set; }
         private void btnTimNV_Click(object sender, EventArgs e)
         {
             BUS_CaTruc.Instance.TimNhanVien(txtTimNV.Text, dgvCaTruc);
@@ -29,6 +30,10 @@ namespace Project_Nhom8
             //tải danh sách ca trực
             TaiDuLieu();
             dgvCaTruc.ColumnHeadersHeight = 40;
+            //ẩn cột
+            dgvCaTruc.Columns[1].Visible = false;
+            dgvCaTruc.Columns[3].Visible = false;
+            dgvCaTruc.Columns[7].Visible = false;
 
             //lấy dữ liệu cho cboKhoa
             BUS_CaTruc.Instance.LayDanhSachKhoa(cboChonKhoa);
@@ -85,7 +90,7 @@ namespace Project_Nhom8
         private void txtTimNV_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Chỉ cho phép nhập chữ cái và số
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && !char.IsWhiteSpace(e.KeyChar))
             {
                 // Hủy việc nhập ký tự
                 e.Handled = true;
@@ -121,46 +126,51 @@ namespace Project_Nhom8
             // Kiểm tra nếu có dòng được chọn và dòng đó không phải là dòng trống
             if (dgvCaTruc.CurrentRow != null && !dgvCaTruc.Rows[dgvCaTruc.CurrentRow.Index].IsNewRow)
             {
+                btnThemCaTruc.Enabled = false;
                 btnSuaCaTruc.Enabled = true;
-                cboPhong.Enabled = false;
-                cboMaNV.Enabled = false;
+                cboCaTruc.Enabled = false;
+                cboChonKhoa.Enabled = false;
 
                 int dong = dgvCaTruc.CurrentCell.RowIndex;
-                txtMaCT.Text = dgvCaTruc.Rows[dong].Cells[0].Value.ToString();
+                maCT = dgvCaTruc.Rows[dong].Cells[0].Value.ToString();
                 cboPhong.SelectedValue = dgvCaTruc.Rows[dong].Cells[1].Value.ToString();
-                cboMaNV.SelectedValue = dgvCaTruc.SelectedCells[2].Value.ToString();
-                cboCaTruc.SelectedItem = dgvCaTruc.SelectedCells[3].Value.ToString();
-                dtpNgayTruc.Text = dgvCaTruc.Rows[dong].Cells[4].Value.ToString();
+                cboMaNV.SelectedValue = dgvCaTruc.Rows[dong].Cells[3].Value.ToString();
+                cboCaTruc.SelectedItem = dgvCaTruc.Rows[dong].Cells[5].Value.ToString();
+                dtpNgayTruc.Text = dgvCaTruc.Rows[dong].Cells[6].Value.ToString();
 
-                string maKhoa = dgvCaTruc.Rows[dong].Cells[5].Value.ToString();
+                string maKhoa = dgvCaTruc.Rows[dong].Cells[7].Value.ToString();
                 BUS_CaTruc.Instance.LayKhoa(maKhoa, cboChonKhoa);
-                cboChonKhoa.Enabled = false;
             }
         }
 
         private void btnSuaCaTruc_Click(object sender, EventArgs e)
         {
-                DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (tb == DialogResult.Yes)
+            DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (tb == DialogResult.Yes)
+            {
+                string kq = BUS_CaTruc.Instance.CapNhatCatruc(new ET_CaTruc(maCT, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
+                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (kq == "Cập nhật thành công")
                 {
-                    string kq = BUS_CaTruc.Instance.CapNhatCatruc(new ET_CaTruc(txtMaCT.Text, cboPhong.SelectedValue.ToString(), cboMaNV.SelectedValue.ToString(), cboCaTruc.SelectedItem.ToString(), Convert.ToDateTime(dtpNgayTruc.Text)));
-                    MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    TaiDuLieu();
                     btnSuaCaTruc.Enabled = false;
                     cboPhong.Enabled = true;
                     cboMaNV.Enabled = true;
                     cboChonKhoa.Enabled = true;
+                    cboCaTruc.Enabled = true;
                 }
+                TaiDuLieu();
+            }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaCT.Text = "";
             cboChonKhoa.SelectedIndex = 0;
             cboCaTruc.SelectedIndex = 0;
             cboPhong.Enabled = true;
             cboMaNV.Enabled = true;
             cboChonKhoa.Enabled = true;
+            cboCaTruc.Enabled = true;
+            btnThemCaTruc.Enabled = true;
             btnSuaCaTruc.Enabled = false;
             dtpNgayTruc.Value = DateTime.Now;
             TaiDuLieu();
