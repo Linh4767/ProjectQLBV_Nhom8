@@ -254,12 +254,13 @@ namespace DAL
         // Sửa thông tin sử dụng dịch vụ
         public bool SuaThongTinSuDungDV(ET_SuDungDV etSuDungDV)
         {
-            var capNhat = db.SuDungDichVus.SingleOrDefault(p => p.MaSuDungDV == etSuDungDV.MaSuDungDV && p.MaPhieuKB == etSuDungDV.MaPhieuKB);
+            var capNhat = db.SuDungDichVus.SingleOrDefault(p => p.MaSuDungDV == etSuDungDV.MaSuDungDV /*&& p.MaPhieuKB == etSuDungDV.MaPhieuKB*/);
             if (capNhat != null)
             {
                 if (db.SuDungDichVus.Any(sddv => sddv.MaSuDungDV != etSuDungDV.MaSuDungDV && sddv.MaDV == etSuDungDV.MaDV && sddv.MaPhieuKB == etSuDungDV.MaPhieuKB))
                 {
-                    return false;
+                    MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ này","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    //return false;
                 }
 
                 else
@@ -281,10 +282,12 @@ namespace DAL
                     }
                     catch (Exception ex)
                     {
+                        //MessageBox.Show("Lỗi: " + ex.Message);
                         return false;
                     }
                 }
             }
+            //MessageBox.Show("Không thấy j cả");
             return false;
         }
         //Xóa thông tin sử dụng dịch vụ
