@@ -390,5 +390,40 @@ namespace DAL
             }
             return false;
         }
+
+
+        public DateTime LayTGCD(string maPKB)
+        {
+            DateTime ngayCD = (from dl in db.ChuanDoans
+                               where dl.MaPhieuKB == maPKB
+                               select dl.NgayChuanDoan.Value.Date).FirstOrDefault();
+            return ngayCD;
+        }
+
+        //
+        public string LayMaBN(string maPKB)
+        {
+            string maBN = (from dl in db.SuDungDichVus
+                           join pk in db.PhieuKhamBenhs
+                           on dl.MaPhieuKB equals pk.MaPhieuKB
+                           where dl.MaPhieuKB == maPKB
+                           select pk.MaBN).FirstOrDefault();
+            return maBN;
+        }
+
+        public bool KiemTraPKBMoiNhat(string maPKB)
+        {
+            // Lấy mã bệnh nhân từ mã PKB hiện tại
+            string maBN = LayMaBN(maPKB);
+
+            // Lấy mã PKB mới nhất của bệnh nhân từ cơ sở dữ liệu
+            string maPKBMoiNhat = (from pk in db.PhieuKhamBenhs
+                                   where pk.MaBN == maBN
+                                   orderby pk.NgayKham descending
+                                   select pk.MaPhieuKB).FirstOrDefault();
+
+            // So sánh nếu mã PKB hiện tại là mã PKB mới nhất
+            return maPKB == maPKBMoiNhat;
+        }
     }
 }
