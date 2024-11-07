@@ -26,9 +26,9 @@ namespace BUS
         }
 
         //Hiển thị danh sách giường bệnh
-        public void HienThiGiuongBenh(DataGridView dgv)
+        public void HienThiGiuongBenh(DataGridView dgv, string maKhoa)
         {
-            dgv.DataSource = DAL_GiuongBenh.Instance.HienThiDanhSachGiuongBenh();
+            dgv.DataSource = DAL_GiuongBenh.Instance.HienThiDanhSachGiuongBenhTheoKhoa(maKhoa);
         }
 
         //Hiển thị combobox khoa
@@ -40,19 +40,19 @@ namespace BUS
         }
 
         //Hiển thị combobox Phòng
-        public void HienThiComboboxPhong(ComboBox cboPhong)
+        public void HienThiComboboxPhong(ComboBox cboPhong, string maKhoa)
         {
-            cboPhong.DataSource = DAL_GiuongBenh.Instance.HienThiComboboxPhong();
+            cboPhong.DataSource = DAL_GiuongBenh.Instance.HienThiPhongTheoKhoa(maKhoa);
             cboPhong.ValueMember = "MSPhong";
             cboPhong.DisplayMember = "TenPhong";
+
         }
 
-        //Hiển thị tên Khoa theo Phòng
-        public string HienThiTenKhoa(string maPhong)
+        //Hiển thị tên khoa
+        public string HienThiTenKhoa(string maKhoa)
         {
-            return DAL_GiuongBenh.Instance.HienThiTenKhoa(maPhong);
+            return DAL_ChuyenNganh.Instance.HienThiTenKhoa(maKhoa);
         }
-
 
         //Tìm kiếm giường bệnh
         public void TimKiemGiuongBenh(string keyword, DataGridView dgv)
@@ -62,9 +62,9 @@ namespace BUS
 
 
         //Tạo mã tự động
-        public string TaoMaTuDong(int numberic, string maPhong)
+        public string TaoMaTuDong(int numberic, string maPhong, string maKhoa)
         {
-            return DAL_GiuongBenh.Instance.TaoMaTuDong(numberic, maPhong);
+            return DAL_GiuongBenh.Instance.TaoMaTuDong(numberic, maPhong, maKhoa);
         }
 
         //Hiển thị combobox Phòng

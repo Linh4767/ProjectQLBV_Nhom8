@@ -46,9 +46,15 @@ namespace BUS
         }
 
         //Tạo mã tự động
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string tenKhoa)
         {
-            return DAL_DichVu.Instance.TaoMaTuDong();
+            return DAL_DichVu.Instance.TaoMaTuDong(tenKhoa);
+        }
+
+        //Hiển thị tên khoa
+        public string HienThiTenKhoa(string maKhoa)
+        {
+            return DAL_DichVu.Instance.HienThiTenKhoa(maKhoa);
         }
 
         //Thêm Dịch Vụ

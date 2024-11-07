@@ -87,10 +87,15 @@ namespace BUS
         }
 
         //Tạo mã tự động
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string tenKhoa)
         {
-            return DAL_ChuyenNganh.Instance.TaoMaTuDong();
+            return DAL_ChuyenNganh.Instance.TaoMaTuDong(tenKhoa);
         }
 
+        //Hiển thị tên khoa
+        public string HienThiTenKhoa(string maKhoa)
+        {
+            return DAL_ChuyenNganh.Instance.HienThiTenKhoa(maKhoa);
+        }
     }
 }

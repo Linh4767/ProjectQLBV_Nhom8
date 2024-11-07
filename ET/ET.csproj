@@ -47,11 +47,13 @@
     <Compile Include="ET_DichVu.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
     <Compile Include="ET_Khoa.cs" />
+    <Compile Include="ET_KhoThuoc.cs" />
     <Compile Include="ET_NhanVien.cs" />
     <Compile Include="ET_ChucVu.cs" />
     <Compile Include="ET_Phong.cs" />
     <Compile Include="ET_TheBHYT.cs" />
     <Compile Include="ET_TaiKhoan.cs" />
+    <Compile Include="ET_Thuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
