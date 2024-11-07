@@ -147,6 +147,10 @@ namespace BUS
         {
             return DAL_SuDungDV.Instance.LayNgayKhamCuaPKB(maPKB);
         }
+        public DateTime LayTGCD(string maPKB)
+        {
+            return DAL_SuDungDV.Instance.LayTGCD(maPKB);
+        }
 
         public void TimKiemSDDVTheoTen(DataGridView dgv, string tenBN, DateTime dtp)
         {
@@ -156,6 +160,15 @@ namespace BUS
         public bool KiemTraXemPhaiDVPT(string maDV)
         {
             if (DAL_SuDungDV.Instance.KiemTraXemPhaiDVPT(maDV) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool KiemTraPKBMoiNhat(string maPKB)
+        {
+            if (DAL_SuDungDV.Instance.KiemTraPKBMoiNhat(maPKB) == true)
             {
                 return true;
             }

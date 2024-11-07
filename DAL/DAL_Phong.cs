@@ -94,7 +94,7 @@ namespace DAL
             var danhSachMaPhong = db.Phongs
                                     .Select(p => p.MSPhong)
                                     .ToList();
-            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số trong bộ nhớ
+            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số
             int soPhongLonNhat = danhSachMaPhong
                          .Select(maPhong =>
                          {
