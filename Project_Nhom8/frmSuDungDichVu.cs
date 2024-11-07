@@ -137,7 +137,7 @@ namespace Project_Nhom8
                 // Kiểm tra giờ
                 if (hours < 0 || hours > 23)
                 {
-                    MessageBox.Show("Giờ phải từ 00 đến 23.");
+                    MessageBox.Show("Giờ phải từ 00 đến 23.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
                     mtbNgayYC.Focus();
                     return;
                 }
@@ -145,14 +145,14 @@ namespace Project_Nhom8
                 // Kiểm tra phút
                 if (minutes < 0 || minutes > 59)
                 {
-                    MessageBox.Show("Phút phải từ 00 đến 59.");
+                    MessageBox.Show("Phút phải từ 00 đến 59.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     mtbNgayYC.Focus();
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("Định dạng không hợp lệ. Vui lòng nhập theo định dạng HH:mm");
+                MessageBox.Show("Định dạng không hợp lệ. Vui lòng nhập theo định dạng HH:mm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 mtbNgayYC.Focus();
             }
         }
