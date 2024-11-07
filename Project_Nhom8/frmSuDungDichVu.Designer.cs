@@ -103,7 +103,7 @@
             this.txtTenBN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTenBN.Name = "txtTenBN";
             this.txtTenBN.PasswordChar = '\0';
-            this.txtTenBN.PlaceholderText = "Tên bệnh nhân";
+            this.txtTenBN.PlaceholderText = "";
             this.txtTenBN.SelectedText = "";
             this.txtTenBN.Size = new System.Drawing.Size(395, 36);
             this.txtTenBN.TabIndex = 156;

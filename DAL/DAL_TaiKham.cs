@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DAL
@@ -37,23 +38,45 @@ namespace DAL
             return taiKham;
         }
         //Tạo mã tự động
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string maPKB)
         {
             // Lấy tất cả các mã bệnh nhân hiện tại
             var dsTaiKham = db.TaiKhams.Select(n => n.MSCuocHen).ToList();
 
             // Nếu danh sách trống, bắt đầu từ 1
             int maCHLonNhat = 0;
-            if (dsTaiKham.Count > 0)
-            {
-                // Tìm mã lớn nhất dựa trên phần số sau chữ "BN"
-                maCHLonNhat = dsTaiKham.Select(maCH => int.Parse(maCH.Substring(2))).Max();
-            }
+            //if (dsTaiKham.Count > 0)
+            //{
+            //    // Tìm mã lớn nhất dựa trên phần số sau chữ "BN"
+            //    maCHLonNhat = dsTaiKham.Select(maCH => int.Parse(maCH.Substring(2))).Max();
+            //}
+            var danhSachCH = db.TaiKhams
+                                    .Select(p => p.MSCuocHen)
+                                    .ToList();
+            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số
+            maCHLonNhat = danhSachCH
+                         .Select(maCH =>
+                         {
+                             // Sử dụng Regular Expressions để tìm phần số trong mã phòng
+                             var match = Regex.Match(maCH, @"\d+");
+                             return match.Success ? int.Parse(match.Value) : 0; // Nếu không tìm thấy, trả về 0
+                         })
+                         .Max();
 
             // Tạo mã mới với số lớn hơn mã lớn nhất
             int maCHHientai = maCHLonNhat + 1;
-            string maCHMoi = "CH" + maCHHientai.ToString("D3"); // đảm bảo ít nhất 3 chữ số
+            string maCHMoi = "CH" + maCHHientai.ToString("D3") +"-"+ maPKB; // đảm bảo ít nhất 3 chữ số
             return maCHMoi;
+        }
+
+        public bool KiemTraKoDatLichTaiKhamNhieuLan(string maPKB)
+        {
+            var ds = db.TaiKhams
+               .AsEnumerable()  // Chuyển sang LINQ to Objects để sử dụng các phương thức .NET như Split
+               .Where(dl => dl.MSCuocHen.Contains("-") && dl.MSCuocHen.Split('-')[1] == maPKB)
+               .ToList();  // Lọc trong bộ nhớ
+
+            return ds.Any();
         }
 
         //thêm cuộc hẹn tái khám
@@ -113,7 +136,7 @@ namespace DAL
             IQueryable taiKham = from tk in db.TaiKhams
                                  join bn in db.BenhNhans
                                  on tk.MSBN equals bn.MSBN
-                                 where bn.TenBN.Contains(key)
+                                 where bn.MSBN.Contains(key) || bn.TenBN.Contains(key)
                                  select new { tk.MSCuocHen, tk.MSBN, bn.TenBN, tk.MaNVPhuTrach, tk.NgayTaiKham, tk.TrangThai, tk.KetQua };
             return taiKham;
         }

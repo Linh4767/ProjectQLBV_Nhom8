@@ -59,24 +59,34 @@ namespace Project_Nhom8
                 MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cboTrangThai.SelectedItem.ToString() == "Đã hủy")
+            if (cboTrangThai.SelectedItem.ToString() != "Chưa hoàn thành")
             {
                 MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string ma = BUS_TaiKham.Instance.TaoMa();
-            string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
-            string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(ma, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
-            MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (kq == "Thêm thành công")
+            string ma = BUS_TaiKham.Instance.TaoMa(maPKB);
+            string maPhieuKB = ma.Split('-')[1];         
+            if(!BUS_TaiKham.Instance.KiemTraKoDatLichTaiKhamNhieuLan(maPhieuKB))
             {
-                txtMaBN.Clear();
-                txtKQ.Clear();
-                txtMaBN.Clear();
-                txtMaNV.Clear();
-                btnThemTK.Enabled = false;
-                TaiDuLieu();
+                string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
+                string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(ma, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
+                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (kq == "Thêm thành công")
+                {
+                    txtMaBN.Clear();
+                    txtKQ.Clear();
+                    txtMaBN.Clear();
+                    txtMaNV.Clear();
+                    btnThemTK.Enabled = false;
+                    TaiDuLieu();
+                }
             }
+            else
+            {
+                MessageBox.Show("Phiếu khám bệnh đã thực hiện đặt lịch", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            
         }
 
         private void frmTaiKham_Load(object sender, EventArgs e)
@@ -87,7 +97,7 @@ namespace Project_Nhom8
             dgvDSTaiKham.ColumnHeadersHeight = 40;
 
             dgvDSTaiKham.Columns[1].Visible = false;
-            btnSuaTK.Enabled = false;
+            //btnSuaTK.Enabled = false;
             dtpNgayTaiKham.Value = DateTime.Now;
             cboTrangThai.SelectedIndex = 0;
             UpdateTrangThai();
@@ -173,6 +183,16 @@ namespace Project_Nhom8
                     cboTrangThai.Enabled = true;
                     btnSuaTK.Enabled = true;
                     txtKQ.Enabled = true;
+                }
+                if (!cboTrangThai.Enabled) return;
+                string trangThai = cboTrangThai.SelectedItem.ToString();
+                if (trangThai == "Đã hoàn thành")
+                {
+                    txtKQ.Enabled = true;
+                }
+                else
+                {
+                    txtKQ.Enabled = false;
                 }
             }
             isSelectingRow = false;

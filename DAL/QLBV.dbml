@@ -245,7 +245,7 @@
   </Table>
   <Table Name="dbo.TaiKham" Member="TaiKhams">
     <Type Name="TaiKham">
-      <Column Name="MSCuocHen" Type="System.String" DbType="NVarChar(24) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MSCuocHen" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
       <Column Name="MaNVPhuTrach" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
       <Column Name="NgayTaiKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />

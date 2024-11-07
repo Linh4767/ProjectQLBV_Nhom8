@@ -26,6 +26,7 @@ namespace Project_Nhom8
         }
         private void frmKhamBenh_Load(object sender, EventArgs e)
         {
+            
             dtpNgay.Value = DateTime.Now;
             cboKhoa.Items.Clear();
             btnChuanDoan.Enabled = false;
@@ -101,10 +102,12 @@ namespace Project_Nhom8
                 if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPKB.SelectedValue.ToString()) == false)
                 {
                     btnThemKB.Enabled = false;
+                    btnDatLich.Enabled = true;
                 }
                 else
                 {
                     btnThemKB.Enabled = true;
+                    btnDatLich.Enabled = false;
                 }
                 txtTrieuChung.Text = BUS_KhamBenh.Instance.LayTrieuChungCuaPKB(cboPKB.SelectedValue.ToString());
             }
@@ -189,19 +192,22 @@ namespace Project_Nhom8
                     txtMaKham.Text = BUS_KhamBenh.Instance.TaoMaKBTuDong(maPKBValue);
                     if (BUS_PhieuKB.Instance.KiemTraPhieuKBThucHienKhamChua(cboPKB.SelectedValue.ToString()) == true)
                     {
-                        btnChuanDoan.Enabled = false;
+                        btnChuanDoan.Enabled = false;                       
                     }
                     else
                     {
                         btnChuanDoan.Enabled = true;
+                       
                     }
                     if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPKB.SelectedValue.ToString()) == false)
                     {
                         btnThemKB.Enabled = false;
+                        btnDatLich.Enabled = true;
                     }
                     else
                     {
                         btnThemKB.Enabled = true;
+                        btnDatLich.Enabled = false;
                     }
                 }
             }

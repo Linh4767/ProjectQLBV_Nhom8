@@ -34,9 +34,9 @@ namespace BUS
         }
 
         //Tạo mã
-        public string TaoMa()
+        public string TaoMa(string maPKB)
         {
-            return DAL_TaiKham.Instance.TaoMaTuDong();
+            return DAL_TaiKham.Instance.TaoMaTuDong(maPKB);
         }
 
         //Thêm cuộc hẹn tái khám mới
@@ -75,6 +75,15 @@ namespace BUS
         public string LayMaBN(string pkb)
         {
             return DAL_TaiKham.Instance.LayMaBN(pkb);
+        }
+
+        public bool KiemTraKoDatLichTaiKhamNhieuLan(string maPKB)
+        {
+            if (DAL_TaiKham.Instance.KiemTraKoDatLichTaiKhamNhieuLan(maPKB))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

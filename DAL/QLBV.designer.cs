@@ -5680,7 +5680,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSCuocHen", DbType="NVarChar(24) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSCuocHen", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MSCuocHen
 		{
 			get

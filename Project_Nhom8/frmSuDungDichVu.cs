@@ -96,13 +96,7 @@ namespace Project_Nhom8
                         BUS_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVienThucHienDichVu, dtpNgayThucHienDV.Value, dtpTGThucHienDV.Value, cboPhongDichVu.SelectedValue.ToString());
                     }
                 }
-                if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-                {
-                    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
-                    {                       
-                        btnThemSuDung.Enabled = false;
-                    }
-                }
+
             }
         }
 
@@ -165,13 +159,13 @@ namespace Project_Nhom8
                         BUS_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVienThucHienDichVu, dtpNgayThucHienDV.Value, dtpTGThucHienDV.Value, cboPhongDichVu.SelectedValue.ToString());
                     }
                 }
-                if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-                {
-                    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
-                    {
-                        btnThemSuDung.Enabled = false;
-                    }
-                }
+                //if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+                //{
+                //    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
+                //    {
+                //        btnThemSuDung.Enabled = false;
+                //    }
+                //}
             }
         }
 
@@ -525,17 +519,17 @@ namespace Project_Nhom8
             dtpTGThucHienDV.Enabled = false;
             txtKetQuaDichVu.Enabled = false;
             cboNhanVienThucHienDichVu.Enabled = false;
-            if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-            { 
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
-                {
-                    btnThemSuDung.Enabled = false;
-                }
-                else
-                {
-                    btnThemSuDung.Enabled = true;
-                }
-            }
+            //if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+            //{ 
+            //    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
+            //    {
+            //        btnThemSuDung.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        btnThemSuDung.Enabled = true;
+            //    }
+            //}
             dgvSuDungDV.SelectionChanged -= dgvSuDungDV_SelectionChanged;
         }
 
