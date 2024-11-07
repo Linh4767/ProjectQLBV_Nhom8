@@ -142,6 +142,7 @@ namespace Project_Nhom8
 
         private void dgvDSPhieuKB_Click(object sender, EventArgs e)
         {
+            
             if (dgvDSPhieuKB.CurrentRow != null && !dgvDSPhieuKB.Rows[dgvDSPhieuKB.CurrentRow.Index].IsNewRow)
             {
                 int dong = dgvDSPhieuKB.CurrentCell.RowIndex;
@@ -162,11 +163,11 @@ namespace Project_Nhom8
                 cboBenhNhan.Enabled = false;
                 btnThemPhieuKB.Enabled = false;
                 btnXoa.Enabled = true;
-                btnCapNhapPhieuKhamBenh.Enabled = true;
+                //btnCapNhapPhieuKhamBenh.Enabled = true;
             }
             btnThemPhieuKB.Enabled = false;
             var textbox = new List<string> { txtTrieuChung.Text };
-            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox) && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtMaPhieuKB.Text) == true)
             {
                 btnCapNhapPhieuKhamBenh.Enabled = true;
             }
