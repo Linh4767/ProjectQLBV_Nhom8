@@ -18,13 +18,36 @@ namespace Project_Nhom8
         {
             InitializeComponent();
         }
-
+        private frmMain mainForm;
+        public frmTTBenhNhan(frmMain mainForm)
+        {
+            InitializeComponent();
+            this.mainForm = mainForm;
+            //frmTTBenhNhan ttBenhNhanForm = new frmTTBenhNhan(mainForm);
+            //ttBenhNhanForm.Show();
+        }
         private void LayDanhSachBenhNhan()
         {
             txtMaBN.Text = BUS_BenhNhan.Instance.TaoMaTuDong();
             BUS_BenhNhan.Instance.LayDSBenhNhan(dgvBenhNhan);
         }
-
+        //Kiểm tra mã
+        public bool KTraMa(string maBN)
+        {
+            for (int i = 0; i < dgvBenhNhan.Rows.Count; i++)
+            {
+                // Kiểm tra xem ô có giá trị không null không
+                if (dgvBenhNhan.Rows[i].Cells[0].Value != null)
+                {
+                    // So sánh giá trị với maBN
+                    if (maBN.Equals(dgvBenhNhan.Rows[i].Cells[0].Value.ToString()))
+                    {
+                        return true; // Trả về true nếu tìm thấy
+                    }
+                }
+            }
+            return false;
+        }
         //Làm mới
         private void LamMoi()
         {
@@ -38,6 +61,7 @@ namespace Project_Nhom8
             txtMaBHYT.Clear();
             txtTenBN.Focus();
             btnSua.Enabled = false;
+            btnThem.Enabled = true;
             dtpNgaySinh.Value = DateTime.Now;
             dtpNgayCap.Value = DateTime.Now;
             dtpNgayHH.Value = DateTime.Now;
@@ -58,12 +82,43 @@ namespace Project_Nhom8
             }
         }
 
+        //Kiểm tra tính hợp lệ của mã BHYT
+        private bool KiemTraMaBHYT(string maBHYT)
+        {
+            // Kiểm tra hai ký tự đầu
+            string tienTo = maBHYT.Substring(0, 2);
+            if (tienTo != "GD" && tienTo != "TE" && tienTo != "HS" && tienTo != "SV")
+            {
+                MessageBox.Show("Hai ký tự đầu của mã BHYT phải là GD, TE, HS, hoặc SV.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Kiểm tra ký tự thứ ba phải là số từ 1 đến 5
+            char kyTuThuBa = maBHYT[2];
+            if (kyTuThuBa < '1' || kyTuThuBa > '5')
+            {
+                MessageBox.Show("Ký tự thứ ba của mã BHYT phải là số từ 1 đến 5.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Kiểm tra 12 ký tự còn lại phải là số
+            string phanConLai = maBHYT.Substring(3);
+            if (!phanConLai.All(char.IsDigit))
+            {
+                MessageBox.Show("12 ký tự cuối của mã BHYT phải là số.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Mã BHYT hợp lệ
+            return true;
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             DialogResult tb = MessageBox.Show("Bạn muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
-                if (txtTenBN.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "")
+                if (txtTenBN.Text == "" || txtDiaChi.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -79,6 +134,12 @@ namespace Project_Nhom8
 
                     if (txtMaBHYT.Text != "")
                     {
+                        //Kiểm tra tính hợp lệ của mã BHYT
+                        if (!KiemTraMaBHYT(txtMaBHYT.Text))
+                        {
+                            return;
+                        }
+
                         // Kiểm tra ngày cấp và ngày hết hạn của thẻ BHYT
                         DateTime ngayCap = dtpNgayCap.Value;
 
@@ -119,6 +180,29 @@ namespace Project_Nhom8
                         LamMoi();
                     }
                     LayDanhSachBenhNhan();
+                    if (kq == "Thêm bệnh nhân và Thẻ BHYT thành công!" || kq == "Thêm bệnh nhân thành công!")
+                    {
+                        if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == true)
+                        {
+                            DialogResult ret = MessageBox.Show("Bệnh nhân chưa có sổ bệnh án. Bạn muốn tạo sổ bệnh án không ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (ret == DialogResult.Yes)
+                            {
+                                string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                                frmMain frmMain = (frmMain)this.ParentForm;
+                                frmMain.openChildForm(new frmSoBenhAn(dataToSend));
+                            }
+                        }
+                        else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == false)
+                        {
+                            DialogResult ret = MessageBox.Show("Bệnh nhân đã có sổ bệnh án. Bạn muốn tiến hành tạo phiếu khám bệnh không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (ret == DialogResult.Yes)
+                            {
+                                //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                                frmMain frmMain = (frmMain)this.ParentForm;
+                                frmMain.openChildForm(new frmPhieuKhamBenh());
+                            }
+                        }
+                    }
                 }
 
             }
@@ -129,6 +213,11 @@ namespace Project_Nhom8
             DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
+                if (txtTenBN.Text == "" || txtDiaChi.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 //kiểm tra ngày sinh
                 DateTime nS = dtpNgaySinh.Value;
                 if (nS.Date > DateTime.Now.Date)
@@ -139,6 +228,11 @@ namespace Project_Nhom8
 
                 if (txtMaBHYT.Text != "")
                 {
+                    //Kiểm tra tính hợp lệ của mã BHYT
+                    if (!KiemTraMaBHYT(txtMaBHYT.Text))
+                    {
+                        return;
+                    }
                     // Kiểm tra ngày cấp và ngày hết hạn của thẻ BHYT
                     DateTime ngayCap = Convert.ToDateTime(dtpNgayCap.Text);
                     DateTime ngayHH = Convert.ToDateTime(dtpNgayHH.Text);
@@ -166,12 +260,65 @@ namespace Project_Nhom8
                 string kq = BUS_BenhNhan.Instance.SuaTTBenhNhan(new ET_BenhNhan(txtMaBN.Text.Trim(), txtTenBN.Text, gioiTinh, Convert.ToDateTime(dtpNgaySinh.Text), txtDiaChi.Text, txtNgheNghiep.Text, txtSDT.Text, txtDanToc.Text, txtTTLH.Text), new ET_TheBHYT(txtMaBHYT.Text, Convert.ToDateTime(dtpNgayCap.Text), Convert.ToDateTime(dtpNgayHH.Text), txtMaBN.Text));
                 MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LayDanhSachBenhNhan();
+                if (kq == "Cập nhật thông tin bệnh nhân thành công." || kq == "Cập nhật thông tin bệnh nhân thành công, nhưng không thể thêm thẻ BHYT!")
+                {
+                    if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == true)
+                    {
+                        DialogResult ret = MessageBox.Show("Bệnh nhân chưa có sổ bệnh án. Bạn muốn tạo sổ bệnh án không ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (ret == DialogResult.Yes)
+                        {
+                            string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                            frmMain frmMain = (frmMain)this.ParentForm;
+                            frmMain.openChildForm(new frmSoBenhAn(dataToSend));
+                        }
+                    }
+                    else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(dgvBenhNhan.CurrentRow.Cells[0].Value.ToString()) == false)
+                    {
+                        DialogResult ret = MessageBox.Show("Bệnh nhân đã có sổ bệnh án. Bạn muốn tiến hành tạo phiếu khám bệnh không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (ret == DialogResult.Yes)
+                        {
+                            //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                            frmMain frmMain = (frmMain)this.ParentForm;
+                            frmMain.openChildForm(new frmPhieuKhamBenh());
+                        }
+                    }
+                }
             }
         }
 
         private void btnSoBenhAn_Click(object sender, EventArgs e)
         {
-
+            if (dgvBenhNhan.SelectedRows.Count > 0 && txtTenBN.Text != string.Empty && KTraMa(txtMaBN.Text) == true)
+            {
+                if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(txtMaBN.Text) == true)
+                {
+                    DialogResult ret = MessageBox.Show("Bệnh nhân chưa có sổ bệnh án. Bạn muốn tạo sổ bệnh án không ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                        frmMain frmMain = (frmMain)this.ParentForm;
+                        frmMain.openChildForm(new frmSoBenhAn(dataToSend));
+                    }
+                }
+                else if (BUS_SoBenhAn.Instance.KiemTraBNCoSoBAChua(txtMaBN.Text) == false)
+                {
+                    DialogResult ret = MessageBox.Show("Bệnh nhân đã có sổ bệnh án. Bạn muốn tiến hành tạo phiếu khám bệnh không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        //string dataToSend = dgvBenhNhan.CurrentRow.Cells[0].Value.ToString() + "-" + dgvBenhNhan.CurrentRow.Cells[1].Value.ToString();  // Dữ liệu bạn muốn gửi
+                        frmMain frmMain = (frmMain)this.ParentForm;
+                        frmMain.openChildForm(new frmPhieuKhamBenh());
+                    }
+                }
+            }
+            else if (KTraMa(txtMaBN.Text) == false)
+            {
+                MessageBox.Show("Bệnh nhân chưa được lưu thông tin vào danh sách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn dòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frmTTBenhNhan_Load(object sender, EventArgs e)
@@ -189,6 +336,7 @@ namespace Project_Nhom8
             if (dgvBenhNhan.CurrentRow != null && !dgvBenhNhan.Rows[dgvBenhNhan.CurrentRow.Index].IsNewRow)
             {
                 btnSua.Enabled = true;
+                btnThem.Enabled = false;
 
                 int dong = dgvBenhNhan.CurrentCell.RowIndex;
                 txtMaBN.Text = dgvBenhNhan.Rows[dong].Cells[0].Value.ToString();
@@ -314,7 +462,7 @@ namespace Project_Nhom8
                 // Hủy việc nhập ký tự
                 e.Handled = true;
             }
-            if (txtSDT.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            if (txtTTLH.Text.Length >= 10 && !char.IsControl(e.KeyChar))
             {
                 // Hủy việc nhập thêm ký tự
                 e.Handled = true;
@@ -362,12 +510,27 @@ namespace Project_Nhom8
 
         private void txtTTLH_Leave(object sender, EventArgs e)
         {
-            if (txtSDT.Text.Length > 0 && txtSDT.Text.Length < 10)
+            if (txtTTLH.Text.Length > 0 && txtTTLH.Text.Length < 10)
             {
                 // Hiển thị thông báo cảnh báo
                 MessageBox.Show("Thông tin liên hệ phải đủ 10 ký tự hoặc không nhập", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSDT.Focus(); // Đưa con trỏ chuột về lại ô nhập
+                txtTTLH.Focus(); // Đưa con trỏ chuột về lại ô nhập
             }
+        }
+
+        private void txtMaBHYT_Leave(object sender, EventArgs e)
+        {
+            if (txtMaBHYT.Text.Length > 0 && txtMaBHYT.Text.Length < 15)
+            {
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Mã BHYT phải đủ 15 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMaBHYT.Focus(); // Đưa con trỏ chuột về lại ô nhập
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            BUS_BenhNhan.Instance.TimKiemBenhNhan(txtTimKiem.Text, dgvBenhNhan);
         }
     }
 }

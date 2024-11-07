@@ -1,8 +1,10 @@
 ﻿using ET;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DAL
@@ -33,18 +35,61 @@ namespace DAL
             return nhanVien;
         }
 
-        //Tạo mã tự động 
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string tenCN)
         {
-            //Lấy tất cả mã dưới dạng chuỗi
-            var dsNhanVien = db.NhanViens.Select(nv => nv.MaNV).ToList();
-            //Tìm mã lớn nhất và lấy phần số
-            int maLonNhat = dsNhanVien.Select(MaNV => int.Parse(MaNV.Substring(2))).Max();
-            //Lấy mã hiện tại
-            int maHienTai = maLonNhat + 1;
-            //Tạo mã mới
-            string maMoi = "NV" + maHienTai.ToString("D3");//Lấy 3 số phía sau 
-            return maMoi;
+            // Bỏ từ "Khoa" ở đầu nếu có
+            if (tenCN.StartsWith("Khoa "))
+            {
+                tenCN = tenCN.Substring(5);
+            }
+            // Loại bỏ dấu tiếng Việt
+            var normalizedString = tenCN.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            tenCN = sb.ToString().Normalize(NormalizationForm.FormC); // Chuẩn hóa về dạng bình thường
+                                                                        // Lấy tất cả mã phòng dưới dạng chuỗi từ database
+            var danhSachMaNV = db.NhanViens
+                                    .Select(cn => cn.MaNV)
+                                    .ToList();
+            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số trong bộ nhớ
+            int maNVMax = danhSachMaNV
+                         .Select(maNV =>
+                         {
+                             // Sử dụng Regular Expressions để tìm phần số trong mã phòng
+                             var match = Regex.Match(maNV, @"\d+");
+                             return match.Success ? int.Parse(match.Value) : 0; // Nếu không tìm thấy, trả về 0
+                         })
+                         .Max();
+            string chuCaiDauKhoa = tenCN.Contains(" ")
+                    ? string.Concat(tenCN.Split(' ')
+                   .Where(word => !string.IsNullOrEmpty(word))  // Lọc các chuỗi rỗng
+                   .Select(word => char.ToUpper(word[0])))
+                    : tenCN;
+            // Tăng số phòng hiện tại lên 1
+            int maCNHienTai = maNVMax + 1;
+            // Tạo mã phòng mới với phần số mới, đảm bảo 3 chữ số
+            string maNVHienTai = "NV" + chuCaiDauKhoa + maCNHienTai.ToString("D3");
+
+            return maNVHienTai; // Trả về mã phòng mới
+        }
+
+        //Lấy tên khoa theo mã khoa
+        public string HienThiTenChuyenNganh(string maCN)
+        {
+            var chuyenNganh = (from k in db.Khoas
+                               join cn in db.ChuyenNganhs
+                               on k.MaKhoa equals cn.MaKhoa
+                                where cn.MaChuyenNganh == maCN
+                               select k.TenKhoa).FirstOrDefault();
+            return chuyenNganh;
         }
 
         //Hiển thị combobox Chức Vụ

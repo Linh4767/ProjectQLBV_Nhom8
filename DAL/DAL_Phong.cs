@@ -1,8 +1,10 @@
 ﻿using ET;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DAL
@@ -32,10 +34,10 @@ namespace DAL
             return dsKhoa;
         }
         //Hiển thị danh sách phòng
-        public IQueryable HienThiDSPhong(string maKhoa)
+        public IQueryable HienThiDSPhong(string maKhoa, string loaiPhong)
         {
             IQueryable dsPhong = from phong in db.Phongs
-                                 where phong.MaKhoa == maKhoa
+                                 where phong.MaKhoa == maKhoa && phong.Loai == loaiPhong
                                  select phong;
             return dsPhong;
         }
@@ -68,21 +70,46 @@ namespace DAL
             }
         }
         //Tạo mã phòng tự động
-        public string TaoMaPhongTuDong()
+        public string TaoMaPhongTuDong(string tenKhoa)
         {
+            // Bỏ từ "Khoa" ở đầu nếu có
+            if (tenKhoa.StartsWith("Khoa "))
+            {
+                tenKhoa = tenKhoa.Substring(5);
+            }
+            // Loại bỏ dấu tiếng Việt
+            var normalizedString = tenKhoa.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            tenKhoa = sb.ToString().Normalize(NormalizationForm.FormC); // Chuẩn hóa về dạng bình thường
             // Lấy tất cả mã phòng dưới dạng chuỗi từ database
             var danhSachMaPhong = db.Phongs
                                     .Select(p => p.MSPhong)
                                     .ToList();
-            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số trong bộ nhớ
+            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số
             int soPhongLonNhat = danhSachMaPhong
-                                 .Select(maPhong => int.Parse(maPhong.Substring(1)))
-                                 .Max();  // Lấy số lớn nhất
-
+                         .Select(maPhong =>
+                         {
+                             // Sử dụng Regular Expressions để tìm phần số trong mã phòng
+                             var match = Regex.Match(maPhong, @"\d+");
+                             return match.Success ? int.Parse(match.Value) : 0; // Nếu không tìm thấy, trả về 0
+                         })
+                         .Max();
+            string chuCaiDauKhoa = tenKhoa.Contains(" ")
+                           ? string.Concat(tenKhoa.Split(' ').Select(word => char.ToUpper(word[0])))
+                           : tenKhoa;
             // Tăng số phòng hiện tại lên 1
             int soPhongHienTai = soPhongLonNhat + 1;
             // Tạo mã phòng mới với phần số mới, đảm bảo 3 chữ số
-            string maPhongMoi = "P" + soPhongHienTai.ToString("D3");
+            string maPhongMoi = "P" + chuCaiDauKhoa + soPhongHienTai.ToString("D3");
 
             return maPhongMoi; // Trả về mã phòng mới
         }
@@ -92,6 +119,10 @@ namespace DAL
         {
             try
             {
+                if (db.CaTrucs.Any(ct => ct.MaPhong == maPhong))
+                {
+                    return false; // Không thể xóa, vì có bản ghi tham chiếu
+                }
                 var xoa = from p in db.Phongs
                           where p.MSPhong == maPhong
                           select p;
@@ -133,7 +164,7 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Lỗi: " + ex.Message);
+                    return false;
                 }
             }
             return false;
@@ -144,6 +175,14 @@ namespace DAL
                             where dl.TenPhong.Contains(searchTerm)
                             select dl;
             return ds;
+        }
+
+        public string LayTenKhoaNhoMaKhoa(string maKhoa)
+        {
+            string tenKhoa = (from p in db.Khoas
+                              where p.MaKhoa == maKhoa
+                              select p.TenKhoa).FirstOrDefault();
+            return tenKhoa;
         }
     }
 }

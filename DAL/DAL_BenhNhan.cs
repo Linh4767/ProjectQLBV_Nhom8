@@ -64,7 +64,10 @@ namespace DAL
         //thêm bệnh nhân
         public bool ThemBenhNhan(ET_BenhNhan eT_BenhNhan)
         {
-            //eT_BenhNhan.MaBN = TaoMaTuDong();
+            if (db.BenhNhans.Any(benhNhan => benhNhan.MSBN == eT_BenhNhan.MaBN))
+            {
+                return false;
+            }
             try
             {
                 BenhNhan bn = new BenhNhan
@@ -79,15 +82,12 @@ namespace DAL
                     DanToc = eT_BenhNhan.DanToc,
                     TTLienHe = eT_BenhNhan.TTLienHe
                 };
-
                 db.BenhNhans.InsertOnSubmit(bn);
-                db.SubmitChanges();
                 return true;
             }
-            catch (Exception ex)
+            finally
             {
-                MessageBox.Show("Lỗi " + ex.Message);
-                return false;
+                db.SubmitChanges();
             }
         }
 
@@ -95,7 +95,6 @@ namespace DAL
         public bool SuaBenhNhan(ET_BenhNhan eT_BenhNhan)
         {
             BenhNhan benhNhan = db.BenhNhans.SingleOrDefault(e => e.MSBN == eT_BenhNhan.MaBN);
-            //ktra trung ma
             if (benhNhan != null)
             {
                 try
@@ -114,11 +113,29 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi " + ex.Message);
-                    return false;
+                    throw new Exception("Lỗi " + ex.Message);
                 }
             }
             return false;
+        }
+
+        //Kiểm tra có tồn tại bệnh nhân không
+        public bool KiemTraTonTai(string key)
+        {
+            if (db.BenhNhans.Any(e => e.TenBN.Contains(key)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Tìm bệnh nhân
+        public IQueryable TimKiemBenhNhan(string key)
+        {
+            IQueryable ds = from bn in db.BenhNhans
+                            where bn.TenBN.Contains(key)
+                            select bn;
+            return ds;
         }
     }
 }

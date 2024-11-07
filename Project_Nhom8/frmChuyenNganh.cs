@@ -24,7 +24,7 @@ namespace Project_Nhom8
             dgvChuyenNganh.ColumnHeadersHeight = 40;
             BUS_ChuyenNganh.Instance.HienThiChuyenNganh(dgvChuyenNganh);
             BUS_ChuyenNganh.Instance.HienThiComboboxKhoa(cboKhoa);
-            txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong();
+            //txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong(cboKhoa.SelectedValue.ToString());
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
@@ -85,7 +85,11 @@ namespace Project_Nhom8
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaCN.Clear();
-            txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong();
+            string tenKhoa = BUS_ChuyenNganh.Instance.HienThiTenKhoa(cboKhoa.SelectedValue.ToString());
+            if (tenKhoa != null)
+            {
+                txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong(tenKhoa);
+            }
             txtTenChuyenNganh.Clear();
             txtTimKiem.Clear();
             cboKhoa.SelectedIndex = 0;
@@ -160,6 +164,17 @@ namespace Project_Nhom8
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             BUS_ChuyenNganh.Instance.TimKiemChuyenNganh(txtTimKiem.Text, dgvChuyenNganh);
+        }
+
+        private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            string tenKhoa = BUS_ChuyenNganh.Instance.HienThiTenKhoa(cboKhoa.SelectedValue.ToString());
+            if (tenKhoa != null)
+            {
+                txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong(tenKhoa);
+            }
+
         }
     }
 }

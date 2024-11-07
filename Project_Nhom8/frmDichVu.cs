@@ -25,7 +25,6 @@ namespace Project_Nhom8
             cboKhoa.Items.Clear();
             BUS_DichVu.Instance.HienThiDichVu(dgvDichVu);
             BUS_DichVu.Instance.HienThiComboboxKhoa(cboKhoa);
-            txtMaDV.Text = BUS_DichVu.Instance.TaoMaTuDong();
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
@@ -81,7 +80,6 @@ namespace Project_Nhom8
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaDV.Clear();
-            txtMaDV.Text = BUS_DichVu.Instance.TaoMaTuDong();
             txtTenDV.Clear();
             txtGiaDV.Clear();
             txtTimKiem.Clear();
@@ -159,6 +157,17 @@ namespace Project_Nhom8
 
         private void txtGiaDV_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtTenDV.Text, txtGiaDV.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThem.Enabled = true;
+                btnCapNhat.Enabled = true;
+            }
+            else
+            {
+                btnThem.Enabled = false;
+                btnCapNhat.Enabled = false;
+            }
             if (long.TryParse(txtGiaDV.Text, out long giaDV))
             {
                 // Nếu giá trị vượt quá 500.000.000, tự động gán lại giá trị tối đa
@@ -194,6 +203,15 @@ namespace Project_Nhom8
             {
                 // Hủy việc nhập ký tự
                 e.Handled = true;
+            }
+        }
+
+        private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tenKhoa = BUS_DichVu.Instance.HienThiTenKhoa(cboKhoa.SelectedValue.ToString());
+            if (tenKhoa != null)
+            {
+                txtMaDV.Text = BUS_DichVu.Instance.TaoMaTuDong(tenKhoa);
             }
         }
     }
