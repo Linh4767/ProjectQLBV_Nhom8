@@ -102,7 +102,7 @@ namespace DAL
     #endregion
 		
 		public QLBVDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLBVConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLBVConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -2628,6 +2628,8 @@ namespace DAL
 		
 		private int _SoGiuong;
 		
+		private string _TrangThai;
+		
 		private string _MSPhong;
 		
 		private EntitySet<PhanGiuong> _PhanGiuongs;
@@ -2642,6 +2644,8 @@ namespace DAL
     partial void OnMaGiuongChanged();
     partial void OnSoGiuongChanging(int value);
     partial void OnSoGiuongChanged();
+    partial void OnTrangThaiChanging(string value);
+    partial void OnTrangThaiChanged();
     partial void OnMSPhongChanging(string value);
     partial void OnMSPhongChanged();
     #endregion
@@ -2689,6 +2693,26 @@ namespace DAL
 					this._SoGiuong = value;
 					this.SendPropertyChanged("SoGiuong");
 					this.OnSoGiuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThai", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string TrangThai
+		{
+			get
+			{
+				return this._TrangThai;
+			}
+			set
+			{
+				if ((this._TrangThai != value))
+				{
+					this.OnTrangThaiChanging(value);
+					this.SendPropertyChanging();
+					this._TrangThai = value;
+					this.SendPropertyChanged("TrangThai");
+					this.OnTrangThaiChanged();
 				}
 			}
 		}

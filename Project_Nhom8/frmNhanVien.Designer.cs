@@ -106,7 +106,7 @@
             this.radNu.BackColor = System.Drawing.Color.Transparent;
             this.radNu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radNu.Location = new System.Drawing.Point(156, 338);
-            this.radNu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radNu.Margin = new System.Windows.Forms.Padding(4);
             this.radNu.Name = "radNu";
             this.radNu.Size = new System.Drawing.Size(53, 24);
             this.radNu.TabIndex = 94;
@@ -120,7 +120,7 @@
             this.radNam.Checked = true;
             this.radNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radNam.Location = new System.Drawing.Point(50, 338);
-            this.radNam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radNam.Margin = new System.Windows.Forms.Padding(4);
             this.radNam.Name = "radNam";
             this.radNam.Size = new System.Drawing.Size(68, 24);
             this.radNam.TabIndex = 93;
@@ -145,6 +145,7 @@
             this.cboChuyenNganh.Name = "cboChuyenNganh";
             this.cboChuyenNganh.Size = new System.Drawing.Size(470, 36);
             this.cboChuyenNganh.TabIndex = 92;
+            this.cboChuyenNganh.SelectedIndexChanged += new System.EventHandler(this.cboChuyenNganh_SelectedIndexChanged);
             // 
             // dtpNgaySinh
             // 
@@ -279,9 +280,9 @@
             this.groupBox3.Controls.Add(this.btnLamMoi);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(140, 609);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(478, 154);
             this.groupBox3.TabIndex = 110;
             this.groupBox3.TabStop = false;
@@ -298,7 +299,7 @@
             this.btnCapNhat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnCapNhat.ForeColor = System.Drawing.Color.White;
             this.btnCapNhat.Location = new System.Drawing.Point(51, 99);
-            this.btnCapNhat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCapNhat.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(147, 47);
             this.btnCapNhat.TabIndex = 43;
@@ -316,7 +317,7 @@
             this.btnThem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnThem.ForeColor = System.Drawing.Color.White;
             this.btnThem.Location = new System.Drawing.Point(51, 32);
-            this.btnThem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThem.Margin = new System.Windows.Forms.Padding(4);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(147, 47);
             this.btnThem.TabIndex = 40;
@@ -334,7 +335,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnXoa.ForeColor = System.Drawing.Color.White;
             this.btnXoa.Location = new System.Drawing.Point(299, 32);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(4);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(147, 47);
             this.btnXoa.TabIndex = 41;
@@ -352,7 +353,7 @@
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnLamMoi.ForeColor = System.Drawing.Color.White;
             this.btnLamMoi.Location = new System.Drawing.Point(299, 99);
-            this.btnLamMoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLamMoi.Margin = new System.Windows.Forms.Padding(4);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(147, 47);
             this.btnLamMoi.TabIndex = 42;
@@ -371,7 +372,7 @@
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnTimKiem.ForeColor = System.Drawing.Color.White;
             this.btnTimKiem.Location = new System.Drawing.Point(1244, 139);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(136, 36);
             this.btnTimKiem.TabIndex = 111;
@@ -506,7 +507,7 @@
             this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnThoat.ForeColor = System.Drawing.Color.White;
             this.btnThoat.Location = new System.Drawing.Point(1244, 716);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(147, 47);
             this.btnThoat.TabIndex = 116;

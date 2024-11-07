@@ -31,7 +31,6 @@ namespace Project_Nhom8
             dgvNhanVien.Columns[7].Visible = false;
             dgvNhanVien.Columns[8].Visible = false;
             dgvNhanVien.Columns[9].Visible = false;
-            txtMaNV.Text = BUS_NhanVien.Instance.TaoMaTuDong();
             btnThem.Enabled = false;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
@@ -135,7 +134,6 @@ namespace Project_Nhom8
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaNV.Clear();
-            txtMaNV.Text = BUS_NhanVien.Instance.TaoMaTuDong();
             txtHoTenNV.Clear();
             radNam.Checked = true;
             txtSDT.Clear();
@@ -254,6 +252,15 @@ namespace Project_Nhom8
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
                 btnCapNhat.Enabled = true;
+            }
+        }
+
+        private void cboChuyenNganh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tenCN = BUS_NhanVien.Instance.HienThiTenCN(cboChuyenNganh.SelectedValue.ToString());
+            if (tenCN != null)
+            {
+                txtMaNV.Text = BUS_NhanVien.Instance.TaoMaTuDong(tenCN);
             }
         }
     }

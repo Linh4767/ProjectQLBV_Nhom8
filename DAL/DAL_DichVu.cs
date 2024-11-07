@@ -1,8 +1,10 @@
 ﻿using ET;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DAL
@@ -34,17 +36,57 @@ namespace DAL
         }
 
         //Tạo mã tự động 
-        public string TaoMaTuDong()
+        public string TaoMaTuDong(string tenKhoa)
         {
-            //Lấy tất cả mã dưới dạng chuỗi
-            var dsDichVu = db.DichVus.Select(dv => dv.MaDV).ToList();
-            //Tìm mã lớn nhất và lấy phần số
-            int maLonNhat = dsDichVu.Select(maDV => int.Parse(maDV.Substring(2))).Max();
-            //Lấy mã hiện tại
-            int maHienTai = maLonNhat + 1;
-            //Tạo mã mới
-            string maMoi = "DV" + maHienTai.ToString("D3");//Lấy 3 số phía sau 
-            return maMoi;
+            // Bỏ từ "Khoa" ở đầu nếu có
+            if (tenKhoa.StartsWith("Khoa "))
+            {
+                tenKhoa = tenKhoa.Substring(5);
+            }
+            // Loại bỏ dấu tiếng Việt
+            var normalizedString = tenKhoa.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            tenKhoa = sb.ToString().Normalize(NormalizationForm.FormC); // Chuẩn hóa về dạng bình thường
+                                                                        // Lấy tất cả mã phòng dưới dạng chuỗi từ database
+            var danhSachMadv = db.DichVus
+                                    .Select(dv => dv.MaDV)
+                                    .ToList();
+            // Tìm mã phòng có số lớn nhất sau khi chuyển đổi phần số trong bộ nhớ
+            int maDVMax = danhSachMadv
+                         .Select(maDV =>
+                         {
+                             // Sử dụng Regular Expressions để tìm phần số trong mã phòng
+                             var match = Regex.Match(maDV, @"\d+");
+                             return match.Success ? int.Parse(match.Value) : 0; // Nếu không tìm thấy, trả về 0
+                         })
+                         .Max();
+            string chuCaiDauKhoa = tenKhoa.Contains(" ")
+                           ? string.Concat(tenKhoa.Split(' ').Select(word => char.ToUpper(word[0])))
+                           : tenKhoa;
+            // Tăng số phòng hiện tại lên 1
+            int maCNHienTai = maDVMax + 1;
+            // Tạo mã phòng mới với phần số mới, đảm bảo 3 chữ số
+            string maDVMoi = "DV" + chuCaiDauKhoa + maCNHienTai.ToString("D3");
+
+            return maDVMoi; // Trả về mã phòng mới
+        }
+
+        //Lấy tên khoa theo mã khoa
+        public string HienThiTenKhoa(string maKhoa)
+        {
+            var khoa = (from k in db.Khoas
+                        where k.MaKhoa == maKhoa
+                        select k.TenKhoa).FirstOrDefault();
+            return khoa;
         }
 
         //Hiển thị combobox Khoa
