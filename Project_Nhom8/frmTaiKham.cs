@@ -19,6 +19,10 @@ namespace Project_Nhom8
             InitializeComponent();
         }
         private string maPKB { get; set; }
+        private string maCH { get; set; }
+        private string maNVPT { get; set; }
+
+        private bool isSelectingRow = false;
         //Nút tái khám
         public frmTaiKham(string pkb, string maNV)
         {
@@ -26,7 +30,8 @@ namespace Project_Nhom8
             maPKB = pkb;
 
             txtMaBN.Text = BUS_TaiKham.Instance.LayMaBN(maPKB);
-            txtMaNV.Text = maNV;
+            maNVPT = maNV;
+            txtMaNV.Text = maNVPT;
 
             btnThemTK.Enabled = false;
         }
@@ -38,12 +43,12 @@ namespace Project_Nhom8
             maPKB = pkb;
             txtMaBN.Text = BUS_TaiKham.Instance.LayMaBN(maPKB);
             txtMaNV.Text = "";
+            btnSuaTK.Enabled = false;
         }
         //Lấy dữ liệu 
         private void TaiDuLieu()
         {
             BUS_TaiKham.Instance.LayDSTaiKham(dgvDSTaiKham);
-            txtMaCH.Text = BUS_TaiKham.Instance.TaoMa();
         }
         private void btnThemTK_Click(object sender, EventArgs e)
         {
@@ -54,9 +59,14 @@ namespace Project_Nhom8
                 MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            if (cboTrangThai.SelectedItem.ToString() == "Đã hủy")
+            {
+                MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string ma = BUS_TaiKham.Instance.TaoMa();
             string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
-            string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(txtMaCH.Text, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
+            string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(ma, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
             MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (kq == "Thêm thành công")
             {
@@ -88,14 +98,6 @@ namespace Project_Nhom8
             DialogResult tb = MessageBox.Show("Bạn có muốn lưu thông tin đã được thay đổi không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (tb == DialogResult.Yes)
             {
-                //kiểm tra ngày
-                //DateTime ngayTaiKham = dtpNgayTaiKham.Value;
-                //if (ngayTaiKham.Date < DateTime.Now.Date)
-                //{
-                //    MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
                 string trangThai = cboTrangThai.SelectedItem.ToString();
                 if (trangThai == "Đã hoàn thành" && txtKQ.Text == "")
                 {
@@ -103,7 +105,7 @@ namespace Project_Nhom8
                     return;
                 }
                 string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
-                string kq = BUS_TaiKham.Instance.CapNhatTaiKham(new ET_TaiKham(txtMaCH.Text, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
+                string kq = BUS_TaiKham.Instance.CapNhatTaiKham(new ET_TaiKham(maCH, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
                 MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (kq == "Cập nhật thành công")
                 {
@@ -141,6 +143,7 @@ namespace Project_Nhom8
 
         private void dgvDSTaiKham_Click(object sender, EventArgs e)
         {
+            isSelectingRow = true;
             // Kiểm tra nếu có dòng được chọn và dòng đó không phải là dòng trống
             if (dgvDSTaiKham.CurrentRow != null && !dgvDSTaiKham.Rows[dgvDSTaiKham.CurrentRow.Index].IsNewRow)
             {
@@ -148,37 +151,53 @@ namespace Project_Nhom8
                 btnSuaTK.Enabled = true;
 
                 int dong = dgvDSTaiKham.CurrentCell.RowIndex;
-                txtMaCH.Text = dgvDSTaiKham.Rows[dong].Cells[0].Value?.ToString() ?? "";
+                maCH = dgvDSTaiKham.Rows[dong].Cells[0].Value?.ToString() ?? "";
                 txtMaBN.Text = dgvDSTaiKham.Rows[dong].Cells[1].Value?.ToString() ?? "";
                 dtpNgayTaiKham.Text = dgvDSTaiKham.Rows[dong].Cells[4].Value?.ToString() ?? "";
-                cboTrangThai.SelectedItem = dgvDSTaiKham.Rows[dong].Cells[5].Value?.ToString() ?? "";
 
-                txtMaNV.Text = dgvDSTaiKham.Rows[dong].Cells[3].Value?.ToString() ?? "";
+                txtMaNV.Text = dgvDSTaiKham.Rows[dong].Cells[3].Value?.ToString() ?? maNVPT;
                 txtKQ.Text = dgvDSTaiKham.Rows[dong].Cells[6].Value?.ToString() ?? "";
 
-                //if (cboTrangThai.SelectedItem.ToString() == "Đã hủy")
-                //{
-                //    btnSuaTK.Enabled = false;
-                //}
+                // Thiết lập nguồn dữ liệu cho cboTrangThai dựa vào txtMaNV
+                cboTrangThai.DataSource = string.IsNullOrEmpty(txtMaNV.Text) ? partialStatusList : fullStatusList;
+                cboTrangThai.SelectedItem = dgvDSTaiKham.Rows[dong].Cells[5].Value?.ToString();
+
+                if (cboTrangThai.SelectedItem.ToString() == "Đã hoàn thành")
+                {
+                    cboTrangThai.Enabled = false;
+                    btnSuaTK.Enabled = false;
+                    txtKQ.Enabled = false;
+                }
+                else
+                {
+                    cboTrangThai.Enabled = true;
+                    btnSuaTK.Enabled = true;
+                    txtKQ.Enabled = true;
+                }
             }
+            isSelectingRow = false;
         }
 
+        private List<string> fullStatusList = new List<string> { "Chưa hoàn thành", "Đã hoàn thành", "Đã hủy" };
+        private List<string> partialStatusList = new List<string> { "Chưa hoàn thành", "Đã hủy" };
         private void UpdateTrangThai()
         {
-            if (string.IsNullOrEmpty(txtMaNV.Text))
+            if (!isSelectingRow)
             {
-                // Hiển thị chỉ 2 trạng thái khi txtMaNV trống
-                cboTrangThai.DataSource = new List<string> { "Chưa hoàn thành", "Đã hủy" };
-            }
-            else
-            {
-                // Hiển thị đầy đủ 3 trạng thái khi txtMaNV có giá trị
-                cboTrangThai.DataSource = new List<string> { "Chưa hoàn thành", "Đã hoàn thành", "Đã hủy" };
+                if (string.IsNullOrEmpty(txtMaNV.Text))
+                {
+                    cboTrangThai.DataSource = partialStatusList;
+                }
+                else
+                {
+                    cboTrangThai.DataSource = fullStatusList;
+                }
             }
         }
 
         private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!cboTrangThai.Enabled) return;
             string trangThai = cboTrangThai.SelectedItem.ToString();
             if (trangThai == "Đã hoàn thành")
             {
