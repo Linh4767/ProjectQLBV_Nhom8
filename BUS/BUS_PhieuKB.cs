@@ -69,7 +69,7 @@ namespace BUS
             }
             else
             {
-                MessageBox.Show("Sửa không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sửa không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Tạo mã phiếu khám bệnh tự động
