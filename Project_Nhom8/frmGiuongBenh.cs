@@ -90,7 +90,7 @@ namespace Project_Nhom8
                 txtMaGiuongBenh.Text = dgvGiuongBenh.Rows[dong].Cells[0].Value.ToString();
                 nurSoGiuong.Text = dgvGiuongBenh.Rows[dong].Cells[1].Value.ToString();
                 cboMaPhong.SelectedValue = dgvGiuongBenh.Rows[dong].Cells[2].Value.ToString();
-                cboTrangThai.SelectedValue = dgvGiuongBenh.Rows[dong].Cells[4].Value.ToString();
+                cboTrangThai.SelectedIndex = cboTrangThai.FindStringExact(dgvGiuongBenh.Rows[dong].Cells[4].Value.ToString());
                 cboKhoa.SelectedValue = dgvGiuongBenh.Rows[dong].Cells[5].Value.ToString();
                 btnThem.Enabled = false;
                 btnCapNhat.Enabled = true;

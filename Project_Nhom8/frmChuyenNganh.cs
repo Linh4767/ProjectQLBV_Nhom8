@@ -85,7 +85,11 @@ namespace Project_Nhom8
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaCN.Clear();
-            txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong(cboKhoa.SelectedValue.ToString());
+            string tenKhoa = BUS_ChuyenNganh.Instance.HienThiTenKhoa(cboKhoa.SelectedValue.ToString());
+            if (tenKhoa != null)
+            {
+                txtMaCN.Text = BUS_ChuyenNganh.Instance.TaoMaTuDong(tenKhoa);
+            }
             txtTenChuyenNganh.Clear();
             txtTimKiem.Clear();
             cboKhoa.SelectedIndex = 0;

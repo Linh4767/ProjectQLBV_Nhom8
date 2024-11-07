@@ -460,10 +460,17 @@ namespace Project_Nhom8
 
         private void btnTaiKham_Click(object sender, EventArgs e)
         {
-            string maPKB = cboPKB.SelectedValue.ToString();
-            string maNV = cboNVKhamBenh.SelectedValue.ToString();
-            frmMain frmMain = (frmMain)this.ParentForm;
-            frmMain.openChildForm(new frmTaiKham(maPKB, maNV));
+            if(cboPKB.SelectedValue != null && cboNVKhamBenh.SelectedValue != null)
+            {
+                string maPKB = cboPKB.SelectedValue.ToString();
+                string maNV = cboNVKhamBenh.SelectedValue.ToString();
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmTaiKham(maPKB, maNV));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -477,11 +484,18 @@ namespace Project_Nhom8
 
         private void btnDatLich_Click(object sender, EventArgs e)
         {
-            string maPKB = cboPKB.SelectedValue.ToString();
-            // Tạo tham chiếu đến frmMain
-            frmMain mainForm = (frmMain)this.ParentForm;
-            // Gọi phương thức mở frmKhamBenh từ frmMain
-            mainForm.openChildForm(new frmTaiKham(maPKB));
+            if(cboPKB.SelectedValue != null)
+            {
+                string maPKB = cboPKB.SelectedValue.ToString();
+                // Tạo tham chiếu đến frmMain
+                frmMain mainForm = (frmMain)this.ParentForm;
+                // Gọi phương thức mở frmKhamBenh từ frmMain
+                mainForm.openChildForm(new frmTaiKham(maPKB));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -112,7 +112,7 @@ namespace Project_Nhom8
             if (txtNhaCC.Text.Length > 100)
             {
                 // Cắt chuỗi về 100 ký tự
-                txtNhaCC.Text = txtNhaCC.Text.Substring(0, 30);
+                txtNhaCC.Text = txtNhaCC.Text.Substring(0, 100);
 
                 // Đặt con trỏ chuột ở cuối văn bản
                 txtNhaCC.SelectionStart = txtNhaCC.Text.Length;

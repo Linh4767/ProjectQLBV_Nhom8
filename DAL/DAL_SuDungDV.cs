@@ -396,7 +396,7 @@ namespace DAL
         {
             DateTime ngayCD = (from dl in db.ChuanDoans
                                where dl.MaPhieuKB == maPKB
-                               select dl.NgayChuanDoan.Value.Date).FirstOrDefault();
+                               select dl.NgayChuanDoan.Value).FirstOrDefault();
             return ngayCD;
         }
 

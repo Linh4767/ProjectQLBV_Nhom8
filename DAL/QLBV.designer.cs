@@ -102,7 +102,7 @@ namespace DAL
     #endregion
 		
 		public QLBVDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLBVConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLBVConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -2657,7 +2657,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiuong", DbType="NVarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiuong", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MaGiuong
 		{
 			get
@@ -4032,7 +4032,7 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiuong", DbType="NVarChar(12) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiuong", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MaGiuong
 		{
 			get

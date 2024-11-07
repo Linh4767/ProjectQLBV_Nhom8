@@ -37,7 +37,9 @@ namespace Project_Nhom8
                 string formattedDate = BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("dd/MM/yyyy");
                 txtMaSuDungDV.Text = BUS_SuDungDV.Instance.TaoMaDVTuDong(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
                 BUS_SuDungDV.Instance.LayNhanVienThucHienKhamChoPhieuKhamBenh(cboNVYeuCauDV, cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
-                txtTien.Text = Convert.ToString(BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()));
+                decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
+                txtNgayYC.Text = formattedDate;
                 txtNgayYC.Text = formattedDate;
             }
             dtpNgayThucHienDV.Enabled = false;
@@ -76,6 +78,11 @@ namespace Project_Nhom8
             BUS_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dgvSuDungDV, dtpDSNgaySuDungDV.Value);
             bool isEmpty = dgvSuDungDV.Rows.Count == 0;
             dgvSuDungDV.Enabled = !isEmpty;
+            if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+            {
+                decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
+            }
         }
 
         private void cboPhieuKhamBenhSuDungDV_SelectedIndexChanged(object sender, EventArgs e)
@@ -284,9 +291,13 @@ namespace Project_Nhom8
                 }
                 else if (BUS_SuDungDV.Instance.KiemTraXemPhaiDVPT(cboDV.SelectedValue.ToString()) == true && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
                 {
-                    if (dtpNgayThucHienDV.Value.Date >= BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+
+                    DateTime tgcd = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                    // So sánh thời gian trong ngày
+                    bool isSameTGCD = dtpTGThucHienDV.Value.TimeOfDay >= tgcd.TimeOfDay;
+                    if (dtpNgayThucHienDV.Value.Date == BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).Date && isSameTGCD)
                     {
-                        DialogResult ret = MessageBox.Show("Bạn có muốn thực hiện lưu thay đổi không !! ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult ret = MessageBox.Show("Bạn có muốn thực hiện lưu thay đổi không !?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (ret == DialogResult.Yes)
                         {
                             DateTime ngayThucHien = dtpNgayThucHienDV.Value.Date;
@@ -337,10 +348,70 @@ namespace Project_Nhom8
                             }
                         }
                     }
+                    
+                    
+                    else if (dtpNgayThucHienDV.Value.Date > BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).Date)
+                    {
+                        DialogResult ret = MessageBox.Show("Bạn có muốn thực hiện lưu thay đổi không !!?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (ret == DialogResult.Yes)
+                        {
+                            DateTime ngayThucHien = dtpNgayThucHienDV.Value.Date;
+                            TimeSpan thoiGianThucHien = dtpTGThucHienDV.Value.TimeOfDay;
+                            DateTime ngayGioThucHien = ngayThucHien.Add(thoiGianThucHien);
+                            string thoiGianYC = mtbNgayYC.Text;
+                            string ngayThoiGianYC = $"{ngayYC} {thoiGianYC}";
+                            DateTime ngayYeuCau = DateTime.ParseExact(ngayThoiGianYC, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+                            string maNVYC = cboNVYeuCauDV.SelectedValue.ToString();
+                            string maPKB = cboPhieuKhamBenhSuDungDV.SelectedValue.ToString();
+                            string maDV = cboDV.SelectedValue.ToString();
+                            //string maPhong = cboPhongDichVu.SelectedValue.ToString();
+                            //string maNVTH = cboNhanVienThucHienDichVu.SelectedValue.ToString();
+                            if (!string.IsNullOrEmpty(maNVYC) && !string.IsNullOrEmpty(maPKB) &&
+                                !string.IsNullOrEmpty(maDV) && cboPhongDichVu.SelectedValue != null &&
+                                cboNhanVienThucHienDichVu.SelectedValue != null)
+                            {
+                                string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKetQuaDichVu.Text);
+                                string maPhong = cboPhongDichVu.SelectedValue.ToString();
+                                string maNVTH = cboNhanVienThucHienDichVu.SelectedValue.ToString();
+                                BUS_SuDungDV.Instance.SuaThongTinSuDungDV(new ET_SuDungDV(maNVYC, maPKB, maDV, ngayGioThucHien, ngayYeuCau, maPhong,
+                                    maNVTH, ketQua, txtMaSuDungDV.Text));
+                                BUS_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dgvSuDungDV, dtpDSNgaySuDungDV.Value);
+                                decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                                txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
+                                btnXoa.Enabled = false;
+                                btnSuaSD.Enabled = false;
+
+                            }
+                            else if (!string.IsNullOrEmpty(maPKB) &&
+                                !string.IsNullOrEmpty(maDV) && cboPhongDichVu.SelectedValue == null ||
+                                cboNhanVienThucHienDichVu.SelectedValue == null)
+                            {
+                                BUS_SuDungDV.Instance.SuaThongTinSuDungDV(new ET_SuDungDV(maNVYC, maPKB, maDV, ngayYeuCau, null,
+                                    null, txtKetQuaDichVu.Text, txtMaSuDungDV.Text));
+                                BUS_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dgvSuDungDV, dtpDSNgaySuDungDV.Value);
+                                bool isEmpty = dgvSuDungDV.Rows.Count == 0;
+                                dgvSuDungDV.Enabled = !isEmpty;
+                                decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                                txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
+                                btnXoa.Enabled = false;
+                                btnSuaSD.Enabled = false;
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vui lòng điền đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if(dtpNgayThucHienDV.Value.Date < BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).Date)
+                    {
+                        string time = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("dd/MM/yyyy");
+                        MessageBox.Show("Ngày thực hiện dịch vụ phải lớn hơn ngày yêu cầu " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     else
                     {
-                        string ngayCD = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("dd/MM/yyyy");
-                        MessageBox.Show("Do dịch vụ phẫu thuật nên ngày thực hiện phải lớn hơn ngày chuẩn đoán là " + ngayCD, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string time = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("HH:mm tt");
+                        MessageBox.Show("Cùng ngày yêu cầu nên thời gian thực hiện dịch vụ phải lớn hơn " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if (BUS_SuDungDV.Instance.KiemTraXemNgayThucHienCoLonHonBangNgayYeuCau(ngayGioYC.Date, dtpNgayThucHienDV.Value.Date) == true)
