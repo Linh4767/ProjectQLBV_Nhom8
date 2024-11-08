@@ -95,7 +95,7 @@ namespace Project_Nhom8
 
             //độ rộng cột
             dgvDSTaiKham.ColumnHeadersHeight = 40;
-
+            btnSuaTK.Enabled = false;
             dgvDSTaiKham.Columns[1].Visible = false;
             //btnSuaTK.Enabled = false;
             dtpNgayTaiKham.Value = DateTime.Now;
@@ -112,6 +112,22 @@ namespace Project_Nhom8
                 if (trangThai == "Đã hoàn thành" && txtKQ.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập kết quả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (trangThai == "Đã hủy")
+                {
+                    string ketLuan = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
+                    string kQua = BUS_TaiKham.Instance.CapNhatTaiKham(new ET_TaiKham(maCH, txtMaBN.Text, null, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketLuan));
+                    MessageBox.Show(kQua, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (kQua == "Cập nhật thành công")
+                    {
+                        txtMaBN.Clear();
+                        txtKQ.Clear();
+                        txtMaBN.Clear();
+                        txtMaNV.Clear();
+                        btnSuaTK.Enabled = false;
+                        TaiDuLieu();
+                    }
                     return;
                 }
                 string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
