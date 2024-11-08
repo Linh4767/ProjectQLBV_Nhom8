@@ -276,7 +276,6 @@ namespace Project_Nhom8
                 string ngayYC = txtNgayYC.Text;
                 DateTime ngayGioYC = DateTime.ParseExact(ngayYC, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime thoiGianTH = dtpTGThucHienDV.Value;
-                // Tạo một đối tượng mới không có giây
                 TimeSpan thoiGianKhongGiay = new TimeSpan(thoiGianTH.Hour, thoiGianTH.Minute, 0);
                 TimeSpan thoiGianYeuCau = DateTime.Parse(mtbNgayYC.Text).TimeOfDay;
                 bool isSameDate = dtpNgayThucHienDV.Value.Date == ngayGioYC.Date;

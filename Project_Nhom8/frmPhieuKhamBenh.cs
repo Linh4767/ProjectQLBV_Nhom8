@@ -87,11 +87,18 @@ namespace Project_Nhom8
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemPhieuKB.Enabled = true;
-                btnCapNhapPhieuKhamBenh.Enabled = true;
             }
             else
             {
                 btnThemPhieuKB.Enabled = false;
+            }
+            var textbox1 = new List<string> { txtTrieuChung.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox1) && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtMaPhieuKB.Text) == true)
+            {
+                btnCapNhapPhieuKhamBenh.Enabled = true;
+            }
+            else
+            {
                 btnCapNhapPhieuKhamBenh.Enabled = false;
             }
         }
