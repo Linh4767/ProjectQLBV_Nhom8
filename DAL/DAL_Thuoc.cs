@@ -44,7 +44,7 @@ namespace DAL
                         join kt in db.KhoThuocs 
                         on t.MaThuoc equals kt.MaThuoc into kho
                         from k in kho.DefaultIfEmpty()  // Left join
-                        select new {t.MaThuoc,t.TenThuoc,t.LoaiThuoc,t.HamLuong,t.XuatXu,t.NhaCungCap,t.DonViTinh,t.QuyCachDongGoi,t.SoLuongDVT,t.SoLuongQCDG,t.Gia,SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho,t.TrangThai};
+                        select new {t.MaThuoc,t.TenThuoc,t.LoaiThuoc,t.HamLuong,t.XuatXu,t.NhaCungCap,t.DonViTinh,t.QuyCachDongGoi,t.SoLuongDVT,t.SoLuongQCDG,t.Gia,SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho,t.TrangThai, k.SoLuongDonVi};
             return thuoc;
         }
 
@@ -160,27 +160,51 @@ namespace DAL
         //Sửa thuốc
         public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
         {
-            Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc);
-            if (thuoc != null)
+            using (var db = new QLBVDataContext())
             {
+                Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc);
+                if (thuoc == null) return false;
+
                 try
                 {
+                    // Cập nhật các thuộc tính của thuốc
                     thuoc.Gia = gia;
                     thuoc.TrangThai = trangThai;
                     thuoc.DonViTinh = donViTinh;
                     thuoc.QuyCachDongGoi = quyCachDongGoi;
                     thuoc.SoLuongDVT = soLuongDVT;
                     thuoc.SoLuongQCDG = soLuongQCDG;
+
+                    // Lưu thay đổi vào bảng Thuoc
                     db.SubmitChanges();
+
+                    // Sau khi cập nhật thuốc, cập nhật lại SoLuongDonVi trong kho
+                    var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
+                    if (khoThuoc != null)
+                    {
+                        // Tính toán lại SoLuongDonVi
+                        if (thuoc.LoaiThuoc == "Viên nén")
+                        {
+                            khoThuoc.SoLuongDonVi = khoThuoc.SoLuongTrongKho * thuoc.SoLuongDVT * thuoc.SoLuongQCDG.GetValueOrDefault(1);
+                        }
+                        else
+                        {
+                            khoThuoc.SoLuongDonVi = khoThuoc.SoLuongTrongKho * thuoc.SoLuongDVT;
+                        }
+
+                        // Lưu thay đổi vào bảng KhoThuoc
+                        db.SubmitChanges();
+                    }
+
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Lỗi " + ex.Message);
+                    throw new Exception("Lỗi: " + ex.Message);
                 }
             }
-            return false;
         }
+
 
     }
 }

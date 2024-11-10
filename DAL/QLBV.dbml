@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBV" Class="QLBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=linh\MAYLINH;Initial Catalog=QLBV;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-05J7C3L\SQLEXPRESS;Initial Catalog=QLBV;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BenhNhan" Member="BenhNhans">
     <Type Name="BenhNhan">
       <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -12,7 +12,6 @@
       <Column Name="DanToc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="TTLienHe" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Association Name="BenhNhan_BHYT" Member="BHYT" ThisKey="MSBN" OtherKey="MSBN" Type="BHYT" Cardinality="One" />
-      <Association Name="BenhNhan_PhanGiuong" Member="PhanGiuongs" ThisKey="MSBN" OtherKey="MaBN" Type="PhanGiuong" />
       <Association Name="BenhNhan_PhieuKhamBenh" Member="PhieuKhamBenhs" ThisKey="MSBN" OtherKey="MaBN" Type="PhieuKhamBenh" />
       <Association Name="BenhNhan_SoBenhAn" Member="SoBenhAns" ThisKey="MSBN" OtherKey="MaBN" Type="SoBenhAn" />
       <Association Name="BenhNhan_TaiKham" Member="TaiKhams" ThisKey="MSBN" OtherKey="MSBN" Type="TaiKham" />
@@ -145,6 +144,7 @@
     <Type Name="KhoThuoc">
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuongDonVi" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonThuoc" />
       <Association Name="Thuoc_KhoThuoc" Member="Thuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="Thuoc" IsForeignKey="true" />
     </Type>
@@ -175,15 +175,15 @@
   <Table Name="dbo.PhanGiuong" Member="PhanGiuongs">
     <Type Name="PhanGiuong">
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NgayTra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NgayNhan" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="MaNVYeuCau" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="GhiChu" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="BenhNhan_PhanGiuong" Member="BenhNhan" ThisKey="MaBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
       <Association Name="GiuongBenh_PhanGiuong" Member="GiuongBenh" ThisKey="MaGiuong" OtherKey="MaGiuong" Type="GiuongBenh" IsForeignKey="true" />
       <Association Name="NhanVien_PhanGiuong" Member="NhanVien" ThisKey="MaNVYeuCau" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+      <Association Name="PhieuKhamBenh_PhanGiuong" Member="PhieuKhamBenh" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="PhieuKhamBenh" IsForeignKey="true" />
       <Association Name="Phong_PhanGiuong" Member="Phong" ThisKey="MaPhong" OtherKey="MSPhong" Type="Phong" IsForeignKey="true" />
     </Type>
   </Table>
@@ -198,6 +198,7 @@
       <Association Name="PhieuKhamBenh_ChuanDoan" Member="ChuanDoan" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="ChuanDoan" Cardinality="One" />
       <Association Name="PhieuKhamBenh_DonThuoc" Member="DonThuocs" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="DonThuoc" />
       <Association Name="PhieuKhamBenh_KhamBenh" Member="KhamBenhs" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="KhamBenh" />
+      <Association Name="PhieuKhamBenh_PhanGiuong" Member="PhanGiuongs" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="PhanGiuong" />
       <Association Name="PhieuKhamBenh_SuDungDichVu" Member="SuDungDichVus" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="SuDungDichVu" />
       <Association Name="BenhNhan_PhieuKhamBenh" Member="BenhNhan" ThisKey="MaBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
     </Type>
