@@ -286,10 +286,10 @@ namespace Project_Nhom8
                     {
                         MessageBox.Show("Cùng ngày yêu cầu nên thời gian thực hiện dịch vụ phải lớn hơn" + thoiGianYeuCau, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else if (BUS_SuDungDV.Instance.KiemTraXemPhaiDVPT(cboDV.SelectedValue.ToString()) == true && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == true)
-                    {
-                        MessageBox.Show("Thực hiện phẫu thuật thì phải có chẩn đoán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //else if (BUS_SuDungDV.Instance.KiemTraXemPhaiDVPT(cboDV.SelectedValue.ToString()) == true && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == true)
+                    //{
+                    //    MessageBox.Show("Thực hiện phẫu thuật thì phải có chẩn đoán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                     else if (BUS_SuDungDV.Instance.KiemTraXemPhaiDVPT(cboDV.SelectedValue.ToString()) == true && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
                     {
 
@@ -412,7 +412,7 @@ namespace Project_Nhom8
                         else
                         {
                             string time = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("HH:mm tt");
-                            MessageBox.Show("Cùng ngày yêu cầu nên thời gian thực hiện dịch vụ phải lớn hơn " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Cùng ngày chuẩn đoán nên thời gian thực hiện dịch vụ phải lớn hơn " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else if (BUS_SuDungDV.Instance.KiemTraXemNgayThucHienCoLonHonBangNgayYeuCau(ngayGioYC.Date, dtpNgayThucHienDV.Value.Date) == true)
