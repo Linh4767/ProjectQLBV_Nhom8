@@ -177,11 +177,11 @@ namespace BUS
 
         public bool KiemTraPKBMoi(string maPKB)
         {
-            if (DAL_SuDungDV.Instance.KiemTraPKBMoi(maPKB))
+            if (DAL_SuDungDV.Instance.KiemTraPKBMoiNhat(maPKB))
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

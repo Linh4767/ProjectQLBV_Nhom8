@@ -403,11 +403,9 @@ namespace DAL
         //
         public string LayMaBN(string maPKB)
         {
-            string maBN = (from dl in db.SuDungDichVus
-                           join pk in db.PhieuKhamBenhs
-                           on dl.MaPhieuKB equals pk.MaPhieuKB
+            string maBN = (from dl in db.PhieuKhamBenhs
                            where dl.MaPhieuKB == maPKB
-                           select pk.MaBN).FirstOrDefault();
+                           select dl.MaBN).FirstOrDefault();
             return maBN;
         }
 
@@ -424,18 +422,6 @@ namespace DAL
 
             // So sánh nếu mã PKB hiện tại là mã PKB mới nhất
             return maPKB == maPKBMoiNhat;
-        }
-        //Kiểm tra phiếu khám bệnh mới
-        public bool KiemTraPKBMoi(string maPKB)
-        {
-            var ds = from pk in db.PhieuKhamBenhs
-                     where pk.NgayKham.Value.Date >= LayNgayKhamCuaPKB(maPKB).Date && pk.MaPhieuKB != maPKB && pk.MaBN == LayMaBN(maPKB)
-                     select pk;
-            if (ds != null)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

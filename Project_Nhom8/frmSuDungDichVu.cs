@@ -40,12 +40,16 @@ namespace Project_Nhom8
                 decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
                 txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
                 txtNgayYC.Text = formattedDate;
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString())){
-                    btnThemSuDung.Enabled = true;
-                }
-                else
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = false;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
             }
             dtpNgayThucHienDV.Enabled = false;
@@ -88,13 +92,16 @@ namespace Project_Nhom8
             {
                 decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
                 txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = true;
-                }
-                else
-                {
-                    btnThemSuDung.Enabled = false;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
             }
         }
@@ -117,13 +124,16 @@ namespace Project_Nhom8
                         BUS_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVienThucHienDichVu, dtpNgayThucHienDV.Value, dtpTGThucHienDV.Value, cboPhongDichVu.SelectedValue.ToString());
                     }
                 }
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = true;
-                }
-                else
-                {
-                    btnThemSuDung.Enabled = false;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
             }
         }
@@ -187,21 +197,17 @@ namespace Project_Nhom8
                         BUS_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVienThucHienDichVu, dtpNgayThucHienDV.Value, dtpTGThucHienDV.Value, cboPhongDichVu.SelectedValue.ToString());
                     }
                 }
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = true;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
-                else
-                {
-                    btnThemSuDung.Enabled = false;
-                }
-                //if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-                //{
-                //    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
-                //    {
-                //        btnThemSuDung.Enabled = false;
-                //    }
-                //}
             }
         }
 
@@ -232,13 +238,16 @@ namespace Project_Nhom8
                         BUS_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVienThucHienDichVu, dtpNgayThucHienDV.Value, dtpTGThucHienDV.Value, cboPhongDichVu.SelectedValue.ToString());
                     }
                 }
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = true;
-                }
-                else
-                {
-                    btnThemSuDung.Enabled = false;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
             }
         }
@@ -522,9 +531,10 @@ namespace Project_Nhom8
                 MessageBox.Show("Không đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        bool ktr = true;
         private void dgvSuDungDV_Click(object sender, EventArgs e)
         {
+            ktr = false;
             //dgvSuDungDV.SelectionChanged += dgvSuDungDV_SelectionChanged;
             dtpNgayThucHienDV.Enabled = true;
             dtpTGThucHienDV.Enabled = true;
@@ -573,17 +583,17 @@ namespace Project_Nhom8
                 //cboPhongDichVu.SelectedValue = dgvSuDungDV.Rows[dong].Cells[6].Value?.ToString() ?? "";
                 //cboNhanVienThucHienDichVu.SelectedValue = dgvSuDungDV.Rows[dong].Cells[7].Value?.ToString() ?? "";
                 txtKetQuaDichVu.Text = dgvSuDungDV.Rows[dong].Cells[8].Value?.ToString() ?? "";
-                if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-                {
-                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
-                    {
-                        btnThemSuDung.Enabled = true;
-                    }
-                    else
-                    {
-                        btnThemSuDung.Enabled = false;
-                    }
-                }
+                //if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+                //{
+                //    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                //    {
+                //        btnThemSuDung.Enabled = true;
+                //    }
+                //    else
+                //    {
+                //        btnThemSuDung.Enabled = false;
+                //    }
+                //}
             }
         }
 
@@ -632,7 +642,7 @@ namespace Project_Nhom8
         {
             btnSuaSD.Enabled = false;
             btnXoa.Enabled = false;
-            btnThemSuDung.Enabled = true;
+            //btnThemSuDung.Enabled = true;
             btnLamMoi.Enabled = false;
             cboPhieuKhamBenhSuDungDV.Enabled = true;
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
@@ -646,18 +656,36 @@ namespace Project_Nhom8
             dtpTGThucHienDV.Enabled = false;
             txtKetQuaDichVu.Enabled = false;
             cboNhanVienThucHienDichVu.Enabled = false;
+            dgvSuDungDV.SelectionChanged -= dgvSuDungDV_SelectionChanged;
+            //if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+            //{
+            //    if (ktr)
+            //    {
+            //        if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+            //        {
+            //            btnThemSuDung.Enabled = true;
+            //        }
+            //        else
+            //        {
+            //            btnThemSuDung.Enabled = false;
+            //        }
+            //    }
+            //}
+            ktr = true;
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
             {
-                if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                if (ktr)
                 {
-                    btnThemSuDung.Enabled = true;
-                }
-                else
-                {
-                    btnThemSuDung.Enabled = false;
+                    if (BUS_SuDungDV.Instance.KiemTraPKBMoi(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()))
+                    {
+                        btnThemSuDung.Enabled = true;
+                    }
+                    else
+                    {
+                        btnThemSuDung.Enabled = false;
+                    }
                 }
             }
-            dgvSuDungDV.SelectionChanged -= dgvSuDungDV_SelectionChanged;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
