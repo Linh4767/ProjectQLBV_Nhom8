@@ -176,10 +176,10 @@ namespace DAL
             }
             return false;
         }
-        public IQueryable TimKiemPhong(string searchTerm)
+        public IQueryable TimKiemPhong(string searchTerm,string loaiPhong,string khoa)
         {
             IQueryable ds = from dl in db.Phongs
-                            where dl.TenPhong.Contains(searchTerm)
+                            where dl.TenPhong.Contains(searchTerm) && dl.MaKhoa == khoa && dl.Loai == loaiPhong
                             select dl;
             return ds;
         }
