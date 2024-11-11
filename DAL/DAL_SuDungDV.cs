@@ -433,16 +433,19 @@ namespace DAL
 
         public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
         {
-            // Kiểm tra xem còn giường nào trống trong phòng vào ngày thực hiện
-            if (LayLoaiPhong(maPhong)){
+            // Làm tròn ngày thực hiện chỉ đến giờ và phút (bỏ qua giây)
+            var ngayThucHienLamTron = new DateTime(ngayThucHien.Year, ngayThucHien.Month, ngayThucHien.Day, ngayThucHien.Hour, ngayThucHien.Minute, 0);
 
+            if (LayLoaiPhong(maPhong))
+            {
                 var conGiuongTrong = db.GiuongBenhs.Any(g =>
                     g.MSPhong == maPhong && // Giường thuộc phòng được yêu cầu
                     !db.PhanGiuongs.Any(pg =>
-                    pg.MaGiuong == g.MaGiuong &&
-                    ngayThucHien >= pg.NgayNhan && // Ngày thực hiện sau hoặc bằng ngày nhận
-                    (pg.NgayTra == null || ngayThucHien <= pg.NgayTra) // Ngày trả là null hoặc ngày thực hiện trước hoặc bằng ngày trả
-                 )
+                        pg.MaGiuong == g.MaGiuong &&
+                        // So sánh cả ngày và thời gian (giờ, phút) với ngày nhận, bỏ qua giây
+                        ngayThucHienLamTron >= new DateTime(pg.NgayNhan.Year, pg.NgayNhan.Month, pg.NgayNhan.Day, pg.NgayNhan.Hour, pg.NgayNhan.Minute, 0) &&
+                        (pg.NgayTra == null || ngayThucHienLamTron <= new DateTime(pg.NgayTra.Value.Year, pg.NgayTra.Value.Month, pg.NgayTra.Value.Day, pg.NgayTra.Value.Hour, pg.NgayTra.Value.Minute, 0)) // So sánh với ngày trả (bỏ giây)
+                    )
                 );
                 return conGiuongTrong;
             }

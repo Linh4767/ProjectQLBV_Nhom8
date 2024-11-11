@@ -319,12 +319,9 @@ namespace Project_Nhom8
         {
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
             {
-                if(cboPhongDichVu.SelectedValue != null)
+                if (cboPhongDichVu.SelectedValue != null && !BUS_SuDungDV.Instance.KiemTraPhongConGiuongTrongNgay(cboPhongDichVu.SelectedValue.ToString(), dtpNgayThucHienDV.Value.Date + dtpTGThucHienDV.Value.TimeOfDay))
                 {
-                    if (!BUS_SuDungDV.Instance.KiemTraPhongConGiuongTrongNgay(cboPhongDichVu.SelectedValue.ToString(), dtpNgayThucHienDV.Value.Date + dtpTGThucHienDV.Value.TimeOfDay))
-                    {
-                        MessageBox.Show("Phòng đã hết giường", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Phòng đã hết giường", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if ((DateTime.Parse(mtbNgayYC.Text).TimeOfDay > BUS_SuDungDV.Instance.LayNgayKhamCuaPKB(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).TimeOfDay))
                 {
@@ -549,13 +546,12 @@ namespace Project_Nhom8
             cboPhieuKhamBenhSuDungDV.Enabled = false;
             cboNhanVienThucHienDichVu.Enabled = true;
             txtKetQuaDichVu.Enabled = true;
-            //btnThemSuDung.Enabled = false;
+            btnThemSuDung.Enabled = false;
             btnSuaSD.Enabled = true;
             btnXoa.Enabled = true;
             btnLamMoi.Enabled = true;
             if (dgvSuDungDV.CurrentRow != null && dgvSuDungDV.CurrentCell != null && dgvSuDungDV.Rows.Count > 0 && !dgvSuDungDV.Rows[dgvSuDungDV.CurrentRow.Index].IsNewRow)
             {
-
 
                 // Đặt CurrentCell về ô đầu tiên trong dòng đang chọn để chắc chắn dòng đúng được chọn
                 int dong = dgvSuDungDV.CurrentCell.RowIndex;
@@ -622,13 +618,6 @@ namespace Project_Nhom8
                         MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ không thể xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                //if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
-                //{
-                //    if (BUS_SuDungDV.Instance.KiemTraPKBMoiNhat(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == false)
-                //    {
-                //        btnThemSuDung.Enabled = false;
-                //    }
-                //}
             }
         }
 
