@@ -259,7 +259,7 @@ namespace DAL
             {
                 if (db.SuDungDichVus.Any(sddv => sddv.MaSuDungDV != etSuDungDV.MaSuDungDV && sddv.MaDV == etSuDungDV.MaDV && sddv.MaPhieuKB == etSuDungDV.MaPhieuKB))
                 {
-                    MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ này","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //return false;
                 }
 
@@ -422,6 +422,31 @@ namespace DAL
 
             // So sánh nếu mã PKB hiện tại là mã PKB mới nhất
             return maPKB == maPKBMoiNhat;
+        }
+        public bool LayLoaiPhong(string maPhong)
+        {
+            string dl = (from p in db.Phongs
+                         where p.MSPhong == maPhong
+                         select p.Loai).FirstOrDefault();
+            return dl == "Phòng bệnh";
+        }
+
+        public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
+        {
+            // Kiểm tra xem còn giường nào trống trong phòng vào ngày thực hiện
+            if (LayLoaiPhong(maPhong)){
+
+                var conGiuongTrong = db.GiuongBenhs.Any(g =>
+                    g.MSPhong == maPhong && // Giường thuộc phòng được yêu cầu
+                    !db.PhanGiuongs.Any(pg =>
+                    pg.MaGiuong == g.MaGiuong &&
+                    ngayThucHien >= pg.NgayNhan && // Ngày thực hiện sau hoặc bằng ngày nhận
+                    (pg.NgayTra == null || ngayThucHien <= pg.NgayTra) // Ngày trả là null hoặc ngày thực hiện trước hoặc bằng ngày trả
+                 )
+                );
+                return conGiuongTrong;
+            }
+            return true;
         }
     }
 }

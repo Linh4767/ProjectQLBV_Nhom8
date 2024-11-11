@@ -183,5 +183,13 @@ namespace BUS
             }
             return false;
         }
+        public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
+        {
+            if (DAL_SuDungDV.Instance.KiemTraPhongConGiuongTrongNgay(maPhong,ngayThucHien))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
