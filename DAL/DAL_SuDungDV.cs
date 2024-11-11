@@ -425,5 +425,19 @@ namespace DAL
             // So sánh nếu mã PKB hiện tại là mã PKB mới nhất
             return maPKB == maPKBMoiNhat;
         }
+        //Kiểm tra phiếu khám bệnh mới
+        public bool KiemTraPKBMoi(string maPKB)
+        {
+            var ds = from dl in db.SuDungDichVus
+                     join pk in db.PhieuKhamBenhs
+                     on dl.MaPhieuKB equals pk.MaPhieuKB
+                     where pk.NgayKham.Value.Date >= LayNgayKhamCuaPKB(maPKB).Date && dl.MaPhieuKB != maPKB
+                     select pk;
+            if (ds != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

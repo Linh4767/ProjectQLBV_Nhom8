@@ -174,5 +174,14 @@ namespace BUS
             }
             return false;
         }
+
+        public bool KiemTraPKBMoi(string maPKB)
+        {
+            if (DAL_SuDungDV.Instance.KiemTraPKBMoi(maPKB))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
