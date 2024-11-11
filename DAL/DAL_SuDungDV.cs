@@ -428,10 +428,8 @@ namespace DAL
         //Kiểm tra phiếu khám bệnh mới
         public bool KiemTraPKBMoi(string maPKB)
         {
-            var ds = from dl in db.SuDungDichVus
-                     join pk in db.PhieuKhamBenhs
-                     on dl.MaPhieuKB equals pk.MaPhieuKB
-                     where pk.NgayKham.Value.Date >= LayNgayKhamCuaPKB(maPKB).Date && dl.MaPhieuKB != maPKB
+            var ds = from pk in db.PhieuKhamBenhs
+                     where pk.NgayKham.Value.Date >= LayNgayKhamCuaPKB(maPKB).Date && pk.MaPhieuKB != maPKB && pk.MaBN == LayMaBN(maPKB)
                      select pk;
             if (ds != null)
             {
