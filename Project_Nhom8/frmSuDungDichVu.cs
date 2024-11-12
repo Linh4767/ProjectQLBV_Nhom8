@@ -154,28 +154,37 @@ namespace Project_Nhom8
         private void mtbNgayYC_Leave(object sender, EventArgs e)
         {
             // Tách giờ, phút, giây từ giá trị trong MaskedTextBox
+            // Tách giờ, phút, giây từ giá trị trong MaskedTextBox
             string input = mtbNgayYC.Text;
             string[] timeParts = input.Split(':');
 
             if (timeParts.Length == 2)
             {
-                int hours = int.Parse(timeParts[0]);
-                int minutes = int.Parse(timeParts[1]);
+                int hours, minutes;
 
-                // Kiểm tra giờ
-                if (hours < 0 || hours > 23)
+                if (int.TryParse(timeParts[0], out hours) &&
+                    int.TryParse(timeParts[1], out minutes))
                 {
-                    MessageBox.Show("Giờ phải từ 00 đến 23.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
-                    mtbNgayYC.Focus();
-                    return;
+                    // Kiểm tra giờ
+                    if (hours < 0 || hours > 23)
+                    {
+                        MessageBox.Show("Giờ phải từ 00 đến 23.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        mtbNgayYC.Focus();
+                        return;
+                    }
+
+                    // Kiểm tra phút
+                    if (minutes < 0 || minutes > 59)
+                    {
+                        MessageBox.Show("Phút phải từ 00 đến 59.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        mtbNgayYC.Focus();
+                        return;
+                    }
                 }
-
-                // Kiểm tra phút
-                if (minutes < 0 || minutes > 59)
+                else
                 {
-                    MessageBox.Show("Phút phải từ 00 đến 59.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Định dạng không hợp lệ. Vui lòng nhập theo định dạng HH:mm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     mtbNgayYC.Focus();
-                    return;
                 }
             }
             else
@@ -457,7 +466,7 @@ namespace Project_Nhom8
                         else if (dtpNgayThucHienDV.Value.Date < BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).Date)
                         {
                             string time = BUS_SuDungDV.Instance.LayTGCD(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()).ToString("dd/MM/yyyy");
-                            MessageBox.Show("Ngày thực hiện dịch vụ phải lớn hơn ngày yêu cầu " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ngày thực hiện dịch vụ phải lớn hơn ngày chuẩn đoán " + time, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -481,7 +490,27 @@ namespace Project_Nhom8
                             string maDV = cboDV.SelectedValue.ToString();
                             //string maPhong = cboPhongDichVu.SelectedValue.ToString();
                             //string maNVTH = cboNhanVienThucHienDichVu.SelectedValue.ToString();
-                            if (!string.IsNullOrEmpty(maNVYC) && !string.IsNullOrEmpty(maPKB) &&
+                            if (BUS_SuDungDV.Instance.KiemTraXemPhaiDVPT(cboDV.SelectedValue.ToString()) == true && BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString()) == true)
+                            {
+                                if (!string.IsNullOrEmpty(maNVYC) && !string.IsNullOrEmpty(maPKB) &&
+                                !string.IsNullOrEmpty(maDV) && cboPhongDichVu.SelectedValue == null &&
+                                cboNhanVienThucHienDichVu.SelectedValue == null)
+                                {
+                                    
+                                    BUS_SuDungDV.Instance.SuaThongTinSuDungDV(new ET_SuDungDV(maNVYC, maPKB, maDV, ngayYeuCau, null,
+                                    null, null, txtMaSuDungDV.Text));
+                                    BUS_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dgvSuDungDV, dtpDSNgaySuDungDV.Value);
+                                    decimal tienSuDung = (decimal)BUS_SuDungDV.Instance.TinhTienSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                                    txtTien.Text = tienSuDung.ToString("F0"); // Định dạng và hiển thị
+                                    btnXoa.Enabled = false;
+                                    btnSuaSD.Enabled = false;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Thực hiện phẫu thuật phải có chuẩn đoán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(maNVYC) && !string.IsNullOrEmpty(maPKB) &&
                                 !string.IsNullOrEmpty(maDV) && cboPhongDichVu.SelectedValue != null &&
                                 cboNhanVienThucHienDichVu.SelectedValue != null)
                             {
@@ -512,6 +541,7 @@ namespace Project_Nhom8
                                 btnSuaSD.Enabled = false;
 
                             }
+
                             else
                             {
                                 MessageBox.Show("Vui lòng điền đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -638,8 +668,10 @@ namespace Project_Nhom8
             cboPhongDichVu.Enabled = false;
             dtpTGThucHienDV.Enabled = false;
             txtKetQuaDichVu.Enabled = false;
+            txtKetQuaDichVu.Text = string.Empty;
             cboNhanVienThucHienDichVu.Enabled = false;
             dgvSuDungDV.SelectionChanged -= dgvSuDungDV_SelectionChanged;
+            BUS_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dgvSuDungDV, dtpDSNgaySuDungDV.Value);
             ktr = true;
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
             {
@@ -669,6 +701,7 @@ namespace Project_Nhom8
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             BUS_SuDungDV.Instance.TimKiemSDDVTheoTen(dgvSuDungDV, txtTenBN.Text, dtpDSNgaySuDungDV.Value);
+            btnLamMoi.Enabled = true;
         }
 
         private void dgvSuDungDV_CellClick(object sender, DataGridViewCellEventArgs e)
