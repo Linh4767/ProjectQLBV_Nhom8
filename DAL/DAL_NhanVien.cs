@@ -177,7 +177,7 @@ namespace DAL
             }
         }
 
-        //Xóa chuyên ngành
+        //Xóa nhân viên
         public bool XoaNhanVien(string maNV)
         {
             try
