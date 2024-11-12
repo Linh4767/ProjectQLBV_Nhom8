@@ -16,10 +16,18 @@ namespace ET
         private string loaiThuoc;
         private string donViTinh;
         private string quyCachDongGoi;
-        private int soLuongDVT;
+        private int? soLuongDVT;
         private int? soLuongQCDG;
         private string hamLuong;
         private float gia;
+
+        public ET_Thuoc(/*string maThuoc, string loaiThuoc, int? soLuongDVT, int? soLuongQCDG*/)
+        {
+            //this.maThuoc = maThuoc;
+            //this.loaiThuoc = loaiThuoc;
+            //this.soLuongDVT = soLuongDVT;
+            //this.soLuongQCDG = soLuongQCDG;
+        }
 
         public ET_Thuoc(string maThuoc, string tenThuoc, string xuatXu, string nhaCungCap, string trangThai, string loaiThuoc, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string hamLuong, float gia)
         {
@@ -45,7 +53,7 @@ namespace ET
         public string LoaiThuoc { get => loaiThuoc; set => loaiThuoc = value; }
         public string DonViTinh { get => donViTinh; set => donViTinh = value; }
         public string QuyCachDongGoi { get => quyCachDongGoi; set => quyCachDongGoi = value; }
-        public int SoLuongDVT { get => soLuongDVT; set => soLuongDVT = value; }
+        public int? SoLuongDVT { get => soLuongDVT; set => soLuongDVT = value; }
         public int? SoLuongQCDG { get => soLuongQCDG; set => soLuongQCDG = value; }
         public string HamLuong { get => hamLuong; set => hamLuong = value; }
         public float Gia { get => gia; set => gia = value; }

@@ -3230,8 +3230,6 @@ namespace DAL
 		
 		private System.Nullable<int> _SoLuongTrongKho;
 		
-		private System.Nullable<int> _SoLuongDonVi;
-		
 		private EntitySet<ChiTietDonThuoc> _ChiTietDonThuocs;
 		
 		private EntityRef<Thuoc> _Thuoc;
@@ -3244,8 +3242,6 @@ namespace DAL
     partial void OnMaThuocChanged();
     partial void OnSoLuongTrongKhoChanging(System.Nullable<int> value);
     partial void OnSoLuongTrongKhoChanged();
-    partial void OnSoLuongDonViChanging(System.Nullable<int> value);
-    partial void OnSoLuongDonViChanged();
     #endregion
 		
 		public KhoThuoc()
@@ -3295,26 +3291,6 @@ namespace DAL
 					this._SoLuongTrongKho = value;
 					this.SendPropertyChanged("SoLuongTrongKho");
 					this.OnSoLuongTrongKhoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuongDonVi", DbType="Int")]
-		public System.Nullable<int> SoLuongDonVi
-		{
-			get
-			{
-				return this._SoLuongDonVi;
-			}
-			set
-			{
-				if ((this._SoLuongDonVi != value))
-				{
-					this.OnSoLuongDonViChanging(value);
-					this.SendPropertyChanging();
-					this._SoLuongDonVi = value;
-					this.SendPropertyChanged("SoLuongDonVi");
-					this.OnSoLuongDonViChanged();
 				}
 			}
 		}

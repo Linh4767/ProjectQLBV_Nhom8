@@ -24,13 +24,13 @@ namespace BUS
         }
 
         //Thêm số lượng thuốc vào kho
-        public bool ThemSoLuongThuoc(string maThuoc, int soLuongThem)
+        public int? ThemSoLuongThuoc(string maThuoc, int soLuongThem)
         {
             return DAL_KhoThuoc.Instance.ThemThuocVaoKho(maThuoc, soLuongThem);
         }
 
         //Xóa số lượng thuốc trong kho
-        public bool XoaSoLuongThuoc(string maThuoc, int soLuongXoa)
+        public int? XoaSoLuongThuoc(string maThuoc, int soLuongXoa)
         {
             return DAL_KhoThuoc.Instance.XoaThuocTrongKho(maThuoc, soLuongXoa);
         }
