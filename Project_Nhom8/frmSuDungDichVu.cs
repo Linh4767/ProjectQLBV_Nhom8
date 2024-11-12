@@ -711,5 +711,26 @@ namespace Project_Nhom8
         private void dgvSuDungDV_SelectionChanged(object sender, EventArgs e)
         {
         }
+
+        private void btnPhanGiuong_Click(object sender, EventArgs e)
+        {
+            string maBN = cboPhieuKhamBenhSuDungDV.Text;
+            string maNVYC = cboNVYeuCauDV.Text;
+            string maNVTH = cboNhanVienThucHienDichVu.Text;
+            string khoa = cboKhoa.Text;
+            string phong = cboPhongDichVu.Text;
+            DateTime ngayNhan = dtpNgayThucHienDV.Value;
+            DateTime thoiGianNhan = dtpTGThucHienDV.Value;
+            if (string.IsNullOrEmpty(maBN) && string.IsNullOrEmpty(maNVYC) && string.IsNullOrEmpty(maNVTH) && string.IsNullOrEmpty(khoa) && string.IsNullOrEmpty(phong))
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin");
+                return;
+            }
+
+            //Tạo tham chiếu đến frmMain
+            frmMain mainForm = (frmMain)this.ParentForm;
+            //Gọi phương thức mở frmPhanGiuong_TheoDoiDieuTri từ frmMain
+            mainForm.openChildForm(new frmPhanGiuong(maBN, maNVYC, maNVTH,khoa, phong, ngayNhan, thoiGianNhan));
+        }
     }
 }
