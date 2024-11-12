@@ -88,9 +88,9 @@ namespace BUS
         {
             return DAL_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
         }
-        public void TimKiemPhong(string keyword, DataGridView dgv)
+        public void TimKiemPhong(string keyword,string loaiPhong,string khoa, DataGridView dgv)
         {
-            dgv.DataSource = DAL_Phong.Instance.TimKiemPhong(keyword);
+            dgv.DataSource = DAL_Phong.Instance.TimKiemPhong(keyword,loaiPhong,khoa) ;
         }
     }
 }

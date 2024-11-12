@@ -156,6 +156,10 @@ namespace Project_Nhom8
 
                 }
             }
+            else
+            {
+                MessageBox.Show("Bạn phải nhập chuẩn đoán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtPhieuKhamBenh_TextChanged(object sender, EventArgs e)

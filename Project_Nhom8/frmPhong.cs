@@ -108,10 +108,8 @@ namespace Project_Nhom8
             if (dgvDSPhong.CurrentRow != null && !dgvDSPhong.Rows[dgvDSPhong.CurrentRow.Index].IsNewRow)
             {
                 int dong = dgvDSPhong.CurrentCell.RowIndex;
-                txtMaPhong.Text = dgvDSPhong.Rows[dong].Cells[0].Value?.ToString() ?? "";
-                txtTenPhong.Text = dgvDSPhong.Rows[dong].Cells[1].Value?.ToString() ?? "";
+                
                 cboKhoa.SelectedValue = dgvDSPhong.Rows[dong].Cells[2].Value?.ToString() ?? "";
-                nudSoGiuong.Value = Convert.ToInt32(dgvDSPhong.Rows[dong].Cells[3].Value ?? 0);
                 string cellValue = Convert.ToString(dgvDSPhong.Rows[dong].Cells[4].Value);
 
                 if (cellValue == radPhongKham.Text)
@@ -126,6 +124,10 @@ namespace Project_Nhom8
                 {
                     radPhongBenh.Checked = true;
                 }
+                txtMaPhong.Text = dgvDSPhong.Rows[dong].Cells[0].Value?.ToString() ?? "";
+                txtTenPhong.Text = dgvDSPhong.Rows[dong].Cells[1].Value?.ToString() ?? "";          
+                nudSoGiuong.Value = Convert.ToInt32(dgvDSPhong.Rows[dong].Cells[3].Value ?? 0);
+                
                 btnThemPhong.Enabled = false;
                 btnCapNhapPhong.Enabled = true;
                 btnXoaPhong.Enabled = true;
@@ -202,7 +204,7 @@ namespace Project_Nhom8
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string keyword = txtTK.Text; // Lấy từ khóa từ TextBox
-            BUS_Phong.Instance.TimKiemPhong(keyword, dgvDSPhong);
+            BUS_Phong.Instance.TimKiemPhong(keyword,layLoaiPhong(),cboKhoa.SelectedValue.ToString(),dgvDSPhong);
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

@@ -41,10 +41,10 @@ namespace DAL
         public IQueryable HienThiDanhSachThuoc()
         {
             var thuoc = from t in db.Thuocs
-                        join kt in db.KhoThuocs 
+                        join kt in db.KhoThuocs
                         on t.MaThuoc equals kt.MaThuoc into kho
                         from k in kho.DefaultIfEmpty()  // Left join
-                        select new {t.MaThuoc,t.TenThuoc,t.LoaiThuoc,t.HamLuong,t.XuatXu,t.NhaCungCap,t.DonViTinh,t.QuyCachDongGoi,t.SoLuongDVT,t.SoLuongQCDG,t.Gia,SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho,t.TrangThai};
+                        select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai };
             return thuoc;
         }
 
@@ -98,12 +98,28 @@ namespace DAL
         public IQueryable TimKiemThuoc(string searchTerm)
         {
             var ds = from t in db.Thuocs
-                     join kt in db.KhoThuocs 
+                     join kt in db.KhoThuocs
                      on t.MaThuoc equals kt.MaThuoc into kho
                      from k in kho.DefaultIfEmpty()  // Left join
                      where t.TenThuoc.Contains(searchTerm)
-                     select new {t.MaThuoc,t.TenThuoc,t.LoaiThuoc,t.HamLuong,t.XuatXu,t.NhaCungCap,t.DonViTinh,t.QuyCachDongGoi,t.SoLuongDVT,t.SoLuongQCDG,t.Gia,SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai};
+                     select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai };
             return ds;
+        }
+
+        //Lấy mã thuốc
+        public ET_Thuoc LayThuocByMa(string maThuoc)
+        {
+            var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+            if (thuoc == null) return null;
+
+            return new ET_Thuoc
+            {
+                MaThuoc = thuoc.MaThuoc,
+                LoaiThuoc = thuoc.LoaiThuoc,
+                SoLuongDVT = thuoc.SoLuongDVT,
+                SoLuongQCDG = thuoc.SoLuongQCDG,
+                // Thêm các thuộc tính cần thiết
+            };
         }
 
 
@@ -160,11 +176,14 @@ namespace DAL
         //Sửa thuốc
         public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
         {
-            Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc);
-            if (thuoc != null)
+            using (var db = new QLBVDataContext())
             {
+                Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc);
+                if (thuoc == null) return false;
+
                 try
                 {
+                    // Cập nhật các thuộc tính của thuốc
                     thuoc.Gia = gia;
                     thuoc.TrangThai = trangThai;
                     thuoc.DonViTinh = donViTinh;
@@ -176,11 +195,11 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Lỗi " + ex.Message);
+                    throw new Exception("Lỗi: " + ex.Message);
                 }
             }
-            return false;
         }
+
 
     }
 }

@@ -136,7 +136,7 @@ namespace Project_Nhom8
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = false;
             }
-            
+
         }
 
         private void frmKhoThuoc_Load(object sender, EventArgs e)
@@ -151,42 +151,27 @@ namespace Project_Nhom8
         {
             int soLuongThem;
 
-            // Kiểm tra số lượng có hợp lệ không
+            // Kiểm tra xem số lượng nhập vào có hợp lệ không
             if (int.TryParse(txtSLThuocNhapVao.Text, out soLuongThem))
             {
-                // Gọi phương thức ThemThuocVaoKho từ DAL_KhoThuoc
-                bool success = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(txtMaThuoc.Text, soLuongThem);
+                // Gọi phương thức ThemSoLuongThuoc từ BUS_KhoThuoc
+                int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(txtMaThuoc.Text, soLuongThem);
 
-                // Nếu thêm số lượng thuốc thành công
-                if (success)
+                // Nếu thêm thuốc vào kho thành công
+                if (soLuongTrongKhoMoi != -1)
                 {
                     MessageBox.Show("Cập nhật số lượng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
                     BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
 
-                    // Cập nhật lại số lượng thuốc trong kho (hiển thị trong txtSLThuocTrongKho)
-                    int soLuongTrongKho;
-
-                    // Kiểm tra và chuyển đổi số lượng hiện tại từ txtSLThuocTrongKho
-                    if (int.TryParse(txtSLThuocTrongKho.Text, out soLuongTrongKho))
-                    {
-                        // Cộng thêm số lượng mới vào số lượng trong kho
-                        soLuongTrongKho += soLuongThem;
-                    }
-                    else
-                    {
-                        // Nếu txtSLThuocTrongKho không có giá trị hợp lệ, thì đặt lại giá trị bằng soLuongThem
-                        soLuongTrongKho = soLuongThem;
-                    }
-
-                    // Gán giá trị mới vào txtSLThuocTrongKho
-                    txtSLThuocTrongKho.Text = soLuongTrongKho.ToString();
+                    // Gán số lượng tồn kho mới nhất vào txtSLThuocTrongKho
+                    txtSLThuocTrongKho.Text = soLuongTrongKhoMoi.ToString();
                 }
                 else
                 {
-                    // Nếu không thể thêm thuốc vào kho
-                    MessageBox.Show("Không tìm thấy thuốc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Thông báo lỗi nếu không tìm thấy thuốc hoặc không thể cập nhật số lượng
+                    MessageBox.Show("Không tìm thấy thuốc hoặc không thể cập nhật số lượng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -194,7 +179,9 @@ namespace Project_Nhom8
                 // Thông báo nếu người dùng nhập số lượng không hợp lệ
                 MessageBox.Show("Vui lòng nhập số lượng hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
+
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
@@ -208,7 +195,7 @@ namespace Project_Nhom8
                 }
                 else
                 {
-                    trangThai = "Ngừng Sản Xuất";
+                    trangThai = "Ngừng Phát Thuốc";
                 }
                 //txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
                 int? slTieuChuan = string.IsNullOrWhiteSpace(txtSLTieuChuan.Text) ? (int?)null : int.Parse(txtSLTieuChuan.Text);
@@ -292,7 +279,7 @@ namespace Project_Nhom8
                 }
                 else
                 {
-                    trangThai = "Ngừng Sản Xuất";
+                    trangThai = "Ngừng Phát Thuốc";
                 }
                 //txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
                 int? slTieuChuan = string.IsNullOrWhiteSpace(txtSLTieuChuan.Text) ? (int?)null : int.Parse(txtSLTieuChuan.Text);
@@ -373,7 +360,7 @@ namespace Project_Nhom8
                     btnThemSLThuoc.Enabled = true;
                     btnXoaSLThuoc.Enabled = true;
                 }
-                else if (dgvKhoThuoc.Rows[dong].Cells[12].Value.ToString() == "Ngừng Sản Xuất")
+                else
                 {
                     radNgungSX.Checked = true;
                     txtMaThuoc.Enabled = false;
@@ -415,49 +402,65 @@ namespace Project_Nhom8
         {
             int soLuongXoa;
 
-            // Kiểm tra số lượng có hợp lệ không
+            // Kiểm tra xem số lượng nhập vào có hợp lệ không
             if (int.TryParse(txtSLThuocNhapVao.Text, out soLuongXoa))
             {
-                // Kiểm tra nếu số lượng muốn xóa lớn hơn số lượng trong kho
+                // Kiểm tra số lượng muốn xóa có hợp lệ
                 int soLuongTrongKho;
 
+                // Kiểm tra số lượng trong kho có hợp lệ không
                 if (int.TryParse(txtSLThuocTrongKho.Text, out soLuongTrongKho))
                 {
-                    // Kiểm tra số lượng thuốc muốn xóa có lớn hơn số lượng trong kho không
-                    if (soLuongXoa > soLuongTrongKho)
+                    // Lấy thông tin thuốc từ bảng Thuoc
+                    var thuoc = BUS_Thuoc.Instance.LayThuocByMa(txtMaThuoc.Text);  // Lấy thông tin thuốc theo mã
+                    if (thuoc == null)
                     {
-                        // Nếu số lượng xóa lớn hơn số lượng trong kho, thông báo lỗi
+                        MessageBox.Show("Không tìm thấy thuốc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Tính số lượng thuốc cần xóa (soLuongGiam) theo công thức
+                    int soLuongGiam = 0;
+                    if (thuoc.LoaiThuoc == "Viên nén" || thuoc.LoaiThuoc == "Viên Nén")
+                    {
+                        soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT * thuoc.SoLuongQCDG); // Viên nén
+                    }
+                    else
+                    {
+                        soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT); // Các loại thuốc khác
+                    }
+
+                    // Kiểm tra số lượng cần xóa có hợp lệ không
+                    if (soLuongGiam > soLuongTrongKho)
+                    {
                         MessageBox.Show("Số lượng thuốc muốn xóa không hợp lệ. Không thể xóa nhiều hơn số lượng trong kho!",
                                         "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return; // Dừng lại không thực hiện xóa
                     }
 
-                    // Nếu không, tiếp tục xóa thuốc khỏi kho
-                    bool success = BUS_KhoThuoc.Instance.XoaSoLuongThuoc(txtMaThuoc.Text, soLuongXoa);
+                    // Gọi phương thức XoaSoLuongThuoc từ BUS_KhoThuoc để xóa thuốc khỏi kho
+                    int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.XoaSoLuongThuoc(txtMaThuoc.Text, soLuongXoa);
 
-                    // Nếu xóa số lượng thuốc thành công
-                    if (success)
+                    // Kiểm tra kết quả trả về từ phương thức XoaSoLuongThuoc
+                    if (soLuongTrongKhoMoi != -1)
                     {
                         MessageBox.Show("Cập nhật số lượng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
                         BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
 
-                        // Cập nhật lại số lượng thuốc trong kho (hiển thị trong txtSLThuocTrongKho)
-                        soLuongTrongKho -= soLuongXoa;
-
-                        // Gán giá trị mới vào txtSLThuocTrongKho
-                        txtSLThuocTrongKho.Text = soLuongTrongKho.ToString();
+                        // Gán số lượng tồn kho mới nhất vào txtSLThuocTrongKho
+                        txtSLThuocTrongKho.Text = soLuongTrongKhoMoi.ToString();
                     }
                     else
                     {
-                        // Nếu không thể xóa thuốc khỏi kho
-                        MessageBox.Show("Không tìm thấy thuốc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Thông báo nếu không tìm thấy thuốc hoặc không thể xóa số lượng
+                        MessageBox.Show("Không tìm thấy thuốc hoặc không thể cập nhật số lượng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    // Nếu không thể lấy số lượng thuốc trong kho từ txtSLThuocTrongKho
+                    // Thông báo lỗi nếu không thể lấy số lượng trong kho
                     MessageBox.Show("Số lượng trong kho không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -466,7 +469,9 @@ namespace Project_Nhom8
                 // Thông báo nếu người dùng nhập số lượng không hợp lệ
                 MessageBox.Show("Vui lòng nhập số lượng hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
+
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
@@ -504,6 +509,10 @@ namespace Project_Nhom8
             txtSLDonViTinh.Clear();
             txtSLTieuChuan.Clear();
             txtSLThuocNhapVao.Clear();
+            txtDonGia.Enabled = true;
+            cboDVT.Enabled = true;
+            txtSLDonViTinh.Enabled = true;
+            txtSLTieuChuan.Enabled = true;
             txtSLThuocNhapVao.Enabled = false;
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
@@ -659,6 +668,8 @@ namespace Project_Nhom8
                 btnXoaSLThuoc.Enabled = true;
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = false;
+                txtSLThuocTrongKho.Enabled = false;
+                txtSLTieuChuan.Enabled = false;
             }
             else
             {

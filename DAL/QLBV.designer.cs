@@ -342,8 +342,6 @@ namespace DAL
 		
 		private EntityRef<BHYT> _BHYT;
 		
-		private EntitySet<PhanGiuong> _PhanGiuongs;
-		
 		private EntitySet<PhieuKhamBenh> _PhieuKhamBenhs;
 		
 		private EntitySet<SoBenhAn> _SoBenhAns;
@@ -379,7 +377,6 @@ namespace DAL
 		public BenhNhan()
 		{
 			this._BHYT = default(EntityRef<BHYT>);
-			this._PhanGiuongs = new EntitySet<PhanGiuong>(new Action<PhanGiuong>(this.attach_PhanGiuongs), new Action<PhanGiuong>(this.detach_PhanGiuongs));
 			this._PhieuKhamBenhs = new EntitySet<PhieuKhamBenh>(new Action<PhieuKhamBenh>(this.attach_PhieuKhamBenhs), new Action<PhieuKhamBenh>(this.detach_PhieuKhamBenhs));
 			this._SoBenhAns = new EntitySet<SoBenhAn>(new Action<SoBenhAn>(this.attach_SoBenhAns), new Action<SoBenhAn>(this.detach_SoBenhAns));
 			this._TaiKhams = new EntitySet<TaiKham>(new Action<TaiKham>(this.attach_TaiKhams), new Action<TaiKham>(this.detach_TaiKhams));
@@ -596,19 +593,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_PhanGiuong", Storage="_PhanGiuongs", ThisKey="MSBN", OtherKey="MaBN")]
-		public EntitySet<PhanGiuong> PhanGiuongs
-		{
-			get
-			{
-				return this._PhanGiuongs;
-			}
-			set
-			{
-				this._PhanGiuongs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_PhieuKhamBenh", Storage="_PhieuKhamBenhs", ThisKey="MSBN", OtherKey="MaBN")]
 		public EntitySet<PhieuKhamBenh> PhieuKhamBenhs
 		{
@@ -679,18 +663,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_PhanGiuongs(PhanGiuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = this;
-		}
-		
-		private void detach_PhanGiuongs(PhanGiuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = null;
 		}
 		
 		private void attach_PhieuKhamBenhs(PhieuKhamBenh entity)
@@ -3983,7 +3955,7 @@ namespace DAL
 		
 		private string _MaGiuong;
 		
-		private string _MaBN;
+		private string _MaPhieuKB;
 		
 		private System.Nullable<System.DateTime> _NgayTra;
 		
@@ -3995,11 +3967,11 @@ namespace DAL
 		
 		private string _GhiChu;
 		
-		private EntityRef<BenhNhan> _BenhNhan;
-		
 		private EntityRef<GiuongBenh> _GiuongBenh;
 		
 		private EntityRef<NhanVien> _NhanVien;
+		
+		private EntityRef<PhieuKhamBenh> _PhieuKhamBenh;
 		
 		private EntityRef<Phong> _Phong;
 		
@@ -4009,8 +3981,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnMaGiuongChanging(string value);
     partial void OnMaGiuongChanged();
-    partial void OnMaBNChanging(string value);
-    partial void OnMaBNChanged();
+    partial void OnMaPhieuKBChanging(string value);
+    partial void OnMaPhieuKBChanged();
     partial void OnNgayTraChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayTraChanged();
     partial void OnNgayNhanChanging(System.DateTime value);
@@ -4025,9 +3997,9 @@ namespace DAL
 		
 		public PhanGiuong()
 		{
-			this._BenhNhan = default(EntityRef<BenhNhan>);
 			this._GiuongBenh = default(EntityRef<GiuongBenh>);
 			this._NhanVien = default(EntityRef<NhanVien>);
+			this._PhieuKhamBenh = default(EntityRef<PhieuKhamBenh>);
 			this._Phong = default(EntityRef<Phong>);
 			OnCreated();
 		}
@@ -4056,26 +4028,26 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBN", DbType="NVarChar(16) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MaBN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPhieuKB", DbType="NVarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaPhieuKB
 		{
 			get
 			{
-				return this._MaBN;
+				return this._MaPhieuKB;
 			}
 			set
 			{
-				if ((this._MaBN != value))
+				if ((this._MaPhieuKB != value))
 				{
-					if (this._BenhNhan.HasLoadedOrAssignedValue)
+					if (this._PhieuKhamBenh.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnMaBNChanging(value);
+					this.OnMaPhieuKBChanging(value);
 					this.SendPropertyChanging();
-					this._MaBN = value;
-					this.SendPropertyChanged("MaBN");
-					this.OnMaBNChanged();
+					this._MaPhieuKB = value;
+					this.SendPropertyChanged("MaPhieuKB");
+					this.OnMaPhieuKBChanged();
 				}
 			}
 		}
@@ -4188,40 +4160,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_PhanGiuong", Storage="_BenhNhan", ThisKey="MaBN", OtherKey="MSBN", IsForeignKey=true)]
-		public BenhNhan BenhNhan
-		{
-			get
-			{
-				return this._BenhNhan.Entity;
-			}
-			set
-			{
-				BenhNhan previousValue = this._BenhNhan.Entity;
-				if (((previousValue != value) 
-							|| (this._BenhNhan.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._BenhNhan.Entity = null;
-						previousValue.PhanGiuongs.Remove(this);
-					}
-					this._BenhNhan.Entity = value;
-					if ((value != null))
-					{
-						value.PhanGiuongs.Add(this);
-						this._MaBN = value.MSBN;
-					}
-					else
-					{
-						this._MaBN = default(string);
-					}
-					this.SendPropertyChanged("BenhNhan");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GiuongBenh_PhanGiuong", Storage="_GiuongBenh", ThisKey="MaGiuong", OtherKey="MaGiuong", IsForeignKey=true)]
 		public GiuongBenh GiuongBenh
 		{
@@ -4286,6 +4224,40 @@ namespace DAL
 						this._MaNVYeuCau = default(string);
 					}
 					this.SendPropertyChanged("NhanVien");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuKhamBenh_PhanGiuong", Storage="_PhieuKhamBenh", ThisKey="MaPhieuKB", OtherKey="MaPhieuKB", IsForeignKey=true)]
+		public PhieuKhamBenh PhieuKhamBenh
+		{
+			get
+			{
+				return this._PhieuKhamBenh.Entity;
+			}
+			set
+			{
+				PhieuKhamBenh previousValue = this._PhieuKhamBenh.Entity;
+				if (((previousValue != value) 
+							|| (this._PhieuKhamBenh.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PhieuKhamBenh.Entity = null;
+						previousValue.PhanGiuongs.Remove(this);
+					}
+					this._PhieuKhamBenh.Entity = value;
+					if ((value != null))
+					{
+						value.PhanGiuongs.Add(this);
+						this._MaPhieuKB = value.MaPhieuKB;
+					}
+					else
+					{
+						this._MaPhieuKB = default(string);
+					}
+					this.SendPropertyChanged("PhieuKhamBenh");
 				}
 			}
 		}
@@ -4369,6 +4341,8 @@ namespace DAL
 		
 		private EntitySet<KhamBenh> _KhamBenhs;
 		
+		private EntitySet<PhanGiuong> _PhanGiuongs;
+		
 		private EntitySet<SuDungDichVu> _SuDungDichVus;
 		
 		private EntityRef<BenhNhan> _BenhNhan;
@@ -4396,6 +4370,7 @@ namespace DAL
 			this._ChuanDoan = default(EntityRef<ChuanDoan>);
 			this._DonThuocs = new EntitySet<DonThuoc>(new Action<DonThuoc>(this.attach_DonThuocs), new Action<DonThuoc>(this.detach_DonThuocs));
 			this._KhamBenhs = new EntitySet<KhamBenh>(new Action<KhamBenh>(this.attach_KhamBenhs), new Action<KhamBenh>(this.detach_KhamBenhs));
+			this._PhanGiuongs = new EntitySet<PhanGiuong>(new Action<PhanGiuong>(this.attach_PhanGiuongs), new Action<PhanGiuong>(this.detach_PhanGiuongs));
 			this._SuDungDichVus = new EntitySet<SuDungDichVu>(new Action<SuDungDichVu>(this.attach_SuDungDichVus), new Action<SuDungDichVu>(this.detach_SuDungDichVus));
 			this._BenhNhan = default(EntityRef<BenhNhan>);
 			OnCreated();
@@ -4580,6 +4555,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuKhamBenh_PhanGiuong", Storage="_PhanGiuongs", ThisKey="MaPhieuKB", OtherKey="MaPhieuKB")]
+		public EntitySet<PhanGiuong> PhanGiuongs
+		{
+			get
+			{
+				return this._PhanGiuongs;
+			}
+			set
+			{
+				this._PhanGiuongs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhieuKhamBenh_SuDungDichVu", Storage="_SuDungDichVus", ThisKey="MaPhieuKB", OtherKey="MaPhieuKB")]
 		public EntitySet<SuDungDichVu> SuDungDichVus
 		{
@@ -4666,6 +4654,18 @@ namespace DAL
 		}
 		
 		private void detach_KhamBenhs(KhamBenh entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhieuKhamBenh = null;
+		}
+		
+		private void attach_PhanGiuongs(PhanGiuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhieuKhamBenh = this;
+		}
+		
+		private void detach_PhanGiuongs(PhanGiuong entity)
 		{
 			this.SendPropertyChanging();
 			entity.PhieuKhamBenh = null;

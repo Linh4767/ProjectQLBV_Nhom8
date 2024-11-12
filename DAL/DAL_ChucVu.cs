@@ -110,16 +110,23 @@ namespace DAL
             var capNhat = db.ChucVus.SingleOrDefault(p => p.MaCV == etChucVu.MaCV);
             if (capNhat != null)
             {
-                try
+                if (db.ChucVus.Any(p => p.MaCV == etChucVu.MaCV || p.TenCV == etChucVu.TenCV))
                 {
-                    capNhat.TenCV = etChucVu.TenCV;
-                    db.SubmitChanges();
-                    return true;
+                    return false;
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw new Exception("Lỗi: " + ex.Message);
-                }
+                    try
+                    {
+                        capNhat.TenCV = etChucVu.TenCV;
+                        db.SubmitChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Lỗi: " + ex.Message);
+                    }
+                }             
             }
             return false;
         }

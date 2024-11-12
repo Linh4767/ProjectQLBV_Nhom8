@@ -152,27 +152,34 @@ namespace DAL
             var capNhat = db.Phongs.SingleOrDefault(p => p.MSPhong == etPhong.MSPhong);
             if (capNhat != null)
             {
-                try
-                {
-                    capNhat.TenPhong = etPhong.TenPhong;
-                    capNhat.MaKhoa = etPhong.MaKhoa;
-                    capNhat.SoGiuong = etPhong.SoGiuong;
-                    capNhat.Loai = etPhong.Loai;
-
-                    db.SubmitChanges();
-                    return true;
-                }
-                catch (Exception ex)
+                if (db.Phongs.Any(p => p.MSPhong != etPhong.MSPhong && p.TenPhong == etPhong.TenPhong && (p.Loai == "Phòng khám" || p.Loai == "Phòng chức năng")))
                 {
                     return false;
                 }
+                else
+                {
+                    try
+                    {
+                        capNhat.TenPhong = etPhong.TenPhong;
+                        capNhat.MaKhoa = etPhong.MaKhoa;
+                        capNhat.SoGiuong = etPhong.SoGiuong;
+                        capNhat.Loai = etPhong.Loai;
+
+                        db.SubmitChanges();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }               
             }
             return false;
         }
-        public IQueryable TimKiemPhong(string searchTerm)
+        public IQueryable TimKiemPhong(string searchTerm,string loaiPhong,string khoa)
         {
             IQueryable ds = from dl in db.Phongs
-                            where dl.TenPhong.Contains(searchTerm)
+                            where dl.TenPhong.Contains(searchTerm) && dl.MaKhoa == khoa && dl.Loai == loaiPhong
                             select dl;
             return ds;
         }
