@@ -182,7 +182,7 @@
             this.txtKQ.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtKQ.ForeColor = System.Drawing.Color.Black;
             this.txtKQ.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKQ.Location = new System.Drawing.Point(232, 346);
+            this.txtKQ.Location = new System.Drawing.Point(232, 354);
             this.txtKQ.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtKQ.Multiline = true;
             this.txtKQ.Name = "txtKQ";
@@ -196,7 +196,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(230, 314);
+            this.label1.Location = new System.Drawing.Point(230, 322);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 25);
