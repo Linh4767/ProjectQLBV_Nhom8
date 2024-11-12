@@ -144,7 +144,6 @@
     <Type Name="KhoThuoc">
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLuongDonVi" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonThuoc" />
       <Association Name="Thuoc_KhoThuoc" Member="Thuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="Thuoc" IsForeignKey="true" />
     </Type>

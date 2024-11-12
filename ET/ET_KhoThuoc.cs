@@ -9,18 +9,15 @@ namespace ET
     public class ET_KhoThuoc
     {
         private string maThuoc;
-        private int soLuongTrongKho;
-        private int soLuongDVT;
+        private int? soLuongTrongKho;
 
-        public ET_KhoThuoc(string maThuoc, int soLuongTrongKho, int soLuongDVT)
+        public ET_KhoThuoc(string maThuoc, int? soLuongTrongKho)
         {
             this.MaThuoc = maThuoc;
             this.SoLuongTrongKho = soLuongTrongKho;
-            this.SoLuongDVT = soLuongDVT;
         }
 
         public string MaThuoc { get => maThuoc; set => maThuoc = value; }
-        public int SoLuongTrongKho { get => soLuongTrongKho; set => soLuongTrongKho = value; }
-        public int SoLuongDVT { get => soLuongDVT; set => soLuongDVT = value; }
+        public int? SoLuongTrongKho { get => soLuongTrongKho; set => soLuongTrongKho = value; }
     }
 }

@@ -31,6 +31,13 @@ namespace BUS
             dgv.DataSource = DAL_Thuoc.Instance.HienThiDanhSachThuoc();
         }
 
+        //Lấy mã thuốc
+        public ET_Thuoc LayThuocByMa(string maThuoc)
+        {
+            return DAL_Thuoc.Instance.LayThuocByMa(maThuoc);
+        }
+
+
         //Tìm kiếm thuốc
         public void TimKiemThuoc(string keyword, DataGridView dgv)
         {
