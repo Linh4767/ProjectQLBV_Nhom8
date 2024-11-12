@@ -158,5 +158,11 @@ namespace Project_Nhom8
             frmMain frmMain = (frmMain)this.ParentForm;
             frmMain.openChildForm(new frmPhieuKhamBenh());
         }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmTTBenhNhan());
+        }
     }
 }
