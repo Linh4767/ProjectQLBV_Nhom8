@@ -32,7 +32,6 @@ namespace Project_Nhom8
             txtMaBN.Text = BUS_TaiKham.Instance.LayMaBN(maPKB);
             maNVPT = maNV;
             txtMaNV.Text = maNVPT;
-
             btnThemTK.Enabled = false;
         }
 
