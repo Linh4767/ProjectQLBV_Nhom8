@@ -51,44 +51,38 @@ namespace DAL
         //Tạo mã tự động 
         public string TaoMaTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong)
         {
-            // Loại bỏ tất cả khoảng trắng và lấy 3 ký tự đầu tiên
-            string maThuoc = string.Join("", tenThuoc.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));  // Loại bỏ khoảng trắng
-
-            // Lấy tối đa 3 ký tự đầu tiên của chuỗi sau khi đã loại bỏ khoảng trắng
+            // Loại bỏ dấu trong tên thuốc và lấy 3 ký tự đầu tiên
+            string tenThuocKhongDau = RemoveDiacritics(tenThuoc);
+            string maThuoc = string.Join("", tenThuocKhongDau.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
             maThuoc = maThuoc.Length >= 3 ? maThuoc.Substring(0, 3) : maThuoc;
-
-            // Chuyển thành chữ hoa
             maThuoc = maThuoc.ToUpper();
 
             // Xử lý mã quốc gia
-            string maXuatXu;
             string xuatXuKhongDau = RemoveDiacritics(xuatXu); // Loại bỏ dấu trước khi xử lý
-            string[] tuXuatXu = xuatXuKhongDau.Split(' '); // Tách từ trong xuất xứ
+            string[] tuXuatXu = xuatXuKhongDau.Split(' ');
+            string maXuatXu;
 
             if (tuXuatXu.Length == 1)
             {
-                // Nếu là một từ, lấy toàn bộ từ và viết hoa
                 maXuatXu = tuXuatXu[0].ToUpper();
             }
             else
             {
-                // Nếu nhiều từ, lấy ký tự đầu của mỗi từ
                 maXuatXu = string.Join("", tuXuatXu
-                        .Where(t => !string.IsNullOrWhiteSpace(t))  // Lọc các từ rỗng hoặc chỉ chứa khoảng trắng
-                        .Select(t => t.Trim()[0]))  // Lấy ký tự đầu tiên của mỗi từ và loại bỏ khoảng trắng thừa
-                        .ToUpper();  // Chuyển kết quả thành chữ in hoa
-
+                        .Where(t => !string.IsNullOrWhiteSpace(t))
+                        .Select(t => t.Trim()[0]))
+                        .ToUpper();
             }
 
-            // Lấy ký tự đầu của mỗi từ trong tên nhà cung cấp và viết hoa
-            string maNhaCungCap = string.Join("", nhaCungCap
-                                  .Split(' ')  // Chia chuỗi theo dấu cách
-                                  .Where(t => !string.IsNullOrWhiteSpace(t))  // Lọc bỏ các từ rỗng hoặc chỉ chứa khoảng trắng
-                                  .Select(t => t[0])  // Lấy ký tự đầu tiên của mỗi từ hợp lệ
-                                  ).ToUpper();  // Chuyển kết quả thành chữ in hoa
+            // Lấy ký tự đầu của mỗi từ trong tên nhà cung cấp (đã loại bỏ dấu)
+            string nhaCungCapKhongDau = RemoveDiacritics(nhaCungCap);
+            string maNhaCungCap = string.Join("", nhaCungCapKhongDau
+                                  .Split(' ')
+                                  .Where(t => !string.IsNullOrWhiteSpace(t))
+                                  .Select(t => t[0])
+                                  ).ToUpper();
 
-
-            //Lấy kí tự đầu của loại thuốc
+            // Lấy kí tự đầu của loại thuốc
             string maLoaiThuoc = loaiThuoc.Substring(0, 1).ToUpper();
 
             return $"{maThuoc}-{maXuatXu}-{maNhaCungCap}-{maLoaiThuoc}{hamLuong}";
@@ -172,6 +166,47 @@ namespace DAL
                 return false;
             }
         }
+
+        //Xóa thuốc
+        public bool XoaThuoc(string maThuoc)
+        {
+            try
+            {
+                // Kiểm tra nếu số lượng thuốc trong kho bằng 0
+                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
+                if (khoThuoc != null && khoThuoc.SoLuongTrongKho == 0)
+                {
+                    // Xóa bản ghi trong bảng KhoThuoc
+                    db.KhoThuocs.DeleteOnSubmit(khoThuoc);
+
+                    // Xóa bản ghi trong bảng Thuocs
+                    var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+                    if (thuoc != null)
+                    {
+                        db.Thuocs.DeleteOnSubmit(thuoc);
+                    }
+
+                    // Gửi các thay đổi đến database
+                    db.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    // Thuốc có số lượng lớn hơn 0, không thể xóa
+                    return false;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    // Xảy ra lỗi do ràng buộc khóa ngoại
+                    return false;
+                }
+                return false;
+            }
+        }
+
 
         //Sửa thuốc
         public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)

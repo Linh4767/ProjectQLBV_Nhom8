@@ -58,6 +58,19 @@ namespace BUS
             }
         }
 
+        //Xóa Thuốc
+        public void XoaThuoc(string maThuoc)
+        {
+            if (DAL_Thuoc.Instance.XoaThuoc(maThuoc) == true)
+            {
+                MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         //Sửa thuốc
         public void SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
         {

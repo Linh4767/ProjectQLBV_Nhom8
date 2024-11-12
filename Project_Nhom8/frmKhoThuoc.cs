@@ -145,6 +145,7 @@ namespace Project_Nhom8
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
+            btnXoa.Enabled = false;
         }
 
         private void btnThemSLThuoc_Click(object sender, EventArgs e)
@@ -359,6 +360,7 @@ namespace Project_Nhom8
                     txtSLThuocNhapVao.Enabled = true;
                     btnThemSLThuoc.Enabled = true;
                     btnXoaSLThuoc.Enabled = true;
+                    btnXoa.Enabled = true;
                 }
                 else
                 {
@@ -375,7 +377,7 @@ namespace Project_Nhom8
                     txtSLDonViTinh.Enabled = false;
                     txtSLTieuChuan.Enabled = false;
                     txtSLThuocNhapVao.Enabled = false;
-
+                    btnXoa.Enabled = true;
                     btnThemSLThuoc.Enabled = false;
                 }
                 if (cboLoaiThuoc.SelectedIndex == 0 && radNgungSX.Checked)
@@ -518,6 +520,7 @@ namespace Project_Nhom8
             btnCapNhat.Enabled = false;
             btnThemSLThuoc.Enabled = false;
             btnXoaSLThuoc.Enabled = false;
+            btnXoa.Enabled = false;
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
         }
 
@@ -755,6 +758,25 @@ namespace Project_Nhom8
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0 và nhỏ hơn 1200!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtHamLuong.Text = "0.025";
+                }
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            //Kiểm tra đã chọn dòng trên datagridview chưa
+            if (dgvKhoThuoc.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Bạn phải chọn dòng để xóa", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    BUS_Thuoc.Instance.XoaThuoc(txtMaThuoc.Text);
+                    BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
                 }
             }
         }
