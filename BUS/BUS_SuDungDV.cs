@@ -174,5 +174,22 @@ namespace BUS
             }
             return false;
         }
+
+        public bool KiemTraPKBMoi(string maPKB)
+        {
+            if (DAL_SuDungDV.Instance.KiemTraPKBMoiNhat(maPKB))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
+        {
+            if (DAL_SuDungDV.Instance.KiemTraPhongConGiuongTrongNgay(maPhong,ngayThucHien))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

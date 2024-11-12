@@ -259,7 +259,7 @@ namespace DAL
             {
                 if (db.SuDungDichVus.Any(sddv => sddv.MaSuDungDV != etSuDungDV.MaSuDungDV && sddv.MaDV == etSuDungDV.MaDV && sddv.MaPhieuKB == etSuDungDV.MaPhieuKB))
                 {
-                    MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ này","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("Bệnh nhân đã sử dụng dịch vụ này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //return false;
                 }
 
@@ -403,11 +403,9 @@ namespace DAL
         //
         public string LayMaBN(string maPKB)
         {
-            string maBN = (from dl in db.SuDungDichVus
-                           join pk in db.PhieuKhamBenhs
-                           on dl.MaPhieuKB equals pk.MaPhieuKB
+            string maBN = (from dl in db.PhieuKhamBenhs
                            where dl.MaPhieuKB == maPKB
-                           select pk.MaBN).FirstOrDefault();
+                           select dl.MaBN).FirstOrDefault();
             return maBN;
         }
 
@@ -424,6 +422,34 @@ namespace DAL
 
             // So sánh nếu mã PKB hiện tại là mã PKB mới nhất
             return maPKB == maPKBMoiNhat;
+        }
+        public bool LayLoaiPhong(string maPhong)
+        {
+            string dl = (from p in db.Phongs
+                         where p.MSPhong == maPhong
+                         select p.Loai).FirstOrDefault();
+            return dl == "Phòng bệnh";
+        }
+
+        public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
+        {
+            // Làm tròn ngày thực hiện chỉ đến giờ và phút (bỏ qua giây)
+            var ngayThucHienLamTron = new DateTime(ngayThucHien.Year, ngayThucHien.Month, ngayThucHien.Day, ngayThucHien.Hour, ngayThucHien.Minute, 0);
+
+            if (LayLoaiPhong(maPhong))
+            {
+                var conGiuongTrong = db.GiuongBenhs.Any(g =>
+                    g.MSPhong == maPhong && // Giường thuộc phòng được yêu cầu
+                    !db.PhanGiuongs.Any(pg =>
+                        pg.MaGiuong == g.MaGiuong &&
+                        // So sánh cả ngày và thời gian (giờ, phút) với ngày nhận, bỏ qua giây
+                        ngayThucHienLamTron >= new DateTime(pg.NgayNhan.Year, pg.NgayNhan.Month, pg.NgayNhan.Day, pg.NgayNhan.Hour, pg.NgayNhan.Minute, 0) &&
+                        (pg.NgayTra == null || ngayThucHienLamTron <= new DateTime(pg.NgayTra.Value.Year, pg.NgayTra.Value.Month, pg.NgayTra.Value.Day, pg.NgayTra.Value.Hour, pg.NgayTra.Value.Minute, 0)) // So sánh với ngày trả (bỏ giây)
+                    )
+                );
+                return conGiuongTrong;
+            }
+            return true;
         }
     }
 }
