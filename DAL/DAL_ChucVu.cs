@@ -69,9 +69,9 @@ namespace DAL
                                  .Max();  // Lấy số lớn nhất
 
             // Tăng số chức vụ hiện tại lên 1
-            int soPhongHienTai = maCVLonNhat + 1;
+            int maCVHT = maCVLonNhat + 1;
             // Tạo mã chức vụ mới với phần số mới, đảm bảo 3 chữ số
-            string maCVMoi = "CV" + soPhongHienTai.ToString("D3");
+            string maCVMoi = "CV" + maCVHT.ToString("D3");
 
             return maCVMoi; // Trả về mã chức vụ mới
         }
