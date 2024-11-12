@@ -65,7 +65,7 @@ namespace DAL
                      join bn in db.BenhNhans
                      on kb.MaBN equals bn.MSBN
                      where kb.NgayKham.Value.Date == dtp.Date
-                     select new { dl.MaPhieuKB, HienThi = dl.MaPhieuKB + "-" + bn.MSBN + "-" + bn.TenBN };
+                     select new { dl.MaPhieuKB, HienThi = dl.MaPhieuKB + "-" + bn.TenBN };
             return ds.Distinct();
         }
         //Lấy nhân viên đã thực hiện khám cho phiếu xác định dựa trên mã phiéu
