@@ -18,21 +18,15 @@
       <Association Name="BenhNhan_TheoDoiDieuTri" Member="TheoDoiDieuTris" ThisKey="MSBN" OtherKey="MaBN" Type="TheoDoiDieuTri" />
     </Type>
   </Table>
-  <Table Name="dbo.Thuoc" Member="Thuocs">
-    <Type Name="Thuoc">
+  <Table Name="dbo.ThuocTheoKhoa" Member="ThuocTheoKhoas">
+    <Type Name="ThuocTheoKhoa">
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="NhaCungCap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="LoaiThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="QuyCachDongGoi" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="SoLuongDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLuongQCDG" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HamLuong" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongThuocCuaKhoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="Thuoc_KhoThuoc" Member="KhoThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="KhoThuoc" Cardinality="One" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Khoa_ThuocTheoKhoa" Member="Khoa" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="Khoa" IsForeignKey="true" />
+      <Association Name="Thuoc_ThuocTheoKhoa" Member="Thuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.BHYT" Member="BHYTs">
@@ -57,10 +51,11 @@
   </Table>
   <Table Name="dbo.ChiTietDonThuoc" Member="ChiTietDonThuocs">
     <Type Name="ChiTietDonThuoc">
-      <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CachDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="DonThuoc_ChiTietDonThuoc" Member="DonThuoc" ThisKey="MaDonThuoc" OtherKey="MaDonThuoc" Type="DonThuoc" IsForeignKey="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="KhoThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="KhoThuoc" IsForeignKey="true" />
     </Type>
   </Table>
@@ -102,10 +97,11 @@
   </Table>
   <Table Name="dbo.DonThuoc" Member="DonThuocs">
     <Type Name="DonThuoc">
-      <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NgayGioKeDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="DonThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaDonThuoc" OtherKey="MaDonThuoc" Type="ChiTietDonThuoc" />
       <Association Name="NhanVien_DonThuoc" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
       <Association Name="PhieuKhamBenh_DonThuoc" Member="PhieuKhamBenh" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="PhieuKhamBenh" IsForeignKey="true" />
     </Type>
@@ -135,6 +131,7 @@
     <Type Name="Khoa">
       <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenKhoa" Type="System.String" DbType="NVarChar(90) NOT NULL" CanBeNull="false" />
+      <Association Name="Khoa_ThuocTheoKhoa" Member="ThuocTheoKhoas" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="ThuocTheoKhoa" />
       <Association Name="Khoa_ChuyenNganh" Member="ChuyenNganhs" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="ChuyenNganh" />
       <Association Name="Khoa_DichVu" Member="DichVus" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="DichVu" />
       <Association Name="Khoa_Phong" Member="Phongs" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="Phong" />
@@ -145,7 +142,6 @@
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonThuoc" />
-      <Association Name="Thuoc_KhoThuoc" Member="Thuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NhanVien" Member="NhanViens">
@@ -275,6 +271,28 @@
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Association Name="BenhNhan_TheoDoiDieuTri" Member="BenhNhan" ThisKey="MaBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
       <Association Name="NhanVien_TheoDoiDieuTri" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Thuoc" Member="Thuocs">
+    <Type Name="Thuoc">
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NhaCungCap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="LoaiThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="QuyCachDongGoi" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuongQCDG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HamLuong" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NgaySanXuat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HSD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuongNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuongHop" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Thuoc_ThuocTheoKhoa" Member="ThuocTheoKhoas" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ThuocTheoKhoa" />
     </Type>
   </Table>
 </Database>

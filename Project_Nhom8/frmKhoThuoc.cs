@@ -671,8 +671,6 @@ namespace Project_Nhom8
                 btnXoaSLThuoc.Enabled = true;
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = false;
-                txtSLThuocTrongKho.Enabled = false;
-                txtSLTieuChuan.Enabled = false;
             }
             else
             {
