@@ -105,7 +105,7 @@ namespace DAL
     #endregion
 		
 		public QLBVDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLBVConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLBVConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -357,8 +357,6 @@ namespace DAL
 		
 		private EntitySet<SoBenhAn> _SoBenhAns;
 		
-		private EntitySet<TaiKham> _TaiKhams;
-		
 		private EntitySet<TheoDoiDieuTri> _TheoDoiDieuTris;
 		
     #region Extensibility Method Definitions
@@ -390,7 +388,6 @@ namespace DAL
 			this._BHYT = default(EntityRef<BHYT>);
 			this._PhieuKhamBenhs = new EntitySet<PhieuKhamBenh>(new Action<PhieuKhamBenh>(this.attach_PhieuKhamBenhs), new Action<PhieuKhamBenh>(this.detach_PhieuKhamBenhs));
 			this._SoBenhAns = new EntitySet<SoBenhAn>(new Action<SoBenhAn>(this.attach_SoBenhAns), new Action<SoBenhAn>(this.detach_SoBenhAns));
-			this._TaiKhams = new EntitySet<TaiKham>(new Action<TaiKham>(this.attach_TaiKhams), new Action<TaiKham>(this.detach_TaiKhams));
 			this._TheoDoiDieuTris = new EntitySet<TheoDoiDieuTri>(new Action<TheoDoiDieuTri>(this.attach_TheoDoiDieuTris), new Action<TheoDoiDieuTri>(this.detach_TheoDoiDieuTris));
 			OnCreated();
 		}
@@ -630,19 +627,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_TaiKham", Storage="_TaiKhams", ThisKey="MSBN", OtherKey="MSBN")]
-		public EntitySet<TaiKham> TaiKhams
-		{
-			get
-			{
-				return this._TaiKhams;
-			}
-			set
-			{
-				this._TaiKhams.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_TheoDoiDieuTri", Storage="_TheoDoiDieuTris", ThisKey="MSBN", OtherKey="MaBN")]
 		public EntitySet<TheoDoiDieuTri> TheoDoiDieuTris
 		{
@@ -695,18 +679,6 @@ namespace DAL
 		}
 		
 		private void detach_SoBenhAns(SoBenhAn entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = null;
-		}
-		
-		private void attach_TaiKhams(TaiKham entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = this;
-		}
-		
-		private void detach_TaiKhams(TaiKham entity)
 		{
 			this.SendPropertyChanging();
 			entity.BenhNhan = null;
@@ -4665,6 +4637,8 @@ namespace DAL
 		
 		private EntitySet<SuDungDichVu> _SuDungDichVus;
 		
+		private EntitySet<TaiKham> _TaiKhams;
+		
 		private EntityRef<Khoa> _Khoa;
 		
     #region Extensibility Method Definitions
@@ -4690,6 +4664,7 @@ namespace DAL
 			this._KhamBenhs = new EntitySet<KhamBenh>(new Action<KhamBenh>(this.attach_KhamBenhs), new Action<KhamBenh>(this.detach_KhamBenhs));
 			this._PhanGiuongs = new EntitySet<PhanGiuong>(new Action<PhanGiuong>(this.attach_PhanGiuongs), new Action<PhanGiuong>(this.detach_PhanGiuongs));
 			this._SuDungDichVus = new EntitySet<SuDungDichVu>(new Action<SuDungDichVu>(this.attach_SuDungDichVus), new Action<SuDungDichVu>(this.detach_SuDungDichVus));
+			this._TaiKhams = new EntitySet<TaiKham>(new Action<TaiKham>(this.attach_TaiKhams), new Action<TaiKham>(this.detach_TaiKhams));
 			this._Khoa = default(EntityRef<Khoa>);
 			OnCreated();
 		}
@@ -4863,6 +4838,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Phong_TaiKham", Storage="_TaiKhams", ThisKey="MSPhong", OtherKey="MSPhong")]
+		public EntitySet<TaiKham> TaiKhams
+		{
+			get
+			{
+				return this._TaiKhams;
+			}
+			set
+			{
+				this._TaiKhams.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Khoa_Phong", Storage="_Khoa", ThisKey="MaKhoa", OtherKey="MaKhoa", IsForeignKey=true)]
 		public Khoa Khoa
 		{
@@ -4976,6 +4964,18 @@ namespace DAL
 			this.SendPropertyChanging();
 			entity.Phong = null;
 		}
+		
+		private void attach_TaiKhams(TaiKham entity)
+		{
+			this.SendPropertyChanging();
+			entity.Phong = this;
+		}
+		
+		private void detach_TaiKhams(TaiKham entity)
+		{
+			this.SendPropertyChanging();
+			entity.Phong = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SoBenhAn")]
@@ -4991,6 +4991,8 @@ namespace DAL
 		private string _MaBN;
 		
 		private System.Nullable<System.DateTime> _NgayLap;
+		
+		private EntitySet<TaiKham> _TaiKhams;
 		
 		private EntityRef<BenhNhan> _BenhNhan;
 		
@@ -5010,6 +5012,7 @@ namespace DAL
 		
 		public SoBenhAn()
 		{
+			this._TaiKhams = new EntitySet<TaiKham>(new Action<TaiKham>(this.attach_TaiKhams), new Action<TaiKham>(this.detach_TaiKhams));
 			this._BenhNhan = default(EntityRef<BenhNhan>);
 			OnCreated();
 		}
@@ -5098,6 +5101,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SoBenhAn_TaiKham", Storage="_TaiKhams", ThisKey="MaSoBenhAn", OtherKey="MaSoBenhAn")]
+		public EntitySet<TaiKham> TaiKhams
+		{
+			get
+			{
+				return this._TaiKhams;
+			}
+			set
+			{
+				this._TaiKhams.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_SoBenhAn", Storage="_BenhNhan", ThisKey="MaBN", OtherKey="MSBN", IsForeignKey=true)]
 		public BenhNhan BenhNhan
 		{
@@ -5150,6 +5166,18 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_TaiKhams(TaiKham entity)
+		{
+			this.SendPropertyChanging();
+			entity.SoBenhAn = this;
+		}
+		
+		private void detach_TaiKhams(TaiKham entity)
+		{
+			this.SendPropertyChanging();
+			entity.SoBenhAn = null;
 		}
 	}
 	
@@ -5620,7 +5648,9 @@ namespace DAL
 		
 		private string _MSCuocHen;
 		
-		private string _MSBN;
+		private string _MaSoBenhAn;
+		
+		private string _MSPhong;
 		
 		private string _MaNVPhuTrach;
 		
@@ -5630,9 +5660,11 @@ namespace DAL
 		
 		private string _KetQua;
 		
-		private EntityRef<BenhNhan> _BenhNhan;
-		
 		private EntityRef<NhanVien> _NhanVien;
+		
+		private EntityRef<Phong> _Phong;
+		
+		private EntityRef<SoBenhAn> _SoBenhAn;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5640,8 +5672,10 @@ namespace DAL
     partial void OnCreated();
     partial void OnMSCuocHenChanging(string value);
     partial void OnMSCuocHenChanged();
-    partial void OnMSBNChanging(string value);
-    partial void OnMSBNChanged();
+    partial void OnMaSoBenhAnChanging(string value);
+    partial void OnMaSoBenhAnChanged();
+    partial void OnMSPhongChanging(string value);
+    partial void OnMSPhongChanged();
     partial void OnMaNVPhuTrachChanging(string value);
     partial void OnMaNVPhuTrachChanged();
     partial void OnNgayTaiKhamChanging(System.Nullable<System.DateTime> value);
@@ -5654,8 +5688,9 @@ namespace DAL
 		
 		public TaiKham()
 		{
-			this._BenhNhan = default(EntityRef<BenhNhan>);
 			this._NhanVien = default(EntityRef<NhanVien>);
+			this._Phong = default(EntityRef<Phong>);
+			this._SoBenhAn = default(EntityRef<SoBenhAn>);
 			OnCreated();
 		}
 		
@@ -5679,26 +5714,50 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSBN", DbType="NVarChar(16) NOT NULL", CanBeNull=false)]
-		public string MSBN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSoBenhAn", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
+		public string MaSoBenhAn
 		{
 			get
 			{
-				return this._MSBN;
+				return this._MaSoBenhAn;
 			}
 			set
 			{
-				if ((this._MSBN != value))
+				if ((this._MaSoBenhAn != value))
 				{
-					if (this._BenhNhan.HasLoadedOrAssignedValue)
+					if (this._SoBenhAn.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnMSBNChanging(value);
+					this.OnMaSoBenhAnChanging(value);
 					this.SendPropertyChanging();
-					this._MSBN = value;
-					this.SendPropertyChanged("MSBN");
-					this.OnMSBNChanged();
+					this._MaSoBenhAn = value;
+					this.SendPropertyChanged("MaSoBenhAn");
+					this.OnMaSoBenhAnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSPhong", DbType="NVarChar(12)")]
+		public string MSPhong
+		{
+			get
+			{
+				return this._MSPhong;
+			}
+			set
+			{
+				if ((this._MSPhong != value))
+				{
+					if (this._Phong.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMSPhongChanging(value);
+					this.SendPropertyChanging();
+					this._MSPhong = value;
+					this.SendPropertyChanged("MSPhong");
+					this.OnMSPhongChanged();
 				}
 			}
 		}
@@ -5787,40 +5846,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_TaiKham", Storage="_BenhNhan", ThisKey="MSBN", OtherKey="MSBN", IsForeignKey=true)]
-		public BenhNhan BenhNhan
-		{
-			get
-			{
-				return this._BenhNhan.Entity;
-			}
-			set
-			{
-				BenhNhan previousValue = this._BenhNhan.Entity;
-				if (((previousValue != value) 
-							|| (this._BenhNhan.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._BenhNhan.Entity = null;
-						previousValue.TaiKhams.Remove(this);
-					}
-					this._BenhNhan.Entity = value;
-					if ((value != null))
-					{
-						value.TaiKhams.Add(this);
-						this._MSBN = value.MSBN;
-					}
-					else
-					{
-						this._MSBN = default(string);
-					}
-					this.SendPropertyChanged("BenhNhan");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_TaiKham", Storage="_NhanVien", ThisKey="MaNVPhuTrach", OtherKey="MaNV", IsForeignKey=true)]
 		public NhanVien NhanVien
 		{
@@ -5851,6 +5876,74 @@ namespace DAL
 						this._MaNVPhuTrach = default(string);
 					}
 					this.SendPropertyChanged("NhanVien");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Phong_TaiKham", Storage="_Phong", ThisKey="MSPhong", OtherKey="MSPhong", IsForeignKey=true)]
+		public Phong Phong
+		{
+			get
+			{
+				return this._Phong.Entity;
+			}
+			set
+			{
+				Phong previousValue = this._Phong.Entity;
+				if (((previousValue != value) 
+							|| (this._Phong.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Phong.Entity = null;
+						previousValue.TaiKhams.Remove(this);
+					}
+					this._Phong.Entity = value;
+					if ((value != null))
+					{
+						value.TaiKhams.Add(this);
+						this._MSPhong = value.MSPhong;
+					}
+					else
+					{
+						this._MSPhong = default(string);
+					}
+					this.SendPropertyChanged("Phong");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SoBenhAn_TaiKham", Storage="_SoBenhAn", ThisKey="MaSoBenhAn", OtherKey="MaSoBenhAn", IsForeignKey=true)]
+		public SoBenhAn SoBenhAn
+		{
+			get
+			{
+				return this._SoBenhAn.Entity;
+			}
+			set
+			{
+				SoBenhAn previousValue = this._SoBenhAn.Entity;
+				if (((previousValue != value) 
+							|| (this._SoBenhAn.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SoBenhAn.Entity = null;
+						previousValue.TaiKhams.Remove(this);
+					}
+					this._SoBenhAn.Entity = value;
+					if ((value != null))
+					{
+						value.TaiKhams.Add(this);
+						this._MaSoBenhAn = value.MaSoBenhAn;
+					}
+					else
+					{
+						this._MaSoBenhAn = default(string);
+					}
+					this.SendPropertyChanged("SoBenhAn");
 				}
 			}
 		}

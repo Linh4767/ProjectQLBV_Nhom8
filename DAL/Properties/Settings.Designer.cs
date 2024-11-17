@@ -54,5 +54,15 @@ namespace DAL.Properties {
                 return ((string)(this["QLBVConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TANTAI;Initial Catalog=QLBV;Integrated Security=True")]
+        public string QLBVConnectionString3 {
+            get {
+                return ((string)(this["QLBVConnectionString3"]));
+            }
+        }
     }
 }

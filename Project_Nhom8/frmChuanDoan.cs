@@ -289,5 +289,21 @@ namespace Project_Nhom8
             frmMain frmMain = (frmMain)this.ParentForm;
             frmMain.openChildForm(new frmSuDungDichVu());
         }
+
+        private void btnDatLich_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPhieuKhamBenh.Text))
+            {
+                string maPKB = txtPhieuKhamBenh.Text;
+                // Tạo tham chiếu đến frmMain
+                frmMain mainForm = (frmMain)this.ParentForm;
+                // Gọi phương thức mở frmKhamBenh từ frmMain
+                mainForm.openChildForm(new frmTaiKham(maPKB));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
