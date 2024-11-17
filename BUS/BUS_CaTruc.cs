@@ -28,9 +28,9 @@ namespace BUS
         public BUS_CaTruc() { }
 
         //lấy danh sách ca trực
-        public void LayDSCaTruc(DataGridView data)
+        public void LayDSCaTruc(DataGridView data, DateTime ngayTruc)
         {
-            data.DataSource = DAL_CaTruc.Instance.LayDanhSachCaTruc();
+            data.DataSource = DAL_CaTruc.Instance.LayDanhSachCaTruc(ngayTruc);
         }
 
         //Lấy danh sách khoa
@@ -60,13 +60,20 @@ namespace BUS
         //Thêm ca trực mới
         public string ThemCatruc(ET_CaTruc eT_CaTruc)
         {
-            if (DAL_CaTruc.Instance.ThemCaTruc(eT_CaTruc))
+            if (DAL_CaTruc.Instance.KiemTraSoLuongNV(eT_CaTruc))
             {
-                return "Thêm thành công";
+                if (DAL_CaTruc.Instance.ThemCaTruc(eT_CaTruc))
+                {
+                    return "Thêm thành công";
+                }
+                else
+                {
+                    return "Thêm không thành công";
+                }
             }
             else
             {
-                return "Thêm không thành công";
+                return "Số lượng nhân viên của ca trực này đã đạt tối đa";
             }
         }
 
@@ -94,12 +101,12 @@ namespace BUS
         }
 
         //Tìm nhân viên
-        public void TimNhanVien(string key, DataGridView data)
+        public void TimNhanVien(string key, DataGridView data, DateTime ngayTruc)
         {
 
             if (DAL_CaTruc.Instance.KiemTraTonTai(key))
             {
-                data.DataSource = DAL_CaTruc.Instance.TimNhanVien(key);
+                data.DataSource = DAL_CaTruc.Instance.TimNhanVien(key, ngayTruc);
             }
             else
             {
