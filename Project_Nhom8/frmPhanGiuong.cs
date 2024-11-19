@@ -37,6 +37,7 @@ namespace Project_Nhom8
             dgvPhanGiuong.ColumnHeadersHeight = 40;
             BUS_PhanGiuong.Instance.HienThiPhanGiuong(dgvPhanGiuong, dtpNgay.Value);
             dtpThoiGianTra.ShowUpDown = true;
+            btnSua.Enabled = false;
         }
 
         private void txtNhanVienTH_TextChanged(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace Project_Nhom8
             string tenBN = "";
             if (pkbs.Length >= 2)
             {
-                maPKB = pkbs[0].Trim() + "-" + pkbs[1].Trim();
+                maPKB = pkbs[0].Trim() +"-"+ pkbs[1].Trim();
             }
             if (BUS_PhanGiuong.Instance.KiemTraHoanThienTraGiuong(maPKB))
             {
@@ -168,7 +169,7 @@ namespace Project_Nhom8
                 string maBN = dgvPhanGiuong.Rows[dong].Cells[0].Value.ToString();
                 string tenBN = BUS_PhanGiuong.Instance.HienThiTenBN(maBN);
                 string maPKB = dgvPhanGiuong.Rows[dong].Cells[1].Value.ToString();
-                txtBenhNhan.Text = maPKB + "-" + maBN + "-" + tenBN;
+                txtBenhNhan.Text = maPKB + "-" + tenBN;
 
                 //Khoa
                 string maKhoa = dgvPhanGiuong.Rows[dong].Cells[4].Value.ToString();
@@ -228,9 +229,16 @@ namespace Project_Nhom8
                 dtpNgayTra.Enabled = true;
                 dtpThoiGianTra.Enabled = true;
                 btnThem.Enabled = false;
-                btnSua.Enabled = true;
+                
                 cboGiuongBenh.Enabled = false;
-                btnLamMoi.Enabled = true;
+                btnLamMoi.Enabled = true;                
+                if (BUS_PhanGiuong.Instance.KiemTraCoPhanGiuongMoiKhong(maPKB, cboGiuongBenh.SelectedValue.ToString(), dtpNgayNhanGiuong.Value.Date + dtpThoiGianNhan.Value.TimeOfDay)){
+                    btnSua.Enabled = false;
+                }
+                else
+                {
+                    btnSua.Enabled = true;
+                }
             }
         }
 
@@ -239,6 +247,11 @@ namespace Project_Nhom8
             cboGiuongBenh.Enabled = true;
             btnThem.Enabled = true;
             btnSua.Enabled = false;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            BUS_PhanGiuong.Instance.TimKiemSDDVTheoTen(dgvPhanGiuong, txtTimKiem.Text, dtpNgay.Value);
         }
     }
 }

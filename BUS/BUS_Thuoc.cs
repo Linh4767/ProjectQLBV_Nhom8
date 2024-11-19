@@ -72,9 +72,9 @@ namespace BUS
         }
 
         //Sửa thuốc
-        public void SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
+        public void SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop)
         {
-            if (DAL_Thuoc.Instance.SuaThuoc(maThuoc, gia, trangThai, donViTinh, quyCachDongGoi, soLuongDVT, soLuongQCDG) == true)
+            if (DAL_Thuoc.Instance.SuaThuoc(maThuoc, gia, trangThai, donViTinh, quyCachDongGoi, soLuongDVT, soLuongQCDG, maLo,hSD, soLuongHop) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -89,6 +89,12 @@ namespace BUS
         public string TaoMaTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong)
         {
             return DAL_Thuoc.Instance.TaoMaTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong);
+        }
+
+        //Tạo mã lô tự động
+        public string TaoMaLoTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong, DateTime ngaySanXuat)
+        {
+            return DAL_Thuoc.Instance.TaoMaLoTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong, ngaySanXuat);
         }
     }
 }

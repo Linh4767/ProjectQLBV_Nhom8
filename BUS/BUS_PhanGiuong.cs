@@ -111,9 +111,15 @@ namespace BUS
             return DAL_PhanGiuong.Instance.KiemTraHoanThienTraGiuong(maPhieuKB);
         }
 
-        //public bool KiemTraNgayTraGiuongCu(string maPhieuKB, string maPhong, string maGiuongMoi)
-        //{
-        //    return DAL_PhanGiuong.Instance.KiemTraNgayTraGiuongCu(maPhieuKB, maPhong, maGiuongMoi);
-        //}
+        public bool KiemTraCoPhanGiuongMoiKhong(string maPhieuKB,string maGiuong, DateTime ngayNhan)
+        {
+            // Gọi phương thức KiemTraHoanThienTraGiuong từ lớp DAL
+            return DAL_PhanGiuong.Instance.KiemTraCoPhanGiuongMoiKhong(maPhieuKB,maGiuong,ngayNhan);
+        }
+
+        public void TimKiemSDDVTheoTen(DataGridView dgv, string tenBN, DateTime dtp)
+        {
+            dgv.DataSource = DAL_PhanGiuong.Instance.TimKiemTheoTen(tenBN, dtp);
+        }
     }
 }

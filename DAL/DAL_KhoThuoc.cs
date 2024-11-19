@@ -25,34 +25,27 @@ namespace DAL
         }
 
         // Phương thức thêm thuốc vào kho
-        public int? ThemThuocVaoKho(string maThuoc, int soLuongThem)
+        public int? ThemThuocVaoKho(string maThuoc, string maLo, int soLuongThem)
         {
             // Khởi tạo context LINQ to SQL
             using (var db = new QLBVDataContext()) // QLBVDataContext là lớp tự động sinh ra từ .dbml
             {
                 // Lấy thông tin thuốc từ bảng Thuoc
-                var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+                var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc && t.MaLo == maLo);
                 if (thuoc == null) return -1; // Nếu không tìm thấy thuốc, trả về -1 để báo lỗi
 
                 // Tìm thuốc trong kho
                 var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
 
                 // Tính số lượng đơn vị cần thêm vào kho
-                int soLuongTang = 0;
-                if (thuoc.LoaiThuoc == "Viên nén" || thuoc.LoaiThuoc == "Viên Nén")
-                {
-                    soLuongTang = (int)(soLuongThem * thuoc.SoLuongDVT * thuoc.SoLuongQCDG);
-                }
-                else
-                {
-                    soLuongTang = (int)(soLuongThem * thuoc.SoLuongDVT);
-                }
+                int soLuongTang = (int)(soLuongThem * thuoc.SoLuongHop);
 
                 int? soLuongTrongKhoMoi;
                 if (khoThuoc != null)
                 {
                     // Nếu thuốc đã có trong kho, cập nhật số lượng
-                    khoThuoc.SoLuongTrongKho += soLuongTang;
+                    thuoc.SoLuongNhap += soLuongThem; // Cập nhật số lượng nhập trong bảng Thuoc
+                    khoThuoc.SoLuongTrongKho += soLuongTang; // Cập nhật số lượng trong kho
                     soLuongTrongKhoMoi = khoThuoc.SoLuongTrongKho;
                 }
                 else
@@ -66,6 +59,10 @@ namespace DAL
 
                     // Thêm bản ghi mới vào kho
                     db.KhoThuocs.InsertOnSubmit(khoThuocMoi);
+
+                    // Cập nhật số lượng nhập trong bảng Thuoc
+                    thuoc.SoLuongNhap += soLuongThem;
+
                     soLuongTrongKhoMoi = soLuongTang;
                 }
 
@@ -76,6 +73,8 @@ namespace DAL
                 return soLuongTrongKhoMoi;
             }
         }
+
+
 
         //Xóa thuốc trong kho 
         // Phương thức xóa lượng thuốc trong kho

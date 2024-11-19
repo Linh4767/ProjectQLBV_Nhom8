@@ -28,10 +28,10 @@ namespace BUS
         public BUS_TaiKham() { }
 
         //lấy danh sách tái khám
-        public void LayDSTaiKham(DataGridView data)
-        {
-            data.DataSource = DAL_TaiKham.Instance.LayDSTaiKham();
-        }
+        //public void LayDSTaiKham(DataGridView data)
+        //{
+        //    data.DataSource = DAL_TaiKham.Instance.LayDSTaiKham();
+        //}
 
         //Tạo mã
         public string TaoMa(string maPKB)
@@ -40,17 +40,17 @@ namespace BUS
         }
 
         //Thêm cuộc hẹn tái khám mới
-        public string ThemTaiKham(ET_TaiKham eT_TaiKham)
-        {
-            if (DAL_TaiKham.Instance.ThemTaiKham(eT_TaiKham))
-            {
-                return "Thêm thành công";
-            }
-            else
-            {
-                return "Thêm không thành công";
-            }
-        }
+        //public string ThemTaiKham(ET_TaiKham eT_TaiKham)
+        //{
+        //    if (DAL_TaiKham.Instance.ThemTaiKham(eT_TaiKham))
+        //    {
+        //        return "Thêm thành công";
+        //    }
+        //    else
+        //    {
+        //        return "Thêm không thành công";
+        //    }
+        //}
 
         //Cập nhật cuộc hẹn
         public string CapNhatTaiKham(ET_TaiKham eT_TaiKham)
@@ -66,10 +66,10 @@ namespace BUS
         }
 
         //Tìm kiếm
-        public void TimKiemBenhNhan(string key, DataGridView dgv)
-        {
-            dgv.DataSource = DAL_TaiKham.Instance.TimKiemBenhNhan(key);
-        }
+        //public void TimKiemBenhNhan(string key, DataGridView dgv)
+        //{
+        //    dgv.DataSource = DAL_TaiKham.Instance.TimKiemBenhNhan(key);
+        //}
 
         //lấy mã bệnh nhân từ PKB
         public string LayMaBN(string pkb)

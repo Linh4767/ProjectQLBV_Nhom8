@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project_Nhom8
 {
@@ -38,13 +39,35 @@ namespace Project_Nhom8
                     txtHamLuong.Text
                 );
             }
-
         }
+
+        private void UpdateMaLo()
+        {
+            if (!string.IsNullOrEmpty(txtTenThuoc.Text)
+            && !string.IsNullOrEmpty(txtXuatXu.Text)
+            && !string.IsNullOrEmpty(txtNhaCC.Text)
+            && cboLoaiThuoc.SelectedIndex != -1 // kiểm tra SelectedIndex
+            && !string.IsNullOrEmpty(cboLoaiThuoc.SelectedItem?.ToString()) // lấy SelectedItem thay vì SelectedValue
+            && !string.IsNullOrEmpty(txtHamLuong.Text)
+            && dtpNgaySX.Value != null) // kiểm tra ngày sản xuất
+            {
+                txtMaLo.Text = BUS_Thuoc.Instance.TaoMaLoTuDong(
+                    txtTenThuoc.Text,
+                    txtXuatXu.Text,
+                    txtNhaCC.Text,
+                    cboLoaiThuoc.SelectedItem?.ToString() ?? string.Empty, // sử dụng SelectedItem
+                    txtHamLuong.Text,
+                    dtpNgaySX.Value
+                );
+            }
+        }
+
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
             UpdateMaThuoc();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
+            UpdateMaLo();
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -55,7 +78,7 @@ namespace Project_Nhom8
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = false;
             }
-            if (txtSLDonViTinh.Text.Length > 30)
+            if (txtTenThuoc.Text.Length > 30)
             {
                 // Cắt chuỗi về 30 ký tự
                 txtTenThuoc.Text = txtTenThuoc.Text.Substring(0, 30);
@@ -71,7 +94,8 @@ namespace Project_Nhom8
         private void txtXuatXu_TextChanged(object sender, EventArgs e)
         {
             UpdateMaThuoc();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
+            UpdateMaLo();
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -98,7 +122,8 @@ namespace Project_Nhom8
         private void txtNhaCC_TextChanged(object sender, EventArgs e)
         {
             UpdateMaThuoc();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
+            UpdateMaLo();
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -125,7 +150,8 @@ namespace Project_Nhom8
         private void txtHamLuong_TextChanged(object sender, EventArgs e)
         {
             UpdateMaThuoc();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
+            UpdateMaLo();
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -145,7 +171,6 @@ namespace Project_Nhom8
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
-            btnXoa.Enabled = false;
         }
 
         private void btnThemSLThuoc_Click(object sender, EventArgs e)
@@ -156,7 +181,7 @@ namespace Project_Nhom8
             if (int.TryParse(txtSLThuocNhapVao.Text, out soLuongThem))
             {
                 // Gọi phương thức ThemSoLuongThuoc từ BUS_KhoThuoc
-                int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(txtMaThuoc.Text, soLuongThem);
+                int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(txtMaThuoc.Text, txtMaLo.Text, soLuongThem);
 
                 // Nếu thêm thuốc vào kho thành công
                 if (soLuongTrongKhoMoi != -1)
@@ -199,9 +224,18 @@ namespace Project_Nhom8
                     trangThai = "Ngừng Phát Thuốc";
                 }
                 //txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
-                int? slTieuChuan = string.IsNullOrWhiteSpace(txtSLTieuChuan.Text) ? (int?)null : int.Parse(txtSLTieuChuan.Text);
+                int? slTieuChuan = string.IsNullOrWhiteSpace(cboSLTieuChuan.SelectedItem.ToString()) ? (int?)null : int.Parse(cboSLTieuChuan.SelectedItem.ToString());
                 string tenDVT = cboDVT.GetItemText(cboDVT.SelectedItem);
-                BUS_Thuoc.Instance.SuaThuoc(txtMaThuoc.Text, float.Parse(txtDonGia.Text), trangThai, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(txtSLDonViTinh.Text), slTieuChuan);
+                DateTime ngaySanXuat = dtpNgaySX.Value;
+                // Lấy giá trị hạn sử dụng từ ComboBox
+                string hanSuDungChuoi = cboHSD.SelectedItem.ToString();
+
+                // Loại bỏ chữ "tháng" và chuyển đổi sang số nguyên
+                int hanSuDungThang = int.Parse(hanSuDungChuoi.Replace(" tháng", "").Trim());
+
+                // Tính ngày hết hạn
+                DateTime ngayHetHan = ngaySanXuat.AddMonths(hanSuDungThang);
+                BUS_Thuoc.Instance.SuaThuoc(txtMaThuoc.Text, float.Parse(txtDonGia.Text), trangThai, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(cboSLDVT.SelectedItem.ToString()), slTieuChuan, txtMaLo.Text, ngayHetHan, int.Parse(cboSLHop.SelectedItem.ToString()));
                 BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             }
         }
@@ -209,19 +243,7 @@ namespace Project_Nhom8
         private void cboLoaiThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateMaThuoc();
-
-            if (cboLoaiThuoc.SelectedIndex == 0 && radNgungSX.Checked)
-            {
-                txtSLTieuChuan.Enabled = false;
-            }
-            else if (cboLoaiThuoc.SelectedIndex == 0)
-            {
-                txtSLTieuChuan.Enabled = true;
-            }
-            else
-            {
-                txtSLTieuChuan.Enabled = false;
-            }
+            UpdateMaLo();
 
             if (cboLoaiThuoc.SelectedIndex == 1)
             {
@@ -236,7 +258,14 @@ namespace Project_Nhom8
                 cboHamLuong.SelectedIndex = 0;
                 //cboHamLuong.Items.Clear();
                 //cboHamLuong.Items.Add("mg");
+                cboHSD.Items.Clear();
+                cboHSD.Items.Add("12 tháng");
+                cboHSD.Items.Add("24 tháng");
+                cboHSD.Items.Add("36 tháng");
+                cboHSD.Items.Add("48 tháng");
+                cboHSD.Items.Add("60 tháng");
             }
+
             else if (cboLoaiThuoc.SelectedIndex == 2)
             {
                 cboDVT.Items.Clear();
@@ -252,6 +281,13 @@ namespace Project_Nhom8
                 //cboHamLuong.Items.Clear();
                 //cboHamLuong.Items.Add("mg/5 mL");
                 //cboHamLuong.Items.Add("mg/mL");
+                cboHSD.Items.Clear();
+                cboHSD.Items.Add("12 tháng");
+                cboHSD.Items.Add("24 tháng");
+                cboHSD.Items.Add("36 tháng");
+                cboHSD.Items.Add("48 tháng");
+                cboHSD.Items.Add("60 tháng");
+
             }
             else
             {
@@ -265,6 +301,12 @@ namespace Project_Nhom8
                 cboHamLuong.Items.Clear();
                 cboHamLuong.Items.Add("mg");
                 cboHamLuong.SelectedIndex = 0;
+                cboHSD.Items.Clear();
+                cboHSD.Items.Add("12 tháng");
+                cboHSD.Items.Add("24 tháng");
+                cboHSD.Items.Add("36 tháng");
+                cboHSD.Items.Add("48 tháng");
+                cboHSD.Items.Add("60 tháng");
             }
         }
 
@@ -283,7 +325,7 @@ namespace Project_Nhom8
                     trangThai = "Ngừng Phát Thuốc";
                 }
                 //txtHoTenNV.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtHoTenNV.Text);
-                int? slTieuChuan = string.IsNullOrWhiteSpace(txtSLTieuChuan.Text) ? (int?)null : int.Parse(txtSLTieuChuan.Text);
+                int? slTieuChuan = string.IsNullOrWhiteSpace(cboSLTieuChuan.SelectedItem.ToString()) ? (int?)null : int.Parse(cboSLTieuChuan.SelectedItem.ToString());
                 // Kiểm tra nếu txtHamLuong và cboHamLuong có giá trị
                 string hamLuong = "";
                 if (!string.IsNullOrEmpty(txtHamLuong.Text) && cboHamLuong.SelectedIndex != -1)
@@ -294,10 +336,19 @@ namespace Project_Nhom8
                 }
                 string tenLoaiThuoc = cboLoaiThuoc.GetItemText(cboLoaiThuoc.SelectedItem);
                 string tenDVT = cboDVT.GetItemText(cboDVT.SelectedItem);
+                DateTime ngaySanXuat = dtpNgaySX.Value;
+                // Lấy giá trị hạn sử dụng từ ComboBox
+                string hanSuDungChuoi = cboHSD.SelectedItem.ToString();
+
+                // Loại bỏ chữ "tháng" và chuyển đổi sang số nguyên
+                int hanSuDungThang = int.Parse(hanSuDungChuoi.Replace(" tháng", "").Trim());
+
+                // Tính ngày hết hạn
+                DateTime ngayHetHan = ngaySanXuat.AddMonths(hanSuDungThang);
                 txtTenThuoc.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtTenThuoc.Text);
                 txtXuatXu.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtXuatXu.Text);
                 txtNhaCC.Text = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtNhaCC.Text);
-                BUS_Thuoc.Instance.ThemThuoc(new ET_Thuoc(txtMaThuoc.Text, txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, trangThai, tenLoaiThuoc, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(txtSLDonViTinh.Text), slTieuChuan, hamLuong, float.Parse(txtDonGia.Text)));
+                BUS_Thuoc.Instance.ThemThuoc(new ET_Thuoc(txtMaThuoc.Text, txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, trangThai, tenLoaiThuoc, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(cboSLDVT.SelectedItem.ToString()), slTieuChuan, hamLuong, float.Parse(txtDonGia.Text), dtpNgaySX.Value, ngayHetHan, txtMaLo.Text, 0, int.Parse(cboSLHop.SelectedItem.ToString())));
                 BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
                 dgvKhoThuoc.Refresh();
             }
@@ -331,17 +382,18 @@ namespace Project_Nhom8
                 txtNhaCC.Text = dgvKhoThuoc.Rows[dong].Cells[5].Value.ToString();
                 txtDongGoiBenNgoai.Text = dgvKhoThuoc.Rows[dong].Cells[6].Value.ToString();
                 cboDVT.SelectedIndex = cboDVT.FindStringExact(dgvKhoThuoc.Rows[dong].Cells[7].Value.ToString());
-                txtSLDonViTinh.Text = dgvKhoThuoc.Rows[dong].Cells[8].Value.ToString();
+                cboSLDVT.SelectedItem = dgvKhoThuoc.Rows[dong].Cells[8].Value.ToString();
                 if (dgvKhoThuoc.Rows[dong].Cells[9].Value != null)
                 {
-                    txtSLTieuChuan.Text = dgvKhoThuoc.Rows[dong].Cells[9].Value.ToString();
+                    cboSLTieuChuan.SelectedItem = dgvKhoThuoc.Rows[dong].Cells[9].Value.ToString();
                 }
                 else
                 {
-                    txtSLTieuChuan.Text = "";
+                    cboSLTieuChuan.SelectedItem = "";
                 }
                 txtDonGia.Text = dgvKhoThuoc.Rows[dong].Cells[10].Value.ToString();
                 txtSLThuocTrongKho.Text = dgvKhoThuoc.Rows[dong].Cells[11].Value.ToString();
+
                 if (dgvKhoThuoc.Rows[dong].Cells[12].Value.ToString() == "Hoạt Động")
                 {
                     radHoatDong.Checked = true;
@@ -355,12 +407,12 @@ namespace Project_Nhom8
                     txtDonGia.Enabled = true;
                     txtDongGoiBenNgoai.Enabled = false;
                     cboDVT.Enabled = true;
-                    txtSLDonViTinh.Enabled = true;
-                    txtSLTieuChuan.Enabled = true;
                     txtSLThuocNhapVao.Enabled = true;
                     btnThemSLThuoc.Enabled = true;
                     btnXoaSLThuoc.Enabled = true;
-                    btnXoa.Enabled = true;
+                    dtpNgaySX.Enabled = true;
+                    cboSLHop.Enabled = true;
+                    cboHSD.Enabled = true;
                 }
                 else
                 {
@@ -374,24 +426,62 @@ namespace Project_Nhom8
                     cboHamLuong.Enabled = false;
                     txtDonGia.Enabled = false;
                     cboDVT.Enabled = false;
-                    txtSLDonViTinh.Enabled = false;
-                    txtSLTieuChuan.Enabled = false;
                     txtSLThuocNhapVao.Enabled = false;
-                    btnXoa.Enabled = true;
                     btnThemSLThuoc.Enabled = false;
+                    dtpNgaySX.Enabled = false;
+                    cboSLHop.Enabled = false;
+                    cboHSD.Enabled = false;
                 }
-                if (cboLoaiThuoc.SelectedIndex == 0 && radNgungSX.Checked)
+                cboSLHop.SelectedItem = dgvKhoThuoc.Rows[dong].Cells[13].Value.ToString();
+                if (dong >= 0 && dong < dgvKhoThuoc.Rows.Count && dgvKhoThuoc.Columns.Count > 14)
                 {
-                    txtSLTieuChuan.Enabled = false;
-                }
-                else if (cboLoaiThuoc.SelectedIndex == 0 && radHoatDong.Checked)
-                {
-                    txtSLTieuChuan.Enabled = true;
+                    var cellValue = dgvKhoThuoc.Rows[dong].Cells[14].Value;
+                    if (cellValue != null)
+                    {
+                        txtSLThuocNhapVao.Text = cellValue.ToString();
+                    }
+                    else
+                    {
+                        txtSLThuocNhapVao.Text = "Không có dữ liệu";
+                    }
                 }
                 else
                 {
-                    txtSLTieuChuan.Enabled = false;
+                    MessageBox.Show("Hàng hoặc cột không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                // Lấy giá trị từ DataGridView (cột thứ 5)
+                string ngayNhan = dgvKhoThuoc.Rows[dong].Cells[15].Value.ToString();
+
+                // Chuyển chuỗi ngày giờ thành kiểu DateTime
+                DateTime ngayGio = DateTime.Parse(ngayNhan);
+
+                // Gán phần ngày cho DateTimePicker (chỉ ngày)
+                dtpNgaySX.Value = ngayGio.Date;
+
+                // Lấy giá trị ngày hết hạn từ DataGridView
+                string ngayHetHanChuoi = dgvKhoThuoc.Rows[dong].Cells[16].Value.ToString();
+                DateTime ngayHetHan = DateTime.Parse(ngayHetHanChuoi);
+
+                // Tính khoảng cách số tháng giữa ngày hiện tại và ngày hết hạn
+                int soThangHSD = ((ngayHetHan.Year - ngayGio.Year) * 12) + (ngayHetHan.Month - ngayGio.Month);
+
+                // Thêm giá trị mới vào ComboBox nếu chưa tồn tại
+                string soThangHSDChuoi = $"{soThangHSD} tháng";
+                //if (!cboHSD.Items.Contains(soThangHSDChuoi))
+                //{
+                //    cboHSD.Items.Add(soThangHSDChuoi);
+                //}
+
+                // Chọn giá trị mới được tính trong ComboBox
+                cboHSD.SelectedItem = soThangHSDChuoi;
+
+                // Khi chọn combobox và cần sử dụng lại số tháng:
+                string hanSuDungChuoi = cboHSD.SelectedItem.ToString();
+                int hanSuDungThang = int.Parse(hanSuDungChuoi.Replace(" tháng", "").Trim());
+
+                // Tính ngày hết hạn mới nếu cần
+                DateTime ngayHetHanMoi = ngayGio.AddMonths(hanSuDungThang);
 
                 //cboHamLuong.Enabled = false;
 
@@ -493,6 +583,7 @@ namespace Project_Nhom8
         {
             txtMaThuoc.Clear();
             UpdateMaThuoc();
+            UpdateMaLo();
             txtTenThuoc.Clear();
             txtTenThuoc.Enabled = true;
             cboLoaiThuoc.SelectedIndex = 0;
@@ -508,25 +599,20 @@ namespace Project_Nhom8
             txtDonGia.Clear();
             radHoatDong.Checked = true;
             cboDVT.SelectedIndex = 0;
-            txtSLDonViTinh.Clear();
-            txtSLTieuChuan.Clear();
             txtSLThuocNhapVao.Clear();
             txtDonGia.Enabled = true;
             cboDVT.Enabled = true;
-            txtSLDonViTinh.Enabled = true;
-            txtSLTieuChuan.Enabled = true;
             txtSLThuocNhapVao.Enabled = false;
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
             btnThemSLThuoc.Enabled = false;
             btnXoaSLThuoc.Enabled = false;
-            btnXoa.Enabled = false;
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
         }
 
         private void txtDonGia_TextChanged(object sender, EventArgs e)
         {
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -537,22 +623,6 @@ namespace Project_Nhom8
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = false;
             }
-        }
-
-        private void txtSLDonViTinh_TextChanged(object sender, EventArgs e)
-        {
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
-            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
-            {
-                btnThemThuoc.Enabled = true;
-                btnCapNhat.Enabled = true;
-            }
-            else
-            {
-                btnThemThuoc.Enabled = false;
-                btnCapNhat.Enabled = false;
-            }
-
         }
 
         private void txtTenThuoc_KeyPress(object sender, KeyPressEventArgs e)
@@ -636,31 +706,7 @@ namespace Project_Nhom8
             }
         }
 
-        private void txtSLTieuChuan_TextChanged(object sender, EventArgs e)
-        {
-            // Tạo danh sách các trường cần kiểm tra
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text, txtSLDonViTinh.Text };
-
-            // Kiểm tra trường hợp cboLoaiThuoc.SelectedIndex == 0, cần phải kiểm tra txtSLTieuChuan
-            if (cboLoaiThuoc.SelectedIndex == 0)
-            {
-                textbox.Add(txtSLTieuChuan.Text); // Thêm txtSLTieuChuan vào danh sách kiểm tra
-            }
-
-            // Kiểm tra xem tất cả các trường có trống hay không
-            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
-            {
-                btnThemThuoc.Enabled = true;
-                btnCapNhat.Enabled = true;
-            }
-            else
-            {
-                btnThemThuoc.Enabled = false;
-                btnCapNhat.Enabled = false;
-            }
-
-
-        }
+        
 
         private void txtSLThuocNhapVao_TextChanged(object sender, EventArgs e)
         {
@@ -670,7 +716,7 @@ namespace Project_Nhom8
                 btnThemSLThuoc.Enabled = true;
                 btnXoaSLThuoc.Enabled = true;
                 btnThemThuoc.Enabled = false;
-                btnCapNhat.Enabled = false;
+                btnCapNhat.Enabled = true;
             }
             else
             {
@@ -681,7 +727,7 @@ namespace Project_Nhom8
             }
             if (int.TryParse(txtSLThuocNhapVao.Text, out int slTNV))
             {
-                if (slTNV <= 0 || slTNV > 1000)
+                if (slTNV < 0 || slTNV > 1000)
                 {
                     MessageBox.Show("Số lượng thuốc được nhập chỉ từ 1 đến 1000", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtSLThuocNhapVao.Text = "1";
@@ -703,10 +749,10 @@ namespace Project_Nhom8
         {
             if (float.TryParse(txtDonGia.Text, out float donGia))
             {
-                if (donGia < 10000 || donGia > 10000000)
+                if (donGia > 0)
                 {
-                    MessageBox.Show("Giá trị phải lớn hơn 10.000 và nhỏ hơn hoặc bằng 10.000.000!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtDonGia.Text = "10000";
+                    MessageBox.Show("Giá trị phải lớn hơn 0!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtDonGia.Text = "1000000000";
                 }
             }
         }
@@ -724,29 +770,6 @@ namespace Project_Nhom8
             }
         }
 
-        private void txtSLDonViTinh_Leave(object sender, EventArgs e)
-        {
-            if (int.TryParse(txtSLDonViTinh.Text, out int slDVT))
-            {
-                if (slDVT <= 0 || slDVT > 30)
-                {
-                    MessageBox.Show("Số lượng phải lớn hơn 0 và nhỏ hơn 30", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtSLDonViTinh.Text = "1";
-                }
-            }
-        }
-
-        private void txtSLTieuChuan_Leave(object sender, EventArgs e)
-        {
-            if (int.TryParse(txtSLTieuChuan.Text, out int slTC))
-            {
-                if (slTC < 10 || slTC > 30)
-                {
-                    MessageBox.Show("Số lượng phải từ 10 đến 30 viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtSLTieuChuan.Text = "10";
-                }
-            }
-        }
 
         private void txtHamLuong_Leave(object sender, EventArgs e)
         {
@@ -777,6 +800,100 @@ namespace Project_Nhom8
                     BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
                 }
             }
+        }
+
+        private void cboHSD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpNgaySX_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateMaLo();
+        }
+
+        private void cboDVT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboLoaiThuoc.SelectedIndex == 1)
+            {
+                if (cboDVT.SelectedIndex == 0 || cboDVT.SelectedIndex == 1)
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("1");
+                    cboSLDVT.SelectedIndex = 0;
+                }
+            }
+            else if (cboLoaiThuoc.SelectedIndex == 2)
+            {
+
+                if (cboDVT.SelectedIndex == 0 || cboDVT.SelectedIndex == 1)
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("1");
+                    cboSLDVT.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("20");
+                    cboSLDVT.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                if (cboDVT.SelectedIndex == 0)
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("10");
+                    cboSLDVT.SelectedIndex = 0;
+
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("10");
+                    cboSLTieuChuan.SelectedIndex = 0;
+                }
+                else if (cboDVT.SelectedIndex == 1)
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("1");
+                    cboSLDVT.SelectedIndex = 0;
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("100");
+                    cboSLTieuChuan.SelectedIndex = 0;
+                }
+                else if (cboDVT.SelectedIndex == 2)
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("1");
+                    cboSLDVT.SelectedIndex = 0;
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("30");
+                    cboSLTieuChuan.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboSLDVT.Items.Clear();
+                    cboSLDVT.Items.Add("20");
+                    cboSLDVT.SelectedIndex = 0;
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("10");
+                    cboSLTieuChuan.SelectedIndex = 0;
+                }
+            }         
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboSLTieuChuan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,16 +20,17 @@ namespace ET
         private int? soLuongQCDG;
         private string hamLuong;
         private float gia;
+        private DateTime ngaySanXuat;
+        private DateTime hanSD;
+        private string maLo;
+        private int soLuongNhap;
+        private int soLuongHop;
 
-        public ET_Thuoc(/*string maThuoc, string loaiThuoc, int? soLuongDVT, int? soLuongQCDG*/)
+        public ET_Thuoc()
         {
-            //this.maThuoc = maThuoc;
-            //this.loaiThuoc = loaiThuoc;
-            //this.soLuongDVT = soLuongDVT;
-            //this.soLuongQCDG = soLuongQCDG;
         }
 
-        public ET_Thuoc(string maThuoc, string tenThuoc, string xuatXu, string nhaCungCap, string trangThai, string loaiThuoc, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string hamLuong, float gia)
+        public ET_Thuoc(string maThuoc, string tenThuoc, string xuatXu, string nhaCungCap, string trangThai, string loaiThuoc, string donViTinh, string quyCachDongGoi, int? soLuongDVT, int? soLuongQCDG, string hamLuong, float gia, DateTime ngaySanXuat, DateTime hanSD, string maLo, int soLuongNhap, int soLuongHop)
         {
             this.MaThuoc = maThuoc;
             this.TenThuoc = tenThuoc;
@@ -43,6 +44,11 @@ namespace ET
             this.SoLuongQCDG = soLuongQCDG;
             this.HamLuong = hamLuong;
             this.Gia = gia;
+            this.NgaySanXuat = ngaySanXuat;
+            this.HanSD = hanSD;
+            this.MaLo = maLo;
+            this.SoLuongNhap = soLuongNhap;
+            this.SoLuongHop = soLuongHop;
         }
 
         public string MaThuoc { get => maThuoc; set => maThuoc = value; }
@@ -57,5 +63,10 @@ namespace ET
         public int? SoLuongQCDG { get => soLuongQCDG; set => soLuongQCDG = value; }
         public string HamLuong { get => hamLuong; set => hamLuong = value; }
         public float Gia { get => gia; set => gia = value; }
+        public DateTime NgaySanXuat { get => ngaySanXuat; set => ngaySanXuat = value; }
+        public DateTime HanSD { get => hanSD; set => hanSD = value; }
+        public string MaLo { get => maLo; set => maLo = value; }
+        public int SoLuongNhap { get => soLuongNhap; set => soLuongNhap = value; }
+        public int SoLuongHop { get => soLuongHop; set => soLuongHop = value; }
     }
 }

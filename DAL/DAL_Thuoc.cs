@@ -44,7 +44,7 @@ namespace DAL
                         join kt in db.KhoThuocs
                         on t.MaThuoc equals kt.MaThuoc into kho
                         from k in kho.DefaultIfEmpty()  // Left join
-                        select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai };
+                        select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai, t.SoLuongHop, t.SoLuongNhap, t.NgaySanXuat, t.HSD, t.MaLo };
             return thuoc;
         }
 
@@ -88,6 +88,20 @@ namespace DAL
             return $"{maThuoc}-{maXuatXu}-{maNhaCungCap}-{maLoaiThuoc}{hamLuong}";
         }
 
+        //Mã lô tự động 
+        public string TaoMaLoTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong, DateTime ngaySanXuat)
+        {
+            // Gọi hàm TaoMaTuDong để lấy mã thuốc cơ bản
+            string maThuoc = TaoMaTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong);
+
+            // Định dạng ngày sản xuất (YYYYMMDD)
+            string ngaySanXuatFormatted = ngaySanXuat.ToString("yyyyMMdd");
+
+            // Kết hợp mã thuốc và ngày sản xuất để tạo mã lô
+            return $"LO-{ngaySanXuatFormatted}-{maThuoc}";
+        }
+
+
         //Tìm kiếm thuốc
         public IQueryable TimKiemThuoc(string searchTerm)
         {
@@ -96,7 +110,7 @@ namespace DAL
                      on t.MaThuoc equals kt.MaThuoc into kho
                      from k in kho.DefaultIfEmpty()  // Left join
                      where t.TenThuoc.Contains(searchTerm)
-                     select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai };
+                     select new { t.MaThuoc, t.TenThuoc, t.LoaiThuoc, t.HamLuong, t.XuatXu, t.NhaCungCap, t.DonViTinh, t.QuyCachDongGoi, t.SoLuongDVT, t.SoLuongQCDG, t.Gia, SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho, t.TrangThai, t.SoLuongHop, t.SoLuongNhap, t.NgaySanXuat, t.HSD, t.MaLo };
             return ds;
         }
 
@@ -121,7 +135,7 @@ namespace DAL
         public bool ThemThuoc(ET_Thuoc et_thuoc)
         {
             // Kiểm tra xem MaThuoc có tồn tại trong bảng Thuoc không
-            if (db.Thuocs.Any(thuoc => thuoc.MaThuoc == et_thuoc.MaThuoc))
+            if (db.Thuocs.Any(thuoc => thuoc.MaLo == et_thuoc.MaLo && thuoc.MaThuoc == et_thuoc.MaThuoc))
             {
                 return false;
             }
@@ -142,7 +156,12 @@ namespace DAL
                     SoLuongDVT = et_thuoc.SoLuongDVT,
                     SoLuongQCDG = et_thuoc.SoLuongQCDG,
                     HamLuong = et_thuoc.HamLuong,
-                    Gia = et_thuoc.Gia
+                    Gia = et_thuoc.Gia,
+                    NgaySanXuat = et_thuoc.NgaySanXuat,
+                    HSD = et_thuoc.HanSD,
+                    MaLo = et_thuoc.MaLo,
+                    SoLuongNhap = 0,
+                    SoLuongHop = et_thuoc.SoLuongHop           
                 };
 
                 db.Thuocs.InsertOnSubmit(thuoc);
@@ -209,11 +228,11 @@ namespace DAL
 
 
         //Sửa thuốc
-        public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
+        public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop)
         {
             using (var db = new QLBVDataContext())
             {
-                Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc);
+                Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc && t.MaLo == maLo);
                 if (thuoc == null) return false;
 
                 try
@@ -225,6 +244,8 @@ namespace DAL
                     thuoc.QuyCachDongGoi = quyCachDongGoi;
                     thuoc.SoLuongDVT = soLuongDVT;
                     thuoc.SoLuongQCDG = soLuongQCDG;
+                    thuoc.HSD = hSD;
+                    thuoc.SoLuongHop = soLuongHop;
                     db.SubmitChanges();
                     return true;
                 }

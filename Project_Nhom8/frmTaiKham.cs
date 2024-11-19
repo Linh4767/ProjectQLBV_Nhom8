@@ -47,43 +47,43 @@ namespace Project_Nhom8
         //Lấy dữ liệu 
         private void TaiDuLieu()
         {
-            BUS_TaiKham.Instance.LayDSTaiKham(dgvDSTaiKham);
+            //BUS_TaiKham.Instance.LayDSTaiKham(dgvDSTaiKham);
         }
         private void btnThemTK_Click(object sender, EventArgs e)
         {
             //kiểm tra ngày
-            DateTime ngayTaiKham = dtpNgayTaiKham.Value;
-            if (ngayTaiKham.Date < DateTime.Now.Date)
-            {
-                MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (cboTrangThai.SelectedItem.ToString() != "Chưa hoàn thành")
-            {
-                MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            string ma = BUS_TaiKham.Instance.TaoMa(maPKB);
-            string maPhieuKB = ma.Split('-')[1];         
-            if(!BUS_TaiKham.Instance.KiemTraKoDatLichTaiKhamNhieuLan(maPhieuKB))
-            {
-                string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
-                string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(ma, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
-                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (kq == "Thêm thành công")
-                {
-                    txtMaBN.Clear();
-                    txtKQ.Clear();
-                    txtMaBN.Clear();
-                    txtMaNV.Clear();
-                    btnThemTK.Enabled = false;
-                    TaiDuLieu();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Phiếu khám bệnh đã thực hiện đặt lịch", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //DateTime ngayTaiKham = dtpNgayTaiKham.Value;
+            //if (ngayTaiKham.Date < DateTime.Now.Date)
+            //{
+            //    MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //if (cboTrangThai.SelectedItem.ToString() != "Chưa hoàn thành")
+            //{
+            //    MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //string ma = BUS_TaiKham.Instance.TaoMa(maPKB);
+            //string maPhieuKB = ma.Split('-')[1];         
+            //if(!BUS_TaiKham.Instance.KiemTraKoDatLichTaiKhamNhieuLan(maPhieuKB))
+            //{
+            //    string ketQua = BUS_BatLoi.Instance.GiupKyTuVietHoaVaBoKhoangTrangThua(txtKQ.Text);
+            //    string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(ma, txtMaBN.Text, txtMaNV.Text, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), ketQua));
+            //    MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    if (kq == "Thêm thành công")
+            //    {
+            //        txtMaBN.Clear();
+            //        txtKQ.Clear();
+            //        txtMaBN.Clear();
+            //        txtMaNV.Clear();
+            //        btnThemTK.Enabled = false;
+            //        TaiDuLieu();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Phiếu khám bệnh đã thực hiện đặt lịch", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
             
             
         }
@@ -154,7 +154,7 @@ namespace Project_Nhom8
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            BUS_TaiKham.Instance.TimKiemBenhNhan(txtTimKiem.Text, dgvDSTaiKham);
+            //BUS_TaiKham.Instance.TimKiemBenhNhan(txtTimKiem.Text, dgvDSTaiKham);
         }
 
         private void bntThoat_Click(object sender, EventArgs e)

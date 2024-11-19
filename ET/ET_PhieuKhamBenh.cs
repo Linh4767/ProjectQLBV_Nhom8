@@ -25,6 +25,8 @@ namespace ET
             this.ngayKham = ngayKham;
         }
 
+        public ET_PhieuKhamBenh() { }
+
         public string MaPhieuKB { get => maPhieuKB; set => maPhieuKB = value; }
         public int SoPhieu { get => soPhieu; set => soPhieu = value; }
         public string MaBN { get => maBN; set => maBN = value; }
