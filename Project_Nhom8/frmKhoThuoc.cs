@@ -171,6 +171,7 @@ namespace Project_Nhom8
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
+            btnPhatThuocVeKhoa.Enabled = false;
         }
 
         private void btnThemSLThuoc_Click(object sender, EventArgs e)
@@ -371,6 +372,7 @@ namespace Project_Nhom8
         {
             if (dgvKhoThuoc.CurrentRow != null && !dgvKhoThuoc.Rows[dgvKhoThuoc.CurrentRow.Index].IsNewRow)
             {
+                btnPhatThuocVeKhoa.Enabled = true;
                 int dong = dgvKhoThuoc.CurrentCell.RowIndex;
                 txtMaThuoc.Text = dgvKhoThuoc.Rows[dong].Cells[0].Value.ToString();
                 txtTenThuoc.Text = dgvKhoThuoc.Rows[dong].Cells[1].Value.ToString();
@@ -937,6 +939,13 @@ namespace Project_Nhom8
                 // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
                 dtpNgaySX.Value = DateTime.Now;
             }
+        }
+
+        private void btnPhatThuocVeKhoa_Click(object sender, EventArgs e)
+        {
+            string maThuoc = dgvKhoThuoc.CurrentRow.Cells[0].Value.ToString();
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmPhatThuocTheoKhoa(maThuoc));
         }
     }
 }
