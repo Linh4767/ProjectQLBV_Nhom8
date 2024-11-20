@@ -50,5 +50,12 @@ namespace DAL
                                 select ds.MatKhau).FirstOrDefault();
             return matKhauDaLuu == matKhau;
         }
+        public string LayTenNVNhoTenTK(string tenTK)
+        {
+            string tenNV = (from dl in db.NhanViens
+                            where dl.MaNV == tenTK
+                            select dl.TenNV).FirstOrDefault();
+            return tenNV;
+        }
     }
 }

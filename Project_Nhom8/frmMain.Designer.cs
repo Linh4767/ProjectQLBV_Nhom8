@@ -622,6 +622,7 @@
             this.btnTraCuuBNNoiTru.TabIndex = 16;
             this.btnTraCuuBNNoiTru.Text = "Danh sách nội trú";
             this.btnTraCuuBNNoiTru.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTraCuuBNNoiTru.Click += new System.EventHandler(this.btnTraCuuBNNoiTru_Click);
             // 
             // btnTraCuuDonThuoc
             // 
@@ -666,6 +667,7 @@
             this.btnHoaDonDV.TabIndex = 14;
             this.btnHoaDonDV.Text = "Hóa đơn dịch vụ";
             this.btnHoaDonDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHoaDonDV.Click += new System.EventHandler(this.btnHoaDonDV_Click);
             // 
             // btnThongKeDoanhThu
             // 
@@ -688,6 +690,7 @@
             this.btnThongKeDoanhThu.TabIndex = 13;
             this.btnThongKeDoanhThu.Text = "Thống Kê Doanh Thu";
             this.btnThongKeDoanhThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnThongKeDoanhThu.Click += new System.EventHandler(this.btnThongKeDoanhThu_Click);
             // 
             // btnNoiTru
             // 
