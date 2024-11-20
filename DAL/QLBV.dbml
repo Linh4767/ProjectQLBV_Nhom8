@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBV" Class="QLBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=TANTAI;Initial Catalog=QLBV;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=linh\MAYLINH;Initial Catalog=QLBV;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BenhNhan" Member="BenhNhans">
     <Type Name="BenhNhan">
       <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -14,7 +14,6 @@
       <Association Name="BenhNhan_BHYT" Member="BHYT" ThisKey="MSBN" OtherKey="MSBN" Type="BHYT" Cardinality="One" />
       <Association Name="BenhNhan_PhieuKhamBenh" Member="PhieuKhamBenhs" ThisKey="MSBN" OtherKey="MaBN" Type="PhieuKhamBenh" />
       <Association Name="BenhNhan_SoBenhAn" Member="SoBenhAns" ThisKey="MSBN" OtherKey="MaBN" Type="SoBenhAn" />
-      <Association Name="BenhNhan_TheoDoiDieuTri" Member="TheoDoiDieuTris" ThisKey="MSBN" OtherKey="MaBN" Type="TheoDoiDieuTri" />
     </Type>
   </Table>
   <Table Name="dbo.ThuocTheoKhoa" Member="ThuocTheoKhoas">
@@ -52,10 +51,12 @@
     <Type Name="ChiTietDonThuoc">
       <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CachDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Association Name="DonThuoc_ChiTietDonThuoc" Member="DonThuoc" ThisKey="MaDonThuoc" OtherKey="MaDonThuoc" Type="DonThuoc" IsForeignKey="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="KhoThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="KhoThuoc" IsForeignKey="true" />
+      <Association Name="Thuoc_ChiTietDonThuoc" Member="Thuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChuanDoan" Member="ChuanDoans">
@@ -112,6 +113,7 @@
       <Column Name="TrangThai" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="MSPhong" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Association Name="GiuongBenh_PhanGiuong" Member="PhanGiuongs" ThisKey="MaGiuong" OtherKey="MaGiuong" Type="PhanGiuong" />
+      <Association Name="GiuongBenh_TheoDoiDieuTri" Member="TheoDoiDieuTris" ThisKey="MaGiuong" OtherKey="MaGiuong" Type="TheoDoiDieuTri" />
       <Association Name="Phong_GiuongBenh" Member="Phong" ThisKey="MSPhong" OtherKey="MSPhong" Type="Phong" IsForeignKey="true" />
     </Type>
   </Table>
@@ -194,6 +196,7 @@
       <Association Name="PhieuKhamBenh_KhamBenh" Member="KhamBenhs" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="KhamBenh" />
       <Association Name="PhieuKhamBenh_PhanGiuong" Member="PhanGiuongs" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="PhanGiuong" />
       <Association Name="PhieuKhamBenh_SuDungDichVu" Member="SuDungDichVus" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="SuDungDichVu" />
+      <Association Name="PhieuKhamBenh_TheoDoiDieuTri" Member="TheoDoiDieuTris" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="TheoDoiDieuTri" />
       <Association Name="BenhNhan_PhieuKhamBenh" Member="BenhNhan" ThisKey="MaBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
     </Type>
   </Table>
@@ -265,15 +268,21 @@
   </Table>
   <Table Name="dbo.TheoDoiDieuTri" Member="TheoDoiDieuTris">
     <Type Name="TheoDoiDieuTri">
-      <Column Name="MaBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NgayTheoDoi" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ChiSoCanNang" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ChiSoHuyetAp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ChiSoNhipTho" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayTheoDoi" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ChiSoCanNang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChiSoHuyetAp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChiSoNhipTho" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NhietDo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MachDap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DuongHuyet" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="YLenh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
-      <Association Name="BenhNhan_TheoDoiDieuTri" Member="BenhNhan" ThisKey="MaBN" OtherKey="MSBN" Type="BenhNhan" IsForeignKey="true" />
+      <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaTheoDoi" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="GiuongBenh_TheoDoiDieuTri" Member="GiuongBenh" ThisKey="MaGiuong" OtherKey="MaGiuong" Type="GiuongBenh" IsForeignKey="true" />
       <Association Name="NhanVien_TheoDoiDieuTri" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+      <Association Name="PhieuKhamBenh_TheoDoiDieuTri" Member="PhieuKhamBenh" ThisKey="MaPhieuKB" OtherKey="MaPhieuKB" Type="PhieuKhamBenh" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Thuoc" Member="Thuocs">
@@ -296,6 +305,7 @@
       <Column Name="SoLuongNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoLuongHop" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Thuoc_ThuocTheoKhoa" Member="ThuocTheoKhoas" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ThuocTheoKhoa" />
+      <Association Name="Thuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ChiTietDonThuoc" />
     </Type>
   </Table>
 </Database>
