@@ -175,12 +175,11 @@ namespace Project_Nhom8
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            if (cboMaLo.SelectedValue != null)
+            if (cboKhoa.SelectedValue != null)
             {
                 BUS_ThuocTheoKhoa.Instance.TimKiemThuocTheoKhoa(dgvDSThuocTheoKhoa, txtTK.Text, cboKhoa.SelectedValue.ToString());
             }
         }
-
         private void txtNhapVao_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
