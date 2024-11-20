@@ -104,7 +104,11 @@ namespace DAL
                     // Lấy thông tin thuốc từ bảng Thuoc và KhoThuoc với điều kiện mã lô
                     var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == etThuocTheoKhoa.MaThuoc && t.MaLo == etThuocTheoKhoa.MaLo);
                     var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == etThuocTheoKhoa.MaThuoc);
-
+                    if (thuoc.HSD < DateTime.Now)
+                    {
+                        MessageBox.Show("Thuốc đã hết hạn sử dụng, không thể thêm vào khoa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                     if (thuoc == null || khoThuoc == null)
                     {
                         MessageBox.Show("Thuốc hoặc lô thuốc không tồn tại trong kho.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -193,7 +197,11 @@ namespace DAL
                     MessageBox.Show("Thuốc hoặc lô thuốc không tồn tại trong kho.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-
+                if (thuoc.HSD < DateTime.Now)
+                {
+                    MessageBox.Show("Thuốc đã hết hạn sử dụng trả thuốc về kho để xử lý.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
                 // Kiểm tra số lượng hộp yêu cầu có hợp lệ trong kho
                 int soHopTrongThung = thuoc.SoLuongHop.Value;
 
