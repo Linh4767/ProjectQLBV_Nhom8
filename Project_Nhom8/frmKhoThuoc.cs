@@ -819,7 +819,7 @@ namespace Project_Nhom8
                 DialogResult dialog = MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    BUS_Thuoc.Instance.XoaThuoc(txtMaThuoc.Text);
+                    BUS_Thuoc.Instance.XoaThuoc(txtMaThuoc.Text,txtMaLo.Text);
                     BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
                 }
             }
@@ -955,10 +955,6 @@ namespace Project_Nhom8
             string maThuoc = dgvKhoThuoc.CurrentRow.Cells[0].Value.ToString();
             frmMain frmMain = (frmMain)this.ParentForm;
             frmMain.openChildForm(new frmPhatThuocTheoKhoa(maThuoc));
-        private void btnXemHSD_Click(object sender, EventArgs e)
-        {
-            frmMain frmMain = (frmMain)this.ParentForm;
-            frmMain.openChildForm(new frmHanSuDung());
         }
 
         private void btnXoa_Click_1(object sender, EventArgs e)
@@ -981,6 +977,12 @@ namespace Project_Nhom8
                     btnCapNhat.Enabled = false;
                 }
             }
+        }
+
+        private void btnXemHSD_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmHanSuDung());
         }
     }
 }
