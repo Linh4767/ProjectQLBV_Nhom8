@@ -105,7 +105,7 @@ namespace DAL
     #endregion
 		
 		public QLBVDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QLBVConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QLBVConnectionString4, mappingSource)
 		{
 			OnCreated();
 		}

@@ -42,14 +42,7 @@ namespace DAL
                 // Kiểm tra không tìm thấy thuốc
                 if (!thuocList.Any()) return -1; // Không tìm thấy thuốc
 
-                // Xử lý nếu có nhiều thuốc trùng thông tin
-                if (thuocList.Count > 1)
-                {
-                    // Nếu có nhiều thuốc trùng, bạn có thể chọn thuốc đầu tiên hoặc xử lý thêm tùy vào yêu cầu
-                    Console.WriteLine("Có nhiều thuốc trùng thông tin, chọn thuốc đầu tiên.");
-                }
-
-                // Xác định thuốc duy nhất (hoặc thuốc đầu tiên trong danh sách nếu có nhiều)
+                // Chọn thuốc đầu tiên trong danh sách nếu có nhiều bản ghi
                 var thuoc = thuocList.First();
 
                 // Kiểm tra SoLuongHop trước khi tính toán
@@ -59,20 +52,24 @@ namespace DAL
                     return -1; // Trả về lỗi nếu SoLuongHop không hợp lệ
                 }
 
-                // Tìm thuốc trong kho theo mã thuốc và mã lô
-                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc && k.MaLo == maLo);
+                // Tính số lượng đơn vị cần thêm vào kho (sử dụng số lượng đóng gói)
+                int soLuongTang = soLuongThem * (int)thuoc.SoLuongHop; // Dùng quy cách đóng gói để tính số lượng cần thêm
 
-                // Tính số lượng đơn vị cần thêm vào kho
-                int soLuongTang = (int)(soLuongThem * thuoc.SoLuongHop); // Dùng quy cách đóng gói để tính số lượng cần thêm
+                // Tìm tất cả các bản ghi kho thuốc có cùng mã thuốc
+                var khoThuocList = db.KhoThuocs.Where(k => k.MaLo == thuoc.MaLo).ToList();
 
-                if (khoThuoc != null)
+                // Kiểm tra xem có bản ghi kho thuốc nào không, nếu có thì cập nhật số lượng trong kho
+                bool isUpdated = false; // Biến kiểm tra xem có bản ghi nào được cập nhật không
+                foreach (var khoThuoc in khoThuocList)
                 {
-                    // Nếu thuốc đã có trong kho, cộng dồn số lượng
+                    // Cập nhật số lượng thuốc trong kho cho tất cả các mã lô trùng
                     khoThuoc.SoLuongTrongKho += soLuongTang;
+                    isUpdated = true;
                 }
-                else
+
+                // Nếu không có bản ghi kho thuốc nào được cập nhật, thêm mới một bản ghi kho thuốc
+                if (!isUpdated)
                 {
-                    // Nếu chưa có thuốc trong kho, tạo mới bản ghi kho thuốc
                     var khoThuocMoi = new KhoThuoc
                     {
                         MaThuoc = thuoc.MaThuoc,
@@ -82,14 +79,14 @@ namespace DAL
                     db.KhoThuocs.InsertOnSubmit(khoThuocMoi);
                 }
 
-                // Cập nhật tổng số lượng nhập trong bảng Thuoc
+                // Cập nhật số lượng nhập trong bảng Thuoc cho thuốc
                 thuoc.SoLuongNhap += soLuongThem;
 
-                // Lưu thay đổi vào database
+                // Lưu thay đổi vào database (cập nhật kho thuốc và thuốc)
                 db.SubmitChanges();
 
-                // Trả về số lượng thuốc mới trong kho
-                return khoThuoc?.SoLuongTrongKho ?? soLuongTang;
+                // Kiểm tra lại sau khi lưu
+                return khoThuocList.Sum(k => k.SoLuongTrongKho); // Trả về tổng số lượng trong kho của tất cả các bản ghi kho thuốc
             }
         }
 
@@ -100,56 +97,62 @@ namespace DAL
 
 
 
-
-
-
-        //Xóa thuốc trong kho 
         // Phương thức xóa lượng thuốc trong kho
-        public int? XoaThuocTrongKho(string maThuoc, int soLuongXoa)
+        public int XoaNhieuThuocTrongKho(List<Tuple<string, string>> danhSachThuoc)
         {
-            // Khởi tạo context LINQ to SQL
-            using (var db = new QLBVDataContext()) // QLBVDataContext là lớp tự động sinh ra từ .dbml
+            using (var db = new QLBVDataContext()) // Gọi QLBVDataContext ở DAL
             {
-                // Lấy thông tin thuốc từ bảng Thuoc
-                var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
-                if (thuoc == null) return -1; // Nếu không tìm thấy thuốc, trả về -1 để báo lỗi
+                int soLuongThuocXoa = 0;
 
-                // Tìm thuốc trong kho
-                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
-                if (khoThuoc == null) return -1; // Nếu thuốc không có trong kho, trả về -1 để báo lỗi
+                foreach (var item in danhSachThuoc)
+                {
+                    string maThuoc = item.Item1;
+                    string maLo = item.Item2;
 
-                // Tính số lượng đơn vị cần xóa khỏi kho
-                int soLuongGiam = 0;
-                if (thuoc.LoaiThuoc == "Viên nén" || thuoc.LoaiThuoc == "Viên Nén")
-                {
-                    soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT * thuoc.SoLuongQCDG);
-                }
-                else
-                {
-                    soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT);
+                    var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+                    if (thuoc == null) continue; // Nếu không tìm thấy thuốc, bỏ qua
+
+                    var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc && k.MaLo == maLo);
+                    if (khoThuoc == null) continue; // Nếu không tìm thấy kho, bỏ qua
+
+                    int? soLuongXoa = thuoc.SoLuongNhap;
+                    int? soLuongHop = thuoc.SoLuongHop;
+
+                    if (khoThuoc.SoLuongTrongKho >= soLuongXoa)
+                    {
+                        khoThuoc.SoLuongTrongKho -= soLuongXoa * soLuongHop;
+                    }
+                    else
+                    {
+                        khoThuoc.SoLuongTrongKho = 0;
+                    }
+
+                    thuoc.SoLuongNhap = 0;
+
+                    if (khoThuoc.SoLuongTrongKho == 0)
+                    {
+                        db.KhoThuocs.DeleteOnSubmit(khoThuoc);
+                    }
+
+                    soLuongThuocXoa++;
                 }
 
-                int? soLuongTrongKhoMoi;
-                if (khoThuoc.SoLuongTrongKho >= soLuongGiam)
-                {
-                    // Nếu lượng thuốc trong kho lớn hơn hoặc bằng lượng cần xóa, cập nhật số lượng
-                    khoThuoc.SoLuongTrongKho -= soLuongGiam;
-                    soLuongTrongKhoMoi = khoThuoc.SoLuongTrongKho;
-                }
-                else
-                {
-                    // Nếu số lượng xóa lớn hơn số lượng hiện có, xóa bản ghi thuốc khỏi kho
-                    db.KhoThuocs.DeleteOnSubmit(khoThuoc);
-                    soLuongTrongKhoMoi = 0;
-                }
-
-                // Lưu thay đổi vào cơ sở dữ liệu
                 db.SubmitChanges();
-
-                // Trả về số lượng thuốc mới trong kho hoặc 0 nếu đã xóa thuốc
-                return soLuongTrongKhoMoi;
+                return soLuongThuocXoa;
             }
         }
+
+            public List<Tuple<string, string>> LayDanhSachMaLo(string maThuoc, QLBVDataContext db)
+        {
+            // Trả về danh sách các cặp (MaThuoc, MaLo) của thuốc từ kho
+            return db.KhoThuocs
+                     .Where(k => k.MaThuoc == maThuoc && k.SoLuongTrongKho > 0) // Kiểm tra số lượng trong kho > 0
+                     .Select(k => new Tuple<string, string>(k.MaThuoc, k.MaLo)) // Chọn MaThuoc và MaLo
+                     .ToList();
+        }
+
+
+
 
 
     }
