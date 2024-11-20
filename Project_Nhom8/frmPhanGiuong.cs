@@ -251,7 +251,37 @@ namespace Project_Nhom8
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            BUS_PhanGiuong.Instance.TimKiemSDDVTheoTen(dgvPhanGiuong, txtTimKiem.Text, dtpNgay.Value);
+            BUS_PhanGiuong.Instance.TimKiemSDDVTheoTen(dgvPhanGiuong, txtTimKiem.Text);
+        }
+
+        private void btnTheoDoiDieuTri_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmTheoDoiDieuTri());
+        }
+
+        private void txtGhiChu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && !char.IsWhiteSpace(e.KeyChar))
+            {
+                // Hủy việc nhập ký tự
+                e.Handled = true;
+            }
+        }
+
+        private void txtGhiChu_TextChanged(object sender, EventArgs e)
+        {
+            if (txtGhiChu.Text.Length > 2000)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtGhiChu.Text = txtGhiChu.Text.Substring(0, 2000);
+
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtGhiChu.SelectionStart = txtGhiChu.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 2000 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

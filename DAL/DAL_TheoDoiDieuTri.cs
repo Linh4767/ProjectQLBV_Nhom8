@@ -202,7 +202,7 @@ namespace DAL
         //Thêm theo dõi
         public bool ThemTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (db.TheoDoiDieuTris.Any(theoDoi => theoDoi.MaGiuong == et_theodoi.MaGiuong && theoDoi.MaPhieuKB == et_theodoi.MaPKB && theoDoi.NgayTheoDoi == et_theodoi.NgayTheoDoi))
+            if (db.TheoDoiDieuTris.Any(theoDoi => theoDoi.MaPhieuKB == et_theodoi.MaPKB && theoDoi.NgayTheoDoi == et_theodoi.NgayTheoDoi && theoDoi.MaTheoDoi == et_theodoi.MaTheoDoi))
             {
                 return false;
             }
@@ -240,15 +240,15 @@ namespace DAL
             {
                 try
                 {
-                    theoDoi.MaNV = et_theodoi.MaNV;
-                    theoDoi.ChiSoCanNang = theoDoi.ChiSoCanNang;
-                    theoDoi.ChiSoHuyetAp = theoDoi.ChiSoHuyetAp;
-                    theoDoi.ChiSoNhipTho = theoDoi.ChiSoNhipTho;
-                    theoDoi.NhietDo = theoDoi.NhietDo;
-                    theoDoi.MachDap = theoDoi.MachDap;
-                    theoDoi.DuongHuyet = theoDoi.DuongHuyet;
-                    theoDoi.YLenh = theoDoi.YLenh;
-                    theoDoi.NgayTheoDoi = theoDoi.NgayTheoDoi;
+                    theoDoi.MaNV = et_theodoi.MaNV;          
+                    theoDoi.ChiSoCanNang = et_theodoi.ChiSoCanNang;
+                    theoDoi.ChiSoHuyetAp = et_theodoi.ChiSoHuyetAp;
+                    theoDoi.ChiSoNhipTho = et_theodoi.ChiSoNhipTho;
+                    theoDoi.NhietDo = et_theodoi.NhietDo;
+                    theoDoi.MachDap = et_theodoi.MachDap;
+                    theoDoi.DuongHuyet = et_theodoi.DuongHuyet;
+                    theoDoi.YLenh = et_theodoi.YLenh;
+                    theoDoi.NgayTheoDoi = et_theodoi.NgayTheoDoi;
                     db.SubmitChanges();
                     return true;
                 }
@@ -297,6 +297,23 @@ namespace DAL
                 return false; // Ngày theo dõi này đã tồn tại
             }
             return true;
+        }
+
+        //Tìm kiếm theo tên bệnh nhân, tên phòng theo ngày
+        public IQueryable TimKiemTheoTen(string ten)
+        {
+            IQueryable ds = (from td in db.TheoDoiDieuTris
+                             join pkb in db.PhieuKhamBenhs
+                             on td.MaPhieuKB equals pkb.MaPhieuKB
+                             join bn in db.BenhNhans
+                             on pkb.MaBN equals bn.MSBN
+                             join pg in db.PhanGiuongs
+                             on td.MaGiuong equals pg.MaGiuong
+                             join p in db.Phongs
+                             on pg.MaPhong equals p.MSPhong
+                             where (bn.TenBN.Contains(ten) || p.TenPhong.Contains(ten))
+                             select new { td.MaPhieuKB, td.MaGiuong, td.NgayTheoDoi, td.ChiSoCanNang, td.NhietDo, td.ChiSoNhipTho, td.ChiSoHuyetAp, td.MachDap, td.DuongHuyet, td.YLenh, td.MaNV, td.MaTheoDoi }).Distinct();
+            return ds;
         }
 
     }

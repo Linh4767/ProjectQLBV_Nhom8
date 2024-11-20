@@ -23,34 +23,56 @@ namespace Project_Nhom8
         {
             string pkb = cboBN.SelectedValue.ToString();
             DateTime ngayTheoDoi = dtpNgayTheoDoi.Value.Date + dtpThoiGianTheoDoi.Value.TimeOfDay;
-
             DialogResult ret = MessageBox.Show("Bạn có muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (ret == DialogResult.Yes)
             {
-                if(cboNhanVien.SelectedValue != null)
+                if (cboNhanVien.SelectedValue != null)
                 {
                     //Lấy tên mã nhân viên
                     string input = cboNhanVien.SelectedValue.ToString();
+                    if (float.TryParse(txtCanNang.Text, out float chiSoCanNang))
+                    {
+                        // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                        string formattedValue = chiSoCanNang.ToString("0.00");
 
-                    BUS_TheoDoiDieuTri.Instance.SuaTheoDoi(new ET_TheoDoiDieuTri(pkb, ngayTheoDoi, int.Parse(txtCanNang.Text), int.Parse(txtHuyetAp.Text), int.Parse(txtNhipTho.Text), int.Parse(txtNhietDo.Text), int.Parse(txtMachDap.Text), int.Parse(txtDuongHuyet.Text), txtYLenh.Text, input, cboGiuong.SelectedValue.ToString(), txtMaTheoDoi.Text));
+                        // Đặt lại giá trị đã định dạng vào TextBox
+                        txtCanNang.Text = formattedValue;
+                    }
+                    if (float.TryParse(txtNhietDo.Text, out float nhietDo))
+                    {
+                        // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                        string formattedValue = nhietDo.ToString("0.00");
+
+                        // Đặt lại giá trị đã định dạng vào TextBox
+                        txtNhietDo.Text = formattedValue;
+                    }
+                    if (float.TryParse(txtDuongHuyet.Text, out float duongHuyet))
+                    {
+                        // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                        string formattedValue = duongHuyet.ToString("0.00");
+
+                        // Đặt lại giá trị đã định dạng vào TextBox
+                        txtDuongHuyet.Text = formattedValue;
+                    }
+                    BUS_TheoDoiDieuTri.Instance.SuaTheoDoi(new ET_TheoDoiDieuTri(pkb, dtpNgayTheoDoi.Value.Date + dtpThoiGianTheoDoi.Value.TimeOfDay, txtCanNang.Text, txtHuyetAp.Text, txtNhipTho.Text, txtNhietDo.Text, txtMachDap.Text, txtDuongHuyet.Text, txtYLenh.Text, input, cboGiuong.SelectedValue.ToString(), txtMaTheoDoi.Text));
                     BUS_TheoDoiDieuTri.Instance.HienThiTheoDoi(dgvTheoDoiDT, dtpNgay.Value);
                 }
                 else
                 {
                     MessageBox.Show("Phải có mã nhân viên mới cập nhật được !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 }
-              
+
             }
         }
 
-    
+
 
 
         private void frmTheoDoiDieuTri_Load(object sender, EventArgs e)
         {
             dgvTheoDoiDT.ColumnHeadersHeight = 40;
             BUS_TheoDoiDieuTri.Instance.HienThiTheoDoi(dgvTheoDoiDT, dtpNgay.Value);
-            
+
             dtpThoiGianTheoDoi.Value = DateTime.Now;
             cboBN.TextChanged += cboBN_TextChanged;
             cboBN.DropDownWidth = 150;
@@ -86,22 +108,22 @@ namespace Project_Nhom8
 
         private void cboGiuong_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboGiuong.SelectedValue != null)
-            {               
+            if (cboGiuong.SelectedValue != null)
+            {
                 txtPhongBenh.Text = BUS_TheoDoiDieuTri.Instance.HienThiPhong(cboGiuong.SelectedValue.ToString());
                 BUS_TheoDoiDieuTri.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVien, dtpNgayTheoDoi.Value, dtpThoiGianTheoDoi.Value, cboGiuong.SelectedValue.ToString());
                 txtMaTheoDoi.Text = BUS_TheoDoiDieuTri.Instance.TaoMaTheoDoi(cboBN.SelectedValue.ToString(), cboGiuong.SelectedValue.ToString());
             }
-            
+
         }
 
         private void dtpNgayTheoDoi_ValueChanged(object sender, EventArgs e)
         {
-            if(cboGiuong.SelectedValue != null)
+            if (cboGiuong.SelectedValue != null)
             {
                 BUS_TheoDoiDieuTri.Instance.LayNhanVienTheoPhanCongVaPhong(cboNhanVien, dtpNgayTheoDoi.Value, dtpThoiGianTheoDoi.Value, cboGiuong.SelectedValue.ToString());
             }
-            
+
         }
 
         private void dtpThoiGianTheoDoi_ValueChanged(object sender, EventArgs e)
@@ -114,38 +136,77 @@ namespace Project_Nhom8
 
         private void btnThemThoiDoi_Click(object sender, EventArgs e)
         {
-            string pkb = cboBN.SelectedValue.ToString();    
+            string pkb = cboBN.SelectedValue.ToString();
             DateTime ngayTheoDoi = dtpNgayTheoDoi.Value.Date + dtpThoiGianTheoDoi.Value.TimeOfDay;
-            if (BUS_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(pkb, cboGiuong.SelectedValue.ToString(), ngayTheoDoi))
+            if (cboNhanVien.SelectedValue != null)
             {
-                DialogResult ret = MessageBox.Show("Bạn có muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (ret == DialogResult.Yes)
+                if (BUS_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(pkb, cboGiuong.SelectedValue.ToString(), ngayTheoDoi))
                 {
-                    //Lấy tên mã nhân viên
-                    string input = cboNhanVien.SelectedValue.ToString();
-                    BUS_TheoDoiDieuTri.Instance.ThemTheoDoi(new ET_TheoDoiDieuTri(pkb, dtpNgayTheoDoi.Value.Date + dtpThoiGianTheoDoi.Value.TimeOfDay, int.Parse(txtCanNang.Text), int.Parse(txtHuyetAp.Text), int.Parse(txtNhipTho.Text), int.Parse(txtNhietDo.Text), int.Parse(txtMachDap.Text), int.Parse(txtDuongHuyet.Text), txtYLenh.Text, input, cboGiuong.SelectedValue.ToString(), txtMaTheoDoi.Text));
-                    BUS_TheoDoiDieuTri.Instance.HienThiTheoDoi(dgvTheoDoiDT, dtpNgay.Value);
+                    DialogResult ret = MessageBox.Show("Bạn có muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
+                    {
+                        if (float.TryParse(txtCanNang.Text, out float chiSoCanNang))
+                        {
+                            // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                            string formattedValue = chiSoCanNang.ToString("0.00");
+
+                            // Đặt lại giá trị đã định dạng vào TextBox
+                            txtCanNang.Text = formattedValue;
+                        }
+                        if (float.TryParse(txtNhietDo.Text, out float nhietDo))
+                        {
+                            // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                            string formattedValue = nhietDo.ToString("0.00");
+
+                            // Đặt lại giá trị đã định dạng vào TextBox
+                            txtNhietDo.Text = formattedValue;
+                        }
+                        if (float.TryParse(txtDuongHuyet.Text, out float duongHuyet))
+                        {
+                            // Định dạng giá trị float để chỉ hiển thị 2 chữ số sau dấu phẩy
+                            string formattedValue = duongHuyet.ToString("0.00");
+
+                            // Đặt lại giá trị đã định dạng vào TextBox
+                            txtDuongHuyet.Text = formattedValue;
+                        }
+                        //Lấy tên mã nhân viên
+                        string input = cboNhanVien.SelectedValue.ToString();
+                        BUS_TheoDoiDieuTri.Instance.ThemTheoDoi(new ET_TheoDoiDieuTri(pkb, dtpNgayTheoDoi.Value.Date + dtpThoiGianTheoDoi.Value.TimeOfDay, txtCanNang.Text, txtHuyetAp.Text, txtNhipTho.Text, txtNhietDo.Text, txtMachDap.Text, txtDuongHuyet.Text, txtYLenh.Text, input, cboGiuong.SelectedValue.ToString(), txtMaTheoDoi.Text));
+                        BUS_TheoDoiDieuTri.Instance.HienThiTheoDoi(dgvTheoDoiDT, dtpNgay.Value);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ngày theo dõi không thể nhỏ hơn ngày nhận giường hoặc Đã trả giường thì không thể theo dõi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Ngày theo dõi không thể nhỏ hơn ngày nhận giường hoặc Đã trả giường thì không thể theo dõi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Phải có mã nhân viên mới thêm được !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-
+            cboBN.Enabled = true;
+            cboGiuong.Enabled = true;
+            cboNhanVien.Enabled = true;
+            btnThemThoiDoi.Enabled = false;
+            btnSuaTD.Enabled = false;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-
+            DialogResult kq = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (kq == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
+            BUS_TheoDoiDieuTri.Instance.TimKiemTheoTen(dgvTheoDoiDT, txtTimKiem.Text);
         }
 
         private void dgvTheoDoiDT_Click(object sender, EventArgs e)
@@ -153,7 +214,7 @@ namespace Project_Nhom8
             if (dgvTheoDoiDT.CurrentRow != null && !dgvTheoDoiDT.Rows[dgvTheoDoiDT.CurrentRow.Index].IsNewRow)
             {
                 int dong = dgvTheoDoiDT.CurrentCell.RowIndex;
-                
+
                 cboBN.SelectedValue = dgvTheoDoiDT.Rows[dong].Cells[0].Value.ToString();
 
 
@@ -187,18 +248,18 @@ namespace Project_Nhom8
                 //    btnSua.Enabled = true;
                 //    cboGiuongBenh.Enabled = false;
                 //    btnLamMoi.Enabled = true;
+                cboBN.Enabled = false;
+                cboGiuong.Enabled = false;
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = true;   
             }
-            }
+        }
 
         private void label9_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtMachDapDV_TextChanged(object sender, EventArgs e)
         {
@@ -212,7 +273,28 @@ namespace Project_Nhom8
 
         private void txtMachDap_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtMachDap.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtMachDap.Text = txtMachDap.Text.Substring(0, 30);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtMachDap.SelectionStart = txtMachDap.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void txtNhietDoDV_TextChanged(object sender, EventArgs e)
@@ -227,7 +309,28 @@ namespace Project_Nhom8
 
         private void txtNhietDo_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtNhietDo.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtNhietDo.Text = txtNhietDo.Text.Substring(0, 30);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtNhietDo.SelectionStart = txtNhietDo.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void txtChuanDoan_TextChanged(object sender, EventArgs e)
@@ -252,7 +355,7 @@ namespace Project_Nhom8
 
         private void cboNhanVien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboBN.SelectedValue != null)
+            if (cboBN.SelectedValue != null)
             {
                 txtMaTheoDoi.Text = BUS_TheoDoiDieuTri.Instance.TaoMaTheoDoi(cboBN.SelectedValue.ToString(), cboGiuong.SelectedValue.ToString());
             }
@@ -265,7 +368,17 @@ namespace Project_Nhom8
 
         private void txtYLenh_TextChanged(object sender, EventArgs e)
         {
+            if (txtYLenh.Text.Length > 500)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtYLenh.Text = txtYLenh.Text.Substring(0, 500);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtYLenh.SelectionStart = txtYLenh.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 500 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void label23_Click(object sender, EventArgs e)
@@ -275,7 +388,28 @@ namespace Project_Nhom8
 
         private void txtNhipTho_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtNhipTho.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtNhipTho.Text = txtNhipTho.Text.Substring(0, 30);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtNhipTho.SelectionStart = txtNhipTho.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void label22_Click(object sender, EventArgs e)
@@ -285,7 +419,28 @@ namespace Project_Nhom8
 
         private void txtHuyetAp_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtHuyetAp.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtHuyetAp.Text = txtHuyetAp.Text.Substring(0, 30);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtHuyetAp.SelectionStart = txtHuyetAp.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void label20_Click(object sender, EventArgs e)
@@ -295,7 +450,28 @@ namespace Project_Nhom8
 
         private void txtCanNang_TextChanged(object sender, EventArgs e)
         {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtCanNang.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtCanNang.Text = txtCanNang.Text.Substring(0, 30);
 
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtCanNang.SelectionStart = txtCanNang.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -330,27 +506,208 @@ namespace Project_Nhom8
 
         private void cboBN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboBN.SelectedValue != null)
+            if (cboBN.SelectedValue != null)
             {
                 BUS_TheoDoiDieuTri.Instance.HienThiComboboxGiuong(cboGiuong, cboBN.SelectedValue.ToString());
                 txtChuanDoan.Text = BUS_TheoDoiDieuTri.Instance.HienThiChuanDoan(cboBN.SelectedValue.ToString());
             }
-           
+
         }
 
         private void cboBN_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cboBN_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
+
         }
 
         private void cboBN_DropDown(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void txtCanNang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+
+            // Kiểm tra nếu ký tự nhập vào là dấu chấm (.) và đã có dấu chấm trong TextBox
+            if (e.KeyChar == '.' && txtCanNang.Text.Contains("."))
+            {
+                e.Handled = true; // Ngăn nhập thêm dấu chấm
+            }
+        }
+
+        private void txtDuongHuyet_TextChanged(object sender, EventArgs e)
+        {
+            var textbox = new List<string> { txtCanNang.Text, txtHuyetAp.Text, txtNhietDo.Text, txtNhipTho.Text, txtDuongHuyet.Text, txtMachDap.Text };
+            if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
+            {
+                btnThemThoiDoi.Enabled = true;
+                btnSuaTD.Enabled = false;
+            }
+            else
+            {
+                btnThemThoiDoi.Enabled = false;
+                btnSuaTD.Enabled = false;
+            }
+            if (txtDuongHuyet.Text.Length > 30)
+            {
+                // Cắt chuỗi về 10 ký tự
+                txtDuongHuyet.Text = txtDuongHuyet.Text.Substring(0, 30);
+
+                // Đặt con trỏ chuột ở cuối văn bản
+                txtDuongHuyet.SelectionStart = txtDuongHuyet.Text.Length;
+
+                // Hiển thị thông báo cảnh báo
+                MessageBox.Show("Chỉ được nhập tối đa 30 ký tự", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtNhietDo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+
+            // Kiểm tra nếu ký tự nhập vào là dấu chấm (.) và đã có dấu chấm trong TextBox
+            if (e.KeyChar == '.' && txtNhietDo.Text.Contains("."))
+            {
+                e.Handled = true; // Ngăn nhập thêm dấu chấm
+            }
+        }
+
+        private void txtDuongHuyet_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+
+            // Kiểm tra nếu ký tự nhập vào là dấu chấm (.) và đã có dấu chấm trong TextBox
+            if (e.KeyChar == '.' && txtDuongHuyet.Text.Contains("."))
+            {
+                e.Handled = true; // Ngăn nhập thêm dấu chấm
+            }
+        }
+
+        private void txtNhipTho_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+        }
+
+        private void txtMachDap_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+        }
+
+        private void txtHuyetAp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Ngăn ký tự không hợp lệ
+            }
+        }
+
+        private void txtCanNang_Leave(object sender, EventArgs e)
+        {
+            // Kiểm tra giá trị của txtSoLuong
+            if (float.TryParse(txtCanNang.Text, out float canNang))
+            {
+                if (canNang <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtCanNang.Text = "1";
+            }
+        }
+
+        private void txtNhietDo_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtNhietDo.Text, out float nhietDo))
+            {
+                if (nhietDo <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtNhietDo.Text = "1";
+            }
+        }
+
+        private void txtNhipTho_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtNhipTho.Text, out float nhipTho))
+            {
+                if (nhipTho <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtNhipTho.Text = "1";
+            }
+        }
+
+        private void txtMachDap_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtMachDap.Text, out float machDap))
+            {
+                if (machDap <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtMachDap.Text = "1";
+            }
+        }
+
+        private void txtHuyetAp_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtHuyetAp.Text, out float huyetAp))
+            {
+                if (huyetAp <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtHuyetAp.Text = "1";
+            }
+        }
+
+        private void txtDuongHuyet_Leave(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtDuongHuyet.Text, out float duongHuyet))
+            {
+                if (duongHuyet <= 0)
+                {
+                    MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                txtDuongHuyet.Text = "1";
+            }
+        }
+
+        private void dtpNgayTheoDoi_Leave(object sender, EventArgs e)
+        {
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngayTD = dtpNgayTheoDoi.Value;
+
+            // So sánh với ngày hiện tại
+            if (ngayTD > DateTime.Now)
+            {
+                // Hiển thị thông báo lỗi
+                MessageBox.Show("Ngày theo dõi không được lớn hơn ngày hiện tại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
+                dtpNgayTheoDoi.Value = DateTime.Now;
+            }
         }
     }
 }

@@ -258,11 +258,8 @@ namespace DAL
         }
 
 
-
-
-
         //Tìm kiếm theo tên bệnh nhân, tên phòng theo ngày
-        public IQueryable TimKiemTheoTen(string tenBN, DateTime dtp)
+        public IQueryable TimKiemTheoTen(string tenBN)
         {
             IQueryable ds = (from pg in db.PhanGiuongs
                             join pkb in db.PhieuKhamBenhs
@@ -277,7 +274,7 @@ namespace DAL
                             on k.MaKhoa equals cn.MaKhoa
                             join nv in db.NhanViens
                             on cn.MaChuyenNganh equals nv.MaChuyenNganh
-                            where (bn.TenBN.Contains(tenBN) || p.TenPhong.Contains(tenBN)) && pg.NgayNhan.Date == dtp.Date
+                            where (bn.TenBN.Contains(tenBN) || p.TenPhong.Contains(tenBN))
                             select new { bn.MSBN, pg.MaPhieuKB, pg.MaPhong, pg.MaGiuong, p.MaKhoa, pg.NgayNhan, pg.NgayTra, pg.GhiChu, MaNVTH = pg.MaNVYeuCau }).Distinct();
             return ds;
         }

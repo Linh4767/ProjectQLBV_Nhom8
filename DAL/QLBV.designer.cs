@@ -6225,17 +6225,17 @@ namespace DAL
 		
 		private System.DateTime _NgayTheoDoi;
 		
-		private System.Nullable<int> _ChiSoCanNang;
+		private string _ChiSoCanNang;
 		
-		private System.Nullable<int> _ChiSoHuyetAp;
+		private string _ChiSoHuyetAp;
 		
-		private System.Nullable<int> _ChiSoNhipTho;
+		private string _ChiSoNhipTho;
 		
-		private System.Nullable<int> _NhietDo;
+		private string _NhietDo;
 		
-		private System.Nullable<int> _MachDap;
+		private string _MachDap;
 		
-		private System.Nullable<int> _DuongHuyet;
+		private string _DuongHuyet;
 		
 		private string _YLenh;
 		
@@ -6259,17 +6259,17 @@ namespace DAL
     partial void OnMaPhieuKBChanged();
     partial void OnNgayTheoDoiChanging(System.DateTime value);
     partial void OnNgayTheoDoiChanged();
-    partial void OnChiSoCanNangChanging(System.Nullable<int> value);
+    partial void OnChiSoCanNangChanging(string value);
     partial void OnChiSoCanNangChanged();
-    partial void OnChiSoHuyetApChanging(System.Nullable<int> value);
+    partial void OnChiSoHuyetApChanging(string value);
     partial void OnChiSoHuyetApChanged();
-    partial void OnChiSoNhipThoChanging(System.Nullable<int> value);
+    partial void OnChiSoNhipThoChanging(string value);
     partial void OnChiSoNhipThoChanged();
-    partial void OnNhietDoChanging(System.Nullable<int> value);
+    partial void OnNhietDoChanging(string value);
     partial void OnNhietDoChanged();
-    partial void OnMachDapChanging(System.Nullable<int> value);
+    partial void OnMachDapChanging(string value);
     partial void OnMachDapChanged();
-    partial void OnDuongHuyetChanging(System.Nullable<int> value);
+    partial void OnDuongHuyetChanging(string value);
     partial void OnDuongHuyetChanged();
     partial void OnYLenhChanging(string value);
     partial void OnYLenhChanged();
@@ -6333,8 +6333,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoCanNang", DbType="Int")]
-		public System.Nullable<int> ChiSoCanNang
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoCanNang", DbType="NVarChar(30)")]
+		public string ChiSoCanNang
 		{
 			get
 			{
@@ -6353,8 +6353,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoHuyetAp", DbType="Int")]
-		public System.Nullable<int> ChiSoHuyetAp
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoHuyetAp", DbType="NVarChar(30)")]
+		public string ChiSoHuyetAp
 		{
 			get
 			{
@@ -6373,8 +6373,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoNhipTho", DbType="Int")]
-		public System.Nullable<int> ChiSoNhipTho
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiSoNhipTho", DbType="NVarChar(30)")]
+		public string ChiSoNhipTho
 		{
 			get
 			{
@@ -6393,8 +6393,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhietDo", DbType="Int")]
-		public System.Nullable<int> NhietDo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhietDo", DbType="NVarChar(30)")]
+		public string NhietDo
 		{
 			get
 			{
@@ -6413,8 +6413,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MachDap", DbType="Int")]
-		public System.Nullable<int> MachDap
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MachDap", DbType="NVarChar(30)")]
+		public string MachDap
 		{
 			get
 			{
@@ -6433,8 +6433,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DuongHuyet", DbType="Int")]
-		public System.Nullable<int> DuongHuyet
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DuongHuyet", DbType="NVarChar(30)")]
+		public string DuongHuyet
 		{
 			get
 			{

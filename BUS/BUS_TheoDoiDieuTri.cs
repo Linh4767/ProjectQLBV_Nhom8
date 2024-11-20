@@ -157,5 +157,11 @@ namespace BUS
             // Gọi phương thức KiemTraHoanThienTraGiuong từ lớp DAL
             return DAL_TheoDoiDieuTri.Instance.KiemTraKhiSuaNgayTheoDoi(maPKB, maGiuong, ngayTheoDoi);
         }
+
+        //Tìm kiếm
+        public void TimKiemTheoTen(DataGridView dgv, string ten)
+        {
+            dgv.DataSource = DAL_TheoDoiDieuTri.Instance.TimKiemTheoTen(ten);
+        }
     }
 }

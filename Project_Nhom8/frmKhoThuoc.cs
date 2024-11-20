@@ -264,6 +264,11 @@ namespace Project_Nhom8
                 cboHSD.Items.Add("36 tháng");
                 cboHSD.Items.Add("48 tháng");
                 cboHSD.Items.Add("60 tháng");
+                cboHSD.SelectedIndex = 0;
+
+                cboSLTieuChuan.Items.Clear();
+                cboSLTieuChuan.Items.Add("");
+                cboSLTieuChuan.SelectedIndex = 0;
             }
 
             else if (cboLoaiThuoc.SelectedIndex == 2)
@@ -287,7 +292,10 @@ namespace Project_Nhom8
                 cboHSD.Items.Add("36 tháng");
                 cboHSD.Items.Add("48 tháng");
                 cboHSD.Items.Add("60 tháng");
-
+                cboHSD.SelectedIndex = 0;
+                cboSLTieuChuan.Items.Clear();
+                cboSLTieuChuan.Items.Add("");
+                cboSLTieuChuan.SelectedIndex = 0;
             }
             else
             {
@@ -307,6 +315,10 @@ namespace Project_Nhom8
                 cboHSD.Items.Add("36 tháng");
                 cboHSD.Items.Add("48 tháng");
                 cboHSD.Items.Add("60 tháng");
+                cboHSD.SelectedIndex = 0;
+                cboSLTieuChuan.Items.Clear();
+                cboSLTieuChuan.Items.Add("10");
+                cboSLTieuChuan.SelectedIndex = 0;
             }
         }
 
@@ -727,9 +739,9 @@ namespace Project_Nhom8
             }
             if (int.TryParse(txtSLThuocNhapVao.Text, out int slTNV))
             {
-                if (slTNV < 0 || slTNV > 1000)
+                if (slTNV < 0)
                 {
-                    MessageBox.Show("Số lượng thuốc được nhập chỉ từ 1 đến 1000", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Số lượng thuốc được nhập không được âm !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtSLThuocNhapVao.Text = "1";
                 }
             }
@@ -749,7 +761,7 @@ namespace Project_Nhom8
         {
             if (float.TryParse(txtDonGia.Text, out float donGia))
             {
-                if (donGia > 0)
+                if (donGia < 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtDonGia.Text = "1000000000";
@@ -821,6 +833,11 @@ namespace Project_Nhom8
                     cboSLDVT.Items.Clear();
                     cboSLDVT.Items.Add("1");
                     cboSLDVT.SelectedIndex = 0;
+                    cboSLDVT.SelectedIndex = 0;
+
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("");
+                    cboSLTieuChuan.SelectedIndex = 0;
                 }
             }
             else if (cboLoaiThuoc.SelectedIndex == 2)
@@ -831,15 +848,25 @@ namespace Project_Nhom8
                     cboSLDVT.Items.Clear();
                     cboSLDVT.Items.Add("1");
                     cboSLDVT.SelectedIndex = 0;
+                    cboSLDVT.SelectedIndex = 0;
+                    cboSLTieuChuan.Items.Clear();
+                    cboSLTieuChuan.Items.Add("");
+                    cboSLTieuChuan.SelectedIndex = 0;
+
                 }
                 else
                 {
                     cboSLDVT.Items.Clear();
                     cboSLDVT.Items.Add("20");
                     cboSLDVT.SelectedIndex = 0;
+                    cboSLDVT.SelectedIndex = 0;
+                    cboSLTieuChuan.Items.Clear();      
+                    cboSLTieuChuan.Items.Add("");
+                    cboSLTieuChuan.SelectedIndex = 0;
+
                 }
             }
-            else
+            else if (cboLoaiThuoc.SelectedIndex == 0)
             {
                 if (cboDVT.SelectedIndex == 0)
                 {
@@ -894,6 +921,22 @@ namespace Project_Nhom8
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dtpNgaySX_Leave(object sender, EventArgs e)
+        {
+            // Lấy giá trị từ DateTimePicker
+            DateTime ngaySX = dtpNgaySX.Value;
+
+            // So sánh với ngày hiện tại
+            if (ngaySX > DateTime.Now)
+            {
+                // Hiển thị thông báo lỗi
+                MessageBox.Show("Ngày sản xuất không được lớn hơn ngày hiện tại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
+                dtpNgaySX.Value = DateTime.Now;
+            }
         }
     }
 }

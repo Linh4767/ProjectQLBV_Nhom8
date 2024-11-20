@@ -117,9 +117,9 @@ namespace BUS
             return DAL_PhanGiuong.Instance.KiemTraCoPhanGiuongMoiKhong(maPhieuKB,maGiuong,ngayNhan);
         }
 
-        public void TimKiemSDDVTheoTen(DataGridView dgv, string tenBN, DateTime dtp)
+        public void TimKiemSDDVTheoTen(DataGridView dgv, string tenBN)
         {
-            dgv.DataSource = DAL_PhanGiuong.Instance.TimKiemTheoTen(tenBN, dtp);
+            dgv.DataSource = DAL_PhanGiuong.Instance.TimKiemTheoTen(tenBN);
         }
     }
 }

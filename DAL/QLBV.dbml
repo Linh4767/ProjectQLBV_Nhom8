@@ -270,12 +270,12 @@
     <Type Name="TheoDoiDieuTri">
       <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="NgayTheoDoi" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ChiSoCanNang" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ChiSoHuyetAp" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ChiSoNhipTho" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NhietDo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MachDap" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DuongHuyet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChiSoCanNang" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ChiSoHuyetAp" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ChiSoNhipTho" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NhietDo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MachDap" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DuongHuyet" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="YLenh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
