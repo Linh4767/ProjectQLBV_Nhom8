@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnThoat = new Guna.UI2.WinForms.Guna2Button();
             this.pnlQuanTri = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnPhatThuocTheoKhoa = new Guna.UI2.WinForms.Guna2Button();
             this.btnDichVu = new Guna.UI2.WinForms.Guna2Button();
             this.btnKhoThuoc = new Guna.UI2.WinForms.Guna2Button();
             this.btnGiuongBenh = new Guna.UI2.WinForms.Guna2Button();
@@ -67,7 +68,6 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pnlMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlContainer = new System.Windows.Forms.Panel();
-            this.btnPhatThuocTheoKhoa = new Guna.UI2.WinForms.Guna2Button();
             this.pnlQuanTri.SuspendLayout();
             this.pnlKhambenh.SuspendLayout();
             this.pnlTraCu.SuspendLayout();
@@ -117,6 +117,29 @@
             this.pnlQuanTri.Name = "pnlQuanTri";
             this.pnlQuanTri.Size = new System.Drawing.Size(298, 846);
             this.pnlQuanTri.TabIndex = 12;
+            // 
+            // btnPhatThuocTheoKhoa
+            // 
+            this.btnPhatThuocTheoKhoa.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnPhatThuocTheoKhoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhatThuocTheoKhoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhatThuocTheoKhoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPhatThuocTheoKhoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPhatThuocTheoKhoa.FillColor = System.Drawing.Color.White;
+            this.btnPhatThuocTheoKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPhatThuocTheoKhoa.ForeColor = System.Drawing.Color.Black;
+            this.btnPhatThuocTheoKhoa.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnPhatThuocTheoKhoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnPhatThuocTheoKhoa.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnPhatThuocTheoKhoa.Location = new System.Drawing.Point(0, 759);
+            this.btnPhatThuocTheoKhoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPhatThuocTheoKhoa.Name = "btnPhatThuocTheoKhoa";
+            this.btnPhatThuocTheoKhoa.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnPhatThuocTheoKhoa.Size = new System.Drawing.Size(289, 85);
+            this.btnPhatThuocTheoKhoa.TabIndex = 15;
+            this.btnPhatThuocTheoKhoa.Text = "Phát thuốc theo khoa";
+            this.btnPhatThuocTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPhatThuocTheoKhoa.Click += new System.EventHandler(this.btnPhatThuocTheoKhoa_Click);
             // 
             // btnDichVu
             // 
@@ -867,28 +890,6 @@
             this.pnlContainer.Name = "pnlContainer";
             this.pnlContainer.Size = new System.Drawing.Size(1018, 1050);
             this.pnlContainer.TabIndex = 7;
-            // 
-            // btnPhatThuocTheoKhoa
-            // 
-            this.btnPhatThuocTheoKhoa.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.btnPhatThuocTheoKhoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPhatThuocTheoKhoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPhatThuocTheoKhoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPhatThuocTheoKhoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPhatThuocTheoKhoa.FillColor = System.Drawing.Color.White;
-            this.btnPhatThuocTheoKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPhatThuocTheoKhoa.ForeColor = System.Drawing.Color.Black;
-            this.btnPhatThuocTheoKhoa.HoverState.BorderColor = System.Drawing.Color.Navy;
-            this.btnPhatThuocTheoKhoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
-            this.btnPhatThuocTheoKhoa.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnPhatThuocTheoKhoa.Location = new System.Drawing.Point(0, 759);
-            this.btnPhatThuocTheoKhoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPhatThuocTheoKhoa.Name = "btnPhatThuocTheoKhoa";
-            this.btnPhatThuocTheoKhoa.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnPhatThuocTheoKhoa.Size = new System.Drawing.Size(289, 85);
-            this.btnPhatThuocTheoKhoa.TabIndex = 15;
-            this.btnPhatThuocTheoKhoa.Text = "Phát thuốc theo khoa";
-            this.btnPhatThuocTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // frmMain
             // 
