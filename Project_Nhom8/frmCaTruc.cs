@@ -22,7 +22,7 @@ namespace Project_Nhom8
         private string maCT { get; set; }
         private void btnTimNV_Click(object sender, EventArgs e)
         {
-            BUS_CaTruc.Instance.TimNhanVien(txtTimNV.Text, dgvCaTruc);
+            BUS_CaTruc.Instance.TimNhanVien(txtTimNV.Text, dgvCaTruc, dtpChonNgay.Value);
         }
 
         private void frmCaTruc_Load(object sender, EventArgs e)
@@ -66,12 +66,13 @@ namespace Project_Nhom8
             cboMaNV.DropDownWidth = 150;
             cboMaNV.DropDownHeight = 300;
             dtpNgayTruc.Value = DateTime.Now;
+            dtpChonNgay.Value = DateTime.Now;
         }
 
         //Tải dữ liệu cho form ca trực
         private void TaiDuLieu()
         {
-            BUS_CaTruc.Instance.LayDSCaTruc(dgvCaTruc);
+            BUS_CaTruc.Instance.LayDSCaTruc(dgvCaTruc, dtpChonNgay.Value);
         }
         private void btnThemCaTruc_Click(object sender, EventArgs e)
         {
@@ -179,6 +180,11 @@ namespace Project_Nhom8
         private void dtpNgayTruc_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dtpChonNgay_ValueChanged(object sender, EventArgs e)
+        {
+            BUS_CaTruc.Instance.LayDSCaTruc(dgvCaTruc, dtpChonNgay.Value);
         }
     }
 }
