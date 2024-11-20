@@ -326,5 +326,23 @@ namespace Project_Nhom8
             openChildForm(new frmPhatThuocTheoKhoa());
             hideSubMenu();
         }
+
+        private void btnThongKeDoanhThu_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmTraCuuDoanhThu());
+            hideSubMenu();
+        }
+
+        private void btnHoaDonDV_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmTraCuuHoaDonDV());
+            hideSubMenu();
+        }
+
+        private void btnTraCuuBNNoiTru_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmDSBenhNhanNoiTru());
+            hideSubMenu();
+        }
     }
 }

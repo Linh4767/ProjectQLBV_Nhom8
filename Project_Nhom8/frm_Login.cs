@@ -1,4 +1,5 @@
 ﻿using BUS;
+using ET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,8 @@ namespace Project_Nhom8
                     else
                     {
                         string tenTaiKhoan = txtTaiKhoan.Text.ToUpper();
+                        CurrentUser.EmployeeId = txtTaiKhoan.Text.ToUpper();
+                        CurrentUser.UserName = BUS_TaiKhoan.Instance.LayTenNVNhoTK(txtTaiKhoan.Text.ToUpper());
                         MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         frmMain formMenu = new frmMain(tenTaiKhoan);
                         this.Hide();

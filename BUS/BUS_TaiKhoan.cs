@@ -51,5 +51,9 @@ namespace BUS
                 return true;
             }
         }
+        public string LayTenNVNhoTK(string tenTK)
+        {
+            return DAL_TaiKhoan.Instance.LayTenNVNhoTenTK(tenTK);
+        }
     }
 }

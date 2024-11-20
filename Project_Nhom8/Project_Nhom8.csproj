@@ -36,6 +36,24 @@
     <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -87,6 +105,12 @@
     </Compile>
     <Compile Include="frmDonThuoc.Designer.cs">
       <DependentUpon>frmDonThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDSBenhNhanNoiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDSBenhNhanNoiTru.Designer.cs">
+      <DependentUpon>frmDSBenhNhanNoiTru.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGiuongBenh.cs">
       <SubType>Form</SubType>
@@ -178,6 +202,18 @@
     <Compile Include="frmTheoDoiDieuTri.Designer.cs">
       <DependentUpon>frmTheoDoiDieuTri.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTraCuuDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraCuuDoanhThu.Designer.cs">
+      <DependentUpon>frmTraCuuDoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTraCuuHoaDonDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraCuuHoaDonDV.Designer.cs">
+      <DependentUpon>frmTraCuuHoaDonDV.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTTBenhNhan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +228,137 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLBVChiTietDSThuocTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVChiTietDSThuocTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSSuDungDVTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSSuDungDVTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSSuDungDVTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSThuocTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSThuocTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetChiTietDSThuocTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetDSBNNoiTruTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetDSBNNoiTruTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetDSBNNoiTruTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetDSBNNoiTruTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetDSSDDVCuaPKB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTienSDDVCuaPKB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTienSDDVCuaPKB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTinhTongTienThuocTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTinhTongTienThuocTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTinhTongTienThuocTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTinhTongTienThuocTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuSDDVTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuSDDVTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuSDDVTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuThucTuBNTheoNam.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNam.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuThucTuBNTheoNgay.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTongDoanhThuThucTuBNTheoThang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmCaTruc.resx">
       <DependentUpon>frmCaTruc.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDonThuoc.resx">
       <DependentUpon>frmDonThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDSBenhNhanNoiTru.resx">
+      <DependentUpon>frmDSBenhNhanNoiTru.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGiuongBenh.resx">
       <DependentUpon>frmGiuongBenh.cs</DependentUpon>
@@ -255,6 +425,12 @@
     <EmbeddedResource Include="frmTheoDoiDieuTri.resx">
       <DependentUpon>frmTheoDoiDieuTri.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTraCuuDoanhThu.resx">
+      <DependentUpon>frmTraCuuDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTraCuuHoaDonDV.resx">
+      <DependentUpon>frmTraCuuHoaDonDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTTBenhNhan.resx">
       <DependentUpon>frmTTBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +447,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptDSBNNoiTruTheoKhoangTg.rdlc" />
+    <EmbeddedResource Include="rptDSBNNoiTruTheoNam.rdlc" />
+    <EmbeddedResource Include="rptDSBNNoiTruTheoNgay.rdlc" />
+    <EmbeddedResource Include="rptDSBNNoiTruTheoThang.rdlc" />
+    <EmbeddedResource Include="rptInHoaDonSDDV.rdlc" />
+    <EmbeddedResource Include="rptTraCuuHoaDonTheoKhoangTG.rdlc" />
+    <EmbeddedResource Include="rptTraCuuHoaDonTheoNam.rdlc" />
+    <EmbeddedResource Include="rptTraCuuHoaDonTheoNgay.rdlc" />
+    <EmbeddedResource Include="rptTraCuuHoaDonTheoThang.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -286,6 +471,292 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="QLBVChiTietDSThuocTheoThang.xsc">
+      <DependentUpon>QLBVChiTietDSThuocTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVChiTietDSThuocTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVChiTietDSThuocTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVChiTietDSThuocTheoThang.xss">
+      <DependentUpon>QLBVChiTietDSThuocTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNam.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSSuDungDVTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNam.xss">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSSuDungDVTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoNgay.xss">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoThang.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSSuDungDVTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSSuDungDVTheoThang.xss">
+      <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSThuocTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNam.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSThuocTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNam.xss">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetChiTietDSThuocTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetChiTietDSThuocTheoNgay.xss">
+      <DependentUpon>QLBVDataSetChiTietDSThuocTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetDSBNNoiTruTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNam.xsc">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetDSBNNoiTruTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNam.xss">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetDSBNNoiTruTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoNgay.xss">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoThang.xsc">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetDSBNNoiTruTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetDSBNNoiTruTheoThang.xss">
+      <DependentUpon>QLBVDataSetDSBNNoiTruTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSSDDVCuaPKB.xsc">
+      <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetDSSDDVCuaPKB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetDSSDDVCuaPKB.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetDSSDDVCuaPKB.xss">
+      <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTienSDDVCuaPKB.xsc">
+      <DependentUpon>QLBVDataSetTienSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTienSDDVCuaPKB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTienSDDVCuaPKB.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTienSDDVCuaPKB.xss">
+      <DependentUpon>QLBVDataSetTienSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTinhTongTienThuocTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNam.xsc">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTinhTongTienThuocTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNam.xss">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTinhTongTienThuocTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoNgay.xss">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoThang.xsc">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTinhTongTienThuocTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTinhTongTienThuocTheoThang.xss">
+      <DependentUpon>QLBVDataSetTinhTongTienThuocTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNam.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuSDDVTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNam.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuSDDVTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoNgay.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoThang.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuSDDVTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuSDDVTheoThang.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuSDDVTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoKhoangTG.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNam.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNam.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuThucTuBNTheoNam.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNam.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNam.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuThucTuBNTheoNgay.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoNgay.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsc">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTongDoanhThuThucTuBNTheoThang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTongDoanhThuThucTuBNTheoThang.xss">
+      <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Anh BV %281%29.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +777,21 @@
       <Project>{ecc23b02-c34a-4b65-b75b-288ad610ab21}</Project>
       <Name>ET</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
