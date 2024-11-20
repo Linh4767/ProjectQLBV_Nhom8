@@ -24,9 +24,9 @@ namespace BUS
         }
 
         //Thêm số lượng thuốc vào kho
-        public int? ThemSoLuongThuoc(string maThuoc, string maLo,int soLuongThem)
+        public int? ThemSoLuongThuoc(string maThuoc, string maLo, string tenThuoc, string hamLuong, string loaiThuoc, string xuatXu, int soLuongThem)
         {
-            return DAL_KhoThuoc.Instance.ThemThuocVaoKho(maThuoc, maLo, soLuongThem);
+            return DAL_KhoThuoc.Instance.ThemThuocVaoKho(maThuoc, maLo, tenThuoc, loaiThuoc, xuatXu,hamLuong, soLuongThem);
         }
 
         //Xóa số lượng thuốc trong kho

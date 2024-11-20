@@ -3445,9 +3445,13 @@ namespace DAL
 		
 		private string _MaThuoc;
 		
+		private string _MaLo;
+		
 		private System.Nullable<int> _SoLuongTrongKho;
 		
 		private EntitySet<ChiTietDonThuoc> _ChiTietDonThuocs;
+		
+		private EntityRef<Thuoc> _Thuoc;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3455,6 +3459,8 @@ namespace DAL
     partial void OnCreated();
     partial void OnMaThuocChanging(string value);
     partial void OnMaThuocChanged();
+    partial void OnMaLoChanging(string value);
+    partial void OnMaLoChanged();
     partial void OnSoLuongTrongKhoChanging(System.Nullable<int> value);
     partial void OnSoLuongTrongKhoChanged();
     #endregion
@@ -3462,6 +3468,7 @@ namespace DAL
 		public KhoThuoc()
 		{
 			this._ChiTietDonThuocs = new EntitySet<ChiTietDonThuoc>(new Action<ChiTietDonThuoc>(this.attach_ChiTietDonThuocs), new Action<ChiTietDonThuoc>(this.detach_ChiTietDonThuocs));
+			this._Thuoc = default(EntityRef<Thuoc>);
 			OnCreated();
 		}
 		
@@ -3476,11 +3483,39 @@ namespace DAL
 			{
 				if ((this._MaThuoc != value))
 				{
+					if (this._Thuoc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnMaThuocChanging(value);
 					this.SendPropertyChanging();
 					this._MaThuoc = value;
 					this.SendPropertyChanged("MaThuoc");
 					this.OnMaThuocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLo", DbType="NVarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaLo
+		{
+			get
+			{
+				return this._MaLo;
+			}
+			set
+			{
+				if ((this._MaLo != value))
+				{
+					if (this._Thuoc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaLoChanging(value);
+					this.SendPropertyChanging();
+					this._MaLo = value;
+					this.SendPropertyChanged("MaLo");
+					this.OnMaLoChanged();
 				}
 			}
 		}
@@ -3515,6 +3550,42 @@ namespace DAL
 			set
 			{
 				this._ChiTietDonThuocs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Thuoc_KhoThuoc", Storage="_Thuoc", ThisKey="MaThuoc,MaLo", OtherKey="MaThuoc,MaLo", IsForeignKey=true)]
+		public Thuoc Thuoc
+		{
+			get
+			{
+				return this._Thuoc.Entity;
+			}
+			set
+			{
+				Thuoc previousValue = this._Thuoc.Entity;
+				if (((previousValue != value) 
+							|| (this._Thuoc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Thuoc.Entity = null;
+						previousValue.KhoThuoc = null;
+					}
+					this._Thuoc.Entity = value;
+					if ((value != null))
+					{
+						value.KhoThuoc = this;
+						this._MaThuoc = value.MaThuoc;
+						this._MaLo = value.MaLo;
+					}
+					else
+					{
+						this._MaThuoc = default(string);
+						this._MaLo = default(string);
+					}
+					this.SendPropertyChanged("Thuoc");
+				}
 			}
 		}
 		
@@ -6890,6 +6961,8 @@ namespace DAL
 		
 		private EntitySet<ChiTietDonThuoc> _ChiTietDonThuocs;
 		
+		private EntityRef<KhoThuoc> _KhoThuoc;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6934,6 +7007,7 @@ namespace DAL
 		{
 			this._ThuocTheoKhoas = new EntitySet<ThuocTheoKhoa>(new Action<ThuocTheoKhoa>(this.attach_ThuocTheoKhoas), new Action<ThuocTheoKhoa>(this.detach_ThuocTheoKhoas));
 			this._ChiTietDonThuocs = new EntitySet<ChiTietDonThuoc>(new Action<ChiTietDonThuoc>(this.attach_ChiTietDonThuocs), new Action<ChiTietDonThuoc>(this.detach_ChiTietDonThuocs));
+			this._KhoThuoc = default(EntityRef<KhoThuoc>);
 			OnCreated();
 		}
 		
@@ -7300,6 +7374,35 @@ namespace DAL
 			set
 			{
 				this._ChiTietDonThuocs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Thuoc_KhoThuoc", Storage="_KhoThuoc", ThisKey="MaThuoc,MaLo", OtherKey="MaThuoc,MaLo", IsUnique=true, IsForeignKey=false)]
+		public KhoThuoc KhoThuoc
+		{
+			get
+			{
+				return this._KhoThuoc.Entity;
+			}
+			set
+			{
+				KhoThuoc previousValue = this._KhoThuoc.Entity;
+				if (((previousValue != value) 
+							|| (this._KhoThuoc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KhoThuoc.Entity = null;
+						previousValue.Thuoc = null;
+					}
+					this._KhoThuoc.Entity = value;
+					if ((value != null))
+					{
+						value.Thuoc = this;
+					}
+					this.SendPropertyChanged("KhoThuoc");
+				}
 			}
 		}
 		
