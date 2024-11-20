@@ -51,6 +51,10 @@
             this.btnDonThuoc = new Guna.UI2.WinForms.Guna2Button();
             this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             this.pnlTraCu = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnDSBNTheoKhoa = new Guna.UI2.WinForms.Guna2Button();
+            this.btnTraCuuBNNoiTru = new Guna.UI2.WinForms.Guna2Button();
+            this.btnTraCuuDonThuoc = new Guna.UI2.WinForms.Guna2Button();
+            this.btnHoaDonDV = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongKeDoanhThu = new Guna.UI2.WinForms.Guna2Button();
             this.btnNoiTru = new Guna.UI2.WinForms.Guna2Button();
             this.pnlNoiTru = new Guna.UI2.WinForms.Guna2Panel();
@@ -63,10 +67,7 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pnlMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlContainer = new System.Windows.Forms.Panel();
-            this.btnHoaDonDV = new Guna.UI2.WinForms.Guna2Button();
-            this.btnTraCuuDonThuoc = new Guna.UI2.WinForms.Guna2Button();
-            this.btnTraCuuBNNoiTru = new Guna.UI2.WinForms.Guna2Button();
-            this.btnDSBNTheoKhoa = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPhatThuocTheoKhoa = new Guna.UI2.WinForms.Guna2Button();
             this.pnlQuanTri.SuspendLayout();
             this.pnlKhambenh.SuspendLayout();
             this.pnlTraCu.SuspendLayout();
@@ -90,7 +91,7 @@
             this.btnThoat.HoverState.BorderColor = System.Drawing.Color.Navy;
             this.btnThoat.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
             this.btnThoat.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnThoat.Location = new System.Drawing.Point(3, 2916);
+            this.btnThoat.Location = new System.Drawing.Point(3, 3007);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(298, 85);
@@ -101,6 +102,7 @@
             // 
             // pnlQuanTri
             // 
+            this.pnlQuanTri.Controls.Add(this.btnPhatThuocTheoKhoa);
             this.pnlQuanTri.Controls.Add(this.btnDichVu);
             this.pnlQuanTri.Controls.Add(this.btnKhoThuoc);
             this.pnlQuanTri.Controls.Add(this.btnGiuongBenh);
@@ -113,7 +115,7 @@
             this.pnlQuanTri.Location = new System.Drawing.Point(3, 2155);
             this.pnlQuanTri.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlQuanTri.Name = "pnlQuanTri";
-            this.pnlQuanTri.Size = new System.Drawing.Size(298, 755);
+            this.pnlQuanTri.Size = new System.Drawing.Size(298, 846);
             this.pnlQuanTri.TabIndex = 12;
             // 
             // btnDichVu
@@ -554,6 +556,94 @@
             this.pnlTraCu.Size = new System.Drawing.Size(295, 495);
             this.pnlTraCu.TabIndex = 10;
             // 
+            // btnDSBNTheoKhoa
+            // 
+            this.btnDSBNTheoKhoa.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnDSBNTheoKhoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDSBNTheoKhoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDSBNTheoKhoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDSBNTheoKhoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDSBNTheoKhoa.FillColor = System.Drawing.Color.White;
+            this.btnDSBNTheoKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDSBNTheoKhoa.ForeColor = System.Drawing.Color.Black;
+            this.btnDSBNTheoKhoa.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnDSBNTheoKhoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnDSBNTheoKhoa.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnDSBNTheoKhoa.Location = new System.Drawing.Point(0, 382);
+            this.btnDSBNTheoKhoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDSBNTheoKhoa.Name = "btnDSBNTheoKhoa";
+            this.btnDSBNTheoKhoa.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnDSBNTheoKhoa.Size = new System.Drawing.Size(273, 85);
+            this.btnDSBNTheoKhoa.TabIndex = 17;
+            this.btnDSBNTheoKhoa.Text = "Danh sách bệnh nhân";
+            this.btnDSBNTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnTraCuuBNNoiTru
+            // 
+            this.btnTraCuuBNNoiTru.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnTraCuuBNNoiTru.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTraCuuBNNoiTru.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTraCuuBNNoiTru.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTraCuuBNNoiTru.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTraCuuBNNoiTru.FillColor = System.Drawing.Color.White;
+            this.btnTraCuuBNNoiTru.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraCuuBNNoiTru.ForeColor = System.Drawing.Color.Black;
+            this.btnTraCuuBNNoiTru.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnTraCuuBNNoiTru.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnTraCuuBNNoiTru.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnTraCuuBNNoiTru.Location = new System.Drawing.Point(0, 293);
+            this.btnTraCuuBNNoiTru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTraCuuBNNoiTru.Name = "btnTraCuuBNNoiTru";
+            this.btnTraCuuBNNoiTru.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnTraCuuBNNoiTru.Size = new System.Drawing.Size(273, 85);
+            this.btnTraCuuBNNoiTru.TabIndex = 16;
+            this.btnTraCuuBNNoiTru.Text = "Danh sách nội trú";
+            this.btnTraCuuBNNoiTru.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnTraCuuDonThuoc
+            // 
+            this.btnTraCuuDonThuoc.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnTraCuuDonThuoc.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTraCuuDonThuoc.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTraCuuDonThuoc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTraCuuDonThuoc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTraCuuDonThuoc.FillColor = System.Drawing.Color.White;
+            this.btnTraCuuDonThuoc.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraCuuDonThuoc.ForeColor = System.Drawing.Color.Black;
+            this.btnTraCuuDonThuoc.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnTraCuuDonThuoc.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnTraCuuDonThuoc.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnTraCuuDonThuoc.Location = new System.Drawing.Point(-3, 195);
+            this.btnTraCuuDonThuoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTraCuuDonThuoc.Name = "btnTraCuuDonThuoc";
+            this.btnTraCuuDonThuoc.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnTraCuuDonThuoc.Size = new System.Drawing.Size(273, 85);
+            this.btnTraCuuDonThuoc.TabIndex = 15;
+            this.btnTraCuuDonThuoc.Text = "Hóa đơn thuốc";
+            this.btnTraCuuDonThuoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnHoaDonDV
+            // 
+            this.btnHoaDonDV.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnHoaDonDV.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHoaDonDV.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHoaDonDV.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHoaDonDV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHoaDonDV.FillColor = System.Drawing.Color.White;
+            this.btnHoaDonDV.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHoaDonDV.ForeColor = System.Drawing.Color.Black;
+            this.btnHoaDonDV.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnHoaDonDV.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnHoaDonDV.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnHoaDonDV.Location = new System.Drawing.Point(11, 106);
+            this.btnHoaDonDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHoaDonDV.Name = "btnHoaDonDV";
+            this.btnHoaDonDV.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnHoaDonDV.Size = new System.Drawing.Size(262, 85);
+            this.btnHoaDonDV.TabIndex = 14;
+            this.btnHoaDonDV.Text = "Hóa đơn dịch vụ";
+            this.btnHoaDonDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
             // btnThongKeDoanhThu
             // 
             this.btnThongKeDoanhThu.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
@@ -778,93 +868,27 @@
             this.pnlContainer.Size = new System.Drawing.Size(1018, 1050);
             this.pnlContainer.TabIndex = 7;
             // 
-            // btnHoaDonDV
+            // btnPhatThuocTheoKhoa
             // 
-            this.btnHoaDonDV.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.btnHoaDonDV.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnHoaDonDV.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnHoaDonDV.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnHoaDonDV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHoaDonDV.FillColor = System.Drawing.Color.White;
-            this.btnHoaDonDV.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHoaDonDV.ForeColor = System.Drawing.Color.Black;
-            this.btnHoaDonDV.HoverState.BorderColor = System.Drawing.Color.Navy;
-            this.btnHoaDonDV.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
-            this.btnHoaDonDV.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnHoaDonDV.Location = new System.Drawing.Point(11, 106);
-            this.btnHoaDonDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHoaDonDV.Name = "btnHoaDonDV";
-            this.btnHoaDonDV.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnHoaDonDV.Size = new System.Drawing.Size(262, 85);
-            this.btnHoaDonDV.TabIndex = 14;
-            this.btnHoaDonDV.Text = "Hóa đơn dịch vụ";
-            this.btnHoaDonDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnTraCuuDonThuoc
-            // 
-            this.btnTraCuuDonThuoc.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.btnTraCuuDonThuoc.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTraCuuDonThuoc.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTraCuuDonThuoc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTraCuuDonThuoc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTraCuuDonThuoc.FillColor = System.Drawing.Color.White;
-            this.btnTraCuuDonThuoc.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTraCuuDonThuoc.ForeColor = System.Drawing.Color.Black;
-            this.btnTraCuuDonThuoc.HoverState.BorderColor = System.Drawing.Color.Navy;
-            this.btnTraCuuDonThuoc.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
-            this.btnTraCuuDonThuoc.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuuDonThuoc.Location = new System.Drawing.Point(-3, 195);
-            this.btnTraCuuDonThuoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTraCuuDonThuoc.Name = "btnTraCuuDonThuoc";
-            this.btnTraCuuDonThuoc.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnTraCuuDonThuoc.Size = new System.Drawing.Size(273, 85);
-            this.btnTraCuuDonThuoc.TabIndex = 15;
-            this.btnTraCuuDonThuoc.Text = "Hóa đơn thuốc";
-            this.btnTraCuuDonThuoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnTraCuuBNNoiTru
-            // 
-            this.btnTraCuuBNNoiTru.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.btnTraCuuBNNoiTru.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTraCuuBNNoiTru.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTraCuuBNNoiTru.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTraCuuBNNoiTru.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTraCuuBNNoiTru.FillColor = System.Drawing.Color.White;
-            this.btnTraCuuBNNoiTru.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTraCuuBNNoiTru.ForeColor = System.Drawing.Color.Black;
-            this.btnTraCuuBNNoiTru.HoverState.BorderColor = System.Drawing.Color.Navy;
-            this.btnTraCuuBNNoiTru.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
-            this.btnTraCuuBNNoiTru.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuuBNNoiTru.Location = new System.Drawing.Point(0, 293);
-            this.btnTraCuuBNNoiTru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTraCuuBNNoiTru.Name = "btnTraCuuBNNoiTru";
-            this.btnTraCuuBNNoiTru.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnTraCuuBNNoiTru.Size = new System.Drawing.Size(273, 85);
-            this.btnTraCuuBNNoiTru.TabIndex = 16;
-            this.btnTraCuuBNNoiTru.Text = "Danh sách nội trú";
-            this.btnTraCuuBNNoiTru.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnDSBNTheoKhoa
-            // 
-            this.btnDSBNTheoKhoa.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.btnDSBNTheoKhoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDSBNTheoKhoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDSBNTheoKhoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDSBNTheoKhoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDSBNTheoKhoa.FillColor = System.Drawing.Color.White;
-            this.btnDSBNTheoKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDSBNTheoKhoa.ForeColor = System.Drawing.Color.Black;
-            this.btnDSBNTheoKhoa.HoverState.BorderColor = System.Drawing.Color.Navy;
-            this.btnDSBNTheoKhoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
-            this.btnDSBNTheoKhoa.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnDSBNTheoKhoa.Location = new System.Drawing.Point(0, 382);
-            this.btnDSBNTheoKhoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDSBNTheoKhoa.Name = "btnDSBNTheoKhoa";
-            this.btnDSBNTheoKhoa.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnDSBNTheoKhoa.Size = new System.Drawing.Size(273, 85);
-            this.btnDSBNTheoKhoa.TabIndex = 17;
-            this.btnDSBNTheoKhoa.Text = "Danh sách bệnh nhân";
-            this.btnDSBNTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPhatThuocTheoKhoa.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnPhatThuocTheoKhoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhatThuocTheoKhoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPhatThuocTheoKhoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPhatThuocTheoKhoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPhatThuocTheoKhoa.FillColor = System.Drawing.Color.White;
+            this.btnPhatThuocTheoKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPhatThuocTheoKhoa.ForeColor = System.Drawing.Color.Black;
+            this.btnPhatThuocTheoKhoa.HoverState.BorderColor = System.Drawing.Color.Navy;
+            this.btnPhatThuocTheoKhoa.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
+            this.btnPhatThuocTheoKhoa.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnPhatThuocTheoKhoa.Location = new System.Drawing.Point(0, 759);
+            this.btnPhatThuocTheoKhoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPhatThuocTheoKhoa.Name = "btnPhatThuocTheoKhoa";
+            this.btnPhatThuocTheoKhoa.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnPhatThuocTheoKhoa.Size = new System.Drawing.Size(289, 85);
+            this.btnPhatThuocTheoKhoa.TabIndex = 15;
+            this.btnPhatThuocTheoKhoa.Text = "Phát thuốc theo khoa";
+            this.btnPhatThuocTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // frmMain
             // 
@@ -928,6 +952,7 @@
         private Guna.UI2.WinForms.Guna2Button btnTraCuuDonThuoc;
         private Guna.UI2.WinForms.Guna2Button btnHoaDonDV;
         private Guna.UI2.WinForms.Guna2Button btnDSBNTheoKhoa;
+        private Guna.UI2.WinForms.Guna2Button btnPhatThuocTheoKhoa;
     }
 }
 
