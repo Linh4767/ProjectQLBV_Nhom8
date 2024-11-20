@@ -28,15 +28,15 @@ namespace DAL
         public DAL_TaiKham() { }
 
         //Danh sách tái khám
-        public IQueryable LayDSTaiKham()
-        {
-            IQueryable taiKham = from tk in db.TaiKhams
-                                 join bn in db.BenhNhans
-                                 on tk.MSBN equals bn.MSBN
-                                 orderby tk.NgayTaiKham descending
-                                 select new { tk.MSCuocHen, tk.MSBN, bn.TenBN, tk.MaNVPhuTrach, tk.NgayTaiKham, tk.TrangThai, tk.KetQua };
-            return taiKham;
-        }
+        //public IQueryable LayDSTaiKham()
+        //{
+        //    IQueryable taiKham = from tk in db.TaiKhams
+        //                         join bn in db.BenhNhans
+        //                         on tk.MSBN equals bn.MSBN
+        //                         orderby tk.NgayTaiKham descending
+        //                         select new { tk.MSCuocHen, tk.MSBN, bn.TenBN, tk.MaNVPhuTrach, tk.NgayTaiKham, tk.TrangThai, tk.KetQua };
+        //    return taiKham;
+        //}
         //Tạo mã tự động
         public string TaoMaTuDong(string maPKB)
         {
@@ -80,31 +80,31 @@ namespace DAL
         }
 
         //thêm cuộc hẹn tái khám
-        public bool ThemTaiKham(ET_TaiKham eT_TaiKham)
-        {
-            if (db.TaiKhams.Any(e => e.MSCuocHen == eT_TaiKham.MaCH && e.NgayTaiKham == eT_TaiKham.NgayTaiKham))
-            {
-                return false;
-            }
-            try
-            {
-                TaiKham taiKham = new TaiKham
-                {
-                    MSCuocHen = eT_TaiKham.MaCH,
-                    MSBN = eT_TaiKham.MaBN,
-                    MaNVPhuTrach = string.IsNullOrEmpty(eT_TaiKham.MaNV) ? null : eT_TaiKham.MaNV,
-                    NgayTaiKham = eT_TaiKham.NgayTaiKham,
-                    TrangThai = eT_TaiKham.TrangThai,
-                    KetQua = string.IsNullOrEmpty(eT_TaiKham.KetQua) ? null : eT_TaiKham.KetQua
-                };
-                db.TaiKhams.InsertOnSubmit(taiKham);
-                return true;
-            }
-            finally
-            {
-                db.SubmitChanges();
-            }
-        }
+        //public bool ThemTaiKham(ET_TaiKham eT_TaiKham)
+        //{
+        //    if (db.TaiKhams.Any(e => e.MSCuocHen == eT_TaiKham.MaCH && e.NgayTaiKham == eT_TaiKham.NgayTaiKham))
+        //    {
+        //        return false;
+        //    }
+        //    try
+        //    {
+        //        TaiKham taiKham = new TaiKham
+        //        {
+        //            MSCuocHen = eT_TaiKham.MaCH,
+        //            MSBN = eT_TaiKham.MaBN,
+        //            MaNVPhuTrach = string.IsNullOrEmpty(eT_TaiKham.MaNV) ? null : eT_TaiKham.MaNV,
+        //            NgayTaiKham = eT_TaiKham.NgayTaiKham,
+        //            TrangThai = eT_TaiKham.TrangThai,
+        //            KetQua = string.IsNullOrEmpty(eT_TaiKham.KetQua) ? null : eT_TaiKham.KetQua
+        //        };
+        //        db.TaiKhams.InsertOnSubmit(taiKham);
+        //        return true;
+        //    }
+        //    finally
+        //    {
+        //        db.SubmitChanges();
+        //    }
+        //}
 
         //Sửa cuộc hẹn
         public bool CapNhatCuocHen(ET_TaiKham eT_TaiKham)
@@ -131,15 +131,15 @@ namespace DAL
         }
 
         //tìm kiếm cuộc hẹn của bệnh nhân
-        public IQueryable TimKiemBenhNhan(string key)
-        {
-            IQueryable taiKham = from tk in db.TaiKhams
-                                 join bn in db.BenhNhans
-                                 on tk.MSBN equals bn.MSBN
-                                 where bn.MSBN.Contains(key) || bn.TenBN.Contains(key)
-                                 select new { tk.MSCuocHen, tk.MSBN, bn.TenBN, tk.MaNVPhuTrach, tk.NgayTaiKham, tk.TrangThai, tk.KetQua };
-            return taiKham;
-        }
+        //public IQueryable TimKiemBenhNhan(string key)
+        //{
+        //    IQueryable taiKham = from tk in db.TaiKhams
+        //                         join bn in db.BenhNhans
+        //                         on tk.MSBN equals bn.MSBN
+        //                         where bn.MSBN.Contains(key) || bn.TenBN.Contains(key)
+        //                         select new { tk.MSCuocHen, tk.MSBN, bn.TenBN, tk.MaNVPhuTrach, tk.NgayTaiKham, tk.TrangThai, tk.KetQua };
+        //    return taiKham;
+        //}
 
         //Lấy mã bệnh nhân theo phiếu khám bệnh
         public string LayMaBN(string pkb)

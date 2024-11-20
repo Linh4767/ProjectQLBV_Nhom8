@@ -95,20 +95,27 @@ namespace DAL
         //Kiem tra giuong
         public bool KiemTraTrangThaiGiuong(string maGiuong, DateTime ngayNhanGiuong, DateTime? ngayTraGiuong, string maPhieuKB = null)
         {
-            // Kiểm tra xung đột giường trong cùng khoảng thời gian, loại trừ bản ghi hiện tại nếu đang cập nhật
+            // Giới hạn ngày tối đa thay cho DateTime.MaxValue
+            var ngayTraMacDinh = new DateTime(9999, 12, 31);
+
+            // Lấy ngày trả giường mặc định nếu null
+            var ngayTraMoi = ngayTraGiuong ?? ngayTraMacDinh;
+
+            // Kiểm tra xung đột
             var conflicts = db.PhanGiuongs.Any(g =>
-                g.MaGiuong == maGiuong &&                // Kiểm tra đúng giường
-                (string.IsNullOrEmpty(maPhieuKB) || g.MaPhieuKB != maPhieuKB) && // Bỏ qua bản ghi hiện tại nếu đang cập nhật
+                g.MaGiuong == maGiuong &&  // Đúng giường
+                (string.IsNullOrEmpty(maPhieuKB) || g.MaPhieuKB != maPhieuKB) &&  // Không phải bản ghi hiện tại
                 (
-                    // Kiểm tra xung đột thời gian chính xác bao gồm cả ngày và giờ
-                    (ngayNhanGiuong >= g.NgayNhan && ngayNhanGiuong < g.NgayTra.GetValueOrDefault(DateTime.MaxValue)) || // ngayNhanGiuong nằm trong khoảng thời gian đã phân
-                    (ngayTraGiuong.GetValueOrDefault(DateTime.MaxValue) > g.NgayNhan && ngayTraGiuong.GetValueOrDefault(DateTime.MaxValue) <= g.NgayTra.GetValueOrDefault(DateTime.MaxValue)) || // ngayTraGiuong nằm trong khoảng thời gian đã phân
-                    (ngayNhanGiuong <= g.NgayNhan && ngayTraGiuong.GetValueOrDefault(DateTime.MaxValue) >= g.NgayTra.GetValueOrDefault(DateTime.MaxValue)) // Bao phủ toàn bộ khoảng thời gian đã phân
+                    // Điều kiện xung đột
+                    (ngayNhanGiuong >= g.NgayNhan && ngayNhanGiuong < g.NgayTra.GetValueOrDefault(ngayTraMacDinh)) || // nhận giường nằm trong khoảng
+                    (ngayTraMoi > g.NgayNhan && ngayTraMoi <= g.NgayTra.GetValueOrDefault(ngayTraMacDinh)) || // trả giường nằm trong khoảng
+                    (ngayNhanGiuong <= g.NgayNhan && ngayTraMoi >= g.NgayTra.GetValueOrDefault(ngayTraMacDinh)) // khoảng mới bao phủ khoảng cũ
                 )
             );
 
-            return !conflicts;
+            return !conflicts; // Không có xung đột
         }
+
 
         //Kiểm tra phiếu khám bệnh phải có
         public bool KiemTraHoanThienTraGiuong(string maPhieuKB)
@@ -191,47 +198,17 @@ namespace DAL
             }
         }
 
-
-        //public bool KiemTraNgayTraGiuongCu(string maPhieuKB, string maPhong, string maGiuongMoi)
-        //{
-        //    // Kiểm tra giường cũ (không phải giường mới)
-        //    var giuongCu = db.PhanGiuongs.SingleOrDefault(dl => dl.MaPhieuKB == maPhieuKB && dl.MaPhong == maPhong && dl.MaGiuong != maGiuongMoi && dl.NgayTra == null);
-
-        //    // Nếu giường cũ chưa có ngày trả, trả về false
-        //    if (giuongCu != null)
-        //    {
-        //        MessageBox.Show("Giường cũ chưa được trả. Vui lòng xác nhận ngày trả giường cũ trước khi thay đổi giường.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return false;
-        //    }
-
-        //    // Nếu giường cũ đã có ngày trả hoặc không có giường cũ cần kiểm tra, trả về true
-        //    return true;
-        //}
         //Sửa phân giường
         public bool SuaPhanGiuong(ET_PhanGiuong et_phangiuong)
         {
             // Tìm đối tượng PhanGiuong hiện tại dựa trên MaPhieuKB
-            PhanGiuong capNhat = db.PhanGiuongs.SingleOrDefault(gb => gb.MaPhieuKB == et_phangiuong.MaPhieuKB && gb.MaPhong == et_phangiuong.MaPhong && gb.MaGiuong == et_phangiuong.MaGiuong);
+            PhanGiuong capNhat = db.PhanGiuongs.SingleOrDefault(gb => gb.MaPhieuKB == et_phangiuong.MaPhieuKB && gb.MaPhong == et_phangiuong.MaPhong && gb.MaGiuong == et_phangiuong.MaGiuong && gb.NgayNhan.Date == et_phangiuong.NgayNhan.Date);
 
             if (capNhat != null)
             {
+
                 try
                 {
-                    //// Xóa đối tượng PhanGiuong hiện tại
-                    //db.PhanGiuongs.DeleteOnSubmit(phanGiuong);
-                    //db.SubmitChanges();
-
-                    //// Tạo đối tượng PhanGiuong mới với thông tin cập nhật
-                    //PhanGiuong phanGiuongMoi = new PhanGiuong
-                    //{
-                    //    MaPhieuKB = et_phangiuong.MaPhieuKB,
-                    //    MaPhong = et_phangiuong.MaPhong,
-                    //    MaGiuong = et_phangiuong.MaGiuong,
-                    //    NgayNhan = et_phangiuong.NgayNhan,
-                    //    NgayTra = et_phangiuong.NgayTra,
-                    //    GhiChu = et_phangiuong.GhiChu,
-                    //    MaNVYeuCau = et_phangiuong.MaNVYC
-                    //};
                     capNhat.NgayTra = et_phangiuong.NgayTra;
                     capNhat.GhiChu = et_phangiuong.GhiChu;
                     // Thêm đối tượng mới vào cơ sở dữ liệu
@@ -246,6 +223,60 @@ namespace DAL
                 }
             }
             return false;
+        }
+        public bool KiemTraCoPhanGiuongMoiKhong(string maPhieuKB, string maGiuong, DateTime ngayNhan)
+        {
+            try
+            {
+                // Tìm phân giường hiện tại theo MaPhieuKB, MaGiuong và NgayNhan
+                var phanGiuongCu = db.PhanGiuongs.SingleOrDefault(gb => gb.MaPhieuKB == maPhieuKB
+                                                                      && gb.MaGiuong == maGiuong
+                                                                      && gb.NgayNhan.Date == ngayNhan.Date);
+
+                if (phanGiuongCu != null)
+                {
+                    // Kiểm tra có phân giường nào có ngày nhận sau ngày trả giường hiện tại ở bất kỳ phòng nào
+                    var giuongMoi = db.PhanGiuongs
+                                       .Any(gb => gb.MaPhieuKB == maPhieuKB
+                                                 && gb.NgayNhan > phanGiuongCu.NgayTra); // Kiểm tra tất cả các giường sau ngày trả giường hiện tại ở bất kỳ phòng nào
+
+                    // Nếu có phân giường mới thì trả về true, nếu không thì trả về false
+                    return giuongMoi;
+                }
+                else
+                {
+                    // Không tìm thấy phân giường cũ, trả về false
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi nếu có
+                MessageBox.Show("Lỗi: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        //Tìm kiếm theo tên bệnh nhân, tên phòng theo ngày
+        public IQueryable TimKiemTheoTen(string tenBN)
+        {
+            IQueryable ds = (from pg in db.PhanGiuongs
+                            join pkb in db.PhieuKhamBenhs
+                            on pg.MaPhieuKB equals pkb.MaPhieuKB
+                            join p in db.Phongs
+                            on pg.MaPhong equals p.MSPhong
+                            join k in db.Khoas
+                            on p.MaKhoa equals k.MaKhoa
+                            join bn in db.BenhNhans
+                            on pkb.MaBN equals bn.MSBN
+                            join cn in db.ChuyenNganhs
+                            on k.MaKhoa equals cn.MaKhoa
+                            join nv in db.NhanViens
+                            on cn.MaChuyenNganh equals nv.MaChuyenNganh
+                            where (bn.TenBN.Contains(tenBN) || p.TenPhong.Contains(tenBN))
+                            select new { bn.MSBN, pg.MaPhieuKB, pg.MaPhong, pg.MaGiuong, p.MaKhoa, pg.NgayNhan, pg.NgayTra, pg.GhiChu, MaNVTH = pg.MaNVYeuCau }).Distinct();
+            return ds;
         }
 
     }
