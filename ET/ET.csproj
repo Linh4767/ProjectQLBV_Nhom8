@@ -63,6 +63,7 @@
     <Compile Include="ET_TaiKhoan.cs" />
     <Compile Include="ET_TheoDoiDieuTri.cs" />
     <Compile Include="ET_Thuoc.cs" />
+    <Compile Include="ET_ThuocTheoKhoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

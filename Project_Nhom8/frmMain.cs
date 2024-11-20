@@ -321,5 +321,10 @@ namespace Project_Nhom8
             }
         }
 
+        private void btnPhatThuocTheoKhoa_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmPhatThuocTheoKhoa());
+            hideSubMenu();
+        }
     }
 }

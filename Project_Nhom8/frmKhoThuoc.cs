@@ -95,7 +95,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -123,7 +123,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -151,7 +151,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -171,6 +171,7 @@ namespace Project_Nhom8
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
+            btnPhatThuocVeKhoa.Enabled = false;
         }
 
         private void btnThemSLThuoc_Click(object sender, EventArgs e)
@@ -378,6 +379,7 @@ namespace Project_Nhom8
         {
             if (dgvKhoThuoc.CurrentRow != null && !dgvKhoThuoc.Rows[dgvKhoThuoc.CurrentRow.Index].IsNewRow)
             {
+                btnPhatThuocVeKhoa.Enabled = true;
                 int dong = dgvKhoThuoc.CurrentCell.RowIndex;
                 txtMaThuoc.Text = dgvKhoThuoc.Rows[dong].Cells[0].Value.ToString();
                 txtTenThuoc.Text = dgvKhoThuoc.Rows[dong].Cells[1].Value.ToString();
@@ -727,7 +729,7 @@ namespace Project_Nhom8
             }
         }
 
-
+        
 
         private void txtSLThuocNhapVao_TextChanged(object sender, EventArgs e)
         {
@@ -804,6 +806,24 @@ namespace Project_Nhom8
             }
         }
 
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            //Kiểm tra đã chọn dòng trên datagridview chưa
+            if (dgvKhoThuoc.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Bạn phải chọn dòng để xóa", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    BUS_Thuoc.Instance.XoaThuoc(txtMaThuoc.Text);
+                    BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
+                }
+            }
+        }
 
         private void cboHSD_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -930,6 +950,11 @@ namespace Project_Nhom8
             }
         }
 
+        private void btnPhatThuocVeKhoa_Click(object sender, EventArgs e)
+        {
+            string maThuoc = dgvKhoThuoc.CurrentRow.Cells[0].Value.ToString();
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmPhatThuocTheoKhoa(maThuoc));
         private void btnXemHSD_Click(object sender, EventArgs e)
         {
             frmMain frmMain = (frmMain)this.ParentForm;
