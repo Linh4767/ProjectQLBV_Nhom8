@@ -55,7 +55,7 @@
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CachDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Association Name="DonThuoc_ChiTietDonThuoc" Member="DonThuoc" ThisKey="MaDonThuoc" OtherKey="MaDonThuoc" Type="DonThuoc" IsForeignKey="true" />
-      <Association Name="KhoThuoc_ChiTietDonThuoc" Member="KhoThuoc" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="KhoThuoc" IsForeignKey="true" />
+      <Association Name="KhoThuoc_ChiTietDonThuoc" Member="KhoThuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="KhoThuoc" IsForeignKey="true" />
       <Association Name="Thuoc_ChiTietDonThuoc" Member="Thuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>
@@ -143,7 +143,7 @@
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonThuoc" />
+      <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ChiTietDonThuoc" />
       <Association Name="Thuoc_KhoThuoc" Member="Thuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>

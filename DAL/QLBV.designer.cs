@@ -1617,7 +1617,7 @@ namespace DAL
 			{
 				if ((this._MaLo != value))
 				{
-					if (this._Thuoc.HasLoadedOrAssignedValue)
+					if ((this._KhoThuoc.HasLoadedOrAssignedValue || this._Thuoc.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1704,7 +1704,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoThuoc_ChiTietDonThuoc", Storage="_KhoThuoc", ThisKey="MaThuoc", OtherKey="MaThuoc", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoThuoc_ChiTietDonThuoc", Storage="_KhoThuoc", ThisKey="MaThuoc,MaLo", OtherKey="MaThuoc,MaLo", IsForeignKey=true)]
 		public KhoThuoc KhoThuoc
 		{
 			get
@@ -1728,10 +1728,12 @@ namespace DAL
 					{
 						value.ChiTietDonThuocs.Add(this);
 						this._MaThuoc = value.MaThuoc;
+						this._MaLo = value.MaLo;
 					}
 					else
 					{
 						this._MaThuoc = default(string);
+						this._MaLo = default(string);
 					}
 					this.SendPropertyChanged("KhoThuoc");
 				}
@@ -3540,7 +3542,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoThuoc_ChiTietDonThuoc", Storage="_ChiTietDonThuocs", ThisKey="MaThuoc", OtherKey="MaThuoc")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoThuoc_ChiTietDonThuoc", Storage="_ChiTietDonThuocs", ThisKey="MaThuoc,MaLo", OtherKey="MaThuoc,MaLo")]
 		public EntitySet<ChiTietDonThuoc> ChiTietDonThuocs
 		{
 			get
