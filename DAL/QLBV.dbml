@@ -141,8 +141,10 @@
   <Table Name="dbo.KhoThuoc" Member="KhoThuocs">
     <Type Name="KhoThuoc">
       <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="KhoThuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc" OtherKey="MaThuoc" Type="ChiTietDonThuoc" />
+      <Association Name="Thuoc_KhoThuoc" Member="Thuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="Thuoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NhanVien" Member="NhanViens">
@@ -306,6 +308,7 @@
       <Column Name="SoLuongHop" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Thuoc_ThuocTheoKhoa" Member="ThuocTheoKhoas" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ThuocTheoKhoa" />
       <Association Name="Thuoc_ChiTietDonThuoc" Member="ChiTietDonThuocs" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="ChiTietDonThuoc" />
+      <Association Name="Thuoc_KhoThuoc" Member="KhoThuoc" ThisKey="MaThuoc,MaLo" OtherKey="MaThuoc,MaLo" Type="KhoThuoc" Cardinality="One" />
     </Type>
   </Table>
 </Database>

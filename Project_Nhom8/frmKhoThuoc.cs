@@ -67,7 +67,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -95,7 +95,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -123,7 +123,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -151,7 +151,7 @@ namespace Project_Nhom8
         {
             UpdateMaThuoc();
             UpdateMaLo();
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -180,10 +180,16 @@ namespace Project_Nhom8
             // Kiểm tra xem số lượng nhập vào có hợp lệ không
             if (int.TryParse(txtSLThuocNhapVao.Text, out soLuongThem))
             {
-                // Gọi phương thức ThemSoLuongThuoc từ BUS_KhoThuoc
-                int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(txtMaThuoc.Text, txtMaLo.Text, soLuongThem);
-
-                // Nếu thêm thuốc vào kho thành công
+                // Gọi phương thức ThemThuocVaoKho từ BUS_KhoThuoc
+                int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.ThemSoLuongThuoc(
+                    txtMaThuoc.Text, // Mã thuốc, có thể là do người dùng nhập hoặc tự động sinh
+                    txtMaLo.Text, // Mã lô của thuốc
+                    txtTenThuoc.Text,
+                    txtHamLuong.Text,// Tên thuốc
+                    cboLoaiThuoc.SelectedItem.ToString(), // Loại thuốc
+                    txtXuatXu.Text, // Xuất xứ
+                    soLuongThem // Số lượng thuốc cần thêm vào kho
+                );
                 if (soLuongTrongKhoMoi != -1)
                 {
                     MessageBox.Show("Cập nhật số lượng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -194,6 +200,7 @@ namespace Project_Nhom8
                     // Gán số lượng tồn kho mới nhất vào txtSLThuocTrongKho
                     txtSLThuocTrongKho.Text = soLuongTrongKhoMoi.ToString();
                 }
+
                 else
                 {
                     // Thông báo lỗi nếu không tìm thấy thuốc hoặc không thể cập nhật số lượng
@@ -235,7 +242,7 @@ namespace Project_Nhom8
 
                 // Tính ngày hết hạn
                 DateTime ngayHetHan = ngaySanXuat.AddMonths(hanSuDungThang);
-                BUS_Thuoc.Instance.SuaThuoc(txtMaThuoc.Text, float.Parse(txtDonGia.Text), trangThai, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(cboSLDVT.SelectedItem.ToString()), slTieuChuan, txtMaLo.Text, ngayHetHan, int.Parse(cboSLHop.SelectedItem.ToString()));
+                BUS_Thuoc.Instance.SuaThuoc(txtMaThuoc.Text, float.Parse(txtDonGia.Text), trangThai, txtDongGoiBenNgoai.Text, tenDVT, int.Parse(cboSLDVT.SelectedItem.ToString()), slTieuChuan, txtMaLo.Text, ngayHetHan, int.Parse(cboSLHop.SelectedItem.ToString()), dtpNgaySX.Value);
                 BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
             }
         }
@@ -425,6 +432,7 @@ namespace Project_Nhom8
                     dtpNgaySX.Enabled = true;
                     cboSLHop.Enabled = true;
                     cboHSD.Enabled = true;
+                    dtpNgaySX.Enabled = false;
                 }
                 else
                 {
@@ -498,7 +506,7 @@ namespace Project_Nhom8
                 //cboHamLuong.Enabled = false;
 
                 btnThemThuoc.Enabled = false;
-
+                btnXoa.Enabled = true;
             }
         }
 
@@ -619,12 +627,13 @@ namespace Project_Nhom8
             btnCapNhat.Enabled = false;
             btnThemSLThuoc.Enabled = false;
             btnXoaSLThuoc.Enabled = false;
+            btnXoa.Enabled = false;
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
         }
 
         private void txtDonGia_TextChanged(object sender, EventArgs e)
         {
-            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text};
+            var textbox = new List<string> { txtTenThuoc.Text, txtXuatXu.Text, txtNhaCC.Text, txtHamLuong.Text, txtDonGia.Text };
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemThuoc.Enabled = true;
@@ -718,7 +727,7 @@ namespace Project_Nhom8
             }
         }
 
-        
+
 
         private void txtSLThuocNhapVao_TextChanged(object sender, EventArgs e)
         {
@@ -795,24 +804,6 @@ namespace Project_Nhom8
             }
         }
 
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            //Kiểm tra đã chọn dòng trên datagridview chưa
-            if (dgvKhoThuoc.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Bạn phải chọn dòng để xóa", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
-                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialog == DialogResult.Yes)
-                {
-                    BUS_Thuoc.Instance.XoaThuoc(txtMaThuoc.Text);
-                    BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
-                }
-            }
-        }
 
         private void cboHSD_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -860,7 +851,7 @@ namespace Project_Nhom8
                     cboSLDVT.Items.Add("20");
                     cboSLDVT.SelectedIndex = 0;
                     cboSLDVT.SelectedIndex = 0;
-                    cboSLTieuChuan.Items.Clear();      
+                    cboSLTieuChuan.Items.Clear();
                     cboSLTieuChuan.Items.Add("");
                     cboSLTieuChuan.SelectedIndex = 0;
 
@@ -905,7 +896,7 @@ namespace Project_Nhom8
                     cboSLTieuChuan.Items.Add("10");
                     cboSLTieuChuan.SelectedIndex = 0;
                 }
-            }         
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -936,6 +927,34 @@ namespace Project_Nhom8
 
                 // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
                 dtpNgaySX.Value = DateTime.Now;
+            }
+        }
+
+        private void btnXemHSD_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmHanSuDung());
+        }
+
+        private void btnXoa_Click_1(object sender, EventArgs e)
+        {
+            //Kiểm tra đã chọn dòng trên datagridview chưa
+            if (dgvKhoThuoc.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Bạn phải chọn dòng để xóa", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa không ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    BUS_Thuoc.Instance.XoaThuoc(txtMaLo.Text, txtMaLo.Text);
+                    BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
+                    btnThemThuoc.Enabled = true;
+                    btnXoa.Enabled = false;
+                    btnCapNhat.Enabled = false;
+                }
             }
         }
     }
