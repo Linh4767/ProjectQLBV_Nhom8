@@ -135,7 +135,7 @@ namespace DAL
         public bool ThemThuoc(ET_Thuoc et_thuoc)
         {
             // Kiểm tra xem MaThuoc có tồn tại trong bảng Thuoc không
-            if (db.Thuocs.Any(thuoc => thuoc.MaLo == et_thuoc.MaLo && thuoc.MaThuoc == et_thuoc.MaThuoc))
+            if (db.Thuocs.Any(thuoc => thuoc.MaLo == et_thuoc.MaLo))
             {
                 return false;
             }
@@ -161,7 +161,7 @@ namespace DAL
                     HSD = et_thuoc.HanSD,
                     MaLo = et_thuoc.MaLo,
                     SoLuongNhap = 0,
-                    SoLuongHop = et_thuoc.SoLuongHop           
+                    SoLuongHop = et_thuoc.SoLuongHop
                 };
 
                 db.Thuocs.InsertOnSubmit(thuoc);
@@ -171,6 +171,7 @@ namespace DAL
                 KhoThuoc khoThuoc = new KhoThuoc
                 {
                     MaThuoc = et_thuoc.MaThuoc,    // Liên kết với thuốc vừa thêm
+                    MaLo = et_thuoc.MaLo,
                     SoLuongTrongKho = 0            // Đặt số lượng trong kho là 0
                 };
 
@@ -186,23 +187,36 @@ namespace DAL
             }
         }
 
-        //Xóa thuốc
-        public bool XoaThuoc(string maThuoc)
+        // Xóa thuốc
+        public bool XoaThuoc(string maThuoc, string maLo)
         {
             try
             {
+                // Kiểm tra xem thuốc có tồn tại trong kho và số lượng trong kho có bằng 0
+                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaLo == maLo);
+                if (khoThuoc == null)
+                {
+                    // Nếu không tìm thấy thuốc trong kho
+                    return false;
+                }
+
                 // Kiểm tra nếu số lượng thuốc trong kho bằng 0
-                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
-                if (khoThuoc != null && khoThuoc.SoLuongTrongKho == 0)
+                if (khoThuoc.SoLuongTrongKho == 0)
                 {
                     // Xóa bản ghi trong bảng KhoThuoc
                     db.KhoThuocs.DeleteOnSubmit(khoThuoc);
 
-                    // Xóa bản ghi trong bảng Thuocs
-                    var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+                    // Kiểm tra nếu thuốc có tồn tại trong bảng Thuoc
+                    var thuoc = db.Thuocs.FirstOrDefault(t => t.MaLo == maLo);
                     if (thuoc != null)
                     {
+                        // Xóa bản ghi trong bảng Thuoc
                         db.Thuocs.DeleteOnSubmit(thuoc);
+                    }
+                    else
+                    {
+                        // Nếu không tìm thấy thuốc trong bảng Thuoc
+                        return false;
                     }
 
                     // Gửi các thay đổi đến database
@@ -211,7 +225,7 @@ namespace DAL
                 }
                 else
                 {
-                    // Thuốc có số lượng lớn hơn 0, không thể xóa
+                    // Nếu số lượng thuốc trong kho lớn hơn 0, không thể xóa
                     return false;
                 }
             }
@@ -219,19 +233,24 @@ namespace DAL
             {
                 if (ex.Number == 547)
                 {
-                    // Xảy ra lỗi do ràng buộc khóa ngoại
+                    // Lỗi ràng buộc khóa ngoại (foreign key)
+                    MessageBox.Show("Không thể xóa thuốc do có dữ liệu tham chiếu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+                // Xử lý các lỗi khác
+                MessageBox.Show($"Lỗi khi xóa thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
 
+
         //Sửa thuốc
-        public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop)
+        public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop, DateTime ngaySX)
         {
             using (var db = new QLBVDataContext())
             {
+                // Tìm thuốc dựa trên mã thuốc và mã lô
                 Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc && t.MaLo == maLo);
                 if (thuoc == null) return false;
 
@@ -246,6 +265,7 @@ namespace DAL
                     thuoc.SoLuongQCDG = soLuongQCDG;
                     thuoc.HSD = hSD;
                     thuoc.SoLuongHop = soLuongHop;
+                    thuoc.NgaySanXuat = ngaySX;  // Sửa ngày sản xuất
                     db.SubmitChanges();
                     return true;
                 }
@@ -256,6 +276,67 @@ namespace DAL
             }
         }
 
+        public IQueryable HienThiDanhSachThuocSapHetHan(int soNgayCanhBao = 60)
+        {
+            DateTime ngayHienTai = DateTime.Now; // Lấy ngày hiện tại
+            DateTime ngayCanhBao = ngayHienTai.AddDays(soNgayCanhBao); // Xác định ngưỡng cảnh báo
 
+            // Lấy danh sách thuốc sắp hết hạn
+            var thuocSapHetHan = from t in db.Thuocs
+                                 join kt in db.KhoThuocs
+                                 on t.MaThuoc equals kt.MaThuoc into kho
+                                 from k in kho.DefaultIfEmpty() // Left join
+                                 where t.HSD <= ngayCanhBao && t.HSD > ngayHienTai // Logic kiểm tra
+                                 select new
+                                 {
+                                     t.MaLo,
+                                     t.MaThuoc,
+                                     t.TenThuoc,
+                                     t.DonViTinh,
+                                     t.QuyCachDongGoi,
+                                     t.SoLuongDVT,
+                                     t.SoLuongQCDG,
+                                     t.Gia,
+                                     SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho,
+                                     t.TrangThai,
+                                     t.SoLuongHop,
+                                     t.SoLuongNhap,
+                                     t.NgaySanXuat,
+                                     t.HSD
+
+                                 };
+            return thuocSapHetHan;
+        }
+
+        public IQueryable HienThiDanhSachThuocDaHetHan()
+        {
+            DateTime ngayHienTai = DateTime.Now; // Lấy ngày hiện tại
+
+            // Lấy danh sách thuốc đã hết hạn
+            var thuocDaHetHan = from t in db.Thuocs
+                                join kt in db.KhoThuocs
+                                on t.MaThuoc equals kt.MaThuoc into kho
+                                from k in kho.DefaultIfEmpty() // Left join
+                                where t.HSD <= ngayHienTai // Kiểm tra thuốc đã hết hạn
+                                select new
+                                {
+                                    t.MaLo,
+                                    t.MaThuoc,
+                                    t.TenThuoc,
+                                    t.DonViTinh,
+                                    t.QuyCachDongGoi,
+                                    t.SoLuongDVT,
+                                    t.SoLuongQCDG,
+                                    t.Gia,
+                                    SoLuongTrongKho = k == null ? 0 : k.SoLuongTrongKho,
+                                    t.TrangThai,
+                                    t.SoLuongHop,
+                                    t.SoLuongNhap,
+                                    t.NgaySanXuat,
+                                    t.HSD
+                                };
+
+            return thuocDaHetHan;
+        }
     }
 }
