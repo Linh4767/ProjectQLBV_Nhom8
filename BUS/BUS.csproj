@@ -66,7 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS_BaoCaoTDDT.cs" />
     <Compile Include="BUS_BatLoi.cs" />
     <Compile Include="BUS_BenhNhan.cs" />
     <Compile Include="BUS_CaTruc.cs" />

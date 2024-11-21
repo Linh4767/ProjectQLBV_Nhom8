@@ -9,18 +9,11 @@
       </ConnectionProperties>
       <rd:DataSourceID>f0b91485-6b2f-4e47-86eb-105648583b87</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="QLBVDataSet1">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>40479d4f-a3b4-4ac7-a099-d2d9972662fb</rd:DataSourceID>
-    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSetDSBNNoiTruTheoThang">
       <Query>
-        <DataSourceName>QLBVDataSet1</DataSourceName>
+        <DataSourceName>QLBVDataSetDSBNNoiTruTheoThang</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -60,10 +53,6 @@
           <DataField>BenhNen</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="MaKhoa">
-          <DataField>MaKhoa</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TrangThaiXuatVien">
           <DataField>TrangThaiXuatVien</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -78,8 +67,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>QLBVDataSet1</rd:DataSetName>
-        <rd:SchemaPath>D:\SmartGit\ProjectQLBV_Nhom8\Project_Nhom8\QLBVDataSet1.xsd</rd:SchemaPath>
+        <rd:DataSetName>QLBVDataSetDSBNNoiTruTheoThang</rd:DataSetName>
+        <rd:SchemaPath>E:\btapcacmon\Chuyên đề phát triển ứng dụng\Project_Nhom8\Project_Nhom8\QLBVDataSetDSBNNoiTruTheoThang.xsd</rd:SchemaPath>
         <rd:TableName>LayDSBNNoiTruTheoThang</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -95,19 +84,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.57335in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.94944in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.02666in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.58611in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.7461in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -122,10 +108,10 @@
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.47723in</Width>
+                  <Width>1.31944in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.59167in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -143,7 +129,6 @@
                                 <TextRun>
                                   <Value>STT</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -160,7 +145,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -178,9 +162,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Phiếu KB</Value>
+                                  <Value>Mã phiếu khám</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -197,7 +180,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -215,9 +197,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Mã Bệnh Nhân</Value>
+                                  <Value>Mã bệnh nhân</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -234,44 +215,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox37">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Tên Bệnh Nhân</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox37</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -289,9 +232,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Giới Tính</Value>
+                                  <Value>Giới tính</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -308,7 +250,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -326,9 +267,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Giường</Value>
+                                  <Value>Mã giường</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -345,7 +285,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -363,9 +302,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ngày Nhận</Value>
+                                  <Value>Ngày nhận</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -382,7 +320,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -400,9 +337,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ngày Trả</Value>
+                                  <Value>Ngày trả</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -419,7 +355,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -437,9 +372,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Bệnh Nền</Value>
+                                  <Value>Bệnh nền</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -456,7 +390,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -474,9 +407,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Trạng Thái Xuất Viện</Value>
+                                  <Value>Trạng thái xuất viện</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -493,7 +425,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -511,9 +442,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Nhân Viên</Value>
+                                  <Value>Nhân viên</Value>
                                   <Style>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -530,7 +460,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>RoyalBlue</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -554,14 +483,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=RowNumber(Nothing)</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox36</rd:DefaultName>
@@ -570,7 +495,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -592,9 +516,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>MaSoPhieuKhamBenh</rd:DefaultName>
@@ -603,7 +525,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -625,9 +546,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>MaSoBenhNhan</rd:DefaultName>
@@ -636,40 +555,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="TenBenhNhan">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!TenBenhNhan.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>TenBenhNhan</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -691,9 +576,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>GioiTinh</rd:DefaultName>
@@ -702,7 +585,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -724,9 +606,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>MaGiuong</rd:DefaultName>
@@ -735,7 +615,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -757,9 +636,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>NgayNhanGiuong</rd:DefaultName>
@@ -768,7 +645,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -790,9 +666,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>NgayTraGiuong</rd:DefaultName>
@@ -801,7 +675,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -823,9 +696,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>BenhNen</rd:DefaultName>
@@ -834,7 +705,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -856,9 +726,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>TrangThaiXuatVien</rd:DefaultName>
@@ -867,7 +735,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -889,9 +756,7 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>MaNhanVien</rd:DefaultName>
@@ -900,7 +765,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -925,25 +789,23 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.41278in</Size>
+                    <Size>1in</Size>
                     <CellContents>
-                      <Textbox Name="Textbox3">
+                      <Textbox Name="Textbox33">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Khoa</Value>
+                                <Value>Ten Phong</Value>
                                 <Style>
-                                  <FontWeight>Bold</FontWeight>
                                   <Color>White</Color>
                                 </Style>
                               </TextRun>
@@ -953,14 +815,13 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Textbox3</rd:DefaultName>
+                        <rd:DefaultName>Textbox33</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
                           <BackgroundColor>RoyalBlue</BackgroundColor>
-                          <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -970,92 +831,47 @@
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
-                    <TablixMember>
-                      <TablixHeader>
-                        <Size>1.20722in</Size>
-                        <CellContents>
-                          <Textbox Name="Textbox33">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>Phòng</Value>
-                                    <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                      <Color>White</Color>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>Textbox33</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <BackgroundColor>RoyalBlue</BackgroundColor>
-                              <VerticalAlign>Middle</VerticalAlign>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember />
-                      </TablixMembers>
-                    </TablixMember>
+                    <TablixMember />
                   </TablixMembers>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="MaKhoa">
+                  <Group Name="TenPhong">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!MaKhoa.Value</GroupExpression>
+                      <GroupExpression>=Fields!TenPhong.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!MaKhoa.Value</Value>
+                      <Value>=Fields!TenPhong.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1.41278in</Size>
+                    <Size>1in</Size>
                     <CellContents>
-                      <Textbox Name="MaKhoa">
+                      <Textbox Name="TenPhong">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!MaKhoa.Value</Value>
+                                <Value>=Fields!TenPhong.Value</Value>
                                 <Style>
                                   <Color>White</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style>
-                              <TextAlign>Left</TextAlign>
-                            </Style>
+                            <Style />
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>MaKhoa</rd:DefaultName>
+                        <rd:DefaultName>TenPhong</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
                           <BackgroundColor>CornflowerBlue</BackgroundColor>
-                          <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1065,67 +881,16 @@
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
-                    <TablixMember>
-                      <Group Name="TenPhong">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!TenPhong.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!TenPhong.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
-                      <TablixHeader>
-                        <Size>1.20722in</Size>
-                        <CellContents>
-                          <Textbox Name="TenPhong">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>=Fields!TenPhong.Value</Value>
-                                    <Style>
-                                      <Color>White</Color>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Left</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>TenPhong</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <BackgroundColor>CornflowerBlue</BackgroundColor>
-                              <VerticalAlign>Middle</VerticalAlign>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember />
-                      </TablixMembers>
-                    </TablixMember>
+                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetDSBNNoiTruTheoThang</DataSetName>
             <Top>0.26736in</Top>
-            <Left>0.12222in</Left>
+            <Left>0.19556in</Left>
             <Height>0.5in</Height>
-            <Width>14.57056in</Width>
+            <Width>11.31944in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1139,26 +904,23 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Nhân Viên Xuất Báo Cáo</Value>
+                    <Value>Nhân viên xuất</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
+                <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox46</rd:DefaultName>
             <Top>1.23264in</Top>
             <Left>9.31945in</Left>
             <Height>0.25in</Height>
-            <Width>2.19555in</Width>
+            <Width>1in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1174,7 +936,6 @@
                   <TextRun>
                     <Value>=Parameters!TenNV.Value</Value>
                     <Style>
-                      <FontWeight>Bold</FontWeight>
                       <Format>t</Format>
                     </Style>
                   </TextRun>
@@ -1186,7 +947,7 @@
             </Paragraphs>
             <rd:DefaultName>TenNV</rd:DefaultName>
             <Top>1.62847in</Top>
-            <Left>9.17778in</Left>
+            <Left>8.64695in</Left>
             <Height>0.25in</Height>
             <Width>2.46528in</Width>
             <ZIndex>2</ZIndex>
@@ -1194,7 +955,6 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1205,7 +965,7 @@
         <Height>2in</Height>
         <Style />
       </Body>
-      <Width>14.69278in</Width>
+      <Width>11.75111in</Width>
       <Page>
         <PageHeader>
           <Height>1.72222in</Height>
@@ -1217,7 +977,7 @@
               <Value>logoBV</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.06944in</Top>
-              <Left>0.20945in</Left>
+              <Left>0.19556in</Left>
               <Height>0.76389in</Height>
               <Width>0.75694in</Width>
               <Style>

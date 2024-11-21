@@ -30,10 +30,9 @@ namespace BUS
         }
 
         //Xóa số lượng thuốc trong kho
-        public int XoaNhieuThuocTrongKho(List<Tuple<string, string>> danhSachThuoc)
+        public int? XoaSoLuongThuoc(string maThuoc, int soLuongXoa)
         {
-            // Gọi phương thức trong DAL mà không cần phải thêm tham chiếu đến DAL trong form
-            return DAL_KhoThuoc.Instance.XoaNhieuThuocTrongKho(danhSachThuoc);
+            return DAL_KhoThuoc.Instance.XoaThuocTrongKho(maThuoc, soLuongXoa);
         }
 
 

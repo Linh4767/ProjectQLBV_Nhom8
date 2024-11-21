@@ -287,7 +287,7 @@ namespace DAL
                                  join kt in db.KhoThuocs
                                  on t.MaThuoc equals kt.MaThuoc into kho
                                  from k in kho.DefaultIfEmpty() // Left join
-                                 where t.HSD <= ngayCanhBao && t.HSD > ngayHienTai && t.SoLuongNhap != 0 // Logic kiểm tra
+                                 where t.HSD <= ngayCanhBao && t.HSD > ngayHienTai // Logic kiểm tra
                                  select new
                                  {
                                      t.MaLo,
@@ -318,7 +318,7 @@ namespace DAL
                                 join kt in db.KhoThuocs
                                 on t.MaThuoc equals kt.MaThuoc into kho
                                 from k in kho.DefaultIfEmpty() // Left join
-                                where t.HSD <= ngayHienTai && t.SoLuongNhap != 0// Kiểm tra thuốc đã hết hạn
+                                where t.HSD <= ngayHienTai // Kiểm tra thuốc đã hết hạn
                                 select new
                                 {
                                     t.MaLo,
