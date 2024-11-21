@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentUser.cs" />
+    <Compile Include="ET_BaoCaoTDDT.cs" />
     <Compile Include="ET_BenhNhan.cs" />
     <Compile Include="ET_CaTruc.cs" />
     <Compile Include="ET_ChiTietDonThuoc.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="ET_DonThuoc.cs" />
     <Compile Include="ET_DSBenhNhanNoiTru.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
+    <Compile Include="ET_HSDThuoc.cs" />
     <Compile Include="ET_InDonThuoc.cs" />
     <Compile Include="ET_KhamBenh.cs" />
     <Compile Include="ET_Khoa.cs" />
