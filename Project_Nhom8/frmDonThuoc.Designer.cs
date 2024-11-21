@@ -338,6 +338,7 @@
             this.txtCachDung.SelectedText = "";
             this.txtCachDung.Size = new System.Drawing.Size(399, 98);
             this.txtCachDung.TabIndex = 159;
+            this.txtCachDung.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCachDung_KeyPress);
             // 
             // label10
             // 

@@ -129,7 +129,7 @@ namespace Project_Nhom8
                 if (!string.IsNullOrEmpty(txtMaDT.Text) && !string.IsNullOrEmpty(txtMaThuoc.Text) && !string.IsNullOrEmpty(cboMaLo.SelectedValue.ToString()) && !string.IsNullOrEmpty(maKhoa))
                 {
                     string kq = BUS_ChiTietDonThuoc.Instance.XoaThuoc(txtMaDT.Text, txtMaThuoc.Text, cboMaLo.SelectedValue.ToString(), maKhoa);
-                    MessageBox.Show(kq, "Thông báo");
+                    MessageBox.Show(kq, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     if (kq == "Loại bỏ thành công")
                     {
@@ -210,8 +210,8 @@ namespace Project_Nhom8
 
                 txtSoLuong.Text = dgvChiTietDonThuoc.Rows[dong].Cells[3].Value.ToString();
                 txtLoaiThuoc.Text = dgvChiTietDonThuoc.Rows[dong].Cells[4].Value.ToString();
-                txtHamLuong.Text = dgvChiTietDonThuoc.Rows[dong].Cells[5].Value.ToString();
-                txtCachDung.Text = dgvChiTietDonThuoc.Rows[dong].Cells[4].Value.ToString();
+                txtHamLuong.Text = dgvChiTietDonThuoc.Rows[dong].Cells[6].Value.ToString();
+                txtCachDung.Text = dgvChiTietDonThuoc.Rows[dong].Cells[5].Value.ToString();
             }
         }
 
@@ -261,6 +261,20 @@ namespace Project_Nhom8
             string dataToSend = txtMaDT.Text;
             frmMain frmMain = (frmMain)this.ParentForm;
             frmMain.openChildForm(new frmInDonThuoc(dataToSend));
+        }
+
+        private void txtCachDung_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Nhập được chữ và số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (txtCachDung.Text.Length > 499 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Nhập quá ký tự tự cho phép là 500", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

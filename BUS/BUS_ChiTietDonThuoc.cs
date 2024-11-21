@@ -57,27 +57,20 @@ namespace BUS
         //Thêm thuốc vào đơn
         public string ThemThuoc(ET_ChiTietDonThuoc eT_ChiTiet, string maKhoa, int soLuong)
         {
-            try
+            if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTiet.MaThuoc, maKhoa, eT_ChiTiet.MaLo, soLuong))
             {
-                if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTiet.MaThuoc, maKhoa, eT_ChiTiet.MaLo, soLuong))
+                if (DAL_ChiTietDonThuoc.Instance.ThemChiTietDonThuoc(eT_ChiTiet, maKhoa, soLuong))
                 {
-                    if (DAL_ChiTietDonThuoc.Instance.ThemChiTietDonThuoc(eT_ChiTiet, maKhoa, soLuong))
-                    {
-                        return "Thêm thành công";
-                    }
-                    else
-                    {
-                        return "Thêm không thành công.";
-                    }
+                    return "Thêm thành công";
                 }
                 else
                 {
-                    return "Số lượng thuốc không đủ!";
+                    return "Thêm không thành công.";
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return "Lỗi khi thêm thuốc vào đơn: " + ex.Message;
+                return "Số lượng thuốc không đủ!";
             }
         }
 
@@ -97,28 +90,21 @@ namespace BUS
         //Cập nhật thuốc
         public string CapNhatThuoc(ET_ChiTietDonThuoc eT_ChiTietDon, int soLuong, string maKhoa)
         {
-            try
+            if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTietDon.MaThuoc, maKhoa, eT_ChiTietDon.MaLo, soLuong))
             {
-                if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTietDon.MaThuoc, maKhoa, eT_ChiTietDon.MaLo, soLuong))
+                if (DAL_ChiTietDonThuoc.Instance.CapNhatDonThuoc(eT_ChiTietDon, soLuong, maKhoa))
                 {
-                    if (DAL_ChiTietDonThuoc.Instance.CapNhatDonThuoc(eT_ChiTietDon, soLuong, maKhoa))
-                    {
-                        return "Cập nhật thành công";
-                    }
-                    else
-                    {
-                        return "Cập nhật không thành công.";
-                    }
-
+                    return "Cập nhật thành công";
                 }
                 else
                 {
-                    return "Số lượng thuốc không đủ!";
+                    return "Cập nhật không thành công.";
                 }
+
             }
-            catch (Exception ex)
+            else
             {
-                return "Lỗi khi cập nhật thuốc vào đơn: " + ex.Message;
+                return "Số lượng thuốc không đủ!";
             }
         }
 

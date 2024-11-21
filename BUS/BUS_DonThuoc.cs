@@ -33,20 +33,13 @@ namespace BUS
         //thêm đơn thuốc
         public string ThemDonThuoc(ET_DonThuoc etDon)
         {
-            try
+            if (DAL_DonThuoc.Instance.ThemDonThuoc(etDon))
             {
-                if (DAL_DonThuoc.Instance.ThemDonThuoc(etDon))
-                {
-                    return "Thêm thành công";
-                }
-                else
-                {
-                    return "Thêm không thành công.";
-                }
+                return "Thêm thành công";
             }
-            catch (Exception ex)
+            else
             {
-                return "Lỗi khi thêm đơn thuốc: " + ex.Message;
+                return "Thêm không thành công.";
             }
         }
     }
