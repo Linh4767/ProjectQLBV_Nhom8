@@ -134,15 +134,16 @@ namespace DAL
         //Thêm thuốc
         public bool ThemThuoc(ET_Thuoc et_thuoc)
         {
-            // Kiểm tra xem MaThuoc có tồn tại trong bảng Thuoc không
-            if (db.Thuocs.Any(thuoc => thuoc.MaLo == et_thuoc.MaLo))
+            // Kiểm tra trùng lặp dựa trên MaThuoc và MaLo
+            if (db.Thuocs.Any(thuoc => thuoc.MaThuoc == et_thuoc.MaThuoc || thuoc.MaLo == et_thuoc.MaLo))
             {
+                MessageBox.Show("Thuốc hoặc mã lô đã tồn tại trong hệ thống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             try
             {
-                // Thêm thuốc vào bảng Thuoc
+                // Thêm thuốc mới vào bảng Thuoc
                 Thuoc thuoc = new Thuoc
                 {
                     MaThuoc = et_thuoc.MaThuoc,
@@ -165,20 +166,20 @@ namespace DAL
                 };
 
                 db.Thuocs.InsertOnSubmit(thuoc);
-                db.SubmitChanges(); // Lưu vào bảng Thuoc
+                db.SubmitChanges(); // Lưu thay đổi vào bảng Thuoc
 
                 // Thêm số lượng 0 vào bảng KhoThuoc
                 KhoThuoc khoThuoc = new KhoThuoc
                 {
-                    MaThuoc = et_thuoc.MaThuoc,    // Liên kết với thuốc vừa thêm
+                    MaThuoc = et_thuoc.MaThuoc,
                     MaLo = et_thuoc.MaLo,
-                    SoLuongTrongKho = 0            // Đặt số lượng trong kho là 0
+                    SoLuongTrongKho = 0 // Đặt số lượng ban đầu là 0
                 };
 
                 db.KhoThuocs.InsertOnSubmit(khoThuoc);
-                db.SubmitChanges(); // Lưu vào bảng KhoThuoc
+                db.SubmitChanges(); // Lưu thay đổi vào bảng KhoThuoc
 
-                return true;
+                return true; // Thêm thành công
             }
             catch (Exception ex)
             {
