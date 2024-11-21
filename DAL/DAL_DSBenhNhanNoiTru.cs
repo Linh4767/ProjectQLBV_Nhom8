@@ -32,28 +32,30 @@ namespace DAL
              r.TenBenhNhan,
              r.GioiTinh,
              (DateTime?)r.NgaySinh,
-             (DateTime?)r.NgayTraGiuong,
+             (DateTime)r.NgayNhanGiuong,
              (DateTime?)r.NgayTraGiuong,
              r.TenPhong,
              r.MaGiuong,
              r.BenhNen,
+             r.MaKhoa,
              r.TrangThaiXuatVien,
              r.MaNhanVien,
              r.MaSoPhieuKhamBenh)).ToList();
         }
-        public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoThang(int thang,int nam)
+        public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoThang(int thang, int nam)
         {
-            var results = db.LayDSBNNoiTruTheoThang(thang,nam);
+            var results = db.LayDSBNNoiTruTheoThang(thang, nam);
             return results.Select(r => new ET_DSBenhNhanNoiTru(
              r.MaSoBenhNhan,
              r.TenBenhNhan,
              r.GioiTinh,
              (DateTime?)r.NgaySinh,
-             (DateTime?)r.NgayTraGiuong,
+             (DateTime)r.NgayNhanGiuong,
              (DateTime?)r.NgayTraGiuong,
              r.TenPhong,
              r.MaGiuong,
              r.BenhNen,
+             r.MaKhoa,
              r.TrangThaiXuatVien,
              r.MaNhanVien,
              r.MaSoPhieuKhamBenh)).ToList();
@@ -66,28 +68,30 @@ namespace DAL
              r.TenBenhNhan,
              r.GioiTinh,
              (DateTime?)r.NgaySinh,
-             (DateTime?)r.NgayTraGiuong,
+             (DateTime)r.NgayNhanGiuong,
              (DateTime?)r.NgayTraGiuong,
              r.TenPhong,
              r.MaGiuong,
              r.BenhNen,
+             r.MaKhoa,
              r.TrangThaiXuatVien,
              r.MaNhanVien,
              r.MaSoPhieuKhamBenh)).ToList();
         }
-        public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoKhoangTG(DateTime tuNgay,DateTime denNgay)
+        public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoKhoangTG(DateTime tuNgay, DateTime denNgay)
         {
-            var results = db.LayDSBNNoiTruTheoKhoangTG(tuNgay,denNgay);
+            var results = db.LayDSBNNoiTruTheoKhoangTG(tuNgay, denNgay);
             return results.Select(r => new ET_DSBenhNhanNoiTru(
              r.MaSoBenhNhan,
              r.TenBenhNhan,
              r.GioiTinh,
              (DateTime?)r.NgaySinh,
-             (DateTime?)r.NgayTraGiuong,
+             (DateTime)r.NgayNhanGiuong,
              (DateTime?)r.NgayTraGiuong,
              r.TenPhong,
              r.MaGiuong,
              r.BenhNen,
+             r.MaKhoa,
              r.TrangThaiXuatVien,
              r.MaNhanVien,
              r.MaSoPhieuKhamBenh)).ToList();

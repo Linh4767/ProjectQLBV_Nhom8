@@ -8,7 +8,7 @@ namespace ET
 {
     public class ET_DSBenhNhanNoiTru
     {
-        public ET_DSBenhNhanNoiTru(string maSoBenhNhan, string tenBenhNhan, string gioiTinh, DateTime? ngaySinh, DateTime? ngayNhanGiuong, DateTime? ngayTraGiuong, string tenPhong, string maGiuong, string benhNen, string trangThaiXuatVien, string maNhanVien, string maSoPhieuKhamBenh)
+        public ET_DSBenhNhanNoiTru(string maSoBenhNhan, string tenBenhNhan, string gioiTinh, DateTime? ngaySinh, DateTime? ngayNhanGiuong, DateTime? ngayTraGiuong, string tenPhong, string maGiuong, string benhNen, string maKhoa, string trangThaiXuatVien, string maNhanVien, string maSoPhieuKhamBenh)
         {
             MaSoBenhNhan = maSoBenhNhan;
             TenBenhNhan = tenBenhNhan;
@@ -19,11 +19,12 @@ namespace ET
             TenPhong = tenPhong;
             MaGiuong = maGiuong;
             BenhNen = benhNen;
+            MaKhoa = maKhoa;
             TrangThaiXuatVien = trangThaiXuatVien;
             MaNhanVien = maNhanVien;
             MaSoPhieuKhamBenh = maSoPhieuKhamBenh;
-        }
 
+        }
         public string MaSoBenhNhan { get; set; }
         public string TenBenhNhan { get; set; }
         public string GioiTinh { get; set; }
@@ -33,6 +34,7 @@ namespace ET
         public string TenPhong { get; set; }
         public string MaGiuong { get; set; }
         public string BenhNen { get; set; }
+        public string MaKhoa { get; set; }
         public string TrangThaiXuatVien { get; set; }
         public string MaNhanVien { get; set; }
         public string MaSoPhieuKhamBenh { get; set; }

@@ -20,17 +20,17 @@ namespace Project_Nhom8 {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("QLBVDataSetDSBNNoiTruTheoKhoangTG")]
+    [global::System.Xml.Serialization.XmlRootAttribute("QLBVDataSet1")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class QLBVDataSetDSBNNoiTruTheoKhoangTG : global::System.Data.DataSet {
+    public partial class QLBVDataSet1 : global::System.Data.DataSet {
         
-        private LayDSBNNoiTruTheoKhoangTGDataTable tableLayDSBNNoiTruTheoKhoangTG;
+        private LayDSBNNoiTruTheoNgayDataTable tableLayDSBNNoiTruTheoNgay;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public QLBVDataSetDSBNNoiTruTheoKhoangTG() {
+        public QLBVDataSet1() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Project_Nhom8 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected QLBVDataSetDSBNNoiTruTheoKhoangTG(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected QLBVDataSet1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Project_Nhom8 {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["LayDSBNNoiTruTheoKhoangTG"] != null)) {
-                    base.Tables.Add(new LayDSBNNoiTruTheoKhoangTGDataTable(ds.Tables["LayDSBNNoiTruTheoKhoangTG"]));
+                if ((ds.Tables["LayDSBNNoiTruTheoNgay"] != null)) {
+                    base.Tables.Add(new LayDSBNNoiTruTheoNgayDataTable(ds.Tables["LayDSBNNoiTruTheoNgay"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Project_Nhom8 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public LayDSBNNoiTruTheoKhoangTGDataTable LayDSBNNoiTruTheoKhoangTG {
+        public LayDSBNNoiTruTheoNgayDataTable LayDSBNNoiTruTheoNgay {
             get {
-                return this.tableLayDSBNNoiTruTheoKhoangTG;
+                return this.tableLayDSBNNoiTruTheoNgay;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Project_Nhom8 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            QLBVDataSetDSBNNoiTruTheoKhoangTG cln = ((QLBVDataSetDSBNNoiTruTheoKhoangTG)(base.Clone()));
+            QLBVDataSet1 cln = ((QLBVDataSet1)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Project_Nhom8 {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["LayDSBNNoiTruTheoKhoangTG"] != null)) {
-                    base.Tables.Add(new LayDSBNNoiTruTheoKhoangTGDataTable(ds.Tables["LayDSBNNoiTruTheoKhoangTG"]));
+                if ((ds.Tables["LayDSBNNoiTruTheoNgay"] != null)) {
+                    base.Tables.Add(new LayDSBNNoiTruTheoNgayDataTable(ds.Tables["LayDSBNNoiTruTheoNgay"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Project_Nhom8 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableLayDSBNNoiTruTheoKhoangTG = ((LayDSBNNoiTruTheoKhoangTGDataTable)(base.Tables["LayDSBNNoiTruTheoKhoangTG"]));
+            this.tableLayDSBNNoiTruTheoNgay = ((LayDSBNNoiTruTheoNgayDataTable)(base.Tables["LayDSBNNoiTruTheoNgay"]));
             if ((initTable == true)) {
-                if ((this.tableLayDSBNNoiTruTheoKhoangTG != null)) {
-                    this.tableLayDSBNNoiTruTheoKhoangTG.InitVars();
+                if ((this.tableLayDSBNNoiTruTheoNgay != null)) {
+                    this.tableLayDSBNNoiTruTheoNgay.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Project_Nhom8 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "QLBVDataSetDSBNNoiTruTheoKhoangTG";
+            this.DataSetName = "QLBVDataSet1";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/QLBVDataSetDSBNNoiTruTheoKhoangTG.xsd";
+            this.Namespace = "http://tempuri.org/QLBVDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableLayDSBNNoiTruTheoKhoangTG = new LayDSBNNoiTruTheoKhoangTGDataTable();
-            base.Tables.Add(this.tableLayDSBNNoiTruTheoKhoangTG);
+            this.tableLayDSBNNoiTruTheoNgay = new LayDSBNNoiTruTheoNgayDataTable();
+            base.Tables.Add(this.tableLayDSBNNoiTruTheoNgay);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeLayDSBNNoiTruTheoKhoangTG() {
+        private bool ShouldSerializeLayDSBNNoiTruTheoNgay() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Project_Nhom8 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            QLBVDataSetDSBNNoiTruTheoKhoangTG ds = new QLBVDataSetDSBNNoiTruTheoKhoangTG();
+            QLBVDataSet1 ds = new QLBVDataSet1();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,14 @@ namespace Project_Nhom8 {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void LayDSBNNoiTruTheoKhoangTGRowChangeEventHandler(object sender, LayDSBNNoiTruTheoKhoangTGRowChangeEvent e);
+        public delegate void LayDSBNNoiTruTheoNgayRowChangeEventHandler(object sender, LayDSBNNoiTruTheoNgayRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class LayDSBNNoiTruTheoKhoangTGDataTable : global::System.Data.TypedTableBase<LayDSBNNoiTruTheoKhoangTGRow> {
+        public partial class LayDSBNNoiTruTheoNgayDataTable : global::System.Data.TypedTableBase<LayDSBNNoiTruTheoNgayRow> {
             
             private global::System.Data.DataColumn columnMaSoBenhNhan;
             
@@ -307,8 +307,8 @@ namespace Project_Nhom8 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGDataTable() {
-                this.TableName = "LayDSBNNoiTruTheoKhoangTG";
+            public LayDSBNNoiTruTheoNgayDataTable() {
+                this.TableName = "LayDSBNNoiTruTheoNgay";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -316,7 +316,7 @@ namespace Project_Nhom8 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal LayDSBNNoiTruTheoKhoangTGDataTable(global::System.Data.DataTable table) {
+            internal LayDSBNNoiTruTheoNgayDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -333,7 +333,7 @@ namespace Project_Nhom8 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected LayDSBNNoiTruTheoKhoangTGDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected LayDSBNNoiTruTheoNgayDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -453,34 +453,34 @@ namespace Project_Nhom8 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGRow this[int index] {
+            public LayDSBNNoiTruTheoNgayRow this[int index] {
                 get {
-                    return ((LayDSBNNoiTruTheoKhoangTGRow)(this.Rows[index]));
+                    return ((LayDSBNNoiTruTheoNgayRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event LayDSBNNoiTruTheoKhoangTGRowChangeEventHandler LayDSBNNoiTruTheoKhoangTGRowChanging;
+            public event LayDSBNNoiTruTheoNgayRowChangeEventHandler LayDSBNNoiTruTheoNgayRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event LayDSBNNoiTruTheoKhoangTGRowChangeEventHandler LayDSBNNoiTruTheoKhoangTGRowChanged;
+            public event LayDSBNNoiTruTheoNgayRowChangeEventHandler LayDSBNNoiTruTheoNgayRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event LayDSBNNoiTruTheoKhoangTGRowChangeEventHandler LayDSBNNoiTruTheoKhoangTGRowDeleting;
+            public event LayDSBNNoiTruTheoNgayRowChangeEventHandler LayDSBNNoiTruTheoNgayRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event LayDSBNNoiTruTheoKhoangTGRowChangeEventHandler LayDSBNNoiTruTheoKhoangTGRowDeleted;
+            public event LayDSBNNoiTruTheoNgayRowChangeEventHandler LayDSBNNoiTruTheoNgayRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddLayDSBNNoiTruTheoKhoangTGRow(LayDSBNNoiTruTheoKhoangTGRow row) {
+            public void AddLayDSBNNoiTruTheoNgayRow(LayDSBNNoiTruTheoNgayRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGRow AddLayDSBNNoiTruTheoKhoangTGRow(string MaSoBenhNhan, string TenBenhNhan, string GioiTinh, System.DateTime NgaySinh, System.DateTime NgayNhanGiuong, System.DateTime NgayTraGiuong, string TenPhong, string MaGiuong, string BenhNen, string MaKhoa, string TrangThaiXuatVien, string MaNhanVien, string MaSoPhieuKhamBenh) {
-                LayDSBNNoiTruTheoKhoangTGRow rowLayDSBNNoiTruTheoKhoangTGRow = ((LayDSBNNoiTruTheoKhoangTGRow)(this.NewRow()));
+            public LayDSBNNoiTruTheoNgayRow AddLayDSBNNoiTruTheoNgayRow(string MaSoBenhNhan, string TenBenhNhan, string GioiTinh, System.DateTime NgaySinh, System.DateTime NgayNhanGiuong, System.DateTime NgayTraGiuong, string TenPhong, string MaGiuong, string BenhNen, string MaKhoa, string TrangThaiXuatVien, string MaNhanVien, string MaSoPhieuKhamBenh) {
+                LayDSBNNoiTruTheoNgayRow rowLayDSBNNoiTruTheoNgayRow = ((LayDSBNNoiTruTheoNgayRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaSoBenhNhan,
                         TenBenhNhan,
@@ -495,15 +495,15 @@ namespace Project_Nhom8 {
                         TrangThaiXuatVien,
                         MaNhanVien,
                         MaSoPhieuKhamBenh};
-                rowLayDSBNNoiTruTheoKhoangTGRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowLayDSBNNoiTruTheoKhoangTGRow);
-                return rowLayDSBNNoiTruTheoKhoangTGRow;
+                rowLayDSBNNoiTruTheoNgayRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowLayDSBNNoiTruTheoNgayRow);
+                return rowLayDSBNNoiTruTheoNgayRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                LayDSBNNoiTruTheoKhoangTGDataTable cln = ((LayDSBNNoiTruTheoKhoangTGDataTable)(base.Clone()));
+                LayDSBNNoiTruTheoNgayDataTable cln = ((LayDSBNNoiTruTheoNgayDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -511,7 +511,7 @@ namespace Project_Nhom8 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new LayDSBNNoiTruTheoKhoangTGDataTable();
+                return new LayDSBNNoiTruTheoNgayDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -585,28 +585,28 @@ namespace Project_Nhom8 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGRow NewLayDSBNNoiTruTheoKhoangTGRow() {
-                return ((LayDSBNNoiTruTheoKhoangTGRow)(this.NewRow()));
+            public LayDSBNNoiTruTheoNgayRow NewLayDSBNNoiTruTheoNgayRow() {
+                return ((LayDSBNNoiTruTheoNgayRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new LayDSBNNoiTruTheoKhoangTGRow(builder);
+                return new LayDSBNNoiTruTheoNgayRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(LayDSBNNoiTruTheoKhoangTGRow);
+                return typeof(LayDSBNNoiTruTheoNgayRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.LayDSBNNoiTruTheoKhoangTGRowChanged != null)) {
-                    this.LayDSBNNoiTruTheoKhoangTGRowChanged(this, new LayDSBNNoiTruTheoKhoangTGRowChangeEvent(((LayDSBNNoiTruTheoKhoangTGRow)(e.Row)), e.Action));
+                if ((this.LayDSBNNoiTruTheoNgayRowChanged != null)) {
+                    this.LayDSBNNoiTruTheoNgayRowChanged(this, new LayDSBNNoiTruTheoNgayRowChangeEvent(((LayDSBNNoiTruTheoNgayRow)(e.Row)), e.Action));
                 }
             }
             
@@ -614,8 +614,8 @@ namespace Project_Nhom8 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.LayDSBNNoiTruTheoKhoangTGRowChanging != null)) {
-                    this.LayDSBNNoiTruTheoKhoangTGRowChanging(this, new LayDSBNNoiTruTheoKhoangTGRowChangeEvent(((LayDSBNNoiTruTheoKhoangTGRow)(e.Row)), e.Action));
+                if ((this.LayDSBNNoiTruTheoNgayRowChanging != null)) {
+                    this.LayDSBNNoiTruTheoNgayRowChanging(this, new LayDSBNNoiTruTheoNgayRowChangeEvent(((LayDSBNNoiTruTheoNgayRow)(e.Row)), e.Action));
                 }
             }
             
@@ -623,8 +623,8 @@ namespace Project_Nhom8 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.LayDSBNNoiTruTheoKhoangTGRowDeleted != null)) {
-                    this.LayDSBNNoiTruTheoKhoangTGRowDeleted(this, new LayDSBNNoiTruTheoKhoangTGRowChangeEvent(((LayDSBNNoiTruTheoKhoangTGRow)(e.Row)), e.Action));
+                if ((this.LayDSBNNoiTruTheoNgayRowDeleted != null)) {
+                    this.LayDSBNNoiTruTheoNgayRowDeleted(this, new LayDSBNNoiTruTheoNgayRowChangeEvent(((LayDSBNNoiTruTheoNgayRow)(e.Row)), e.Action));
                 }
             }
             
@@ -632,14 +632,14 @@ namespace Project_Nhom8 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.LayDSBNNoiTruTheoKhoangTGRowDeleting != null)) {
-                    this.LayDSBNNoiTruTheoKhoangTGRowDeleting(this, new LayDSBNNoiTruTheoKhoangTGRowChangeEvent(((LayDSBNNoiTruTheoKhoangTGRow)(e.Row)), e.Action));
+                if ((this.LayDSBNNoiTruTheoNgayRowDeleting != null)) {
+                    this.LayDSBNNoiTruTheoNgayRowDeleting(this, new LayDSBNNoiTruTheoNgayRowChangeEvent(((LayDSBNNoiTruTheoNgayRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveLayDSBNNoiTruTheoKhoangTGRow(LayDSBNNoiTruTheoKhoangTGRow row) {
+            public void RemoveLayDSBNNoiTruTheoNgayRow(LayDSBNNoiTruTheoNgayRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -648,7 +648,7 @@ namespace Project_Nhom8 {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                QLBVDataSetDSBNNoiTruTheoKhoangTG ds = new QLBVDataSetDSBNNoiTruTheoKhoangTG();
+                QLBVDataSet1 ds = new QLBVDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -666,7 +666,7 @@ namespace Project_Nhom8 {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "LayDSBNNoiTruTheoKhoangTGDataTable";
+                attribute2.FixedValue = "LayDSBNNoiTruTheoNgayDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -710,25 +710,25 @@ namespace Project_Nhom8 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class LayDSBNNoiTruTheoKhoangTGRow : global::System.Data.DataRow {
+        public partial class LayDSBNNoiTruTheoNgayRow : global::System.Data.DataRow {
             
-            private LayDSBNNoiTruTheoKhoangTGDataTable tableLayDSBNNoiTruTheoKhoangTG;
+            private LayDSBNNoiTruTheoNgayDataTable tableLayDSBNNoiTruTheoNgay;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal LayDSBNNoiTruTheoKhoangTGRow(global::System.Data.DataRowBuilder rb) : 
+            internal LayDSBNNoiTruTheoNgayRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableLayDSBNNoiTruTheoKhoangTG = ((LayDSBNNoiTruTheoKhoangTGDataTable)(this.Table));
+                this.tableLayDSBNNoiTruTheoNgay = ((LayDSBNNoiTruTheoNgayDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string MaSoBenhNhan {
                 get {
-                    return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.MaSoBenhNhanColumn]));
+                    return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.MaSoBenhNhanColumn]));
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.MaSoBenhNhanColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.MaSoBenhNhanColumn] = value;
                 }
             }
             
@@ -736,10 +736,10 @@ namespace Project_Nhom8 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TenBenhNhan {
                 get {
-                    return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.TenBenhNhanColumn]));
+                    return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.TenBenhNhanColumn]));
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.TenBenhNhanColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.TenBenhNhanColumn] = value;
                 }
             }
             
@@ -747,10 +747,10 @@ namespace Project_Nhom8 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string GioiTinh {
                 get {
-                    return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.GioiTinhColumn]));
+                    return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.GioiTinhColumn]));
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.GioiTinhColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.GioiTinhColumn] = value;
                 }
             }
             
@@ -759,14 +759,14 @@ namespace Project_Nhom8 {
             public System.DateTime NgaySinh {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoKhoangTG.NgaySinhColumn]));
+                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoNgay.NgaySinhColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NgaySinh\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NgaySinh\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.NgaySinhColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.NgaySinhColumn] = value;
                 }
             }
             
@@ -775,15 +775,15 @@ namespace Project_Nhom8 {
             public System.DateTime NgayNhanGiuong {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayNhanGiuongColumn]));
+                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoNgay.NgayNhanGiuongColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NgayNhanGiuong\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NgayNhanGiuong\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayNhanGiuongColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.NgayNhanGiuongColumn] = value;
                 }
             }
             
@@ -792,15 +792,14 @@ namespace Project_Nhom8 {
             public System.DateTime NgayTraGiuong {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayTraGiuongColumn]));
+                        return ((global::System.DateTime)(this[this.tableLayDSBNNoiTruTheoNgay.NgayTraGiuongColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NgayTraGiuong\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NgayTraGiuong\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayTraGiuongColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.NgayTraGiuongColumn] = value;
                 }
             }
             
@@ -809,14 +808,14 @@ namespace Project_Nhom8 {
             public string TenPhong {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.TenPhongColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.TenPhongColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TenPhong\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TenPhong\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.TenPhongColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.TenPhongColumn] = value;
                 }
             }
             
@@ -825,14 +824,14 @@ namespace Project_Nhom8 {
             public string MaGiuong {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.MaGiuongColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.MaGiuongColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MaGiuong\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaGiuong\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.MaGiuongColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.MaGiuongColumn] = value;
                 }
             }
             
@@ -841,14 +840,14 @@ namespace Project_Nhom8 {
             public string BenhNen {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.BenhNenColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.BenhNenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BenhNen\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BenhNen\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.BenhNenColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.BenhNenColumn] = value;
                 }
             }
             
@@ -857,14 +856,14 @@ namespace Project_Nhom8 {
             public string MaKhoa {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.MaKhoaColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.MaKhoaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MaKhoa\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaKhoa\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.MaKhoaColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.MaKhoaColumn] = value;
                 }
             }
             
@@ -873,15 +872,15 @@ namespace Project_Nhom8 {
             public string TrangThaiXuatVien {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.TrangThaiXuatVienColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.TrangThaiXuatVienColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrangThaiXuatVien\' in table \'LayDSBNNoiTruTheoKhoangTG\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TrangThaiXuatVien\' in table \'LayDSBNNoiTruTheoNgay\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.TrangThaiXuatVienColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.TrangThaiXuatVienColumn] = value;
                 }
             }
             
@@ -890,15 +889,14 @@ namespace Project_Nhom8 {
             public string MaNhanVien {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.MaNhanVienColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.MaNhanVienColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MaNhanVien\' in table \'LayDSBNNoiTruTheoKhoangTG\' is DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaNhanVien\' in table \'LayDSBNNoiTruTheoNgay\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.MaNhanVienColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.MaNhanVienColumn] = value;
                 }
             }
             
@@ -907,136 +905,136 @@ namespace Project_Nhom8 {
             public string MaSoPhieuKhamBenh {
                 get {
                     try {
-                        return ((string)(this[this.tableLayDSBNNoiTruTheoKhoangTG.MaSoPhieuKhamBenhColumn]));
+                        return ((string)(this[this.tableLayDSBNNoiTruTheoNgay.MaSoPhieuKhamBenhColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MaSoPhieuKhamBenh\' in table \'LayDSBNNoiTruTheoKhoangTG\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaSoPhieuKhamBenh\' in table \'LayDSBNNoiTruTheoNgay\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableLayDSBNNoiTruTheoKhoangTG.MaSoPhieuKhamBenhColumn] = value;
+                    this[this.tableLayDSBNNoiTruTheoNgay.MaSoPhieuKhamBenhColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNgaySinhNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.NgaySinhColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.NgaySinhColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNgaySinhNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.NgaySinhColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.NgaySinhColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNgayNhanGiuongNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.NgayNhanGiuongColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.NgayNhanGiuongColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNgayNhanGiuongNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayNhanGiuongColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.NgayNhanGiuongColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNgayTraGiuongNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.NgayTraGiuongColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.NgayTraGiuongColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNgayTraGiuongNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.NgayTraGiuongColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.NgayTraGiuongColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTenPhongNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.TenPhongColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.TenPhongColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTenPhongNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.TenPhongColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.TenPhongColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaGiuongNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.MaGiuongColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.MaGiuongColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaGiuongNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.MaGiuongColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.MaGiuongColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsBenhNenNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.BenhNenColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.BenhNenColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetBenhNenNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.BenhNenColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.BenhNenColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaKhoaNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.MaKhoaColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.MaKhoaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaKhoaNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.MaKhoaColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.MaKhoaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTrangThaiXuatVienNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.TrangThaiXuatVienColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.TrangThaiXuatVienColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTrangThaiXuatVienNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.TrangThaiXuatVienColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.TrangThaiXuatVienColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaNhanVienNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.MaNhanVienColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.MaNhanVienColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaNhanVienNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.MaNhanVienColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.MaNhanVienColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaSoPhieuKhamBenhNull() {
-                return this.IsNull(this.tableLayDSBNNoiTruTheoKhoangTG.MaSoPhieuKhamBenhColumn);
+                return this.IsNull(this.tableLayDSBNNoiTruTheoNgay.MaSoPhieuKhamBenhColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetMaSoPhieuKhamBenhNull() {
-                this[this.tableLayDSBNNoiTruTheoKhoangTG.MaSoPhieuKhamBenhColumn] = global::System.Convert.DBNull;
+                this[this.tableLayDSBNNoiTruTheoNgay.MaSoPhieuKhamBenhColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1044,22 +1042,22 @@ namespace Project_Nhom8 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class LayDSBNNoiTruTheoKhoangTGRowChangeEvent : global::System.EventArgs {
+        public class LayDSBNNoiTruTheoNgayRowChangeEvent : global::System.EventArgs {
             
-            private LayDSBNNoiTruTheoKhoangTGRow eventRow;
+            private LayDSBNNoiTruTheoNgayRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGRowChangeEvent(LayDSBNNoiTruTheoKhoangTGRow row, global::System.Data.DataRowAction action) {
+            public LayDSBNNoiTruTheoNgayRowChangeEvent(LayDSBNNoiTruTheoNgayRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LayDSBNNoiTruTheoKhoangTGRow Row {
+            public LayDSBNNoiTruTheoNgayRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1075,7 +1073,7 @@ namespace Project_Nhom8 {
         }
     }
 }
-namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
+namespace Project_Nhom8.QLBVDataSet1TableAdapters {
     
     
     /// <summary>
@@ -1087,7 +1085,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class LayDSBNNoiTruTheoKhoangTGTableAdapter : global::System.ComponentModel.Component {
+    public partial class LayDSBNNoiTruTheoNgayTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1101,7 +1099,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public LayDSBNNoiTruTheoKhoangTGTableAdapter() {
+        public LayDSBNNoiTruTheoNgayTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1198,7 +1196,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "LayDSBNNoiTruTheoKhoangTG";
+            tableMapping.DataSetTable = "LayDSBNNoiTruTheoNgay";
             tableMapping.ColumnMappings.Add("MaSoBenhNhan", "MaSoBenhNhan");
             tableMapping.ColumnMappings.Add("TenBenhNhan", "TenBenhNhan");
             tableMapping.ColumnMappings.Add("GioiTinh", "GioiTinh");
@@ -1228,30 +1226,23 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.LayDSBNNoiTruTheoKhoangTG";
+            this._commandCollection[0].CommandText = "dbo.LayDSBNNoiTruTheoNgay";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TuNgay", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DenNgay", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Ngay", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(QLBVDataSetDSBNNoiTruTheoKhoangTG.LayDSBNNoiTruTheoKhoangTGDataTable dataTable, global::System.Nullable<global::System.DateTime> TuNgay, global::System.Nullable<global::System.DateTime> DenNgay) {
+        public virtual int Fill(QLBVDataSet1.LayDSBNNoiTruTheoNgayDataTable dataTable, global::System.Nullable<global::System.DateTime> Ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((TuNgay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(TuNgay.Value));
+            if ((Ngay.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(Ngay.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((DenNgay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(DenNgay.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1264,21 +1255,15 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual QLBVDataSetDSBNNoiTruTheoKhoangTG.LayDSBNNoiTruTheoKhoangTGDataTable GetData(global::System.Nullable<global::System.DateTime> TuNgay, global::System.Nullable<global::System.DateTime> DenNgay) {
+        public virtual QLBVDataSet1.LayDSBNNoiTruTheoNgayDataTable GetData(global::System.Nullable<global::System.DateTime> Ngay) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((TuNgay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(TuNgay.Value));
+            if ((Ngay.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(Ngay.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((DenNgay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(DenNgay.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            QLBVDataSetDSBNNoiTruTheoKhoangTG.LayDSBNNoiTruTheoKhoangTGDataTable dataTable = new QLBVDataSetDSBNNoiTruTheoKhoangTG.LayDSBNNoiTruTheoKhoangTGDataTable();
+            QLBVDataSet1.LayDSBNNoiTruTheoNgayDataTable dataTable = new QLBVDataSet1.LayDSBNNoiTruTheoNgayDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1352,7 +1337,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(QLBVDataSetDSBNNoiTruTheoKhoangTG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(QLBVDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1362,7 +1347,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(QLBVDataSetDSBNNoiTruTheoKhoangTG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(QLBVDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1372,7 +1357,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(QLBVDataSetDSBNNoiTruTheoKhoangTG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(QLBVDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1406,7 +1391,7 @@ namespace Project_Nhom8.QLBVDataSetDSBNNoiTruTheoKhoangTGTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(QLBVDataSetDSBNNoiTruTheoKhoangTG dataSet) {
+        public virtual int UpdateAll(QLBVDataSet1 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

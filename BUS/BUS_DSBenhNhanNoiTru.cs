@@ -33,14 +33,14 @@ namespace BUS
         {
             return DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNgay(tuNgay);
         }
-        public void LayDSBNNoiTruTheoThang(int thang,int nam, DataGridView dgv)
+        public void LayDSBNNoiTruTheoThang(int thang, int nam, DataGridView dgv)
         {
-            var usageRecords = DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(thang,nam);
+            var usageRecords = DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(thang, nam);
             dgv.DataSource = usageRecords;
         }
         public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoThang(int thang, int nam)
         {
-            return DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(thang,nam);
+            return DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(thang, nam);
         }
         public void LayDSBNNoiTruTheoNam(int nam, DataGridView dgv)
         {
@@ -51,9 +51,9 @@ namespace BUS
         {
             return DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNam(nam);
         }
-        public void LayDSBNNoiTruTheoKhoangTG(DateTime tuNgay,DateTime denNgay, DataGridView dgv)
+        public void LayDSBNNoiTruTheoKhoangTG(DateTime tuNgay, DateTime denNgay, DataGridView dgv)
         {
-            var usageRecords = DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoKhoangTG(tuNgay,denNgay);
+            var usageRecords = DAL_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoKhoangTG(tuNgay, denNgay);
             dgv.DataSource = usageRecords;
         }
         public List<ET_DSBenhNhanNoiTru> LayDSBNNoiTruTheoKhoangTG(DateTime tuNgay, DateTime denNgay)

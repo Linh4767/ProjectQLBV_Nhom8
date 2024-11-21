@@ -600,6 +600,7 @@
             this.btnDSBNTheoKhoa.TabIndex = 17;
             this.btnDSBNTheoKhoa.Text = "Danh sách bệnh nhân";
             this.btnDSBNTheoKhoa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDSBNTheoKhoa.Click += new System.EventHandler(this.btnDSBNTheoKhoa_Click);
             // 
             // btnTraCuuBNNoiTru
             // 
