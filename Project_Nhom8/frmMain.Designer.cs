@@ -645,6 +645,7 @@
             this.btnTraCuuDonThuoc.TabIndex = 15;
             this.btnTraCuuDonThuoc.Text = "Hóa đơn thuốc";
             this.btnTraCuuDonThuoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTraCuuDonThuoc.Click += new System.EventHandler(this.btnTraCuuDonThuoc_Click);
             // 
             // btnHoaDonDV
             // 

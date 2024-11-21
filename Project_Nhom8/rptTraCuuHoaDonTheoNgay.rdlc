@@ -1222,13 +1222,13 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox57</rd:DefaultName>
-            <Top>4.08805in</Top>
-            <Left>0.70136in</Left>
+            <Top>4.90219in</Top>
+            <Left>0.70139in</Left>
             <Height>0.25694in</Height>
             <Width>1.97919in</Width>
             <ZIndex>7</ZIndex>
@@ -1261,10 +1261,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TongTienSauGiamBHYT</rd:DefaultName>
-            <Top>4.09499in</Top>
-            <Left>2.77666in</Left>
+            <Top>4.90913in</Top>
+            <Left>2.90167in</Left>
             <Height>0.25in</Height>
-            <Width>2.69446in</Width>
+            <Width>3.67015in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -1291,8 +1291,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>5.09152in</Top>
-            <Left>5.77775in</Left>
+            <Top>5.75819in</Top>
+            <Left>6.16664in</Left>
             <Height>0.25in</Height>
             <Width>1.55556in</Width>
             <ZIndex>9</ZIndex>
@@ -1325,8 +1325,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TenNV</rd:DefaultName>
-            <Top>5.48388in</Top>
-            <Left>5.20833in</Left>
+            <Top>6.15055in</Top>
+            <Left>5.59722in</Left>
             <Height>0.25in</Height>
             <Width>2.51387in</Width>
             <ZIndex>10</ZIndex>
@@ -1374,8 +1374,84 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Line Name="Line1">
+            <Top>4.27566in</Top>
+            <Left>0.11351in</Left>
+            <Height>0in</Height>
+            <Width>8.20833in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>Dashed</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Textbox63">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tổng doanh thu theo giá niêm yết</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox57</rd:DefaultName>
+            <Top>4.47541in</Top>
+            <Left>0.70142in</Left>
+            <Height>0.25694in</Height>
+            <Width>2.38889in</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox14">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Format(Sum(Fields!TotalCost.Value, "DataSetTongDoanhThuSDDVTheoNgay") + Sum(Fields!TongTienThuoc.Value, "DataSetTinhTongTienThuocTheoNgay"), "#,##0") &amp; " VNĐ"</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>4.48235in</Top>
+            <Left>3.39255in</Left>
+            <Height>0.25in</Height>
+            <Width>3.17927in</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>5.96305in</Height>
+        <Height>6.60194in</Height>
         <Style />
       </Body>
       <Width>8.42361in</Width>

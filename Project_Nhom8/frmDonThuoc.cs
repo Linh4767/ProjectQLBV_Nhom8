@@ -258,7 +258,9 @@ namespace Project_Nhom8
 
         private void btnInDT_Click(object sender, EventArgs e)
         {
-
+            string dataToSend = txtMaDT.Text;
+            frmMain frmMain = (frmMain)this.ParentForm;
+            frmMain.openChildForm(new frmInDonThuoc(dataToSend));
         }
     }
 }
