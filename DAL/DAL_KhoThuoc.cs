@@ -36,27 +36,35 @@ namespace DAL
                     t.TenThuoc == tenThuoc &&
                     t.HamLuong.StartsWith(hamLuong)) // Tìm những hàm lượng bắt đầu với `hamLuong`
                 .ToList();
+                var thuocList_2 = db.Thuocs.Where(t =>
+                    t.XuatXu == xuatXu &&
+                    t.LoaiThuoc == loaiThuoc &&
+                    t.TenThuoc == tenThuoc &&
+                    t.HamLuong.StartsWith(hamLuong) &&
+                    t.MaThuoc == maThuoc && 
+                    t.MaLo == maLo) // Tìm những hàm lượng bắt đầu với `hamLuong`
+                .ToList();
 
                 MessageBox.Show($"Số lượng bản ghi tìm thấy: {thuocList.Count}");
 
                 // Kiểm tra không tìm thấy thuốc
                 if (!thuocList.Any()) return -1; // Không tìm thấy thuốc
 
-                // Chọn thuốc đầu tiên trong danh sách nếu có nhiều bản ghi
-                var thuoc = thuocList.First();
-
                 // Kiểm tra SoLuongHop trước khi tính toán
-                if (thuoc.SoLuongHop == null || thuoc.SoLuongHop == 0)
+                foreach (var thuoc in thuocList)
                 {
-                    MessageBox.Show("Hàm lượng thuốc không hợp lệ hoặc số lượng đóng gói không xác định.");
-                    return -1; // Trả về lỗi nếu SoLuongHop không hợp lệ
+                    if (thuoc.SoLuongHop == null || thuoc.SoLuongHop == 0)
+                    {
+                        MessageBox.Show($"Hàm lượng thuốc không hợp lệ hoặc số lượng đóng gói không xác định cho thuốc: {thuoc.TenThuoc}.");
+                        return -1; // Trả về lỗi nếu SoLuongHop không hợp lệ
+                    }
                 }
 
                 // Tính số lượng đơn vị cần thêm vào kho (sử dụng số lượng đóng gói)
-                int soLuongTang = soLuongThem * (int)thuoc.SoLuongHop; // Dùng quy cách đóng gói để tính số lượng cần thêm
+                int soLuongTang = soLuongThem * (int)thuocList.First().SoLuongHop; // Dùng quy cách đóng gói để tính số lượng cần thêm
 
                 // Tìm tất cả các bản ghi kho thuốc có cùng mã thuốc
-                var khoThuocList = db.KhoThuocs.Where(k => k.MaLo == thuoc.MaLo).ToList();
+                var khoThuocList = db.KhoThuocs.Where(k => thuocList.Select(t => t.MaLo).Contains(k.MaLo)).ToList();
 
                 // Kiểm tra xem có bản ghi kho thuốc nào không, nếu có thì cập nhật số lượng trong kho
                 bool isUpdated = false; // Biến kiểm tra xem có bản ghi nào được cập nhật không
@@ -70,17 +78,23 @@ namespace DAL
                 // Nếu không có bản ghi kho thuốc nào được cập nhật, thêm mới một bản ghi kho thuốc
                 if (!isUpdated)
                 {
-                    var khoThuocMoi = new KhoThuoc
+                    foreach (var thuoc in thuocList)
                     {
-                        MaThuoc = thuoc.MaThuoc,
-                        MaLo = maLo,
-                        SoLuongTrongKho = soLuongTang
-                    };
-                    db.KhoThuocs.InsertOnSubmit(khoThuocMoi);
+                        var khoThuocMoi = new KhoThuoc
+                        {
+                            MaThuoc = thuoc.MaThuoc,
+                            MaLo = thuoc.MaLo, // Dùng mã lô của thuốc
+                            SoLuongTrongKho = soLuongTang
+                        };
+                        db.KhoThuocs.InsertOnSubmit(khoThuocMoi);
+                    }
                 }
 
-                // Cập nhật số lượng nhập trong bảng Thuoc cho thuốc
-                thuoc.SoLuongNhap += soLuongThem;
+                // Cập nhật số lượng nhập trong bảng Thuoc cho từng thuốc riêng biệt
+                foreach (var thuoc in thuocList_2)
+                {
+                    thuoc.SoLuongNhap += soLuongThem;
+                }
 
                 // Lưu thay đổi vào database (cập nhật kho thuốc và thuốc)
                 db.SubmitChanges();
@@ -89,6 +103,7 @@ namespace DAL
                 return khoThuocList.Sum(k => k.SoLuongTrongKho); // Trả về tổng số lượng trong kho của tất cả các bản ghi kho thuốc
             }
         }
+
 
 
 
@@ -142,7 +157,7 @@ namespace DAL
             }
         }
 
-            public List<Tuple<string, string>> LayDanhSachMaLo(string maThuoc, QLBVDataContext db)
+        public List<Tuple<string, string>> LayDanhSachMaLo(string maThuoc, QLBVDataContext db)
         {
             // Trả về danh sách các cặp (MaThuoc, MaLo) của thuốc từ kho
             return db.KhoThuocs

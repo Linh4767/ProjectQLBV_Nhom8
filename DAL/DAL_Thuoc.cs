@@ -134,10 +134,10 @@ namespace DAL
         //Thêm thuốc
         public bool ThemThuoc(ET_Thuoc et_thuoc)
         {
-            // Kiểm tra trùng lặp dựa trên MaThuoc và MaLo
-            if (db.Thuocs.Any(thuoc => thuoc.MaThuoc == et_thuoc.MaThuoc || thuoc.MaLo == et_thuoc.MaLo))
+            // Kiểm tra trùng lặp dựa trên cả MaThuoc và MaLo
+            if (db.Thuocs.Any(thuoc => thuoc.MaThuoc == et_thuoc.MaThuoc && thuoc.MaLo == et_thuoc.MaLo))
             {
-                MessageBox.Show("Thuốc hoặc mã lô đã tồn tại trong hệ thống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Thuốc và mã lô đã tồn tại trong hệ thống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
