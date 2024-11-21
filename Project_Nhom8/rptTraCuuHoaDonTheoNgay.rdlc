@@ -478,7 +478,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Gia.Value</Value>
+                                  <Value>=Format(Fields!Gia.Value, "#,##0") &amp; " VNĐ"</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -508,7 +508,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TongGia.Value</Value>
+                                  <Value>=Format(Fields!TongGia.Value, "#,##0") &amp; " VNĐ"</Value>
                                   <Style>
                                     <Format>0;(0)</Format>
                                   </Style>
@@ -581,7 +581,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!TongGia.Value)</Value>
+                                  <Value>=Format(SUM(Fields!TongGia.Value), "#,##0") &amp; " VNĐ"</Value>
                                   <Style>
                                     <Format>0;(0)</Format>
                                   </Style>
@@ -717,7 +717,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!TotalCost.Value, "DataSetTongDoanhThuThucTuBNTheoNgay")</Value>
+                    <Value>=Format(Sum(Fields!TotalCost.Value, "DataSetTongDoanhThuThucTuBNTheoNgay"), "#,##0") &amp; " VNĐ"</Value>
                     <Style>
                       <Format>0;(0)</Format>
                     </Style>
@@ -1044,7 +1044,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ThanhTien.Value</Value>
+                                  <Value>=Format(Fields!ThanhTien.Value, "#,##0") &amp; " VNĐ"</Value>
                                   <Style>
                                     <Format>0;(0)</Format>
                                   </Style>
@@ -1116,7 +1116,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!ThanhTien.Value)</Value>
+                                  <Value>=Format(SUM(Fields!ThanhTien.Value), "#,##0") &amp; " VNĐ"</Value>
                                   <Style>
                                     <Format>0;(0)</Format>
                                   </Style>
@@ -1215,7 +1215,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Tổng doanh thu</Value>
+                    <Value>Tổng doanh thu thực từ BN</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1230,7 +1230,7 @@
             <Top>4.08805in</Top>
             <Left>0.70136in</Left>
             <Height>0.25694in</Height>
-            <Width>1.20832in</Width>
+            <Width>1.97919in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1249,7 +1249,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!TienBenhNhanChiTra.Value, "DataSetTinhTongTienThuocTheoNgay") + Sum(Fields!TotalCost.Value, "DataSetTongDoanhThuThucTuBNTheoNgay")</Value>
+                    <Value>=Format(Sum(Fields!TienBenhNhanChiTra.Value, "DataSetTinhTongTienThuocTheoNgay") + Sum(Fields!TotalCost.Value, "DataSetTongDoanhThuThucTuBNTheoNgay"), "#,##0") &amp; " VNĐ"</Value>
                     <Style>
                       <Format>0;(0)</Format>
                     </Style>
@@ -1262,74 +1262,10 @@
             </Paragraphs>
             <rd:DefaultName>TongTienSauGiamBHYT</rd:DefaultName>
             <Top>4.09499in</Top>
-            <Left>2.07983in</Left>
+            <Left>2.77666in</Left>
             <Height>0.25in</Height>
             <Width>2.69446in</Width>
             <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox3">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Ngày xuất</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>4.63889in</Top>
-            <Left>5.20833in</Left>
-            <Height>0.25in</Height>
-            <Width>0.78943in</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="ExecutionTime">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Globals!ExecutionTime</Value>
-                    <Style>
-                      <Format>d</Format>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ExecutionTime</rd:DefaultName>
-            <Top>4.63889in</Top>
-            <Left>6.18748in</Left>
-            <Height>0.25in</Height>
-            <Width>1.53472in</Width>
-            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1359,7 +1295,7 @@
             <Left>5.77775in</Left>
             <Height>0.25in</Height>
             <Width>1.55556in</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1378,7 +1314,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!TenNV.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -1391,7 +1329,7 @@
             <Left>5.20833in</Left>
             <Height>0.25in</Height>
             <Width>2.51387in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1409,7 +1347,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!TienBenhNhanChiTra.Value, "DataSetTinhTongTienThuocTheoNgay")</Value>
+                    <Value>=Format(Sum(Fields!TienBenhNhanChiTra.Value, "DataSetTinhTongTienThuocTheoNgay"), "#,##0") &amp; " VNĐ"</Value>
                     <Style>
                       <Format>0;(0)</Format>
                     </Style>
@@ -1425,7 +1363,7 @@
             <Left>2.49304in</Left>
             <Height>0.25in</Height>
             <Width>2.28125in</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1443,7 +1381,7 @@
       <Width>8.42361in</Width>
       <Page>
         <PageHeader>
-          <Height>1.91667in</Height>
+          <Height>2.19445in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1700,6 +1638,72 @@
               <Height>0.25in</Height>
               <Width>2.81944in</Width>
               <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Ngày xuất</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox3</rd:DefaultName>
+              <Top>1.90278in</Top>
+              <Left>5.39805in</Left>
+              <Height>0.25in</Height>
+              <Width>0.78943in</Width>
+              <ZIndex>8</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style>
+                        <Format>d</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Top>1.90278in</Top>
+              <Left>6.25692in</Left>
+              <Height>0.25in</Height>
+              <Width>2.02083in</Width>
+              <ZIndex>9</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
