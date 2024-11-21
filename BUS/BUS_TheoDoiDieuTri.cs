@@ -111,7 +111,7 @@ namespace BUS
         //Thêm theo dõi
         public void ThemTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (DAL_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(et_theodoi.MaPKB, et_theodoi.MaGiuong, et_theodoi.NgayTheoDoi))
+            if (DAL_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(et_theodoi.MaPhieuKB, et_theodoi.MaGiuong, et_theodoi.NgayTheoDoi))
             {
                 if (DAL_TheoDoiDieuTri.Instance.ThemTheoDoi(et_theodoi) == true)
                 {

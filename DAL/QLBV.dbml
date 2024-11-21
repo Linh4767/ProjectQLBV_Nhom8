@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBV" Class="QLBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=linh\MAYLINH;Initial Catalog=QLBV;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-05J7C3L\SQLEXPRESS;Initial Catalog=QLBV;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QLBVConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BenhNhan" Member="BenhNhans">
     <Type Name="BenhNhan">
       <Column Name="MSBN" Type="System.String" DbType="NVarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -385,6 +385,7 @@
       <Column Name="TenPhong" Type="System.String" DbType="NVarChar(103) NOT NULL" CanBeNull="false" />
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
       <Column Name="TrangThaiXuatVien" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
       <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(63) NOT NULL" CanBeNull="false" />
       <Column Name="MaSoPhieuKhamBenh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
@@ -402,6 +403,7 @@
       <Column Name="TenPhong" Type="System.String" DbType="NVarChar(103) NOT NULL" CanBeNull="false" />
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
       <Column Name="TrangThaiXuatVien" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
       <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(63) NOT NULL" CanBeNull="false" />
       <Column Name="MaSoPhieuKhamBenh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
@@ -419,6 +421,7 @@
       <Column Name="TenPhong" Type="System.String" DbType="NVarChar(103) NOT NULL" CanBeNull="false" />
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
       <Column Name="TrangThaiXuatVien" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
       <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(63) NOT NULL" CanBeNull="false" />
       <Column Name="MaSoPhieuKhamBenh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
@@ -437,9 +440,47 @@
       <Column Name="TenPhong" Type="System.String" DbType="NVarChar(103) NOT NULL" CanBeNull="false" />
       <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
       <Column Name="TrangThaiXuatVien" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
       <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(63) NOT NULL" CanBeNull="false" />
       <Column Name="MaSoPhieuKhamBenh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LayDSThuocGanHetHan" Method="LayDSThuocGanHetHan">
+    <Parameter Name="SoNgay" Parameter="soNgay" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LayDSThuocGanHetHanResult">
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NhaCungCap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LoaiThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="QuyCachDongGoi" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HamLuong" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NgaySanXuat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HSD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LayDSThuocHetHan" Method="LayDSThuocHetHan">
+    <ElementType Name="LayDSThuocHetHanResult">
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NhaCungCap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LoaiThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="QuyCachDongGoi" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongDVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HamLuong" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NgaySanXuat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HSD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaLo" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongTrongKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.ThongKeDSThuocTheoKhoangTGVaDoanhThu" Method="ThongKeDSThuocTheoKhoangTGVaDoanhThu">
@@ -564,6 +605,26 @@
       <Column Name="TongTienThuoc" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="TienBHYTChiTra" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="TienBenhNhanChiTra" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LayDSTheoDoiDieuTri" Method="LayDSTheoDoiDieuTri">
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="LayDSTheoDoiDieuTriResult">
+      <Column Name="MaTheoDoi" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaPhieuKB" Type="System.String" DbType="NVarChar(81) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayTheoDoi" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ChiSoCanNang" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ChiSoHuyetAp" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ChiSoNhipTho" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NhietDo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MachDap" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DuongHuyet" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="YLenh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MaNhanVien" Type="System.String" DbType="NVarChar(63) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGiuong" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaPhong" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="NVarChar(90)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

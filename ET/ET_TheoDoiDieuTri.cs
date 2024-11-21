@@ -8,7 +8,7 @@ namespace ET
 {
     public class ET_TheoDoiDieuTri
     {
-        private string maPKB;
+        private string maPhieuKB;
         private DateTime ngayTheoDoi;
         private string chiSoCanNang;
         private string chiSoHuyetAp;
@@ -21,9 +21,9 @@ namespace ET
         private string maGiuong;
         private string maTheoDoi;
 
-        public ET_TheoDoiDieuTri(string maPKB, DateTime ngayTheoDoi, string chiSoCanNang, string chiSoHuyetAp, string chiSoNhipTho, string nhietDo, string machDap, string duongHuyet, string yLenh, string maNV, string maGiuong, string maTheoDoi)
+        public ET_TheoDoiDieuTri(string maPhieuKB, DateTime ngayTheoDoi, string chiSoCanNang, string chiSoHuyetAp, string chiSoNhipTho, string nhietDo, string machDap, string duongHuyet, string yLenh, string maNV, string maGiuong, string maTheoDoi)
         {
-            this.MaPKB = maPKB;
+            this.MaPhieuKB = maPhieuKB;
             this.NgayTheoDoi = ngayTheoDoi;
             this.ChiSoCanNang = chiSoCanNang;
             this.ChiSoHuyetAp = chiSoHuyetAp;
@@ -37,7 +37,7 @@ namespace ET
             this.MaTheoDoi = maTheoDoi;
         }
 
-        public string MaPKB { get => maPKB; set => maPKB = value; }
+        public string MaPhieuKB { get => maPhieuKB; set => maPhieuKB = value; }
         public DateTime NgayTheoDoi { get => ngayTheoDoi; set => ngayTheoDoi = value; }
         public string ChiSoCanNang { get => chiSoCanNang; set => chiSoCanNang = value; }
         public string ChiSoHuyetAp { get => chiSoHuyetAp; set => chiSoHuyetAp = value; }

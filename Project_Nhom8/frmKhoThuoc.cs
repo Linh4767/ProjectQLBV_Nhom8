@@ -430,7 +430,6 @@ namespace Project_Nhom8
                     cboDVT.Enabled = true;
                     txtSLThuocNhapVao.Enabled = true;
                     btnThemSLThuoc.Enabled = true;
-                    btnXoaSLThuoc.Enabled = true;
                     dtpNgaySX.Enabled = true;
                     cboSLHop.Enabled = true;
                     cboHSD.Enabled = true;
@@ -511,80 +510,7 @@ namespace Project_Nhom8
                 btnXoa.Enabled = true;
             }
         }
-
-        private void btnXoaSLThuoc_Click(object sender, EventArgs e)
-        {
-            int soLuongXoa;
-
-            // Kiểm tra xem số lượng nhập vào có hợp lệ không
-            if (int.TryParse(txtSLThuocNhapVao.Text, out soLuongXoa))
-            {
-                // Kiểm tra số lượng muốn xóa có hợp lệ
-                int soLuongTrongKho;
-
-                // Kiểm tra số lượng trong kho có hợp lệ không
-                if (int.TryParse(txtSLThuocTrongKho.Text, out soLuongTrongKho))
-                {
-                    // Lấy thông tin thuốc từ bảng Thuoc
-                    var thuoc = BUS_Thuoc.Instance.LayThuocByMa(txtMaThuoc.Text);  // Lấy thông tin thuốc theo mã
-                    if (thuoc == null)
-                    {
-                        MessageBox.Show("Không tìm thấy thuốc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Tính số lượng thuốc cần xóa (soLuongGiam) theo công thức
-                    int soLuongGiam = 0;
-                    if (thuoc.LoaiThuoc == "Viên nén" || thuoc.LoaiThuoc == "Viên Nén")
-                    {
-                        soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT * thuoc.SoLuongQCDG); // Viên nén
-                    }
-                    else
-                    {
-                        soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT); // Các loại thuốc khác
-                    }
-
-                    // Kiểm tra số lượng cần xóa có hợp lệ không
-                    if (soLuongGiam > soLuongTrongKho)
-                    {
-                        MessageBox.Show("Số lượng thuốc muốn xóa không hợp lệ. Không thể xóa nhiều hơn số lượng trong kho!",
-                                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // Dừng lại không thực hiện xóa
-                    }
-
-                    // Gọi phương thức XoaSoLuongThuoc từ BUS_KhoThuoc để xóa thuốc khỏi kho
-                    int? soLuongTrongKhoMoi = BUS_KhoThuoc.Instance.XoaSoLuongThuoc(txtMaThuoc.Text, soLuongXoa);
-
-                    // Kiểm tra kết quả trả về từ phương thức XoaSoLuongThuoc
-                    if (soLuongTrongKhoMoi != -1)
-                    {
-                        MessageBox.Show("Cập nhật số lượng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
-                        BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
-
-                        // Gán số lượng tồn kho mới nhất vào txtSLThuocTrongKho
-                        txtSLThuocTrongKho.Text = soLuongTrongKhoMoi.ToString();
-                    }
-                    else
-                    {
-                        // Thông báo nếu không tìm thấy thuốc hoặc không thể xóa số lượng
-                        MessageBox.Show("Không tìm thấy thuốc hoặc không thể cập nhật số lượng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    // Thông báo lỗi nếu không thể lấy số lượng trong kho
-                    MessageBox.Show("Số lượng trong kho không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                // Thông báo nếu người dùng nhập số lượng không hợp lệ
-                MessageBox.Show("Vui lòng nhập số lượng hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
+      
 
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -628,8 +554,8 @@ namespace Project_Nhom8
             btnThemThuoc.Enabled = false;
             btnCapNhat.Enabled = false;
             btnThemSLThuoc.Enabled = false;
-            btnXoaSLThuoc.Enabled = false;
             btnXoa.Enabled = false;
+            dtpNgaySX.Enabled = true;
             BUS_Thuoc.Instance.HienThiThuoc(dgvKhoThuoc);
         }
 
@@ -737,14 +663,12 @@ namespace Project_Nhom8
             if (BUS_BatLoi.Instance.KiemTraTrong(textbox))
             {
                 btnThemSLThuoc.Enabled = true;
-                btnXoaSLThuoc.Enabled = true;
                 btnThemThuoc.Enabled = false;
                 btnCapNhat.Enabled = true;
             }
             else
             {
                 btnThemSLThuoc.Enabled = false;
-                btnXoaSLThuoc.Enabled = false;
                 btnThemThuoc.Enabled = true;
                 btnCapNhat.Enabled = true;
             }

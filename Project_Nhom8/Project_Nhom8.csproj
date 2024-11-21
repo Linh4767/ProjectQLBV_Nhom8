@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBaoCaoTheoDoiDieuTri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaoCaoTheoDoiDieuTri.Designer.cs">
+      <DependentUpon>frmBaoCaoTheoDoiDieuTri.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCaTruc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLBVChiTietDSThuocTheoThang.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLBVDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSet6.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -292,6 +333,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetTheoDoiDieuTri.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetTheoDoiDieuTri.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetThuocGanHH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetThuocGanHH.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLBVDataSetThuocHH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetThuocHH.xsd</DependentUpon>
     </Compile>
     <Compile Include="QLBVDataSetTienSDDVCuaPKB.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -359,6 +415,9 @@
       <DependentUpon>QLBVDataSetTongDoanhThuThucTuBNTheoThang.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="frmBaoCaoTheoDoiDieuTri.resx">
+      <DependentUpon>frmBaoCaoTheoDoiDieuTri.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCaTruc.resx">
       <DependentUpon>frmCaTruc.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +511,9 @@
     <EmbeddedResource Include="rptDSBNNoiTruTheoNgay.rdlc" />
     <EmbeddedResource Include="rptDSBNNoiTruTheoThang.rdlc" />
     <EmbeddedResource Include="rptInHoaDonSDDV.rdlc" />
+    <EmbeddedResource Include="rptTheoDoiDieuTri.rdlc" />
+    <EmbeddedResource Include="rptThuocGanHH.rdlc" />
+    <EmbeddedResource Include="rptThuocHH.rdlc" />
     <EmbeddedResource Include="rptTraCuuHoaDonTheoKhoangTG.rdlc" />
     <EmbeddedResource Include="rptTraCuuHoaDonTheoNam.rdlc" />
     <EmbeddedResource Include="rptTraCuuHoaDonTheoNgay.rdlc" />
@@ -481,6 +543,83 @@
     </None>
     <None Include="QLBVChiTietDSThuocTheoThang.xss">
       <DependentUpon>QLBVChiTietDSThuocTheoThang.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet.xsc">
+      <DependentUpon>QLBVDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet.xss">
+      <DependentUpon>QLBVDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet1.xsc">
+      <DependentUpon>QLBVDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet1.xss">
+      <DependentUpon>QLBVDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet2.xsc">
+      <DependentUpon>QLBVDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet2.xss">
+      <DependentUpon>QLBVDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet3.xsc">
+      <DependentUpon>QLBVDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet3.xss">
+      <DependentUpon>QLBVDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet4.xsc">
+      <DependentUpon>QLBVDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet4.xss">
+      <DependentUpon>QLBVDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet5.xsc">
+      <DependentUpon>QLBVDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet5.xss">
+      <DependentUpon>QLBVDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet6.xsc">
+      <DependentUpon>QLBVDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSet6.xss">
+      <DependentUpon>QLBVDataSet6.xsd</DependentUpon>
     </None>
     <None Include="QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsc">
       <DependentUpon>QLBVDataSetChiTietDSSuDungDVTheoKhoangTG.xsd</DependentUpon>
@@ -613,6 +752,39 @@
     </None>
     <None Include="QLBVDataSetDSSDDVCuaPKB.xss">
       <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTheoDoiDieuTri.xsc">
+      <DependentUpon>QLBVDataSetTheoDoiDieuTri.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetTheoDoiDieuTri.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetTheoDoiDieuTri.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetTheoDoiDieuTri.xss">
+      <DependentUpon>QLBVDataSetTheoDoiDieuTri.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetThuocGanHH.xsc">
+      <DependentUpon>QLBVDataSetThuocGanHH.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetThuocGanHH.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetThuocGanHH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetThuocGanHH.xss">
+      <DependentUpon>QLBVDataSetThuocGanHH.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetThuocHH.xsc">
+      <DependentUpon>QLBVDataSetThuocHH.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetThuocHH.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetThuocHH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetThuocHH.xss">
+      <DependentUpon>QLBVDataSetThuocHH.xsd</DependentUpon>
     </None>
     <None Include="QLBVDataSetTienSDDVCuaPKB.xsc">
       <DependentUpon>QLBVDataSetTienSDDVCuaPKB.xsd</DependentUpon>

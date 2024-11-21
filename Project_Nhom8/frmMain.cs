@@ -344,5 +344,11 @@ namespace Project_Nhom8
             openChildForm(new frmDSBenhNhanNoiTru());
             hideSubMenu();
         }
+
+        private void btnDSBNTheoKhoa_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmBaoCaoTheoDoiDieuTri());
+            hideSubMenu();
+        }
     }
 }

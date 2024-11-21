@@ -93,62 +93,59 @@ namespace DAL
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         //Xóa thuốc trong kho 
         // Phương thức xóa lượng thuốc trong kho
-        public int? XoaThuocTrongKho(string maThuoc, int soLuongXoa)
+        public int XoaNhieuThuocTrongKho(List<Tuple<string, string>> danhSachThuoc)
         {
-            // Khởi tạo context LINQ to SQL
-            using (var db = new QLBVDataContext()) // QLBVDataContext là lớp tự động sinh ra từ .dbml
+            using (var db = new QLBVDataContext()) // Gọi QLBVDataContext ở DAL
             {
-                // Lấy thông tin thuốc từ bảng Thuoc
-                var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
-                if (thuoc == null) return -1; // Nếu không tìm thấy thuốc, trả về -1 để báo lỗi
+                int soLuongThuocXoa = 0;
 
-                // Tìm thuốc trong kho
-                var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc);
-                if (khoThuoc == null) return -1; // Nếu thuốc không có trong kho, trả về -1 để báo lỗi
+                foreach (var item in danhSachThuoc)
+                {
+                    string maThuoc = item.Item1;
+                    string maLo = item.Item2;
 
-                // Tính số lượng đơn vị cần xóa khỏi kho
-                int soLuongGiam = 0;
-                if (thuoc.LoaiThuoc == "Viên nén" || thuoc.LoaiThuoc == "Viên Nén")
-                {
-                    soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT * thuoc.SoLuongQCDG);
-                }
-                else
-                {
-                    soLuongGiam = (int)(soLuongXoa * thuoc.SoLuongDVT);
+                    var thuoc = db.Thuocs.FirstOrDefault(t => t.MaThuoc == maThuoc);
+                    if (thuoc == null) continue; // Nếu không tìm thấy thuốc, bỏ qua
+
+                    var khoThuoc = db.KhoThuocs.FirstOrDefault(k => k.MaThuoc == maThuoc && k.MaLo == maLo);
+                    if (khoThuoc == null) continue; // Nếu không tìm thấy kho, bỏ qua
+
+                    int? soLuongXoa = thuoc.SoLuongNhap;
+                    int? soLuongHop = thuoc.SoLuongHop;
+
+                    if (khoThuoc.SoLuongTrongKho >= soLuongXoa)
+                    {
+                        khoThuoc.SoLuongTrongKho -= soLuongXoa * soLuongHop;
+                    }
+                    else
+                    {
+                        khoThuoc.SoLuongTrongKho = 0;
+                    }
+
+                    thuoc.SoLuongNhap = 0;
+
+                    if (khoThuoc.SoLuongTrongKho == 0)
+                    {
+                        db.KhoThuocs.DeleteOnSubmit(khoThuoc);
+                    }
+
+                    soLuongThuocXoa++;
                 }
 
-                int? soLuongTrongKhoMoi;
-                if (khoThuoc.SoLuongTrongKho >= soLuongGiam)
-                {
-                    // Nếu lượng thuốc trong kho lớn hơn hoặc bằng lượng cần xóa, cập nhật số lượng
-                    khoThuoc.SoLuongTrongKho -= soLuongGiam;
-                    soLuongTrongKhoMoi = khoThuoc.SoLuongTrongKho;
-                }
-                else
-                {
-                    // Nếu số lượng xóa lớn hơn số lượng hiện có, xóa bản ghi thuốc khỏi kho
-                    db.KhoThuocs.DeleteOnSubmit(khoThuoc);
-                    soLuongTrongKhoMoi = 0;
-                }
-
-                // Lưu thay đổi vào cơ sở dữ liệu
                 db.SubmitChanges();
-
-                // Trả về số lượng thuốc mới trong kho hoặc 0 nếu đã xóa thuốc
-                return soLuongTrongKhoMoi;
+                return soLuongThuocXoa;
             }
+        }
+
+        public List<Tuple<string, string>> LayDanhSachMaLo(string maThuoc, QLBVDataContext db)
+        {
+            // Trả về danh sách các cặp (MaThuoc, MaLo) của thuốc từ kho
+            return db.KhoThuocs
+                     .Where(k => k.MaThuoc == maThuoc && k.SoLuongTrongKho > 0) // Kiểm tra số lượng trong kho > 0
+                     .Select(k => new Tuple<string, string>(k.MaThuoc, k.MaLo)) // Chọn MaThuoc và MaLo
+                     .ToList();
         }
 
 

@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS_BaoCaoTDDT.cs" />
     <Compile Include="BUS_BatLoi.cs" />
     <Compile Include="BUS_BenhNhan.cs" />
     <Compile Include="BUS_CaTruc.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="BUS_DichVu.cs" />
     <Compile Include="BUS_DSBenhNhanNoiTru.cs" />
     <Compile Include="BUS_GiuongBenh.cs" />
+    <Compile Include="BUS_HSD.cs" />
     <Compile Include="BUS_KhamBenh.cs" />
     <Compile Include="BUS_Khoa.cs" />
     <Compile Include="BUS_KhoThuoc.cs" />
