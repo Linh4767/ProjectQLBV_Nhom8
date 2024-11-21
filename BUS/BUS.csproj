@@ -76,7 +76,6 @@
     <Compile Include="BUS_DonThuoc.cs" />
     <Compile Include="BUS_DSBenhNhanNoiTru.cs" />
     <Compile Include="BUS_GiuongBenh.cs" />
-    <Compile Include="BUS_HSD.cs" />
     <Compile Include="BUS_InDonThuoc.cs" />
     <Compile Include="BUS_KhamBenh.cs" />
     <Compile Include="BUS_Khoa.cs" />
