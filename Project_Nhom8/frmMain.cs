@@ -345,9 +345,6 @@ namespace Project_Nhom8
             hideSubMenu();
         }
 
-        private void btnDSBNTheoKhoa_Click(object sender, EventArgs e)
-        {
-            openChildForm(new frmBaoCaoTheoDoiDieuTri());
         private void btnTraCuuDonThuoc_Click(object sender, EventArgs e)
         {
             openChildForm(new frmInDonThuoc());
