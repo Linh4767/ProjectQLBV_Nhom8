@@ -42,20 +42,13 @@ namespace BUS
         //Thêm cuộc hẹn tái khám mới
         public string ThemTaiKham(ET_TaiKham eT_TaiKham)
         {
-            try
+            if (DAL_TaiKham.Instance.ThemTaiKham(eT_TaiKham))
             {
-                if (DAL_TaiKham.Instance.ThemTaiKham(eT_TaiKham))
-                {
-                    return "Thêm thành công";
-                }
-                else
-                {
-                    return "Thêm không thành công. Vui lòng chọn ngày tái khám khác";
-                }
+                return "Thêm thành công";
             }
-            catch (Exception ex)
+            else
             {
-                return "Lỗi khi thêm tái khám: " + ex.Message;
+                return "Thêm không thành công. Vui lòng chọn ngày tái khám khác";
             }
 
         }
@@ -63,20 +56,13 @@ namespace BUS
         //Cập nhật cuộc hẹn
         public string CapNhatTaiKham(ET_TaiKham eT_TaiKham)
         {
-            try
+            if (DAL_TaiKham.Instance.CapNhatCuocHen(eT_TaiKham))
             {
-                if (DAL_TaiKham.Instance.CapNhatCuocHen(eT_TaiKham))
-                {
-                    return "Cập nhật thành công";
-                }
-                else
-                {
-                    return "Cập nhật không thành công: Cuộc hẹn không tồn tại.";
-                }
+                return "Cập nhật thành công";
             }
-            catch (Exception ex)
+            else
             {
-                return "Lỗi khi cập nhật: " + ex.Message;
+                return "Cập nhật không thành công: Cuộc hẹn không tồn tại.";
             }
         }
 

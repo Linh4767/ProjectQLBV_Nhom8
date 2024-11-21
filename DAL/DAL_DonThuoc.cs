@@ -32,7 +32,7 @@ namespace DAL
             // Lấy ngày hiện tại với định dạng yyyMMdd
             string thoiGian = DateTime.Now.ToString("yyMMddHHmmss");
             //tạo mã mới
-            string maDTMoi = $"PKB{thoiGian}-{maPKB}";
+            string maDTMoi = $"DT{thoiGian}-{maPKB}";
             return maDTMoi;
         }
 
