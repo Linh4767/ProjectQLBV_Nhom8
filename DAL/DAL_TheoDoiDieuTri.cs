@@ -202,7 +202,7 @@ namespace DAL
         //Thêm theo dõi
         public bool ThemTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (db.TheoDoiDieuTris.Any(theoDoi => theoDoi.MaPhieuKB == et_theodoi.MaPKB && theoDoi.NgayTheoDoi == et_theodoi.NgayTheoDoi && theoDoi.MaTheoDoi == et_theodoi.MaTheoDoi))
+            if (db.TheoDoiDieuTris.Any(theoDoi => theoDoi.MaPhieuKB == et_theodoi.MaPhieuKB && theoDoi.NgayTheoDoi == et_theodoi.NgayTheoDoi && theoDoi.MaTheoDoi == et_theodoi.MaTheoDoi))
             {
                 return false;
             }
@@ -210,7 +210,7 @@ namespace DAL
             {
                 TheoDoiDieuTri theodoi = new TheoDoiDieuTri
                 {
-                    MaPhieuKB = et_theodoi.MaPKB,
+                    MaPhieuKB = et_theodoi.MaPhieuKB,
                     NgayTheoDoi = et_theodoi.NgayTheoDoi,
                     ChiSoCanNang = et_theodoi.ChiSoCanNang,
                     ChiSoHuyetAp = et_theodoi.ChiSoHuyetAp,
