@@ -70,6 +70,7 @@
     <Compile Include="DAL_DonThuoc.cs" />
     <Compile Include="DAL_DSBenhNhanNoiTru.cs" />
     <Compile Include="DAL_GiuongBenh.cs" />
+    <Compile Include="DAL_InDonThuoc.cs" />
     <Compile Include="DAL_KhamBenh.cs" />
     <Compile Include="DAL_Khoa.cs" />
     <Compile Include="DAL_KhoThuoc.cs" />

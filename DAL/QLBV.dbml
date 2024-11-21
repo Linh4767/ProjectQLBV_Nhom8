@@ -566,4 +566,21 @@
       <Column Name="TienBenhNhanChiTra" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.InDonThuoc" Method="InDonThuoc">
+    <Parameter Name="MaDonThuoc" Parameter="maDonThuoc" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="InDonThuocResult">
+      <Column Name="TenBN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="NgSinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaSoBHYT" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="ChuanDoan" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="TenNV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaDonThuoc" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayGioKeDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CachDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongTienDonThuoc" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

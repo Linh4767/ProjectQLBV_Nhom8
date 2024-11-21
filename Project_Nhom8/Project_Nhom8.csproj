@@ -124,6 +124,12 @@
     <Compile Include="frmHanSuDung.Designer.cs">
       <DependentUpon>frmHanSuDung.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInDonThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDonThuoc.Designer.cs">
+      <DependentUpon>frmInDonThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKhamBenh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +299,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLBVDataSetInDonThuoc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBVDataSetInDonThuoc.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QLBVDataSetTienSDDVCuaPKB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -386,6 +397,9 @@
     <EmbeddedResource Include="frmHanSuDung.resx">
       <DependentUpon>frmHanSuDung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmInDonThuoc.resx">
+      <DependentUpon>frmInDonThuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKhamBenh.resx">
       <DependentUpon>frmKhamBenh.cs</DependentUpon>
     </EmbeddedResource>
@@ -451,6 +465,7 @@
     <EmbeddedResource Include="rptDSBNNoiTruTheoNam.rdlc" />
     <EmbeddedResource Include="rptDSBNNoiTruTheoNgay.rdlc" />
     <EmbeddedResource Include="rptDSBNNoiTruTheoThang.rdlc" />
+    <EmbeddedResource Include="rptHoaDonThuoc.rdlc" />
     <EmbeddedResource Include="rptInHoaDonSDDV.rdlc" />
     <EmbeddedResource Include="rptTraCuuHoaDonTheoKhoangTG.rdlc" />
     <EmbeddedResource Include="rptTraCuuHoaDonTheoNam.rdlc" />
@@ -613,6 +628,17 @@
     </None>
     <None Include="QLBVDataSetDSSDDVCuaPKB.xss">
       <DependentUpon>QLBVDataSetDSSDDVCuaPKB.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetInDonThuoc.xsc">
+      <DependentUpon>QLBVDataSetInDonThuoc.xsd</DependentUpon>
+    </None>
+    <None Include="QLBVDataSetInDonThuoc.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBVDataSetInDonThuoc.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBVDataSetInDonThuoc.xss">
+      <DependentUpon>QLBVDataSetInDonThuoc.xsd</DependentUpon>
     </None>
     <None Include="QLBVDataSetTienSDDVCuaPKB.xsc">
       <DependentUpon>QLBVDataSetTienSDDVCuaPKB.xsd</DependentUpon>

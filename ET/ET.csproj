@@ -73,6 +73,7 @@
     <Compile Include="ET_DonThuoc.cs" />
     <Compile Include="ET_DSBenhNhanNoiTru.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
+    <Compile Include="ET_InDonThuoc.cs" />
     <Compile Include="ET_KhamBenh.cs" />
     <Compile Include="ET_Khoa.cs" />
     <Compile Include="ET_KhoThuoc.cs" />
