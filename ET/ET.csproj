@@ -62,6 +62,7 @@
     <Compile Include="CurrentUser.cs" />
     <Compile Include="ET_BenhNhan.cs" />
     <Compile Include="ET_CaTruc.cs" />
+    <Compile Include="ET_ChiTietDonThuoc.cs" />
     <Compile Include="ET_ChiTietSDDV.cs" />
     <Compile Include="ET_ChuanDoan.cs" />
     <Compile Include="ET_ChuyenNganh.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ET_DichVu.cs" />
     <Compile Include="ET_DoanhThuThucTuBN.cs" />
     <Compile Include="ET_DoanhThuTongDV.cs" />
+    <Compile Include="ET_DonThuoc.cs" />
     <Compile Include="ET_DSBenhNhanNoiTru.cs" />
     <Compile Include="ET_GiuongBenh.cs" />
     <Compile Include="ET_KhamBenh.cs" />

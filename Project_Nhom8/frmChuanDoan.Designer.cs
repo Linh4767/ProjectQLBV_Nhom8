@@ -55,9 +55,9 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnDatLich = new Guna.UI2.WinForms.Guna2Button();
             this.btnCapNhapChuanDoan = new Guna.UI2.WinForms.Guna2Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.btnDatLich = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSChuanDoan)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +72,7 @@
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.ForeColor = System.Drawing.Color.White;
             this.btnTimKiem.Location = new System.Drawing.Point(324, 524);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(139, 31);
             this.btnTimKiem.TabIndex = 132;
@@ -91,7 +91,7 @@
             this.txtTK.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTK.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTK.Location = new System.Drawing.Point(60, 524);
-            this.txtTK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTK.Margin = new System.Windows.Forms.Padding(4);
             this.txtTK.Name = "txtTK";
             this.txtTK.PasswordChar = '\0';
             this.txtTK.PlaceholderText = "Nhập từ khóa";
@@ -110,7 +110,7 @@
             this.dtpNgay.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.dtpNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgay.Location = new System.Drawing.Point(1159, 524);
-            this.dtpNgay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpNgay.Margin = new System.Windows.Forms.Padding(4);
             this.dtpNgay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgay.Name = "dtpNgay";
@@ -175,7 +175,7 @@
             this.dtpTGCD.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.dtpTGCD.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTGCD.Location = new System.Drawing.Point(569, 375);
-            this.dtpTGCD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpTGCD.Margin = new System.Windows.Forms.Padding(4);
             this.dtpTGCD.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpTGCD.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpTGCD.Name = "dtpTGCD";
@@ -274,7 +274,7 @@
             this.btnThemChuanDoan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemChuanDoan.ForeColor = System.Drawing.Color.White;
             this.btnThemChuanDoan.Location = new System.Drawing.Point(28, 30);
-            this.btnThemChuanDoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThemChuanDoan.Margin = new System.Windows.Forms.Padding(4);
             this.btnThemChuanDoan.Name = "btnThemChuanDoan";
             this.btnThemChuanDoan.Size = new System.Drawing.Size(139, 53);
             this.btnThemChuanDoan.TabIndex = 0;
@@ -316,7 +316,7 @@
             this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.Color.White;
             this.btnThoat.Location = new System.Drawing.Point(1130, 30);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(139, 53);
             this.btnThoat.TabIndex = 3;
@@ -333,7 +333,7 @@
             this.dtpNgayChuanDoan.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.dtpNgayChuanDoan.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgayChuanDoan.Location = new System.Drawing.Point(324, 374);
-            this.dtpNgayChuanDoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpNgayChuanDoan.Margin = new System.Windows.Forms.Padding(4);
             this.dtpNgayChuanDoan.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgayChuanDoan.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgayChuanDoan.Name = "dtpNgayChuanDoan";
@@ -388,7 +388,7 @@
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.White;
             this.btnLamMoi.Location = new System.Drawing.Point(402, 30);
-            this.btnLamMoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLamMoi.Margin = new System.Windows.Forms.Padding(4);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(139, 53);
             this.btnLamMoi.TabIndex = 108;
@@ -405,7 +405,7 @@
             this.btnSuDungDV.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSuDungDV.ForeColor = System.Drawing.Color.White;
             this.btnSuDungDV.Location = new System.Drawing.Point(583, 30);
-            this.btnSuDungDV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSuDungDV.Margin = new System.Windows.Forms.Padding(4);
             this.btnSuDungDV.Name = "btnSuDungDV";
             this.btnSuDungDV.Size = new System.Drawing.Size(139, 53);
             this.btnSuDungDV.TabIndex = 106;
@@ -422,11 +422,12 @@
             this.btnDonThuoc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnDonThuoc.ForeColor = System.Drawing.Color.White;
             this.btnDonThuoc.Location = new System.Drawing.Point(761, 30);
-            this.btnDonThuoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDonThuoc.Margin = new System.Windows.Forms.Padding(4);
             this.btnDonThuoc.Name = "btnDonThuoc";
             this.btnDonThuoc.Size = new System.Drawing.Size(139, 53);
             this.btnDonThuoc.TabIndex = 4;
             this.btnDonThuoc.Text = "Đơn thuốc";
+            this.btnDonThuoc.Click += new System.EventHandler(this.btnDonThuoc_Click);
             // 
             // label22
             // 
@@ -498,41 +499,13 @@
             this.groupBox4.Controls.Add(this.btnThemChuanDoan);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(108, 416);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(1301, 94);
             this.groupBox4.TabIndex = 120;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thanh công cụ";
-            // 
-            // btnCapNhapChuanDoan
-            // 
-            this.btnCapNhapChuanDoan.BorderRadius = 5;
-            this.btnCapNhapChuanDoan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCapNhapChuanDoan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCapNhapChuanDoan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCapNhapChuanDoan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCapNhapChuanDoan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhapChuanDoan.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhapChuanDoan.Location = new System.Drawing.Point(213, 30);
-            this.btnCapNhapChuanDoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnCapNhapChuanDoan.Name = "btnCapNhapChuanDoan";
-            this.btnCapNhapChuanDoan.Size = new System.Drawing.Size(139, 53);
-            this.btnCapNhapChuanDoan.TabIndex = 2;
-            this.btnCapNhapChuanDoan.Text = "Cập nhật";
-            this.btnCapNhapChuanDoan.Click += new System.EventHandler(this.btnCapNhapChuanDoan_Click);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(316, 184);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(108, 20);
-            this.label30.TabIndex = 115;
-            this.label30.Text = "Triệu chứng";
             // 
             // btnDatLich
             // 
@@ -549,6 +522,34 @@
             this.btnDatLich.TabIndex = 110;
             this.btnDatLich.Text = "Đặt lịch";
             this.btnDatLich.Click += new System.EventHandler(this.btnDatLich_Click);
+            // 
+            // btnCapNhapChuanDoan
+            // 
+            this.btnCapNhapChuanDoan.BorderRadius = 5;
+            this.btnCapNhapChuanDoan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCapNhapChuanDoan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCapNhapChuanDoan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCapNhapChuanDoan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCapNhapChuanDoan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhapChuanDoan.ForeColor = System.Drawing.Color.White;
+            this.btnCapNhapChuanDoan.Location = new System.Drawing.Point(213, 30);
+            this.btnCapNhapChuanDoan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCapNhapChuanDoan.Name = "btnCapNhapChuanDoan";
+            this.btnCapNhapChuanDoan.Size = new System.Drawing.Size(139, 53);
+            this.btnCapNhapChuanDoan.TabIndex = 2;
+            this.btnCapNhapChuanDoan.Text = "Cập nhật";
+            this.btnCapNhapChuanDoan.Click += new System.EventHandler(this.btnCapNhapChuanDoan_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(316, 184);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(108, 20);
+            this.label30.TabIndex = 115;
+            this.label30.Text = "Triệu chứng";
             // 
             // frmChuanDoan
             // 
