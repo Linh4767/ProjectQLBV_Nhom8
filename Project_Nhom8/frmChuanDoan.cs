@@ -305,5 +305,20 @@ namespace Project_Nhom8
                 MessageBox.Show("Không có thông tin về phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnDonThuoc_Click(object sender, EventArgs e)
+        {
+            string maNV = cboNVCD.SelectedValue.ToString();
+            string maPKB = txtPhieuKhamBenh.Text;
+            if (!string.IsNullOrEmpty(maPKB) || !string.IsNullOrEmpty(maNV))
+            {
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmDonThuoc(maNV, maPKB));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh hoặc nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
