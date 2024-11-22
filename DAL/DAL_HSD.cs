@@ -48,20 +48,22 @@ namespace DAL
         {
             var results = db.LayDSThuocHetHan();
             return results.Select(r => new ET_HSDThuoc(
-             r.MaThuoc,
-             r.TenThuoc,
-             r.XuatXu,
-             r.NhaCungCap,
-             r.LoaiThuoc,
-             r.DonViTinh,
-             r.QuyCachDongGoi,
-             (int)r.SoLuongDVT,
-             r.HamLuong,
-             (float)r.Gia,
-             (DateTime)r.NgaySanXuat,
-             (DateTime)r.HSD,
-             r.MaLo,
-             (int)r.SoLuongTrongKho)).ToList();
+                r.MaThuoc,
+                r.TenThuoc,
+                r.XuatXu,
+                r.NhaCungCap,
+                r.LoaiThuoc,
+                r.DonViTinh,
+                r.QuyCachDongGoi,
+                r.SoLuongDVT ?? 0, // Giá trị mặc định nếu null
+                r.HamLuong,
+                r.Gia.HasValue ? (float)r.Gia : 0f, // Xử lý nullable float
+                r.NgaySanXuat ?? DateTime.MinValue, // Giá trị mặc định nếu null
+                r.HSD ?? DateTime.MinValue, // Giá trị mặc định nếu null
+                r.MaLo,
+                r.SoLuongTrongKho ?? 0 // Giá trị mặc định nếu null
+            )).ToList();
         }
+
     }
 }

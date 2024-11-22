@@ -33,6 +33,7 @@ namespace Project_Nhom8
             dgvHSD.ColumnHeadersHeight = 40;
             rptThuocHH.Visible = false;
             rptThuocGanHH.Visible = false;
+            btnXoaSLThuoc.Enabled = false;
         }
 
         private void btnXemThuocHH_Click(object sender, EventArgs e)
@@ -72,7 +73,14 @@ namespace Project_Nhom8
                 MessageBox.Show($"Đã xóa thành công {soLuongThuocXoa} thuốc khỏi kho!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
-                BUS_Thuoc.Instance.HienThiThuoc(dgvHSD);
+                if(radThuocGanHH.Checked == true)
+                {
+                    BUS_Thuoc.Instance.HienThịThuocSapHetHan(dgvHSD);
+                }
+                else
+                {
+                    BUS_Thuoc.Instance.HienThịThuocHetHan(dgvHSD);
+                }
             }
             else
             {
@@ -82,7 +90,7 @@ namespace Project_Nhom8
 
         private void dgvHSD_Click(object sender, EventArgs e)
         {
-            btnXoaSLThuoc.Enabled = true;
+           
         }
 
         private void btnIn_Click(object sender, EventArgs e)
@@ -175,9 +183,11 @@ namespace Project_Nhom8
             if (soLuongThuocXoa > 0)
             {
                 MessageBox.Show($"Đã xóa thành công {soLuongThuocXoa} thuốc khỏi kho!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //radThuocGanHH.Checked = true;
+                //radThuocHH.Checked = false;
+                //// Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
+                BUS_Thuoc.Instance.HienThịThuocSapHetHan(dgvHSD);
 
-                // Cập nhật lại giao diện, ví dụ như hiển thị lại danh sách thuốc trong kho
-                BUS_Thuoc.Instance.HienThiThuoc(dgvHSD);
             }
             else
             {
@@ -212,6 +222,16 @@ namespace Project_Nhom8
             {
                 this.Close();
             }
+        }
+
+        private void radThuocGanHH_CheckedChanged(object sender, EventArgs e)
+        {
+            btnXoaSLThuoc.Enabled = false;
+        }
+
+        private void radThuocHH_CheckedChanged(object sender, EventArgs e)
+        {
+            btnXoaSLThuoc.Enabled = true;
         }
     }
 }
