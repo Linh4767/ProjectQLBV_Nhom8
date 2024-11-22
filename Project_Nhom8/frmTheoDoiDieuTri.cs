@@ -193,6 +193,13 @@ namespace Project_Nhom8
             cboNhanVien.Enabled = true;
             btnThemThoiDoi.Enabled = false;
             btnSuaTD.Enabled = false;
+            txtYLenh.Text = string.Empty;
+            txtCanNang.Text = string.Empty;
+            txtNhipTho.Text = string.Empty;
+            txtHuyetAp.Text = string.Empty;
+            txtMachDap.Text = string.Empty;
+            txtDuongHuyet.Text = string.Empty;
+            txtNhietDo.Text = string.Empty;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
