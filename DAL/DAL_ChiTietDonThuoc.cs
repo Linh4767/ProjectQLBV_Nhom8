@@ -62,9 +62,37 @@ namespace DAL
         }
 
         //Tính tổng tiền đơn thuốc
+        //public double TongTienThuoc(string maDT)
+        //{
+        //    //lấy danh sách thuốc của đơn thuốc
+        //    var dsThuoc = from ct in db.ChiTietDonThuocs
+        //                  join th in db.Thuocs
+        //                  on ct.MaThuoc equals th.MaThuoc
+        //                  where ct.MaDonThuoc == maDT
+        //                  select new { ct.MaLo, ct.SoLuong };
+
+        //    double tong = 0;
+        //    foreach (var thuoc in dsThuoc)
+        //    {
+        //        tong += (double)(TinhTienTheoVien(thuoc.MaLo) * thuoc.SoLuong);
+        //    }
+
+        //    return Math.Round(tong, 2); //làm tròn 2 chữ số thập phân
+        //}
         public double TongTienThuoc(string maDT)
         {
-            //lấy danh sách thuốc của đơn thuốc
+            // Lấy thông tin BHYT của bệnh nhân từ đơn thuốc (giả sử có bảng hoặc quan hệ với BenhNhan)
+            var maBN = (from ct in db.ChiTietDonThuocs
+                        join dt in db.DonThuocs
+                        on ct.MaDonThuoc equals dt.MaDonThuoc
+                        join pkb in db.PhieuKhamBenhs on dt.MaPhieuKB equals pkb.MaPhieuKB
+                        where ct.MaDonThuoc == maDT
+                        select pkb.MaBN).FirstOrDefault();
+
+            bool coBHYT = (from bhyt in db.BHYTs
+                           where bhyt.MSBN == maBN
+                           select bhyt).Any(); // Kiểm tra bệnh nhân có BHYT không
+            // Lấy danh sách thuốc của đơn thuốc
             var dsThuoc = from ct in db.ChiTietDonThuocs
                           join th in db.Thuocs
                           on ct.MaThuoc equals th.MaThuoc
@@ -77,8 +105,15 @@ namespace DAL
                 tong += (double)(TinhTienTheoVien(thuoc.MaLo) * thuoc.SoLuong);
             }
 
-            return Math.Round(tong, 2); //làm tròn 2 chữ số thập phân
+            // Nếu có BHYT, giảm 80%
+            if (coBHYT)
+            {
+                tong *= 0.2; // Chỉ giữ lại 20% giá trị
+            }
+
+            return Math.Round(tong, 2); // Làm tròn 2 chữ số thập phân
         }
+
 
         //Số lượng viên thuốc 
         public int SoLuongThuoc(string maThuoc, string maLo, string maKhoa)

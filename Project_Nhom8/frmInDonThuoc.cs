@@ -140,5 +140,14 @@ namespace Project_Nhom8
                 btnIn.Enabled = true;
             }
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult kq = MessageBox.Show("Bạn có chắc muốn thoát", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (kq == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

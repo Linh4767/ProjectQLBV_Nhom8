@@ -36,7 +36,7 @@ namespace Project_Nhom8
                 string maHoanChinh = ma[0] + "-" + ma[1] + "-" + ma[2] + "-" + ma[3];
                 BUS_ThuocTheoKhoa.Instance.LayLoDuaVaoMaThuoc(cboMaLo, maHoanChinh);
                 //MessageBox.Show("TB" + BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
-                txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
+                //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
                 //txtSLThuocCuaKhoa.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.LaySoLuongTrongKhoa(int.Parse(txtNhapVao.Text), cboMaLo.SelectedValue.ToString(), maHoanChinh)) ?? "0";
             }
             else
@@ -80,7 +80,7 @@ namespace Project_Nhom8
                             BUS_ThuocTheoKhoa.Instance.XemDSThuocTheoKhoa(dgvDSThuocTheoKhoa, cboKhoa.SelectedValue.ToString());
 
                         }
-                        txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
+                        //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
                     }
                 }
             }
@@ -97,7 +97,7 @@ namespace Project_Nhom8
                 string[] ma = (txtThuoc.Text).Split('-');
                 string maHoanChinh = ma[0] + "-" + ma[1] + "-" + ma[2] + "-" + ma[3];
                 BUS_ThuocTheoKhoa.Instance.LayLoDuaVaoMaThuoc(cboMaLo, maHoanChinh);
-                txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
+                //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
                 //if(cboMaLo.SelectedValue != null)
                 //{
                 //    txtGia.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhTienMotHop(cboMaLo.SelectedValue.ToString()));
@@ -119,7 +119,7 @@ namespace Project_Nhom8
                 txtThuoc.Text = dgvDSThuocTheoKhoa.Rows[dong].Cells[0].Value.ToString();
                 cboKhoa.SelectedValue = dgvDSThuocTheoKhoa.Rows[dong].Cells[2].Value.ToString();
                 cboMaLo.SelectedValue = dgvDSThuocTheoKhoa.Rows[dong].Cells[4].Value.ToString();
-                txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(txtThuoc.Text));
+                //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(txtThuoc.Text));
                 if (cboMaLo.SelectedValue != null && !string.IsNullOrEmpty(txtThuoc.Text))
                 {
                     txtGia.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhTienMotHop(cboMaLo.SelectedValue.ToString()));
@@ -157,7 +157,7 @@ namespace Project_Nhom8
                         {
                             BUS_ThuocTheoKhoa.Instance.XemDSThuocTheoKhoa(dgvDSThuocTheoKhoa, cboKhoa.SelectedValue.ToString());
                         }
-                        txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
+                        //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
                     }
                 }
             }
@@ -201,7 +201,7 @@ namespace Project_Nhom8
                     {
                         BUS_ThuocTheoKhoa.Instance.ThemSLThuocChoKhoa(new ET_ThuocTheoKhoa(maHoanChinh, 0, cboKhoa.SelectedValue.ToString(), 0, cboMaLo.SelectedValue.ToString()), int.Parse(txtNhapVao.Text));
                         BUS_ThuocTheoKhoa.Instance.XemDSThuocTheoKhoa(dgvDSThuocTheoKhoa, cboKhoa.SelectedValue.ToString());
-                        txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
+                        //txtTongSoVien.Text = Convert.ToString(BUS_ThuocTheoKhoa.Instance.TinhVienThuoc(maHoanChinh));
                     }
                 }
             }

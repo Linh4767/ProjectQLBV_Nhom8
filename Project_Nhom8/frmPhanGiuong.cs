@@ -47,49 +47,56 @@ namespace Project_Nhom8
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string pkb = txtBenhNhan.Text;
-            string[] pkbs = pkb.Split('-');
-            string maPKB = "";
-            string maBN = "";
-            string tenBN = "";
-            if (pkbs.Length >= 2)
+            if (cboGiuongBenh.SelectedValue != null && cboGiuongBenh.SelectedValue != null && !string.IsNullOrEmpty(txtBenhNhan.Text) && !string.IsNullOrEmpty(txtPhongBenh.Text))
             {
-                maPKB = pkbs[0].Trim() +"-"+ pkbs[1].Trim();
-            }
-            if (BUS_PhanGiuong.Instance.KiemTraHoanThienTraGiuong(maPKB))
-            {
-                DialogResult ret = MessageBox.Show("Bạn có muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (ret == DialogResult.Yes)
+                string pkb = txtBenhNhan.Text;
+                string[] pkbs = pkb.Split('-');
+                string maPKB = "";
+                string maBN = "";
+                string tenBN = "";
+                if (pkbs.Length >= 2)
                 {
-                    //Lấy tên mã nhân viên
-                    string input = txtNhanVienTH.Text;
-                    string[] parts = input.Split('-');
-                    string maNV = "";
-                    string tenNV = "";
-                    if (parts.Length == 2)
+                    maPKB = pkbs[0].Trim() + "-" + pkbs[1].Trim();
+                }
+                if (BUS_PhanGiuong.Instance.KiemTraHoanThienTraGiuong(maPKB))
+                {
+                    DialogResult ret = MessageBox.Show("Bạn có muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (ret == DialogResult.Yes)
                     {
-                        maNV = parts[0].Trim();
-                        tenNV = parts[1].Trim();
-                    }
+                        //Lấy tên mã nhân viên
+                        string input = txtNhanVienTH.Text;
+                        string[] parts = input.Split('-');
+                        string maNV = "";
+                        string tenNV = "";
+                        if (parts.Length == 2)
+                        {
+                            maNV = parts[0].Trim();
+                            tenNV = parts[1].Trim();
+                        }
 
-                    //Lấy mã pkb, mã bệnh nhân, tên bệnh nhân
+                        //Lấy mã pkb, mã bệnh nhân, tên bệnh nhân
 
-                    //Mã phòng
-                    string p = txtPhongBenh.Text;
-                    string[] phong = p.Split('-');
-                    string maPhong = "";
-                    if (phong.Length == 3)
-                    {
-                        maPhong = phong[0].Trim();
-                        //MessageBox.Show("Mã nè con" + maPhong);
+                        //Mã phòng
+                        string p = txtPhongBenh.Text;
+                        string[] phong = p.Split('-');
+                        string maPhong = "";
+                        if (phong.Length == 3)
+                        {
+                            maPhong = phong[0].Trim();
+                            //MessageBox.Show("Mã nè con" + maPhong);
+                        }
+                        BUS_PhanGiuong.Instance.ThemPhanGiuong(new ET_PhanGiuong(cboGiuongBenh.SelectedValue.ToString(), maPKB, dtpNgayTra.Value.Date + dtpThoiGianTra.Value.TimeOfDay, dtpNgayNhanGiuong.Value.Date + dtpThoiGianNhan.Value.TimeOfDay, maPhong, maNV, txtGhiChu.Text));
+                        BUS_PhanGiuong.Instance.HienThiPhanGiuong(dgvPhanGiuong, dtpNgay.Value);
                     }
-                    BUS_PhanGiuong.Instance.ThemPhanGiuong(new ET_PhanGiuong(cboGiuongBenh.SelectedValue.ToString(), maPKB, dtpNgayTra.Value.Date + dtpThoiGianTra.Value.TimeOfDay, dtpNgayNhanGiuong.Value.Date + dtpThoiGianNhan.Value.TimeOfDay, maPhong, maNV, txtGhiChu.Text));
-                    BUS_PhanGiuong.Instance.HienThiPhanGiuong(dgvPhanGiuong, dtpNgay.Value);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng trả giường trước khi phân giường khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng trả giường trước khi phân giường khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không đủ thông tin để thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -247,6 +254,7 @@ namespace Project_Nhom8
             cboGiuongBenh.Enabled = true;
             btnThem.Enabled = true;
             btnSua.Enabled = false;
+            txtGhiChu.Text = string.Empty;
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)

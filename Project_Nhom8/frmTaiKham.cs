@@ -101,49 +101,57 @@ namespace Project_Nhom8
         }
         private void btnThemTK_Click(object sender, EventArgs e)
         {
-            //kiểm tra ngày
-            DateTime ngayTK = dtpNgayTaiKham.Value;
-            if (ngayTK.Date < DateTime.Now.Date)
+            if (cboSoBA.SelectedValue != null && cboPhong.SelectedValue != null && cboMaNV.SelectedValue != null)
             {
-                MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (cboTrangThai.SelectedItem.ToString() != "Chưa hoàn thành")
-            {
-                MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!string.IsNullOrEmpty(txtKQ.Text))
-            {
-                MessageBox.Show("Vui lòng không điền vào ô kết quả!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DialogResult ret = MessageBox.Show("Bạn có muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (ret == DialogResult.Yes)
-            {
-                string maCH = BUS_TaiKham.Instance.TaoMa();
-                string maSBA = cboSoBA.SelectedValue.ToString();
-                string maPhong = cboPhong.SelectedValue.ToString();
-
-                if (!string.IsNullOrEmpty(maSBA) && !string.IsNullOrEmpty(maPhong))
+                //kiểm tra ngày
+                DateTime ngayTK = dtpNgayTaiKham.Value;
+                if (ngayTK.Date < DateTime.Now.Date)
                 {
-                    string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(maCH, maSBA, maPhong, null, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), txtKQ.Text));
-                    if (kq == "Thêm thành công")
+                    MessageBox.Show("Thời gian không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (cboTrangThai.SelectedItem.ToString() != "Chưa hoàn thành")
+                {
+                    MessageBox.Show("Trạng thái không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtKQ.Text))
+                {
+                    MessageBox.Show("Vui lòng không điền vào ô kết quả!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult ret = MessageBox.Show("Bạn có muốn thực hiện thêm không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (ret == DialogResult.Yes)
+                {
+                    string maCH = BUS_TaiKham.Instance.TaoMa();
+                    string maSBA = cboSoBA.SelectedValue.ToString();
+                    string maPhong = cboPhong.SelectedValue.ToString();
+
+                    if (!string.IsNullOrEmpty(maSBA) && !string.IsNullOrEmpty(maPhong))
                     {
-                        MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        maPKB = "";
-                        TaiDuLieu();
+                        string kq = BUS_TaiKham.Instance.ThemTaiKham(new ET_TaiKham(maCH, maSBA, maPhong, null, Convert.ToDateTime(dtpNgayTaiKham.Text), cboTrangThai.SelectedItem.ToString(), txtKQ.Text));
+                        if (kq == "Thêm thành công")
+                        {
+                            MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            maPKB = "";
+                            TaiDuLieu();
+                        }
+                        else
+                        {
+                            MessageBox.Show(kq, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(kq, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Chưa đủ thông tin", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Chưa đủ thông tin", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Chưa đủ thông tin để thêm", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

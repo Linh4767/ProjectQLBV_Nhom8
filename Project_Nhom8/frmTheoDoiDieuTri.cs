@@ -629,8 +629,9 @@ namespace Project_Nhom8
                 if (canNang <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCanNang.Text = "1";
                 }
-                txtCanNang.Text = "1";
+                
             }
         }
 
@@ -641,8 +642,9 @@ namespace Project_Nhom8
                 if (nhietDo <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNhietDo.Text = "1";
                 }
-                txtNhietDo.Text = "1";
+                
             }
         }
 
@@ -653,8 +655,9 @@ namespace Project_Nhom8
                 if (nhipTho <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNhipTho.Text = "1";
                 }
-                txtNhipTho.Text = "1";
+                
             }
         }
 
@@ -665,8 +668,9 @@ namespace Project_Nhom8
                 if (machDap <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtMachDap.Text = "1";
                 }
-                txtMachDap.Text = "1";
+                
             }
         }
 
@@ -677,8 +681,9 @@ namespace Project_Nhom8
                 if (huyetAp <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtHuyetAp.Text = "1";
                 }
-                txtHuyetAp.Text = "1";
+                
             }
         }
 
@@ -689,8 +694,9 @@ namespace Project_Nhom8
                 if (duongHuyet <= 0)
                 {
                     MessageBox.Show("Giá trị phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtDuongHuyet.Text = "1";
                 }
-                txtDuongHuyet.Text = "1";
+                
             }
         }
 

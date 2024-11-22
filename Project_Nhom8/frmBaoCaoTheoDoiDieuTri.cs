@@ -75,5 +75,14 @@ namespace Project_Nhom8
                 MessageBox.Show("Ngày đến phải lớn hơn hoặc bằng ngày " + dtpTuNgay.Value.Date.ToShortDateString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult kq = MessageBox.Show("Bạn có chắc muốn thoát", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (kq == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

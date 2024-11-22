@@ -32,10 +32,10 @@ namespace Project_Nhom8
             rptInHoaDon.Visible = false;
             if (radTheoMaPhieuKB.Checked)
             {
-                decimal tienSuDung = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(txtTuKhoa.Text);
-                txtTongTienSDDV.Text = tienSuDung.ToString("F0");
-                decimal tienBNChiTra = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(txtTuKhoa.Text);
-                txtDoanhThuThucTe.Text = tienBNChiTra.ToString("F0");
+                //decimal tienSuDung = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(txtTuKhoa.Text);
+                //txtTongTienSDDV.Text = tienSuDung.ToString("F0");
+                //decimal tienBNChiTra = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(txtTuKhoa.Text);
+                //txtDoanhThuThucTe.Text = tienBNChiTra.ToString("F0");
                 BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(txtTuKhoa.Text, dgvTongHop);
                 dgvTongHop.ColumnHeadersHeight = 40;
             }
@@ -45,8 +45,8 @@ namespace Project_Nhom8
                 dgvDSBenhNhan.ColumnHeadersHeight = 40;
                 dgvDSBenhNhan.Columns[6].Visible = false;
                 dgvDSBenhNhan.Columns[7].Visible = false;
-                txtTongTienSDDV.Text = "0";
-                txtDoanhThuThucTe.Text = "0";
+                //txtTongTienSDDV.Text = "0";
+                //txtDoanhThuThucTe.Text = "0";
                 btnIn.Enabled = false;
             }
         }

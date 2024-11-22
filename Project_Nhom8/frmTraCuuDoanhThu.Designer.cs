@@ -218,7 +218,7 @@
             this.btnChiTietDT.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnChiTietDT.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChiTietDT.ForeColor = System.Drawing.Color.White;
-            this.btnChiTietDT.Location = new System.Drawing.Point(350, 165);
+            this.btnChiTietDT.Location = new System.Drawing.Point(346, 164);
             this.btnChiTietDT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnChiTietDT.Name = "btnChiTietDT";
             this.btnChiTietDT.Size = new System.Drawing.Size(156, 66);
@@ -366,12 +366,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTongHop.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTongHop.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvTongHop.Location = new System.Drawing.Point(712, 227);
+            this.dgvTongHop.Location = new System.Drawing.Point(74, 501);
             this.dgvTongHop.Name = "dgvTongHop";
             this.dgvTongHop.RowHeadersVisible = false;
             this.dgvTongHop.RowHeadersWidth = 62;
             this.dgvTongHop.RowTemplate.Height = 28;
-            this.dgvTongHop.Size = new System.Drawing.Size(890, 722);
+            this.dgvTongHop.Size = new System.Drawing.Size(1528, 448);
             this.dgvTongHop.TabIndex = 188;
             this.dgvTongHop.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvTongHop.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -403,11 +403,11 @@
             this.groupBox6.Controls.Add(this.btnIn);
             this.groupBox6.Controls.Add(this.btnTraCuu);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(76, 511);
+            this.groupBox6.Location = new System.Drawing.Point(892, 205);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox6.Size = new System.Drawing.Size(557, 256);
+            this.groupBox6.Size = new System.Drawing.Size(567, 256);
             this.groupBox6.TabIndex = 187;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Thanh công cụ";
@@ -445,7 +445,7 @@
             this.groupBox1.Controls.Add(this.dtpDenNgay);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(76, 227);
+            this.groupBox1.Location = new System.Drawing.Point(276, 207);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox1.Size = new System.Drawing.Size(557, 254);
@@ -457,37 +457,37 @@
             // rptThongKeDoanhThu
             // 
             this.rptThongKeDoanhThu.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptTraCuuHoaDonTheoNgay.rdlc";
-            this.rptThongKeDoanhThu.Location = new System.Drawing.Point(712, 227);
+            this.rptThongKeDoanhThu.Location = new System.Drawing.Point(74, 501);
             this.rptThongKeDoanhThu.Name = "rptThongKeDoanhThu";
             this.rptThongKeDoanhThu.ServerReport.BearerToken = null;
-            this.rptThongKeDoanhThu.Size = new System.Drawing.Size(890, 722);
+            this.rptThongKeDoanhThu.Size = new System.Drawing.Size(1528, 448);
             this.rptThongKeDoanhThu.TabIndex = 199;
             // 
             // rptThongKeDoanhThuTheoThang
             // 
             this.rptThongKeDoanhThuTheoThang.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptTraCuuHoaDonTheoThang.rdlc";
-            this.rptThongKeDoanhThuTheoThang.Location = new System.Drawing.Point(712, 227);
+            this.rptThongKeDoanhThuTheoThang.Location = new System.Drawing.Point(74, 501);
             this.rptThongKeDoanhThuTheoThang.Name = "rptThongKeDoanhThuTheoThang";
             this.rptThongKeDoanhThuTheoThang.ServerReport.BearerToken = null;
-            this.rptThongKeDoanhThuTheoThang.Size = new System.Drawing.Size(890, 722);
+            this.rptThongKeDoanhThuTheoThang.Size = new System.Drawing.Size(1528, 448);
             this.rptThongKeDoanhThuTheoThang.TabIndex = 200;
             // 
             // rptThongKeDoanhThuTheoNam
             // 
             this.rptThongKeDoanhThuTheoNam.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptTraCuuHoaDonTheoNam.rdlc";
-            this.rptThongKeDoanhThuTheoNam.Location = new System.Drawing.Point(712, 227);
+            this.rptThongKeDoanhThuTheoNam.Location = new System.Drawing.Point(74, 501);
             this.rptThongKeDoanhThuTheoNam.Name = "rptThongKeDoanhThuTheoNam";
             this.rptThongKeDoanhThuTheoNam.ServerReport.BearerToken = null;
-            this.rptThongKeDoanhThuTheoNam.Size = new System.Drawing.Size(890, 722);
+            this.rptThongKeDoanhThuTheoNam.Size = new System.Drawing.Size(1528, 448);
             this.rptThongKeDoanhThuTheoNam.TabIndex = 201;
             // 
             // rptThongKeDoanhThuTheoKhoangTG
             // 
             this.rptThongKeDoanhThuTheoKhoangTG.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptTraCuuHoaDonTheoKhoangTG.rdlc";
-            this.rptThongKeDoanhThuTheoKhoangTG.Location = new System.Drawing.Point(712, 227);
+            this.rptThongKeDoanhThuTheoKhoangTG.Location = new System.Drawing.Point(74, 501);
             this.rptThongKeDoanhThuTheoKhoangTG.Name = "rptThongKeDoanhThuTheoKhoangTG";
             this.rptThongKeDoanhThuTheoKhoangTG.ServerReport.BearerToken = null;
-            this.rptThongKeDoanhThuTheoKhoangTG.Size = new System.Drawing.Size(890, 722);
+            this.rptThongKeDoanhThuTheoKhoangTG.Size = new System.Drawing.Size(1528, 448);
             this.rptThongKeDoanhThuTheoKhoangTG.TabIndex = 202;
             // 
             // frmTraCuuDoanhThu

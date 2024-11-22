@@ -1,4 +1,6 @@
-﻿namespace Project_Nhom8
+﻿using System;
+
+namespace Project_Nhom8
 {
     partial class frmDonThuoc
     {
@@ -131,7 +133,7 @@
             this.dgvGoiYThuoc.ThemeStyle.RowsStyle.Height = 24;
             this.dgvGoiYThuoc.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvGoiYThuoc.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvGoiYThuoc.Click += new System.EventHandler(this.dgvGoiYThuoc_Click);
+            this.dgvGoiYThuoc.Click += new System.EventHandler(this.dgvGoiYThuoc_Click_1);
             // 
             // label7
             // 
@@ -825,7 +827,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1611, 1050);
+            this.ClientSize = new System.Drawing.Size(1637, 1050);
             this.Controls.Add(this.dgvGoiYThuoc);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnThoat);
@@ -853,6 +855,8 @@
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
 

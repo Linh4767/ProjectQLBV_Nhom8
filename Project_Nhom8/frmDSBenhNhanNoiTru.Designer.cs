@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radTheoKhoangTG = new System.Windows.Forms.RadioButton();
             this.radTheoNam = new System.Windows.Forms.RadioButton();
@@ -66,7 +66,7 @@
             this.groupBox1.Controls.Add(this.dtpDenNgay);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(76, 227);
+            this.groupBox1.Location = new System.Drawing.Point(289, 121);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox1.Size = new System.Drawing.Size(557, 254);
@@ -184,33 +184,33 @@
             // 
             // dgvTongHop
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTongHop.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvTongHop.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTongHop.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTongHop.ColumnHeadersHeight = 4;
             this.dgvTongHop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTongHop.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTongHop.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTongHop.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvTongHop.Location = new System.Drawing.Point(712, 227);
+            this.dgvTongHop.Location = new System.Drawing.Point(22, 403);
             this.dgvTongHop.Name = "dgvTongHop";
             this.dgvTongHop.RowHeadersVisible = false;
             this.dgvTongHop.RowHeadersWidth = 62;
             this.dgvTongHop.RowTemplate.Height = 28;
-            this.dgvTongHop.Size = new System.Drawing.Size(890, 722);
+            this.dgvTongHop.Size = new System.Drawing.Size(1590, 408);
             this.dgvTongHop.TabIndex = 207;
             this.dgvTongHop.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvTongHop.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -240,7 +240,7 @@
             this.groupBox6.Controls.Add(this.btnTraCuu);
             this.groupBox6.Controls.Add(this.btnThoat);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(76, 511);
+            this.groupBox6.Location = new System.Drawing.Point(888, 121);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -313,37 +313,37 @@
             // rptDSBNNoiTruTheoNgay
             // 
             this.rptDSBNNoiTruTheoNgay.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptDSBNNoiTruTheoNgay.rdlc";
-            this.rptDSBNNoiTruTheoNgay.Location = new System.Drawing.Point(712, 227);
+            this.rptDSBNNoiTruTheoNgay.Location = new System.Drawing.Point(22, 403);
             this.rptDSBNNoiTruTheoNgay.Name = "rptDSBNNoiTruTheoNgay";
             this.rptDSBNNoiTruTheoNgay.ServerReport.BearerToken = null;
-            this.rptDSBNNoiTruTheoNgay.Size = new System.Drawing.Size(890, 722);
+            this.rptDSBNNoiTruTheoNgay.Size = new System.Drawing.Size(1590, 408);
             this.rptDSBNNoiTruTheoNgay.TabIndex = 221;
             // 
             // rptDSBNNoiTruTheoThang
             // 
             this.rptDSBNNoiTruTheoThang.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptDSBNNoiTruTheoThang.rdlc";
-            this.rptDSBNNoiTruTheoThang.Location = new System.Drawing.Point(712, 227);
+            this.rptDSBNNoiTruTheoThang.Location = new System.Drawing.Point(22, 403);
             this.rptDSBNNoiTruTheoThang.Name = "rptDSBNNoiTruTheoThang";
             this.rptDSBNNoiTruTheoThang.ServerReport.BearerToken = null;
-            this.rptDSBNNoiTruTheoThang.Size = new System.Drawing.Size(890, 722);
+            this.rptDSBNNoiTruTheoThang.Size = new System.Drawing.Size(1590, 408);
             this.rptDSBNNoiTruTheoThang.TabIndex = 222;
             // 
             // rptDSBNNoiTruTheoNam
             // 
             this.rptDSBNNoiTruTheoNam.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptDSBNNoiTruTheoNam.rdlc";
-            this.rptDSBNNoiTruTheoNam.Location = new System.Drawing.Point(712, 227);
+            this.rptDSBNNoiTruTheoNam.Location = new System.Drawing.Point(22, 403);
             this.rptDSBNNoiTruTheoNam.Name = "rptDSBNNoiTruTheoNam";
             this.rptDSBNNoiTruTheoNam.ServerReport.BearerToken = null;
-            this.rptDSBNNoiTruTheoNam.Size = new System.Drawing.Size(890, 722);
+            this.rptDSBNNoiTruTheoNam.Size = new System.Drawing.Size(1590, 408);
             this.rptDSBNNoiTruTheoNam.TabIndex = 223;
             // 
             // rptDSBNNoiTruTheoKhoangTG
             // 
             this.rptDSBNNoiTruTheoKhoangTG.LocalReport.ReportEmbeddedResource = "Project_Nhom8.rptDSBNNoiTruTheoKhoangTg.rdlc";
-            this.rptDSBNNoiTruTheoKhoangTG.Location = new System.Drawing.Point(712, 227);
+            this.rptDSBNNoiTruTheoKhoangTG.Location = new System.Drawing.Point(22, 403);
             this.rptDSBNNoiTruTheoKhoangTG.Name = "rptDSBNNoiTruTheoKhoangTG";
             this.rptDSBNNoiTruTheoKhoangTG.ServerReport.BearerToken = null;
-            this.rptDSBNNoiTruTheoKhoangTG.Size = new System.Drawing.Size(890, 722);
+            this.rptDSBNNoiTruTheoKhoangTG.Size = new System.Drawing.Size(1590, 408);
             this.rptDSBNNoiTruTheoKhoangTG.TabIndex = 224;
             // 
             // frmDSBenhNhanNoiTru

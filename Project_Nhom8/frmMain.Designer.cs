@@ -615,11 +615,11 @@
             this.btnTraCuuBNNoiTru.HoverState.BorderColor = System.Drawing.Color.Navy;
             this.btnTraCuuBNNoiTru.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
             this.btnTraCuuBNNoiTru.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuuBNNoiTru.Location = new System.Drawing.Point(0, 293);
+            this.btnTraCuuBNNoiTru.Location = new System.Drawing.Point(3, 293);
             this.btnTraCuuBNNoiTru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraCuuBNNoiTru.Name = "btnTraCuuBNNoiTru";
             this.btnTraCuuBNNoiTru.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnTraCuuBNNoiTru.Size = new System.Drawing.Size(273, 85);
+            this.btnTraCuuBNNoiTru.Size = new System.Drawing.Size(253, 85);
             this.btnTraCuuBNNoiTru.TabIndex = 16;
             this.btnTraCuuBNNoiTru.Text = "Danh sách nội trú";
             this.btnTraCuuBNNoiTru.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -638,7 +638,7 @@
             this.btnTraCuuDonThuoc.HoverState.BorderColor = System.Drawing.Color.Navy;
             this.btnTraCuuDonThuoc.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
             this.btnTraCuuDonThuoc.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuuDonThuoc.Location = new System.Drawing.Point(-3, 195);
+            this.btnTraCuuDonThuoc.Location = new System.Drawing.Point(3, 195);
             this.btnTraCuuDonThuoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraCuuDonThuoc.Name = "btnTraCuuDonThuoc";
             this.btnTraCuuDonThuoc.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
@@ -661,11 +661,11 @@
             this.btnHoaDonDV.HoverState.BorderColor = System.Drawing.Color.Navy;
             this.btnHoaDonDV.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(152)))), ((int)(((byte)(218)))));
             this.btnHoaDonDV.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnHoaDonDV.Location = new System.Drawing.Point(11, 106);
+            this.btnHoaDonDV.Location = new System.Drawing.Point(3, 106);
             this.btnHoaDonDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHoaDonDV.Name = "btnHoaDonDV";
             this.btnHoaDonDV.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnHoaDonDV.Size = new System.Drawing.Size(262, 85);
+            this.btnHoaDonDV.Size = new System.Drawing.Size(232, 85);
             this.btnHoaDonDV.TabIndex = 14;
             this.btnHoaDonDV.Text = "Hóa đơn dịch vụ";
             this.btnHoaDonDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -844,7 +844,7 @@
             this.btnTTBenhNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTTBenhNhan.Name = "btnTTBenhNhan";
             this.btnTTBenhNhan.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnTTBenhNhan.Size = new System.Drawing.Size(298, 85);
+            this.btnTTBenhNhan.Size = new System.Drawing.Size(288, 85);
             this.btnTTBenhNhan.TabIndex = 1;
             this.btnTTBenhNhan.Text = "Thông tin bệnh nhân";
             this.btnTTBenhNhan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -903,6 +903,7 @@
             this.ClientSize = new System.Drawing.Size(1316, 1050);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.pnlMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.Text = "Main";

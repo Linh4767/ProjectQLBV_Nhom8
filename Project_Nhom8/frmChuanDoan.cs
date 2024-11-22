@@ -61,6 +61,16 @@ namespace Project_Nhom8
             dgvDSChuanDoan.Columns[5].Visible = false;
             dtpNgay.Value = DateTime.Now;
             dtpNgayChuanDoan.Value = DateTime.Now;
+            if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+            {
+                btnDatLich.Enabled = true;
+                btnDonThuoc.Enabled = true;
+            }
+            else
+            {
+                btnDatLich.Enabled = false;
+                btnDonThuoc.Enabled = false;
+            }
         }
 
         private void btnThemChuanDoan_Click(object sender, EventArgs e)
@@ -96,6 +106,16 @@ namespace Project_Nhom8
                         BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
                         bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
                         dgvDSChuanDoan.Enabled = !isEmpty;
+                        if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                        {
+                            btnDatLich.Enabled = true;
+                            btnDonThuoc.Enabled = true;
+                        }
+                        else
+                        {
+                            btnDatLich.Enabled = false;
+                            btnDonThuoc.Enabled = false;
+                        }
 
                     }
                     else
@@ -147,6 +167,16 @@ namespace Project_Nhom8
                         BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
                         bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
                         dgvDSChuanDoan.Enabled = !isEmpty;
+                        if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                        {
+                            btnDatLich.Enabled = true;
+                            btnDonThuoc.Enabled = true;
+                        }
+                        else
+                        {
+                            btnDatLich.Enabled = false;
+                            btnDonThuoc.Enabled = false;
+                        }
                     }
                     else
                     {
@@ -210,6 +240,16 @@ namespace Project_Nhom8
                 else
                 {
                     dateTimeValue = DateTime.MinValue;
+                }
+                if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                {
+                    btnDatLich.Enabled = true;
+                    btnDonThuoc.Enabled = true;
+                }
+                else
+                {
+                    btnDatLich.Enabled = false;
+                    btnDonThuoc.Enabled = false;
                 }
             }
             else

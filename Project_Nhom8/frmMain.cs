@@ -299,10 +299,14 @@ namespace Project_Nhom8
             openChildForm(new frmDichVu());
             hideSubMenu();
         }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             hideSubMenu();
+            // Tắt nút thu nhỏ (nếu cần)
+            this.MinimizeBox = false;
+
+            // Tắt nút phóng to
+            this.MaximizeBox = false;
             if (BUS_TaiKhoan.Instance.KiemTraPhanQuyen(tenTaiKhoan) == true)
             {
                 btnQuanTri.Visible = true;

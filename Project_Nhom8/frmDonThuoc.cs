@@ -77,19 +77,26 @@ namespace Project_Nhom8
 
         private void btnThemDonThuoc_Click(object sender, EventArgs e)
         {
-            string kQua = BUS_DonThuoc.Instance.ThemDonThuoc(new ET_DonThuoc(txtMaDT.Text, dtpNgayKe.Value, maNhanVien, maPhieuKham));
-            MessageBox.Show(kQua, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (kQua == "Thêm thành công")
+            if (!string.IsNullOrEmpty(maPhieuKham) && !string.IsNullOrEmpty(maNhanVien))
             {
-                //maPhieuKham = "";
-                btnThemDonThuoc.Enabled = false;
-                btnThemThuoc.Enabled = true;
-                btnInDT.Enabled = true;
-                TaiDuLieu();
+                string kQua = BUS_DonThuoc.Instance.ThemDonThuoc(new ET_DonThuoc(txtMaDT.Text, dtpNgayKe.Value, maNhanVien, maPhieuKham));
+                MessageBox.Show(kQua, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (kQua == "Thêm thành công")
+                {
+                    //maPhieuKham = "";
+                    btnThemDonThuoc.Enabled = false;
+                    btnThemThuoc.Enabled = true;
+                    btnInDT.Enabled = true;
+                    TaiDuLieu();
+                }
+                else
+                {
+                    MessageBox.Show(kQua, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show(kQua, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Thiếu thông tin để thêm", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -183,15 +190,7 @@ namespace Project_Nhom8
 
         private void dgvGoiYThuoc_Click(object sender, EventArgs e)
         {
-            if (dgvGoiYThuoc.CurrentRow != null && !dgvGoiYThuoc.Rows[dgvGoiYThuoc.CurrentRow.Index].IsNewRow)
-            {
-                int dong = dgvGoiYThuoc.CurrentCell.RowIndex;
-
-                txtMaThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[0].Value?.ToString();
-                txtTenThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[1].Value.ToString();
-                txtLoaiThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[2].Value.ToString();
-                txtHamLuong.Text = dgvGoiYThuoc.Rows[dong].Cells[3].Value.ToString();
-            }
+            
         }
 
         private void dgvChiTietDonThuoc_Click(object sender, EventArgs e)
@@ -274,6 +273,19 @@ namespace Project_Nhom8
             {
                 e.Handled = true;
                 MessageBox.Show("Nhập quá ký tự tự cho phép là 500", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dgvGoiYThuoc_Click_1(object sender, EventArgs e)
+        {
+            if (dgvGoiYThuoc.CurrentRow != null && !dgvGoiYThuoc.Rows[dgvGoiYThuoc.CurrentRow.Index].IsNewRow)
+            {
+                int dong = dgvGoiYThuoc.CurrentCell.RowIndex;
+
+                txtMaThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[0].Value?.ToString();
+                txtTenThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[1].Value.ToString();
+                txtLoaiThuoc.Text = dgvGoiYThuoc.Rows[dong].Cells[2].Value.ToString();
+                txtHamLuong.Text = dgvGoiYThuoc.Rows[dong].Cells[3].Value.ToString();
             }
         }
     }
