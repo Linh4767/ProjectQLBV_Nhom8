@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_ChucVu
     {
         private static BUS_ChucVu instance;
+        private DAL_ChucVu dal_chucvu = new DAL_ChucVu();
         public static BUS_ChucVu Instance
         {
             get
@@ -27,12 +28,12 @@ namespace BUS
         // Hiển thị danh sách lên DataGridView
         public void HienThiDSChucVu(DataGridView dgvDSCV)
         {
-            dgvDSCV.DataSource = DAL_ChucVu.Instance.HienThiDSChucVu();
+            dgvDSCV.DataSource = dal_chucvu.HienThiDSChucVu();
         }
         //Thêm chức vụ
         public void ThemChucVu(ET_ChucVu etChucVu)
         {
-            if (DAL_ChucVu.Instance.ThemChucVu(etChucVu) == false)
+            if (dal_chucvu.ThemChucVu(etChucVu) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -46,7 +47,7 @@ namespace BUS
         //Xóa chức vụ
         public void XoaChucVu(DataGridView dgvDSChucVu)
         {
-            if (DAL_ChucVu.Instance.XoaChucVu(dgvDSChucVu.CurrentRow.Cells[0].Value.ToString()) == true)
+            if (dal_chucvu.XoaChucVu(dgvDSChucVu.CurrentRow.Cells[0].Value.ToString()) == true)
             {
                 // Hiện lên thông báo khi xóa thành công
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -61,7 +62,7 @@ namespace BUS
         //Sửa chức vụ
         public void SuaChucVu(ET_ChucVu etChucVu)
         {
-            if (DAL_ChucVu.Instance.SuaChucVu(etChucVu))
+            if (dal_chucvu.SuaChucVu(etChucVu))
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -73,7 +74,7 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaChucVuTuDong()
         {
-            return DAL_ChucVu.Instance.TaoMaChucVuTuDong();
+            return dal_chucvu.TaoMaChucVuTuDong();
         }
     }
 }

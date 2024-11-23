@@ -59,6 +59,7 @@
             this.pnlOverlay.Name = "pnlOverlay";
             this.pnlOverlay.Size = new System.Drawing.Size(800, 450);
             this.pnlOverlay.TabIndex = 1;
+            this.pnlOverlay.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOverlay_Paint);
             // 
             // pnlLogin
             // 
@@ -79,6 +80,7 @@
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(756, 372);
             this.pnlLogin.TabIndex = 0;
+            this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
             // 
             // guna2CirclePictureBox3
             // 
@@ -91,6 +93,7 @@
             this.guna2CirclePictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2CirclePictureBox3.TabIndex = 11;
             this.guna2CirclePictureBox3.TabStop = false;
+            this.guna2CirclePictureBox3.Click += new System.EventHandler(this.guna2CirclePictureBox3_Click);
             // 
             // guna2CirclePictureBox2
             // 
@@ -103,6 +106,7 @@
             this.guna2CirclePictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2CirclePictureBox2.TabIndex = 10;
             this.guna2CirclePictureBox2.TabStop = false;
+            this.guna2CirclePictureBox2.Click += new System.EventHandler(this.guna2CirclePictureBox2_Click);
             // 
             // btnThoat
             // 
@@ -136,6 +140,7 @@
             this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2CirclePictureBox1.TabIndex = 8;
             this.guna2CirclePictureBox1.TabStop = false;
+            this.guna2CirclePictureBox1.Click += new System.EventHandler(this.guna2CirclePictureBox1_Click);
             // 
             // label3
             // 
@@ -148,6 +153,7 @@
             this.label3.Size = new System.Drawing.Size(75, 20);
             this.label3.TabIndex = 7;
             this.label3.Text = "Mật khẩu";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -160,6 +166,7 @@
             this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Tài khoản";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnLogin
             // 
@@ -238,6 +245,7 @@
             this.label1.Size = new System.Drawing.Size(204, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "Đăng nhập";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // guna2BorderlessForm1
             // 

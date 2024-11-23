@@ -11,7 +11,7 @@ namespace DAL
     public class DAL_TheoDoiDieuTri
     {
         private static DAL_TheoDoiDieuTri instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_TheoDoiDieuTri Instance
         {

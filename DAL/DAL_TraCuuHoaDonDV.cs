@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_TraCuuHoaDonDV
     {
         private static DAL_TraCuuHoaDonDV instance;
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_TraCuuHoaDonDV Instance
         {

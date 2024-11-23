@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_ChiTietDonThuoc
     {
         private static BUS_ChiTietDonThuoc instance;
+        private DAL_ChiTietDonThuoc dal_chitietdt = new DAL_ChiTietDonThuoc();
 
         public static BUS_ChiTietDonThuoc Instance
         {
@@ -27,39 +28,39 @@ namespace BUS
 
         public void LayDSThuocCuaDonThuoc(string maDT, DataGridView dgvDSThuoc)
         {
-            dgvDSThuoc.DataSource = DAL_ChiTietDonThuoc.Instance.LayDSThuocCuaDonThuoc(maDT);
+            dgvDSThuoc.DataSource = dal_chitietdt.LayDSThuocCuaDonThuoc(maDT);
         }
 
         //Tên bệnh nhân
         public string LayTenBN(string maPKB)
         {
-            return DAL_ChiTietDonThuoc.Instance.LayTenBN(maPKB);
+            return dal_chitietdt.LayTenBN(maPKB);
         }
 
         //Lấy tên nhân viên
         public string LayTenNV(string maNV)
         {
-            return DAL_ChiTietDonThuoc.Instance.LayTenNhanVien(maNV);
+            return dal_chitietdt.LayTenNhanVien(maNV);
         }
 
         //lấy tên ma khoa
         public string LayKhoaTuNV(string maNV)
         {
-            return DAL_ChiTietDonThuoc.Instance.LayKhoaTuNV(maNV);
+            return dal_chitietdt.LayKhoaTuNV(maNV);
         }
 
         //danh sách thuốc gợi ý
         public void LayDSThuocGoiY(string tenThuoc, string maKhoa, DataGridView dgvDSThuocGoiY)
         {
-            dgvDSThuocGoiY.DataSource = DAL_ChiTietDonThuoc.Instance.LayDSThuocGoiY(tenThuoc, maKhoa);
+            dgvDSThuocGoiY.DataSource = dal_chitietdt.LayDSThuocGoiY(tenThuoc, maKhoa);
         }
 
         //Thêm thuốc vào đơn
         public string ThemThuoc(ET_ChiTietDonThuoc eT_ChiTiet, string maKhoa, int soLuong)
         {
-            if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTiet.MaThuoc, maKhoa, eT_ChiTiet.MaLo, soLuong))
+            if (dal_chitietdt.KtraSoLuong(eT_ChiTiet.MaThuoc, maKhoa, eT_ChiTiet.MaLo, soLuong))
             {
-                if (DAL_ChiTietDonThuoc.Instance.ThemChiTietDonThuoc(eT_ChiTiet, maKhoa, soLuong))
+                if (dal_chitietdt.ThemChiTietDonThuoc(eT_ChiTiet, maKhoa, soLuong))
                 {
                     return "Thêm thành công";
                 }
@@ -77,7 +78,7 @@ namespace BUS
         //Xóa thuốc
         public string XoaThuoc(string maDT, string maThuoc, string maLo, string maKhoa)
         {
-            if (DAL_ChiTietDonThuoc.Instance.XoaThuoc(maDT, maThuoc, maLo, maKhoa))
+            if (dal_chitietdt.XoaThuoc(maDT, maThuoc, maLo, maKhoa))
             {
                 return "Loại bỏ thành công";
             }
@@ -90,9 +91,9 @@ namespace BUS
         //Cập nhật thuốc
         public string CapNhatThuoc(ET_ChiTietDonThuoc eT_ChiTietDon, int soLuong, string maKhoa)
         {
-            if (DAL_ChiTietDonThuoc.Instance.KtraSoLuong(eT_ChiTietDon.MaThuoc, maKhoa, eT_ChiTietDon.MaLo, soLuong))
+            if (dal_chitietdt.KtraSoLuong(eT_ChiTietDon.MaThuoc, maKhoa, eT_ChiTietDon.MaLo, soLuong))
             {
-                if (DAL_ChiTietDonThuoc.Instance.CapNhatDonThuoc(eT_ChiTietDon, soLuong, maKhoa))
+                if (dal_chitietdt.CapNhatDonThuoc(eT_ChiTietDon, soLuong, maKhoa))
                 {
                     return "Cập nhật thành công";
                 }
@@ -111,7 +112,7 @@ namespace BUS
         //lấy lô thuốc
         public void LayLoDuaVaoMaThuoc(string maThuoc, string maKhoa, ComboBox cboLo)
         {
-            cboLo.DataSource = DAL_ChiTietDonThuoc.Instance.LayLoDuaVaoMaThuoc(maThuoc, maKhoa);
+            cboLo.DataSource = dal_chitietdt.LayLoDuaVaoMaThuoc(maThuoc, maKhoa);
             cboLo.DisplayMember = "MaLo";
             cboLo.ValueMember = "MaLo";
         }
@@ -119,7 +120,7 @@ namespace BUS
         //Tính tổng tiền thuốc
         public double TongTienThuoc(string maDT)
         {
-            return DAL_ChiTietDonThuoc.Instance.TongTienThuoc(maDT);
+            return dal_chitietdt.TongTienThuoc(maDT);
         }
     }
 }

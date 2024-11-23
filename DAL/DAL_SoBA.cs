@@ -22,7 +22,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         // Xem danh sách hồ sơ bệnh án
         public IQueryable XemDSHoSoBA()

@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_BaoCaoTDDT
     {
         private static DAL_BaoCaoTDDT instance;
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_BaoCaoTDDT Instance
         {

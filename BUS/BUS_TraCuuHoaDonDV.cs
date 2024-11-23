@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_TraCuuHoaDonDV
     {
         private static BUS_TraCuuHoaDonDV instance;
+        private DAL_TraCuuHoaDonDV dal_tracuuhoadondv = new DAL_TraCuuHoaDonDV();
         public static BUS_TraCuuHoaDonDV Instance
         {
             get
@@ -26,35 +27,35 @@ namespace BUS
 
         public float TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(string maPhieuKB)
         {
-            return DAL_TraCuuHoaDonDV.Instance.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(maPhieuKB);
+            return dal_tracuuhoadondv.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(maPhieuKB);
         }
         public float TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(string maPhieuKB)
         {
-            return DAL_TraCuuHoaDonDV.Instance.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(maPhieuKB);
+            return dal_tracuuhoadondv.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(maPhieuKB);
         }
         public void ChiTietDSSDVTheoTenHoacPhieu(string maPKB, DataGridView dgv)
         {
-            var usageRecords = DAL_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(maPKB);
+            var usageRecords = dal_tracuuhoadondv.ChiTietDSSDVTheoTenHoacPhieu(maPKB);
             dgv.DataSource = usageRecords;
             dgv.Columns[0].Visible = false;
             dgv.Columns[1].Visible = false;
         }
         public void ChiTietDSSDVTheoTen(string maPKB, DataGridView dgv)
         {
-            var usageRecords = DAL_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTen(maPKB);
+            var usageRecords = dal_tracuuhoadondv.ChiTietDSSDVTheoTen(maPKB);
             dgv.DataSource = usageRecords;
         }
         public void LayDanhSachPhieuKhamBenhTheoTenBN(string maBN, DataGridView dgv)
         {
-            dgv.DataSource = DAL_TraCuuHoaDonDV.Instance.LayDanhSachPhieuKhamBenhTheoTenBN(maBN);
+            dgv.DataSource = dal_tracuuhoadondv.LayDanhSachPhieuKhamBenhTheoTenBN(maBN);
         }
         public List<ET_ThongKeSuDungDV> ThongKeHoaDonSuDungDV(string maPKB)
         {
-            return DAL_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(maPKB);
+            return dal_tracuuhoadondv.ThongKeHoaDonSuDungDV(maPKB);
         }
         public List<ET_ThongKeDSDuDungDV> ChiTietDSSDVTheoTenHoacPhieu(string maPKB)
         {
-            return DAL_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(maPKB);
+            return dal_tracuuhoadondv.ChiTietDSSDVTheoTenHoacPhieu(maPKB);
         }
     }
 }

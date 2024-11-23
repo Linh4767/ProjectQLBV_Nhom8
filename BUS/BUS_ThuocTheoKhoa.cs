@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_ThuocTheoKhoa
     {
         private static BUS_ThuocTheoKhoa instance;
+        private DAL_ThuocTheoKhoa dal_thuoctheokhoa = new DAL_ThuocTheoKhoa();
         public static BUS_ThuocTheoKhoa Instance
         {
             get
@@ -26,27 +27,27 @@ namespace BUS
 
         public void XemDSThuocTheoKhoa(DataGridView dgv, string maKhoa)
         {
-            dgv.DataSource = DAL_ThuocTheoKhoa.Instance.XemDSThuocTheoKhoa(maKhoa);
+            dgv.DataSource = dal_thuoctheokhoa.XemDSThuocTheoKhoa(maKhoa);
         }
         public void TimKiemThuocTheoKhoa(DataGridView dgv, string tenThuoc, string maKhoa)
         {
-            dgv.DataSource = DAL_ThuocTheoKhoa.Instance.TimKiemThuocTheoKhoa(tenThuoc, maKhoa);
+            dgv.DataSource = dal_thuoctheokhoa.TimKiemThuocTheoKhoa(tenThuoc, maKhoa);
         }
         public string LayTenDuaVaoMaThuoc(string maThuoc)
         {
-            return DAL_ThuocTheoKhoa.Instance.LayTenDuaVaoMaThuoc(maThuoc);
+            return dal_thuoctheokhoa.LayTenDuaVaoMaThuoc(maThuoc);
         }
         public void LayLoDuaVaoMaThuoc(ComboBox cboLo, string maThuoc)
         {
-            cboLo.DataSource = DAL_ThuocTheoKhoa.Instance.LayLoDuaVaoMaThuoc(maThuoc);
+            cboLo.DataSource = dal_thuoctheokhoa.LayLoDuaVaoMaThuoc(maThuoc);
             cboLo.ValueMember = "MaLo";
             cboLo.DisplayMember = "MaLo";
         }
         public void ThemThuocChoKhoa(ET_ThuocTheoKhoa etThuocTheoKhoa, int soLuong)
         {
-            if (!DAL_ThuocTheoKhoa.Instance.KiemTraGiaTriNhap(etThuocTheoKhoa.MaLo, soLuong))
+            if (!dal_thuoctheokhoa.KiemTraGiaTriNhap(etThuocTheoKhoa.MaLo, soLuong))
             {
-                if (DAL_ThuocTheoKhoa.Instance.ThemThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
+                if (dal_thuoctheokhoa.ThemThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
                 {
                     MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -62,22 +63,22 @@ namespace BUS
         }
         public int TinhVienThuoc(string maThuoc)
         {
-            return DAL_ThuocTheoKhoa.Instance.TinhVienThuoc(maThuoc);
+            return dal_thuoctheokhoa.TinhVienThuoc(maThuoc);
         }
         public double TinhTienMotHop(string maLo)
         {
-            return DAL_ThuocTheoKhoa.Instance.TinhTienMotHop(maLo);
+            return dal_thuoctheokhoa.TinhTienMotHop(maLo);
         }
         public int LaySoLuongTrongKhoa(int soLuongNhap, string maLo, string maThuoc)
         {
-            return DAL_ThuocTheoKhoa.Instance.LaySoLuongTrongKhoa(soLuongNhap, maLo, maThuoc);
+            return dal_thuoctheokhoa.LaySoLuongTrongKhoa(soLuongNhap, maLo, maThuoc);
         }
 
         public void ThemSLThuocChoKhoa(ET_ThuocTheoKhoa etThuocTheoKhoa, int soLuong)
         {
-            if (!DAL_ThuocTheoKhoa.Instance.KiemTraGiaTriNhap(etThuocTheoKhoa.MaLo, soLuong))
+            if (!dal_thuoctheokhoa.KiemTraGiaTriNhap(etThuocTheoKhoa.MaLo, soLuong))
             {
-                if (DAL_ThuocTheoKhoa.Instance.ThemSLThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
+                if (dal_thuoctheokhoa.ThemSLThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
                 {
                     MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -93,7 +94,7 @@ namespace BUS
         }
         public void XoaSLThuocChoKhoa(ET_ThuocTheoKhoa etThuocTheoKhoa, int soLuong)
         {
-            if (DAL_ThuocTheoKhoa.Instance.XoaSLThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
+            if (dal_thuoctheokhoa.XoaSLThuocChoKhoa(etThuocTheoKhoa, soLuong) == true)
             {
                 MessageBox.Show("Xóa số lượng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

@@ -11,7 +11,7 @@ namespace DAL
     public class DAL_ThuocTheoKhoa
     {
         private static DAL_ThuocTheoKhoa instance;
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_ThuocTheoKhoa Instance
         {

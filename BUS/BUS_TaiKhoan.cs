@@ -10,6 +10,7 @@ namespace BUS
     public class BUS_TaiKhoan
     {
         private static BUS_TaiKhoan instance;
+        private DAL_TaiKhoan dal_taikhoan = new DAL_TaiKhoan();
         public static BUS_TaiKhoan Instance
         {
             get
@@ -24,7 +25,7 @@ namespace BUS
 
         public bool KiemTraNhanVienCoThongTinKhong(string tenTK)
         {
-            if (DAL_TaiKhoan.Instance.KiemTraNhanVienCoThongTinKhong(tenTK) == false)
+            if (dal_taikhoan.KiemTraNhanVienCoThongTinKhong(tenTK) == false)
             {
                 return false;
             }
@@ -33,7 +34,7 @@ namespace BUS
 
         public bool KiemTraPhanQuyen(string tenTK)
         {
-            if (DAL_TaiKhoan.Instance.KiemTraPhanQuyen(tenTK) == true)
+            if (dal_taikhoan.KiemTraPhanQuyen(tenTK) == true)
             {
                 return true;
             }
@@ -42,7 +43,7 @@ namespace BUS
 
         public bool KiemTraNhapMKDungSai(string tenTK, string matKhau)
         {
-            if (DAL_TaiKhoan.Instance.KiemTraNhapMKDungSai(tenTK, matKhau) == false)
+            if (dal_taikhoan.KiemTraNhapMKDungSai(tenTK, matKhau) == false)
             {
                 return false;
             }
@@ -53,7 +54,7 @@ namespace BUS
         }
         public string LayTenNVNhoTK(string tenTK)
         {
-            return DAL_TaiKhoan.Instance.LayTenNVNhoTenTK(tenTK);
+            return dal_taikhoan.LayTenNVNhoTenTK(tenTK);
         }
     }
 }

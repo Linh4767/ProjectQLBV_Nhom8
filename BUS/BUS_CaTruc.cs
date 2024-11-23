@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_CaTruc
     {
         private static BUS_CaTruc instance;
+        private DAL_CaTruc dal_catruc = new DAL_CaTruc();
 
         public static BUS_CaTruc Instance
         {
@@ -30,39 +31,39 @@ namespace BUS
         //lấy danh sách ca trực
         public void LayDSCaTruc(DataGridView data, DateTime ngayTruc)
         {
-            data.DataSource = DAL_CaTruc.Instance.LayDanhSachCaTruc(ngayTruc);
+            data.DataSource = dal_catruc.LayDanhSachCaTruc(ngayTruc);
         }
 
         //Lấy danh sách khoa
         public void LayDanhSachKhoa(ComboBox cbo)
         {
-            cbo.DataSource = DAL_CaTruc.Instance.LayDanhSachKhoa();
+            cbo.DataSource = dal_catruc.LayDanhSachKhoa();
         }
 
         //lấy danh sách phòng theo khoa
         public void LayDanhSachPhong(string maKhoa, ComboBox cbo)
         {
-            cbo.DataSource = DAL_CaTruc.Instance.LayDanhSachPhong(maKhoa);
+            cbo.DataSource = dal_catruc.LayDanhSachPhong(maKhoa);
         }
 
         //Lấy danh sách nhân viên theo khoa
         public void LayDanhSachNhanVien(string maKhoa, ComboBox cbo)
         {
-            cbo.DataSource = DAL_CaTruc.Instance.LayDanhSachNhanVien(maKhoa);
+            cbo.DataSource = dal_catruc.LayDanhSachNhanVien(maKhoa);
         }
 
         //Tạo mã
         public string TaoMa(string ca)
         {
-            return DAL_CaTruc.Instance.TaoMaTuDong(ca);
+            return dal_catruc.TaoMaTuDong(ca);
         }
 
         //Thêm ca trực mới
         public string ThemCatruc(ET_CaTruc eT_CaTruc)
         {
-            if (DAL_CaTruc.Instance.KiemTraSoLuongNV(eT_CaTruc))
+            if (dal_catruc.KiemTraSoLuongNV(eT_CaTruc))
             {
-                if (DAL_CaTruc.Instance.ThemCaTruc(eT_CaTruc))
+                if (dal_catruc.ThemCaTruc(eT_CaTruc))
                 {
                     return "Thêm thành công";
                 }
@@ -80,7 +81,7 @@ namespace BUS
         //Cập nhật ca trực
         public string CapNhatCatruc(ET_CaTruc eT_CaTruc)
         {
-            if (DAL_CaTruc.Instance.CapNhatNhatCaTruc(eT_CaTruc))
+            if (dal_catruc.CapNhatNhatCaTruc(eT_CaTruc))
             {
                 return "Cập nhật thành công";
             }
@@ -93,7 +94,7 @@ namespace BUS
         //Lấy khoa
         public void LayKhoa(string maK, ComboBox cbo)
         {
-            var khoa = DAL_CaTruc.Instance.LayKhoa(maK);
+            var khoa = dal_catruc.LayKhoa(maK);
 
             // Gán trực tiếp giá trị của đối tượng khoa vào ComboBox
             cbo.Text = khoa.TenKhoa;
@@ -104,9 +105,9 @@ namespace BUS
         public void TimNhanVien(string key, DataGridView data, DateTime ngayTruc)
         {
 
-            if (DAL_CaTruc.Instance.KiemTraTonTai(key))
+            if (dal_catruc.KiemTraTonTai(key))
             {
-                data.DataSource = DAL_CaTruc.Instance.TimNhanVien(key, ngayTruc);
+                data.DataSource = dal_catruc.TimNhanVien(key, ngayTruc);
             }
             else
             {

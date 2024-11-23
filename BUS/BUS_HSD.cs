@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_HSD
     {
         private static BUS_HSD instance;
+        private DAL_HSD dal_hsd = new DAL_HSD();
         public static BUS_HSD Instance
         {
             get
@@ -26,22 +27,22 @@ namespace BUS
 
         public void LayDSThuocGanHH(DataGridView dgv, int tuNgay = 60)
         {
-            var usageRecords = DAL_HSD.Instance.LayDSThuocGanHH(tuNgay);
+            var usageRecords = dal_hsd.LayDSThuocGanHH(tuNgay);
             dgv.DataSource = usageRecords;
         }
         public List<ET_HSDThuoc> LayDSThuocGanHH(int tuNgay = 60)
         {
-            return DAL_HSD.Instance.LayDSThuocGanHH(tuNgay);
+            return dal_hsd.LayDSThuocGanHH(tuNgay);
         }
 
         public void LayDSThuocHH(DataGridView dgv)
         {
-            var usageRecords = DAL_HSD.Instance.LayDSThuocHH();
+            var usageRecords = dal_hsd.LayDSThuocHH();
             dgv.DataSource = usageRecords;
         }
         public List<ET_HSDThuoc> LayDSThuocHH()
         {
-            return DAL_HSD.Instance.LayDSThuocHH();
+            return dal_hsd.LayDSThuocHH();
         }
     }
 }

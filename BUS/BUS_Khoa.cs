@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_Khoa
     {
         public static BUS_Khoa instance;
+        private DAL_Khoa dal_khoa = new DAL_Khoa();
 
         public static BUS_Khoa Instance
         {
@@ -28,19 +29,19 @@ namespace BUS
         //Hiển thị danh sách khoa
         public void HienThiKhoa(DataGridView dgv)
         {
-            dgv.DataSource = DAL_Khoa.Instance.HienThiDanhSachKhoa();
+            dgv.DataSource = dal_khoa.HienThiDanhSachKhoa();
         }
 
         //Tạo mã tự động
         public string TaoMaTuDong()
         {
-            return DAL_Khoa.Instance.TaoMaTuDong();
+            return dal_khoa.TaoMaTuDong();
         }
 
         //Thêm Khoa
         public void ThemKhoa(ET_Khoa et_khoa)
         {
-            if (DAL_Khoa.Instance.ThemKhoa(et_khoa) == true)
+            if (dal_khoa.ThemKhoa(et_khoa) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -54,7 +55,7 @@ namespace BUS
         //Xóa Khoa
         public void XoaKhoa(string maKhoa)
         {
-            if (DAL_Khoa.Instance.XoaKhoa(maKhoa) == true)
+            if (dal_khoa.XoaKhoa(maKhoa) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -67,7 +68,7 @@ namespace BUS
         //Sửa Khoa
         public void SuaKhoa(ET_Khoa et_khoa)
         {
-            if (DAL_Khoa.Instance.SuaKhoa(et_khoa) == true)
+            if (dal_khoa.SuaKhoa(et_khoa) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

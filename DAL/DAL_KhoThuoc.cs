@@ -27,7 +27,7 @@ namespace DAL
 
         public int? ThemThuocVaoKho(string maThuoc, string maLo, string tenThuoc, string loaiThuoc, string xuatXu, string hamLuong, int soLuongThem)
         {
-            using (var db = new QLBVDataContext())
+            using (var db = new QLBVDataContext(Connection_DAL.ConnectionString))
             {
                 // Lấy danh sách các thuốc khớp với thông tin (Tên thuốc, Loại thuốc, Xuất xứ, Hàm lượng)
                 var thuocList = db.Thuocs.Where(t =>
@@ -115,7 +115,7 @@ namespace DAL
         // Phương thức xóa lượng thuốc trong kho
         public int XoaNhieuThuocTrongKho(List<Tuple<string, string>> danhSachThuoc)
         {
-            using (var db = new QLBVDataContext()) // Gọi QLBVDataContext ở DAL
+            using (var db = new QLBVDataContext(Connection_DAL.ConnectionString)) // Gọi QLBVDataContext ở DAL
             {
                 int soLuongThuocXoa = 0;
 

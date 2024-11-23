@@ -11,7 +11,7 @@ namespace DAL
     public class DAL_ChiTietDonThuoc
     {
         private static DAL_ChiTietDonThuoc instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_ChiTietDonThuoc Instance
         {

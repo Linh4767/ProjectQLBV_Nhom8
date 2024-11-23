@@ -23,7 +23,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         //Tạo mã sử dụng dv
         public string TaoMaDVTuDong(string maPhieuKB)

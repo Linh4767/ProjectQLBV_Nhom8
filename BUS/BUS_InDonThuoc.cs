@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_InDonThuoc
     {
         private static BUS_InDonThuoc instance;
+        private DAL_InDonThuoc dal_indonthuoc = new DAL_InDonThuoc();
 
         public static BUS_InDonThuoc Instance
         {
@@ -27,15 +28,15 @@ namespace BUS
 
         public List<ET_InDonThuoc> InDonThuoc(string maDT)
         {
-            return DAL_InDonThuoc.Instance.InDonThuoc(maDT);
+            return dal_indonthuoc.InDonThuoc(maDT);
         }
         public void InDonThuoc(string maDT,DataGridView dgv)
         {
-            dgv.DataSource = DAL_InDonThuoc.Instance.InDonThuoc(maDT);
+            dgv.DataSource = dal_indonthuoc.InDonThuoc(maDT);
         }
         public void LayDanhSachDonThuocTheoTenBN(string tenBN, DataGridView dgv)
         {
-            dgv.DataSource = DAL_InDonThuoc.Instance.LayDanhSachDonThuocTheoTenBN(tenBN);
+            dgv.DataSource = dal_indonthuoc.LayDanhSachDonThuocTheoTenBN(tenBN);
         }
     }
 }

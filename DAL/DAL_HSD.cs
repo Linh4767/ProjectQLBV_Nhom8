@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_HSD
     {
         private static DAL_HSD instance;
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_HSD Instance
         {

@@ -11,7 +11,7 @@ namespace DAL
     public class DAL_PhanGiuong
     {
         private static DAL_PhanGiuong instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_PhanGiuong Instance
         {

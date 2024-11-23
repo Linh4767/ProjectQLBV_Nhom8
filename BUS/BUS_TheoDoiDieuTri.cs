@@ -12,7 +12,7 @@ namespace BUS
     public class BUS_TheoDoiDieuTri
     {
         public static BUS_TheoDoiDieuTri instance;
-
+        private DAL_TheoDoiDieuTri dal_theodoidieutri = new DAL_TheoDoiDieuTri();
         public static BUS_TheoDoiDieuTri Instance
         {
             get
@@ -28,31 +28,31 @@ namespace BUS
         //Hiển thị danh sách theo dõi
         public void HienThiTheoDoi(DataGridView dgv, DateTime ngay)
         {
-            dgv.DataSource = DAL_TheoDoiDieuTri.Instance.HienThiDanhSachTheoDoi(ngay);
+            dgv.DataSource = dal_theodoidieutri.HienThiDanhSachTheoDoi(ngay);
         }
 
         //Tạo mã tự động
         public string TaoMaTheoDoi(string maPKB, string maGiuong)
         {
-            return DAL_TheoDoiDieuTri.Instance.TaoMaTheoDoi(maPKB, maGiuong);
+            return dal_theodoidieutri.TaoMaTheoDoi(maPKB, maGiuong);
         }
 
         //Hiển thị tên bệnh nhân
         public string HienThiTenBN(string maBN)
         {
-            return DAL_TheoDoiDieuTri.Instance.HienThiTenBN(maBN);
+            return dal_theodoidieutri.HienThiTenBN(maBN);
         }
 
         //Hiển thị mã bệnh nhân
         public string HienThiMaBN(string maPKB)
         {
-            return DAL_TheoDoiDieuTri.Instance.HienThiMaBN(maPKB);
+            return dal_theodoidieutri.HienThiMaBN(maPKB);
         }
 
         //Hiển thị combobox Phiếu Khám Bệnh
         public void HienThiComboboxPKB(ComboBox cboPKB)
         {
-            var danhSachPKB = DAL_TheoDoiDieuTri.Instance.HienThiComboboxPhieuKB();
+            var danhSachPKB = dal_theodoidieutri.HienThiComboboxPhieuKB();
             cboPKB.DataSource = danhSachPKB;
             cboPKB.ValueMember = "MaPhieuKB";
             cboPKB.DisplayMember = "HienThi";
@@ -77,7 +77,7 @@ namespace BUS
         //Hiển thị combobox giường theo pkb
         public void HienThiComboboxGiuong(ComboBox cboGiuong, string maPKB)
         {
-            cboGiuong.DataSource = DAL_TheoDoiDieuTri.Instance.HienThiGiuongTheoPhieuKB(maPKB);
+            cboGiuong.DataSource = dal_theodoidieutri.HienThiGiuongTheoPhieuKB(maPKB);
             cboGiuong.ValueMember = "MaGiuong";
             cboGiuong.DisplayMember = "MaGiuong";
         }
@@ -85,25 +85,25 @@ namespace BUS
         //Hiển thị chuẩn đoán theo mã PKB
         public string HienThiChuanDoan(string maPKB)
         {
-            return DAL_TheoDoiDieuTri.Instance.HienThiChuanDoan(maPKB);
+            return dal_theodoidieutri.HienThiChuanDoan(maPKB);
         }
 
         //Hiển thị phòng theo mã giường
         public string HienThiPhong(string maGiuong)
         {
-            return DAL_TheoDoiDieuTri.Instance.LayPhongTheoGiuong(maGiuong);
+            return dal_theodoidieutri.LayPhongTheoGiuong(maGiuong);
         }
 
         //Hiển thị phòng theo mã giường
         public string HienThiTenNV(string maNV)
         {
-            return DAL_TheoDoiDieuTri.Instance.HienThiTenNV(maNV);
+            return dal_theodoidieutri.HienThiTenNV(maNV);
         }
 
         //Lấy nhân viên và giường theo phân công
         public void LayNhanVienTheoPhanCongVaPhong(ComboBox cboNVTH, DateTime dtpNgayTH, DateTime dtpThoiGianTH, string maGiuong)
         {
-            cboNVTH.DataSource = DAL_TheoDoiDieuTri.Instance.LayNhanVienTheoPhanCongVaPhong(dtpNgayTH, dtpThoiGianTH, maGiuong);
+            cboNVTH.DataSource = dal_theodoidieutri.LayNhanVienTheoPhanCongVaPhong(dtpNgayTH, dtpThoiGianTH, maGiuong);
             cboNVTH.ValueMember = "MaNV";
             cboNVTH.DisplayMember = "HienThi";
         }
@@ -111,9 +111,9 @@ namespace BUS
         //Thêm theo dõi
         public void ThemTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (DAL_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(et_theodoi.MaPKB, et_theodoi.MaGiuong, et_theodoi.NgayTheoDoi))
+            if (dal_theodoidieutri.KiemTraNgayTheoDoi(et_theodoi.MaPKB, et_theodoi.MaGiuong, et_theodoi.NgayTheoDoi))
             {
-                if (DAL_TheoDoiDieuTri.Instance.ThemTheoDoi(et_theodoi) == true)
+                if (dal_theodoidieutri.ThemTheoDoi(et_theodoi) == true)
                 {
                     MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -133,7 +133,7 @@ namespace BUS
         //Cập nhật
         public void SuaTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (DAL_TheoDoiDieuTri.Instance.SuaTheoDoi(et_theodoi) == true)
+            if (dal_theodoidieutri.SuaTheoDoi(et_theodoi) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -148,20 +148,20 @@ namespace BUS
         public bool KiemTraNgayTheoDoi(string maPKB, string maGiuong, DateTime ngayTheoDoi)
         {
             // Gọi phương thức KiemTraHoanThienTraGiuong từ lớp DAL
-            return DAL_TheoDoiDieuTri.Instance.KiemTraNgayTheoDoi(maPKB, maGiuong, ngayTheoDoi);
+            return dal_theodoidieutri.KiemTraNgayTheoDoi(maPKB, maGiuong, ngayTheoDoi);
         }
 
         //Kiểm tra khi sửa ngày theo dõi
         public bool KiemTraKhiSuaNgayTheoDoi(string maPKB, string maGiuong, DateTime ngayTheoDoi)
         {
             // Gọi phương thức KiemTraHoanThienTraGiuong từ lớp DAL
-            return DAL_TheoDoiDieuTri.Instance.KiemTraKhiSuaNgayTheoDoi(maPKB, maGiuong, ngayTheoDoi);
+            return dal_theodoidieutri.KiemTraKhiSuaNgayTheoDoi(maPKB, maGiuong, ngayTheoDoi);
         }
 
         //Tìm kiếm
         public void TimKiemTheoTen(DataGridView dgv, string ten)
         {
-            dgv.DataSource = DAL_TheoDoiDieuTri.Instance.TimKiemTheoTen(ten);
+            dgv.DataSource = dal_theodoidieutri.TimKiemTheoTen(ten);
         }
     }
 }

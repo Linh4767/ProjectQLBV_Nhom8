@@ -134,5 +134,45 @@ namespace Project_Nhom8
                 txtMatKhau.Clear();
             }
         }
+
+        private void pnlOverlay_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlLogin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

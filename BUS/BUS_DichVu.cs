@@ -12,7 +12,7 @@ namespace BUS
     public class BUS_DichVu
     {
         public static BUS_DichVu instance;
-
+        private DAL_DichVu dal_dichvu = new DAL_DichVu();
         public static BUS_DichVu Instance
         {
             get
@@ -28,13 +28,13 @@ namespace BUS
         //Hiển thị danh sách dịch vụ
         public void HienThiDichVu(DataGridView dgv)
         {
-            dgv.DataSource = DAL_DichVu.Instance.HienThiDanhSachDichVu();
+            dgv.DataSource = dal_dichvu.HienThiDanhSachDichVu();
         }
 
         //Hiển thị combobox Khoa
         public void HienThiComboboxKhoa(ComboBox cboKhoa)
         {
-            cboKhoa.DataSource = DAL_DichVu.Instance.HienThiComboboxKhoa();
+            cboKhoa.DataSource = dal_dichvu.HienThiComboboxKhoa();
             cboKhoa.ValueMember = "MaKhoa";
             cboKhoa.DisplayMember = "TenKhoa";
         }
@@ -42,25 +42,25 @@ namespace BUS
         //Tìm kiếm dịch vụ
         public void TimKiemDichVu(string keyword, DataGridView dgv)
         {
-            dgv.DataSource = DAL_DichVu.Instance.TimKiemDichVu(keyword);
+            dgv.DataSource = dal_dichvu.TimKiemDichVu(keyword);
         }
 
         //Tạo mã tự động
         public string TaoMaTuDong(string tenKhoa)
         {
-            return DAL_DichVu.Instance.TaoMaTuDong(tenKhoa);
+            return dal_dichvu.TaoMaTuDong(tenKhoa);
         }
 
         //Hiển thị tên khoa
         public string HienThiTenKhoa(string maKhoa)
         {
-            return DAL_DichVu.Instance.HienThiTenKhoa(maKhoa);
+            return dal_dichvu.HienThiTenKhoa(maKhoa);
         }
 
         //Thêm Dịch Vụ
         public void ThemDichVu(ET_DichVu et_dichvu)
         {
-            if (DAL_DichVu.Instance.ThemDichVu(et_dichvu) == true)
+            if (dal_dichvu.ThemDichVu(et_dichvu) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -74,7 +74,7 @@ namespace BUS
         //Xóa Dịch Vụ
         public void XoaDichVu(string maDV)
         {
-            if (DAL_DichVu.Instance.XoaDichVu(maDV) == true)
+            if (dal_dichvu.XoaDichVu(maDV) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -87,7 +87,7 @@ namespace BUS
         //Sửa Dịch Vụ
         public void SuaDichVu(ET_DichVu et_dichvu)
         {
-            if (DAL_DichVu.Instance.SuaDichVu(et_dichvu) == true)
+            if (dal_dichvu.SuaDichVu(et_dichvu) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

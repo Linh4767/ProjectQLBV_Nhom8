@@ -22,7 +22,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         //Hiển thị danh sách phòng
         public IQueryable HienThiDSChucVu()

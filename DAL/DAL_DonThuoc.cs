@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_DonThuoc
     {
         private static DAL_DonThuoc instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_DonThuoc Instance
         {

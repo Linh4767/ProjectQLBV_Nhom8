@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_DSBenhNhanNoiTru
     {
         private static DAL_DSBenhNhanNoiTru instance;
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_DSBenhNhanNoiTru Instance
         {

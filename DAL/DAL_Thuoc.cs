@@ -12,7 +12,7 @@ namespace DAL
     public class DAL_Thuoc
     {
         private static DAL_Thuoc instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_Thuoc Instance
         {
@@ -249,7 +249,7 @@ namespace DAL
         //Sửa thuốc
         public bool SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop, DateTime ngaySX)
         {
-            using (var db = new QLBVDataContext())
+            using (var db = new QLBVDataContext(Connection_DAL.ConnectionString))
             {
                 // Tìm thuốc dựa trên mã thuốc và mã lô
                 Thuoc thuoc = db.Thuocs.SingleOrDefault(t => t.MaThuoc == maThuoc && t.MaLo == maLo);
