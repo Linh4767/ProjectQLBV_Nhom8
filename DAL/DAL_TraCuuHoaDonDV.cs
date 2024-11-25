@@ -24,43 +24,7 @@ namespace DAL
             }
         }
 
-        public float TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(string maPhieuKB)
-        {
-            try
-            {
-                // Gọi Stored Procedure
-                var results = db.TinhTienSuDungDVTheoPhieuVaBenhNhan(maPhieuKB).SingleOrDefault();
-
-                // Kiểm tra null trước khi lấy giá trị
-                return results?.TongTienNiemYet != null ? (float)results.TongTienNiemYet : 0f;
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi nếu cần
-                Console.WriteLine($"Lỗi: {ex.Message}");
-                return 0f; // Trả về 0 nếu xảy ra lỗi
-            }
-
-        }
-
-        public float TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(string maPhieuKB)
-        {
-            try
-            {
-                // Gọi Stored Procedure
-                var results = db.TinhTienSuDungDVTheoPhieuVaBenhNhan(maPhieuKB).SingleOrDefault();
-
-                // Kiểm tra null trước khi lấy giá trị
-                return results?.TongTienSauGiamBHYT != null ? (float)results.TongTienSauGiamBHYT : 0f;
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi nếu cần
-                Console.WriteLine($"Lỗi: {ex.Message}");
-                return 0f; // Trả về 0 nếu xảy ra lỗi
-            }
-
-        }
+        
         public List<ET_ThongKeDSDuDungDV> ChiTietDSSDVTheoTenHoacPhieu(string maPhieuKB)
         {
             var results = db.ChiTietDSSDVTheoTenHoacPhieu(maPhieuKB);

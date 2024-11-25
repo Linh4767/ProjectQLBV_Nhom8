@@ -709,18 +709,18 @@ namespace Project_Nhom8
 
         private void dtpNgayTheoDoi_Leave(object sender, EventArgs e)
         {
-            // Lấy giá trị từ DateTimePicker
-            DateTime ngayTD = dtpNgayTheoDoi.Value;
+            //// Lấy giá trị từ DateTimePicker
+            //DateTime ngayTD = dtpNgayTheoDoi.Value;
 
-            // So sánh với ngày hiện tại
-            if (ngayTD > DateTime.Now)
-            {
-                // Hiển thị thông báo lỗi
-                MessageBox.Show("Ngày theo dõi không được lớn hơn ngày hiện tại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //// So sánh với ngày hiện tại
+            //if (ngayTD > DateTime.Now)
+            //{
+            //    // Hiển thị thông báo lỗi
+            //    MessageBox.Show("Ngày theo dõi không được lớn hơn ngày hiện tại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
-                dtpNgayTheoDoi.Value = DateTime.Now;
-            }
+            //    // Đặt lại giá trị về ngày hiện tại hoặc ngày hợp lệ tùy ý
+            //    dtpNgayTheoDoi.Value = DateTime.Now;
+            //}
         }
     }
 }

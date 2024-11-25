@@ -25,14 +25,7 @@ namespace BUS
             }
         }
 
-        public float TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(string maPhieuKB)
-        {
-            return dal_tracuuhoadondv.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(maPhieuKB);
-        }
-        public float TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(string maPhieuKB)
-        {
-            return dal_tracuuhoadondv.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(maPhieuKB);
-        }
+        
         public void ChiTietDSSDVTheoTenHoacPhieu(string maPKB, DataGridView dgv)
         {
             var usageRecords = dal_tracuuhoadondv.ChiTietDSSDVTheoTenHoacPhieu(maPKB);

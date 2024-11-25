@@ -315,6 +315,5 @@ namespace DAL
                              select new { td.MaPhieuKB, td.MaGiuong, td.NgayTheoDoi, td.ChiSoCanNang, td.NhietDo, td.ChiSoNhipTho, td.ChiSoHuyetAp, td.MachDap, td.DuongHuyet, td.YLenh, td.MaNV, td.MaTheoDoi }).Distinct();
             return ds;
         }
-
     }
 }
