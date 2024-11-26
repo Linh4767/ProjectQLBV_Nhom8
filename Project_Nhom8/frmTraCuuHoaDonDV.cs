@@ -19,7 +19,14 @@ namespace Project_Nhom8
         {
             InitializeComponent();
         }
-
+        public string Data { get; set; }
+        public frmTraCuuHoaDonDV(string data)
+        {
+            InitializeComponent();
+            Data = data;
+            txtTuKhoa.Text = data;
+            // Bạn có thể thao tác với dữ liệu ở đây, ví dụ hiển thị lên một control nào đó
+        }
         private void frmTraCuuHoaDonDV_Load(object sender, EventArgs e)
         {
             dgvDSBenhNhan.Enabled = false;
@@ -30,24 +37,31 @@ namespace Project_Nhom8
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
             rptInHoaDon.Visible = false;
-            if (radTheoMaPhieuKB.Checked)
+            if (!string.IsNullOrEmpty(txtTuKhoa.Text))
             {
-                //decimal tienSuDung = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(txtTuKhoa.Text);
-                //txtTongTienSDDV.Text = tienSuDung.ToString("F0");
-                //decimal tienBNChiTra = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(txtTuKhoa.Text);
-                //txtDoanhThuThucTe.Text = tienBNChiTra.ToString("F0");
-                BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(txtTuKhoa.Text, dgvTongHop);
-                dgvTongHop.ColumnHeadersHeight = 40;
+                if (radTheoMaPhieuKB.Checked)
+                {
+                    //decimal tienSuDung = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVGiaNiemYetTheoPhieuVaBenhNhan(txtTuKhoa.Text);
+                    //txtTongTienSDDV.Text = tienSuDung.ToString("F0");
+                    //decimal tienBNChiTra = (decimal)BUS_TraCuuHoaDonDV.Instance.TinhTienSuDungDVThucTuBNTheoPhieuVaBenhNhan(txtTuKhoa.Text);
+                    //txtDoanhThuThucTe.Text = tienBNChiTra.ToString("F0");
+                    BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(txtTuKhoa.Text, dgvTongHop);
+                    dgvTongHop.ColumnHeadersHeight = 40;
+                }
+                if (radTheoTenBN.Checked)
+                {
+                    BUS_TraCuuHoaDonDV.Instance.LayDanhSachPhieuKhamBenhTheoTenBN(txtTuKhoa.Text, dgvDSBenhNhan);
+                    dgvDSBenhNhan.ColumnHeadersHeight = 40;
+                    dgvDSBenhNhan.Columns[6].Visible = false;
+                    dgvDSBenhNhan.Columns[7].Visible = false;
+                    //txtTongTienSDDV.Text = "0";
+                    //txtDoanhThuThucTe.Text = "0";
+                    btnIn.Enabled = false;
+                }
             }
-            if (radTheoTenBN.Checked)
+            else
             {
-                BUS_TraCuuHoaDonDV.Instance.LayDanhSachPhieuKhamBenhTheoTenBN(txtTuKhoa.Text, dgvDSBenhNhan);
-                dgvDSBenhNhan.ColumnHeadersHeight = 40;
-                dgvDSBenhNhan.Columns[6].Visible = false;
-                dgvDSBenhNhan.Columns[7].Visible = false;
-                //txtTongTienSDDV.Text = "0";
-                //txtDoanhThuThucTe.Text = "0";
-                btnIn.Enabled = false;
+                MessageBox.Show("Vui lòng nhập từ khóa tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

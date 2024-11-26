@@ -31,7 +31,7 @@ namespace Project_Nhom8
             txtKetQuaDichVu.Enabled = false;
             dtpDSNgaySuDungDV.Value = DateTime.Now;
             dtpNgayThucHienDV.Value = DateTime.Now;
-            btnInSuDungDV.Enabled = false;
+            //btnInSuDungDV.Enabled = false;
             BUS_SuDungDV.Instance.LayDSKhoaLoadVaoCombobox(cboKhoa);
             BUS_SuDungDV.Instance.LayDSPhieuKhamBenhDaKham(cboPhieuKhamBenhSuDungDV, dtpDSNgaySuDungDV.Value);
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
@@ -573,7 +573,7 @@ namespace Project_Nhom8
         private void dgvSuDungDV_Click(object sender, EventArgs e)
         {
             ktr = false;
-            btnInSuDungDV.Enabled = true;
+            //btnInSuDungDV.Enabled = true;
             //dgvSuDungDV.SelectionChanged += dgvSuDungDV_SelectionChanged;
             dtpNgayThucHienDV.Enabled = true;
             dtpTGThucHienDV.Enabled = true;
@@ -660,7 +660,7 @@ namespace Project_Nhom8
         {
             btnSuaSD.Enabled = false;
             btnXoa.Enabled = false;
-            btnInSuDungDV.Enabled = false;
+            //btnInSuDungDV.Enabled = false;
             rptInHDSSDV.Visible = false;
             //btnThemSuDung.Enabled = true;
             btnLamMoi.Enabled = false;
@@ -742,32 +742,39 @@ namespace Project_Nhom8
 
         private void btnInSuDungDV_Click(object sender, EventArgs e)
         {
-            rptInHDSSDV.Visible = true;
+            //rptInHDSSDV.Visible = true;
             if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
             {
-                var tongTien = BUS_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
-                var ds = BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
-                try
-                {
-                    //Clear previous data sources
-                    rptInHDSSDV.LocalReport.DataSources.Clear();
+                string dataToSend = cboPhieuKhamBenhSuDungDV.SelectedValue.ToString();
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmTraCuuHoaDonDV(dataToSend));
+                //var tongTien = BUS_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                //var ds = BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                //try
+                //{
+                //    //Clear previous data sources
+                //    rptInHDSSDV.LocalReport.DataSources.Clear();
 
-                    //Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetTienSDDVCuaPKB", tongTien);
-                    ReportDataSource rds2 = new ReportDataSource("DataSetDSSDDVCuaPKB", ds);
-                    string userName = CurrentUser.UserName;
-                    ReportParameter[] reportParameters = new ReportParameter[1];
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    rptInHDSSDV.LocalReport.SetParameters(reportParameters);
-                    rptInHDSSDV.LocalReport.DataSources.Add(rds1);
-                    rptInHDSSDV.LocalReport.DataSources.Add(rds2);
-                    //Refresh and show the report
-                    rptInHDSSDV.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                //    //Setup new data sources
+                //    ReportDataSource rds1 = new ReportDataSource("DataSetTienSDDVCuaPKB", tongTien);
+                //    ReportDataSource rds2 = new ReportDataSource("DataSetDSSDDVCuaPKB", ds);
+                //    string userName = CurrentUser.UserName;
+                //    ReportParameter[] reportParameters = new ReportParameter[1];
+                //    reportParameters[0] = new ReportParameter("TenNV", userName);
+                //    rptInHDSSDV.LocalReport.SetParameters(reportParameters);
+                //    rptInHDSSDV.LocalReport.DataSources.Add(rds1);
+                //    rptInHDSSDV.LocalReport.DataSources.Add(rds2);
+                //    //Refresh and show the report
+                //    rptInHDSSDV.RefreshReport();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Failed to load report: " + ex.Message);
+                //}
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
