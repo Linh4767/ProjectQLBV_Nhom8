@@ -52,8 +52,8 @@ namespace Project_Nhom8
                 {
                     BUS_TraCuuHoaDonDV.Instance.LayDanhSachPhieuKhamBenhTheoTenBN(txtTuKhoa.Text, dgvDSBenhNhan);
                     dgvDSBenhNhan.ColumnHeadersHeight = 40;
-                    dgvDSBenhNhan.Columns[6].Visible = false;
-                    dgvDSBenhNhan.Columns[7].Visible = false;
+                    //dgvDSBenhNhan.Columns[6].Visible = false;
+                    //dgvDSBenhNhan.Columns[7].Visible = false;
                     //txtTongTienSDDV.Text = "0";
                     //txtDoanhThuThucTe.Text = "0";
                     btnIn.Enabled = false;

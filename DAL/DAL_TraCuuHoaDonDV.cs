@@ -82,7 +82,7 @@ namespace DAL
                             join bn in db.BenhNhans
                             on dl.MaBN equals bn.MSBN
                             where bn.TenBN.Contains(tenBN)
-                            select dl;
+                            select new { dl.MaPhieuKB, dl.SoPhieu, dl.MaBN, bn.TenBN, dl.TrieuChung, dl.ThongTinLamSang, dl.NgayKham };
             return ds;
         }
     }

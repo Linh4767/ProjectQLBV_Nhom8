@@ -55,8 +55,8 @@ namespace Project_Nhom8
                     dgvDSBenhNhan.Enabled = true;
                     BUS_InDonThuoc.Instance.LayDanhSachDonThuocTheoTenBN(txtTuKhoa.Text, dgvDSBenhNhan);
                     dgvDSBenhNhan.ColumnHeadersHeight = 40;
-                    dgvDSBenhNhan.Columns[4].Visible = false;
-                    dgvDSBenhNhan.Columns[5].Visible = false;
+                    //dgvDSBenhNhan.Columns[5].Visible = false;
+                    //dgvDSBenhNhan.Columns[6].Visible = false;
                     btnIn.Enabled = false;
                 }
             }
