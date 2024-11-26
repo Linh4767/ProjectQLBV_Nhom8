@@ -125,7 +125,7 @@ namespace BUS
             }
             else
             {
-                MessageBox.Show("Ngày theo dõi không thể nhỏ hơn ngày nhận giường", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ngày theo dõi không thể nhỏ hơn ngày nhận giường hoặc lớn hơn ngày trả giường", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -133,14 +133,21 @@ namespace BUS
         //Cập nhật
         public void SuaTheoDoi(ET_TheoDoiDieuTri et_theodoi)
         {
-            if (dal_theodoidieutri.SuaTheoDoi(et_theodoi) == true)
+            if (dal_theodoidieutri.KiemTraNgayTheoDoi(et_theodoi.MaPKB, et_theodoi.MaGiuong, et_theodoi.NgayTheoDoi))
             {
-                MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dal_theodoidieutri.SuaTheoDoi(et_theodoi) == true)
+                {
+                    MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                }
+                else
+                {
+                    MessageBox.Show("Sửa không thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Sửa không thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ngày theo dõi không thể nhỏ hơn ngày nhận giường hoặc lớn hơn ngày trả giường", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

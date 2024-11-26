@@ -275,7 +275,7 @@ namespace DAL
             }
 
             // Kiểm tra ngày theo dõi không được nhỏ hơn ngày nhận giường
-            if (ngayTheoDoi < phanGiuong.NgayNhan)
+            if (ngayTheoDoi < phanGiuong.NgayNhan || ngayTheoDoi > phanGiuong.NgayTra)
             {
                 return false; // Ngày theo dõi không được nhỏ hơn ngày nhận giường
             }
