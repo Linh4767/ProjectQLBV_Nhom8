@@ -19,7 +19,7 @@ namespace ET
             MachDap = machDap;
             DuongHuyet = duongHuyet;
             YLenh = yLenh;
-            MaNV = maNV;
+            MaNhanVien = maNV;
             MaGiuong = maGiuong;
             MaTheoDoi = maTheoDoi;
             MaPhong = maPhong;
@@ -35,7 +35,7 @@ namespace ET
         public string MachDap { get; set; }
         public string DuongHuyet { get; set; }
         public string YLenh { get; set; }
-        public string MaNV { get; set; }
+        public string MaNhanVien { get; set; }
         public string MaGiuong { get; set; }
         public string MaTheoDoi { get; set; }
         public string MaPhong { get; set; }

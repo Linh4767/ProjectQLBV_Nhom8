@@ -137,6 +137,96 @@
     <Compile Include="frmInDonThuoc.Designer.cs">
       <DependentUpon>frmInDonThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInDonThuocTheoMaDT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDonThuocTheoMaDT.Designer.cs">
+      <DependentUpon>frmInDonThuocTheoMaDT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDonThuocTheoTenBN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDonThuocTheoTenBN.Designer.cs">
+      <DependentUpon>frmInDonThuocTheoTenBN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoKhoangTG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoKhoangTG.Designer.cs">
+      <DependentUpon>frmInDSBNNoiTruTheoKhoangTG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoNam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoNam.Designer.cs">
+      <DependentUpon>frmInDSBNNoiTruTheoNam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoNgay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoNgay.Designer.cs">
+      <DependentUpon>frmInDSBNNoiTruTheoNgay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoThang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSBNNoiTruTheoThang.Designer.cs">
+      <DependentUpon>frmInDSBNNoiTruTheoThang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSBNTheoDoiDieuTri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSBNTheoDoiDieuTri.Designer.cs">
+      <DependentUpon>frmInDSBNTheoDoiDieuTri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSThuocHH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSThuocHH.Designer.cs">
+      <DependentUpon>frmInDSThuocHH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInDSThuocSapHetHan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInDSThuocSapHetHan.Designer.cs">
+      <DependentUpon>frmInDSThuocSapHetHan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInHoaDonSDDVTheoMaPhieuKB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInHoaDonSDDVTheoMaPhieuKB.Designer.cs">
+      <DependentUpon>frmInHoaDonSDDVTheoMaPhieuKB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInHoaDonSDDVTheoTenBN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInHoaDonSDDVTheoTenBN.Designer.cs">
+      <DependentUpon>frmInHoaDonSDDVTheoTenBN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoKhoangTG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoKhoangTG.Designer.cs">
+      <DependentUpon>frmInTraCuuHoaDonTheoKhoangTG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoNam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoNam.Designer.cs">
+      <DependentUpon>frmInTraCuuHoaDonTheoNam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoNgay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoNgay.Designer.cs">
+      <DependentUpon>frmInTraCuuHoaDonTheoNgay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoThang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInTraCuuHoaDonTheoThang.Designer.cs">
+      <DependentUpon>frmInTraCuuHoaDonTheoThang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKetNoi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +535,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInDonThuoc.resx">
       <DependentUpon>frmInDonThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDonThuocTheoMaDT.resx">
+      <DependentUpon>frmInDonThuocTheoMaDT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDonThuocTheoTenBN.resx">
+      <DependentUpon>frmInDonThuocTheoTenBN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSBNNoiTruTheoKhoangTG.resx">
+      <DependentUpon>frmInDSBNNoiTruTheoKhoangTG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSBNNoiTruTheoNam.resx">
+      <DependentUpon>frmInDSBNNoiTruTheoNam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSBNNoiTruTheoNgay.resx">
+      <DependentUpon>frmInDSBNNoiTruTheoNgay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSBNNoiTruTheoThang.resx">
+      <DependentUpon>frmInDSBNNoiTruTheoThang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSBNTheoDoiDieuTri.resx">
+      <DependentUpon>frmInDSBNTheoDoiDieuTri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSThuocHH.resx">
+      <DependentUpon>frmInDSThuocHH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInDSThuocSapHetHan.resx">
+      <DependentUpon>frmInDSThuocSapHetHan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInHoaDonSDDVTheoMaPhieuKB.resx">
+      <DependentUpon>frmInHoaDonSDDVTheoMaPhieuKB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInHoaDonSDDVTheoTenBN.resx">
+      <DependentUpon>frmInHoaDonSDDVTheoTenBN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInTraCuuHoaDonTheoKhoangTG.resx">
+      <DependentUpon>frmInTraCuuHoaDonTheoKhoangTG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInTraCuuHoaDonTheoNam.resx">
+      <DependentUpon>frmInTraCuuHoaDonTheoNam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInTraCuuHoaDonTheoNgay.resx">
+      <DependentUpon>frmInTraCuuHoaDonTheoNgay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInTraCuuHoaDonTheoThang.resx">
+      <DependentUpon>frmInTraCuuHoaDonTheoThang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKetNoi.resx">
       <DependentUpon>frmKetNoi.cs</DependentUpon>
