@@ -100,56 +100,16 @@ namespace Project_Nhom8
                 rptThuocHH.Visible = false;
                 dgvHSD.Visible = false;
                 rptThuocGanHH.Visible = true;
-                var dsThuoc = BUS_HSD.Instance.LayDSThuocGanHH();
-                try
-                {
-                    // Clear previous data sources
-                    rptThuocGanHH.LocalReport.DataSources.Clear();
-
-                    // Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetThuocGanHH", dsThuoc);
-
-                    ReportParameter[] reportParameters = new ReportParameter[1];
-                    string userName = CurrentUser.UserName;
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    rptThuocGanHH.LocalReport.SetParameters(reportParameters);
-                    rptThuocGanHH.LocalReport.DataSources.Add(rds1);
-
-                    // Refresh and show the report
-                    rptThuocGanHH.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDSThuocSapHetHan());
             }
             else
             {
                 rptThuocHH.Visible = true;
                 dgvHSD.Visible = false;
                 rptThuocGanHH.Visible = false;
-                var dsThuoc = BUS_HSD.Instance.LayDSThuocHH();
-                try
-                {
-                    // Clear previous data sources
-                    rptThuocHH.LocalReport.DataSources.Clear();
-
-                    // Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetThuocHH", dsThuoc);
-
-                    ReportParameter[] reportParameters = new ReportParameter[1];
-                    string userName = CurrentUser.UserName;
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    rptThuocHH.LocalReport.SetParameters(reportParameters);
-                    rptThuocHH.LocalReport.DataSources.Add(rds1);
-
-                    // Refresh and show the report
-                    rptThuocHH.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDSThuocHH());
             }
 
         }

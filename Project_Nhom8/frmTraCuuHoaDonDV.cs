@@ -84,58 +84,18 @@ namespace Project_Nhom8
             rptInHoaDon.Visible = true;
             if (radTheoMaPhieuKB.Checked)
             {
-                var tongTien = BUS_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(txtTuKhoa.Text);
-                var ds = BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(txtTuKhoa.Text);
-                try
-                {
-                    //Clear previous data sources
-                    rptInHoaDon.LocalReport.DataSources.Clear();
-
-                    //Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetTienSDDVCuaPKB", tongTien);
-                    ReportDataSource rds2 = new ReportDataSource("DataSetDSSDDVCuaPKB", ds);
-                    string userName = CurrentUser.UserName;
-                    ReportParameter[] reportParameters = new ReportParameter[1];
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    rptInHoaDon.LocalReport.SetParameters(reportParameters);
-                    rptInHoaDon.LocalReport.DataSources.Add(rds1);
-                    rptInHoaDon.LocalReport.DataSources.Add(rds2);
-                    //Refresh and show the report
-                    rptInHoaDon.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                string dataToSend = txtTuKhoa.Text;
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInHoaDonSDDVTheoMaPhieuKB(dataToSend));
             }
             if (radTheoTenBN.Checked)
             {
                 if (dgvDSBenhNhan.CurrentRow != null)
                 {
                     string maPhieuKB = dgvDSBenhNhan.CurrentRow.Cells[0].Value.ToString();
-                    var tongTien = BUS_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(maPhieuKB);
-                    var ds = BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(maPhieuKB);
-                    try
-                    {
-                        //Clear previous data sources
-                        rptInHoaDon.LocalReport.DataSources.Clear();
-
-                        //Setup new data sources
-                        ReportDataSource rds1 = new ReportDataSource("DataSetTienSDDVCuaPKB", tongTien);
-                        ReportDataSource rds2 = new ReportDataSource("DataSetDSSDDVCuaPKB", ds);
-                        string userName = CurrentUser.UserName;
-                        ReportParameter[] reportParameters = new ReportParameter[1];
-                        reportParameters[0] = new ReportParameter("TenNV", userName);
-                        rptInHoaDon.LocalReport.SetParameters(reportParameters);
-                        rptInHoaDon.LocalReport.DataSources.Add(rds1);
-                        rptInHoaDon.LocalReport.DataSources.Add(rds2);
-                        //Refresh and show the report
-                        rptInHoaDon.RefreshReport();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to load report: " + ex.Message);
-                    }
+                    frmMain frmMain = (frmMain)this.ParentForm;
+                    frmMain.openChildForm(new frmInHoaDonSDDVTheoTenBN(maPhieuKB));
+                    
 
                 }
             }

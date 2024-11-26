@@ -71,45 +71,49 @@ namespace Project_Nhom8
             rptInDonThuoc.Visible = true;
             if (radTheoMaDonThuoc.Checked)
             {
+                string dataToSend = txtTuKhoa.Text;
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDonThuocTheoMaDT(dataToSend));
+                //var ds = BUS_InDonThuoc.Instance.InDonThuoc(txtTuKhoa.Text);
+                //try
+                //{
+                //    //Clear previous data sources
+                //    rptInDonThuoc.LocalReport.DataSources.Clear();
 
-                var ds = BUS_InDonThuoc.Instance.InDonThuoc(txtTuKhoa.Text);
-                try
-                {
-                    //Clear previous data sources
-                    rptInDonThuoc.LocalReport.DataSources.Clear();
-
-                    //Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetInDonThuoc", ds);
-                    rptInDonThuoc.LocalReport.DataSources.Add(rds1);
-                    //Refresh and show the report
-                    rptInDonThuoc.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                //    //Setup new data sources
+                //    ReportDataSource rds1 = new ReportDataSource("DataSetInDonThuoc", ds);
+                //    rptInDonThuoc.LocalReport.DataSources.Add(rds1);
+                //    //Refresh and show the report
+                //    rptInDonThuoc.RefreshReport();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Failed to load report: " + ex.Message);
+                //}
             }
             if (radTheoTenBN.Checked)
             {
                 if (dgvDSBenhNhan.CurrentRow != null)
                 {
                     string maPhieuKB = dgvDSBenhNhan.CurrentRow.Cells[0].Value.ToString();
-                    var ds = BUS_InDonThuoc.Instance.InDonThuoc(maPhieuKB);
-                    try
-                    {
-                        //Clear previous data sources
-                        rptInDonThuoc.LocalReport.DataSources.Clear();
+                    frmMain frmMain = (frmMain)this.ParentForm;
+                    frmMain.openChildForm(new frmInDonThuocTheoTenBN(maPhieuKB));
+                    //var ds = BUS_InDonThuoc.Instance.InDonThuoc(maPhieuKB);
+                    //try
+                    //{
+                    //    //Clear previous data sources
+                    //    rptInDonThuoc.LocalReport.DataSources.Clear();
 
-                        //Setup new data sources
-                        ReportDataSource rds1 = new ReportDataSource("DataSetInDonThuoc", ds);
-                        rptInDonThuoc.LocalReport.DataSources.Add(rds1);
-                        //Refresh and show the report
-                        rptInDonThuoc.RefreshReport();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to load report: " + ex.Message);
-                    }
+                    //    //Setup new data sources
+                    //    ReportDataSource rds1 = new ReportDataSource("DataSetInDonThuoc", ds);
+                    //    rptInDonThuoc.LocalReport.DataSources.Add(rds1);
+                    //    //Refresh and show the report
+                    //    rptInDonThuoc.RefreshReport();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show("Failed to load report: " + ex.Message);
+                    //}
 
                 }
             }

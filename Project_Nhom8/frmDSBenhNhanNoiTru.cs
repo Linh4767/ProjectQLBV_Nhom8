@@ -75,29 +75,32 @@ namespace Project_Nhom8
                 rptDSBNNoiTruTheoThang.Visible = false;
                 rptDSBNNoiTruTheoNam.Visible = false;
                 rptDSBNNoiTruTheoKhoangTG.Visible = false;
-                var dsBNNoiTruTheoNgay = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNgay(dtpTuNgay.Value);
-                try
-                {
-                    // Clear previous data sources
-                    rptDSBNNoiTruTheoNgay.LocalReport.DataSources.Clear();
+                //var dsBNNoiTruTheoNgay = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNgay(dtpTuNgay.Value);
+                //try
+                //{
+                //    // Clear previous data sources
+                //    rptDSBNNoiTruTheoNgay.LocalReport.DataSources.Clear();
 
-                    // Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoNgay", dsBNNoiTruTheoNgay);
-        
-                    ReportParameter[] reportParameters = new ReportParameter[2];
-                    string userName = CurrentUser.UserName;
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    reportParameters[1] = new ReportParameter("NgayTK", dtpTuNgay.Value.ToShortDateString());
-                    rptDSBNNoiTruTheoNgay.LocalReport.SetParameters(reportParameters);
-                    rptDSBNNoiTruTheoNgay.LocalReport.DataSources.Add(rds1);
+                //    // Setup new data sources
+                //    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoNgay", dsBNNoiTruTheoNgay);
 
-                    // Refresh and show the report
-                    rptDSBNNoiTruTheoNgay.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                //    ReportParameter[] reportParameters = new ReportParameter[2];
+                //    string userName = CurrentUser.UserName;
+                //    reportParameters[0] = new ReportParameter("TenNV", userName);
+                //    reportParameters[1] = new ReportParameter("NgayTK", dtpTuNgay.Value.ToShortDateString());
+                //    rptDSBNNoiTruTheoNgay.LocalReport.SetParameters(reportParameters);
+                //    rptDSBNNoiTruTheoNgay.LocalReport.DataSources.Add(rds1);
+
+                //    // Refresh and show the report
+                //    rptDSBNNoiTruTheoNgay.RefreshReport();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Failed to load report: " + ex.Message);
+                //}
+                DateTime dataToSend = dtpTuNgay.Value;
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDSBNNoiTruTheoNgay(dataToSend));
             }
             if (radTheoThang.Checked)
             {
@@ -105,29 +108,32 @@ namespace Project_Nhom8
                 rptDSBNNoiTruTheoThang.Visible = true;
                 rptDSBNNoiTruTheoNam.Visible = false;
                 rptDSBNNoiTruTheoKhoangTG.Visible = false;
-                var dsBNNoiTruTheoThang = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(dtpTuNgay.Value.Month, dtpTuNgay.Value.Year);
-                try
-                {
-                    //Clear previous data sources
-                    rptDSBNNoiTruTheoThang.LocalReport.DataSources.Clear();
+                DateTime dataToSend = dtpTuNgay.Value;
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDSBNNoiTruTheoThang(dataToSend));
+                //var dsBNNoiTruTheoThang = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoThang(dtpTuNgay.Value.Month, dtpTuNgay.Value.Year);
+                //try
+                //{
+                //    //Clear previous data sources
+                //    rptDSBNNoiTruTheoThang.LocalReport.DataSources.Clear();
 
-                    //Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoThang", dsBNNoiTruTheoThang);
+                //    //Setup new data sources
+                //    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoThang", dsBNNoiTruTheoThang);
                    
-                    ReportParameter[] reportParameters = new ReportParameter[3];
-                    string userName = CurrentUser.UserName;
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    reportParameters[1] = new ReportParameter("Thang", dtpTuNgay.Value.Month.ToString());
-                    reportParameters[2] = new ReportParameter("Nam", dtpTuNgay.Value.Year.ToString());
-                    rptDSBNNoiTruTheoThang.LocalReport.SetParameters(reportParameters);
-                    rptDSBNNoiTruTheoThang.LocalReport.DataSources.Add(rds1);
-                    //Refresh and show the report
-                    rptDSBNNoiTruTheoThang.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                //    ReportParameter[] reportParameters = new ReportParameter[3];
+                //    string userName = CurrentUser.UserName;
+                //    reportParameters[0] = new ReportParameter("TenNV", userName);
+                //    reportParameters[1] = new ReportParameter("Thang", dtpTuNgay.Value.Month.ToString());
+                //    reportParameters[2] = new ReportParameter("Nam", dtpTuNgay.Value.Year.ToString());
+                //    rptDSBNNoiTruTheoThang.LocalReport.SetParameters(reportParameters);
+                //    rptDSBNNoiTruTheoThang.LocalReport.DataSources.Add(rds1);
+                //    //Refresh and show the report
+                //    rptDSBNNoiTruTheoThang.RefreshReport();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Failed to load report: " + ex.Message);
+                //}
             }
             if (radTheoNam.Checked)
             {
@@ -135,27 +141,30 @@ namespace Project_Nhom8
                 rptDSBNNoiTruTheoThang.Visible = false;
                 rptDSBNNoiTruTheoNam.Visible = true;
                 rptDSBNNoiTruTheoKhoangTG.Visible = false;
-                var ds = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNam(dtpTuNgay.Value.Year);
-                try
-                {
-                    //Clear previous data sources
-                    rptDSBNNoiTruTheoNam.LocalReport.DataSources.Clear();
+                DateTime dataToSend = dtpTuNgay.Value;
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmInDSBNNoiTruTheoNam(dataToSend));
+                //var ds = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoNam(dtpTuNgay.Value.Year);
+                //try
+                //{
+                //    //Clear previous data sources
+                //    rptDSBNNoiTruTheoNam.LocalReport.DataSources.Clear();
 
-                    //Setup new data sources
-                    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoNam", ds);
-                    ReportParameter[] reportParameters = new ReportParameter[2];
-                    string userName = CurrentUser.UserName;
-                    reportParameters[0] = new ReportParameter("TenNV", userName);
-                    reportParameters[1] = new ReportParameter("Nam", dtpTuNgay.Value.Year.ToString());
-                    rptDSBNNoiTruTheoNam.LocalReport.SetParameters(reportParameters);
-                    rptDSBNNoiTruTheoNam.LocalReport.DataSources.Add(rds1);
-                    //Refresh and show the report
-                    rptDSBNNoiTruTheoNam.RefreshReport();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load report: " + ex.Message);
-                }
+                //    //Setup new data sources
+                //    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoNam", ds);
+                //    ReportParameter[] reportParameters = new ReportParameter[2];
+                //    string userName = CurrentUser.UserName;
+                //    reportParameters[0] = new ReportParameter("TenNV", userName);
+                //    reportParameters[1] = new ReportParameter("Nam", dtpTuNgay.Value.Year.ToString());
+                //    rptDSBNNoiTruTheoNam.LocalReport.SetParameters(reportParameters);
+                //    rptDSBNNoiTruTheoNam.LocalReport.DataSources.Add(rds1);
+                //    //Refresh and show the report
+                //    rptDSBNNoiTruTheoNam.RefreshReport();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Failed to load report: " + ex.Message);
+                //}
             }
             if (radTheoKhoangTG.Checked)
             {
@@ -165,28 +174,32 @@ namespace Project_Nhom8
                     rptDSBNNoiTruTheoThang.Visible = false;
                     rptDSBNNoiTruTheoNam.Visible = false;
                     rptDSBNNoiTruTheoKhoangTG.Visible = true;
-                    var tongDoanhThuTheoKhoangTG = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoKhoangTG(dtpTuNgay.Value, dtpDenNgay.Value);                
-                    try
-                    {
-                        //Clear previous data sources
-                        rptDSBNNoiTruTheoKhoangTG.LocalReport.DataSources.Clear();
+                    DateTime dataToSend = dtpTuNgay.Value;
+                    DateTime dataToSend1 = dtpDenNgay.Value;
+                    frmMain frmMain = (frmMain)this.ParentForm;
+                    frmMain.openChildForm(new frmInDSBNNoiTruTheoKhoangTG(dataToSend,dataToSend1));
+                    //var tongDoanhThuTheoKhoangTG = BUS_DSBenhNhanNoiTru.Instance.LayDSBNNoiTruTheoKhoangTG(dtpTuNgay.Value, dtpDenNgay.Value);                
+                    //try
+                    //{
+                    //    //Clear previous data sources
+                    //    rptDSBNNoiTruTheoKhoangTG.LocalReport.DataSources.Clear();
 
-                        //Setup new data sources
-                        ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoKhoangTG", tongDoanhThuTheoKhoangTG);
-                        ReportParameter[] reportParameters = new ReportParameter[3];
-                        string userName = CurrentUser.UserName;
-                        reportParameters[0] = new ReportParameter("TenNV", userName);
-                        reportParameters[1] = new ReportParameter("TuNgay", dtpTuNgay.Value.Date.ToShortDateString());
-                        reportParameters[2] = new ReportParameter("DenNgay", dtpDenNgay.Value.Date.ToShortDateString());
-                        rptDSBNNoiTruTheoKhoangTG.LocalReport.SetParameters(reportParameters);
-                        rptDSBNNoiTruTheoKhoangTG.LocalReport.DataSources.Add(rds1);
-                        //Refresh and show the report
-                        rptDSBNNoiTruTheoKhoangTG.RefreshReport();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to load report: " + ex.Message);
-                    }
+                    //    //Setup new data sources
+                    //    ReportDataSource rds1 = new ReportDataSource("DataSetDSBNNoiTruTheoKhoangTG", tongDoanhThuTheoKhoangTG);
+                    //    ReportParameter[] reportParameters = new ReportParameter[3];
+                    //    string userName = CurrentUser.UserName;
+                    //    reportParameters[0] = new ReportParameter("TenNV", userName);
+                    //    reportParameters[1] = new ReportParameter("TuNgay", dtpTuNgay.Value.Date.ToShortDateString());
+                    //    reportParameters[2] = new ReportParameter("DenNgay", dtpDenNgay.Value.Date.ToShortDateString());
+                    //    rptDSBNNoiTruTheoKhoangTG.LocalReport.SetParameters(reportParameters);
+                    //    rptDSBNNoiTruTheoKhoangTG.LocalReport.DataSources.Add(rds1);
+                    //    //Refresh and show the report
+                    //    rptDSBNNoiTruTheoKhoangTG.RefreshReport();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show("Failed to load report: " + ex.Message);
+                    //}
                 }
                 else
                 {
