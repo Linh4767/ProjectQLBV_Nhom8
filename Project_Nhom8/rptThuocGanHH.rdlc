@@ -953,9 +953,16 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Lưu Ý: Đây là danh sách các loại thuốc sẽ hết hạn sử dụng trong vòng 60 ngày tính theo ngày hiện tại</Value>
+                      <Value>Lưu Ý: Đây là danh sách các loại thuốc sẽ hết hạn sử dụng trong vòng 60 ngày tính theo ngày hiện tại </Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <Format>d</Format>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -966,9 +973,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>1.9257in</Top>
-              <Left>2.81988in</Left>
+              <Left>2.16016in</Left>
               <Height>0.25in</Height>
-              <Width>6.63083in</Width>
+              <Width>7.79541in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
