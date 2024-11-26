@@ -108,8 +108,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TenNV</rd:DefaultName>
-            <Top>1.35375in</Top>
-            <Left>9.26036in</Left>
+            <Top>2.40556in</Top>
+            <Left>9.89515in</Left>
             <Height>0.25in</Height>
             <Width>2.46528in</Width>
             <Style>
@@ -140,8 +140,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox46</rd:DefaultName>
-            <Top>0.95792in</Top>
-            <Left>9.40203in</Left>
+            <Top>2.00973in</Top>
+            <Left>10.03682in</Left>
             <Height>0.25in</Height>
             <Width>2.19555in</Width>
             <ZIndex>1</ZIndex>
@@ -641,7 +641,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>RoyalBlue</BackgroundColor>
+                          <BackgroundColor>CornflowerBlue</BackgroundColor>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -690,7 +690,7 @@
                                 <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                               </Border>
-                              <BackgroundColor>RoyalBlue</BackgroundColor>
+                              <BackgroundColor>CornflowerBlue</BackgroundColor>
                               <VerticalAlign>Middle</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
@@ -739,7 +739,7 @@
                                     <Color>LightGrey</Color>
                                     <Style>Solid</Style>
                                   </Border>
-                                  <BackgroundColor>RoyalBlue</BackgroundColor>
+                                  <BackgroundColor>CornflowerBlue</BackgroundColor>
                                   <VerticalAlign>Middle</VerticalAlign>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
@@ -762,8 +762,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetThuocHH</DataSetName>
-            <Top>0.00041in</Top>
-            <Left>0.31744in</Left>
+            <Top>0.54208in</Top>
+            <Left>0.32835in</Left>
             <Height>0.5in</Height>
             <Width>11.90402in</Width>
             <ZIndex>2</ZIndex>
@@ -774,7 +774,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>2.725in</Height>
         <Style />
       </Body>
       <Width>12.53889in</Width>
@@ -982,7 +982,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>DANH SÁCH THUỐC SẮP HẾT HẠN</Value>
+                      <Value>DANH SÁCH THUỐC HẾT HẠN</Value>
                       <Style>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -1050,7 +1050,13 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Lưu Ý: Đây là danh sách các loại thuốc sẽ hết hạn sử dụng trong vòng 60 ngày tính theo ngày hiện tại</Value>
+                      <Value>Lưu Ý: Đây là danh sách thuốc đã hết hạn tính từ ngày </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
                       </Style>
