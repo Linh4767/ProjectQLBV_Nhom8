@@ -12,7 +12,7 @@ namespace DAL
     public class DAL_GiuongBenh
     {
         private static DAL_GiuongBenh instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_GiuongBenh Instance
         {

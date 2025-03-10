@@ -24,7 +24,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
         //Đổ dữ liệu lên combobox - danh sách khoa
         public IQueryable DoDuLieuLenCB()
         {

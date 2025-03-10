@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_PhieuKB
     {
         private static BUS_PhieuKB instance;
+        private DAL_PhieuKhamBenh dal_phieukb = new DAL_PhieuKhamBenh();
         public static BUS_PhieuKB Instance
         {
             get
@@ -27,13 +28,13 @@ namespace BUS
         // Hiển thị danh sách phiếu khám bệnh nhờ mã bệnh nhân
         public void HienThiDSPhieuKB(DataGridView dgvDSPhieuKB, string maBN)
         {
-            dgvDSPhieuKB.DataSource = DAL_PhieuKhamBenh.Instance.XemDSPhieuKhamBenhTheoMaBN(maBN);
+            dgvDSPhieuKB.DataSource = dal_phieukb.XemDSPhieuKhamBenhTheoMaBN(maBN);
         }
 
         //Thêm phiếu khám bệnh
         public void ThemPhieuKB(ET_PhieuKhamBenh etPKB)
         {
-            if (DAL_PhieuKhamBenh.Instance.ThemPhieuKB(etPKB) == false)
+            if (dal_phieukb.ThemPhieuKB(etPKB) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -48,7 +49,7 @@ namespace BUS
         //Xóa phiếu khám bệnh
         public void XoaPhieuKham(DataGridView dgvDSPhieuKB)
         {
-            if (DAL_PhieuKhamBenh.Instance.XoaPhieuKB(dgvDSPhieuKB.CurrentRow.Cells[0].Value.ToString()) == true)
+            if (dal_phieukb.XoaPhieuKB(dgvDSPhieuKB.CurrentRow.Cells[0].Value.ToString()) == true)
             {
                 // Hiện lên thông báo khi xóa thành công
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -63,7 +64,7 @@ namespace BUS
         //Sửa phiếu khám bệnh
         public void SuaPhieuKB(ET_PhieuKhamBenh etPhieuKB)
         {
-            if (DAL_PhieuKhamBenh.Instance.SuaPhieuKB(etPhieuKB) == true)
+            if (dal_phieukb.SuaPhieuKB(etPhieuKB) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -75,13 +76,13 @@ namespace BUS
         //Tạo mã phiếu khám bệnh tự động
         public string TaoMaPhieuKBTuDong(string maBN)
         {
-            return DAL_PhieuKhamBenh.Instance.TaoTuDongMaPhieuKB(maBN);
+            return dal_phieukb.TaoTuDongMaPhieuKB(maBN);
         }
 
         //Kiểm tra bệnh nhân đi khám chưa(chưa thì cho xóa)
         public bool KiemTraPhieuKBThucHienKhamChua(string maPhieuKB)
         {
-            if (DAL_PhieuKhamBenh.Instance.KiemTraPhieuKBTHKhamChua(maPhieuKB) == true)
+            if (dal_phieukb.KiemTraPhieuKBTHKhamChua(maPhieuKB) == true)
             {
                 return false;
             }
@@ -91,7 +92,7 @@ namespace BUS
         //Tạo tự động số phiếu và reset lại từ đầu khi qua ngày mới
         public string TaoTuDongSoPhieu()
         {
-            return DAL_PhieuKhamBenh.Instance.TaoTuDongSoPhieu();
+            return dal_phieukb.TaoTuDongSoPhieu();
         }
     }
 }

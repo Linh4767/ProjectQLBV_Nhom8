@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_Phong
     {
         private static BUS_Phong instance;
+        private DAL_Phong dal_phong = new DAL_Phong();
         public static BUS_Phong Instance
         {
             get
@@ -26,20 +27,20 @@ namespace BUS
         // Hiển thị danh sách lên DataGridView
         public void HienThiDSPhong(DataGridView dgvDSPhong, string maKhoa, string loaiPhong)
         {
-            dgvDSPhong.DataSource = DAL_Phong.Instance.HienThiDSPhong(maKhoa, loaiPhong);
+            dgvDSPhong.DataSource = dal_phong.HienThiDSPhong(maKhoa, loaiPhong);
         }
         //Đổ dữ liệu khoa lên combobox
         public void DoDLKhoaLenComboBox(ComboBox cboKhoa)
         {
             // Gán DataSource cho ComboBox
-            cboKhoa.DataSource = DAL_Phong.Instance.DoDuLieuLenCB();
+            cboKhoa.DataSource = dal_phong.DoDuLieuLenCB();
             cboKhoa.ValueMember = "MaKhoa";
             cboKhoa.DisplayMember = "HienThi";
         }
         //Thêm phòng
         public void ThemPhong(ET_Phong etPhong)
         {
-            if (DAL_Phong.Instance.ThemPhong(etPhong) == false)
+            if (dal_phong.ThemPhong(etPhong) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -54,7 +55,7 @@ namespace BUS
         //Xóa phòng
         public void XoaPhong(DataGridView dgvDSPhong)
         {
-            if (DAL_Phong.Instance.XoaPhong(dgvDSPhong.CurrentRow.Cells[0].Value.ToString()) == true)
+            if (dal_phong.XoaPhong(dgvDSPhong.CurrentRow.Cells[0].Value.ToString()) == true)
             {
                 // Hiện lên thông báo khi xóa thành công
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -69,7 +70,7 @@ namespace BUS
         //Sửa phòng
         public void SuaPhong(ET_Phong etPhong)
         {
-            if (DAL_Phong.Instance.SuaPhong(etPhong) == true)
+            if (dal_phong.SuaPhong(etPhong) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -81,16 +82,16 @@ namespace BUS
         //Lay ten khoa nho ma khoa
         public string LayTenKhoaNhoMaKhoa(string maKhoa)
         {
-            return DAL_Phong.Instance.LayTenKhoaNhoMaKhoa(maKhoa);
+            return dal_phong.LayTenKhoaNhoMaKhoa(maKhoa);
         }
         //Tạo mã tự động
         public string TaoMaPhongTuDong(string tenKhoa)
         {
-            return DAL_Phong.Instance.TaoMaPhongTuDong(tenKhoa);
+            return dal_phong.TaoMaPhongTuDong(tenKhoa);
         }
         public void TimKiemPhong(string keyword,string loaiPhong,string khoa, DataGridView dgv)
         {
-            dgv.DataSource = DAL_Phong.Instance.TimKiemPhong(keyword,loaiPhong,khoa) ;
+            dgv.DataSource = dal_phong.TimKiemPhong(keyword,loaiPhong,khoa) ;
         }
     }
 }

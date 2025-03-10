@@ -61,6 +61,16 @@ namespace Project_Nhom8
             dgvDSChuanDoan.Columns[5].Visible = false;
             dtpNgay.Value = DateTime.Now;
             dtpNgayChuanDoan.Value = DateTime.Now;
+            if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+            {
+                btnDatLich.Enabled = true;
+                btnDonThuoc.Enabled = true;
+            }
+            else
+            {
+                btnDatLich.Enabled = false;
+                btnDonThuoc.Enabled = false;
+            }
         }
 
         private void btnThemChuanDoan_Click(object sender, EventArgs e)
@@ -96,6 +106,16 @@ namespace Project_Nhom8
                         BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
                         bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
                         dgvDSChuanDoan.Enabled = !isEmpty;
+                        if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                        {
+                            btnDatLich.Enabled = true;
+                            btnDonThuoc.Enabled = true;
+                        }
+                        else
+                        {
+                            btnDatLich.Enabled = false;
+                            btnDonThuoc.Enabled = false;
+                        }
 
                     }
                     else
@@ -147,6 +167,16 @@ namespace Project_Nhom8
                         BUS_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dgvDSChuanDoan, dtpNgay.Value);
                         bool isEmpty = dgvDSChuanDoan.Rows.Count == 0;
                         dgvDSChuanDoan.Enabled = !isEmpty;
+                        if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                        {
+                            btnDatLich.Enabled = true;
+                            btnDonThuoc.Enabled = true;
+                        }
+                        else
+                        {
+                            btnDatLich.Enabled = false;
+                            btnDonThuoc.Enabled = false;
+                        }
                     }
                     else
                     {
@@ -210,6 +240,16 @@ namespace Project_Nhom8
                 else
                 {
                     dateTimeValue = DateTime.MinValue;
+                }
+                if (BUS_KhamBenh.Instance.KiemTraCoChuanDoanChua(txtPhieuKhamBenh.Text) == false)
+                {
+                    btnDatLich.Enabled = true;
+                    btnDonThuoc.Enabled = true;
+                }
+                else
+                {
+                    btnDatLich.Enabled = false;
+                    btnDonThuoc.Enabled = false;
                 }
             }
             else
@@ -288,6 +328,37 @@ namespace Project_Nhom8
         {
             frmMain frmMain = (frmMain)this.ParentForm;
             frmMain.openChildForm(new frmSuDungDichVu());
+        }
+
+        private void btnDatLich_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPhieuKhamBenh.Text))
+            {
+                string maPKB = txtPhieuKhamBenh.Text;
+                // Tạo tham chiếu đến frmMain
+                frmMain mainForm = (frmMain)this.ParentForm;
+                // Gọi phương thức mở frmKhamBenh từ frmMain
+                mainForm.openChildForm(new frmTaiKham(maPKB));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDonThuoc_Click(object sender, EventArgs e)
+        {
+            string maNV = cboNVCD.SelectedValue.ToString();
+            string maPKB = txtPhieuKhamBenh.Text;
+            if (!string.IsNullOrEmpty(maPKB) || !string.IsNullOrEmpty(maNV))
+            {
+                frmMain frmMain = (frmMain)this.ParentForm;
+                frmMain.openChildForm(new frmDonThuoc(maNV, maPKB));
+            }
+            else
+            {
+                MessageBox.Show("Không có thông tin về phiếu khám bệnh hoặc nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

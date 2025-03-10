@@ -10,7 +10,7 @@ namespace DAL
     public class DAL_Khoa
     {
         private static DAL_Khoa instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_Khoa Instance
         {

@@ -13,6 +13,7 @@ namespace BUS
     {
         //Khai báo biến tĩnh
         private static BUS_SoBenhAn instance;
+        private DAL_SoBA dal_soba = new DAL_SoBA();    
         public static BUS_SoBenhAn Instance
         {
             get
@@ -29,13 +30,13 @@ namespace BUS
         public void XemDSHoSoBA(DataGridView dgvHSBA)
         {
             // Gán DataSource cho DataGridView
-            dgvHSBA.DataSource = DAL_SoBA.Instance.XemDSHoSoBA();
+            dgvHSBA.DataSource = dal_soba.XemDSHoSoBA();
         }
 
         //Thêm sổ bệnh án
         public void ThemSoBA(ET_SoBA etSoBA)
         {
-            if (DAL_SoBA.Instance.ThemHoSoBA(etSoBA) == false)
+            if (dal_soba.ThemHoSoBA(etSoBA) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -50,7 +51,7 @@ namespace BUS
         //Xóa sổ bệnh án
         public void XoaSoBA(DataGridView dgvDSSoBA)
         {
-            if (DAL_SoBA.Instance.XoaSoBA(dgvDSSoBA.CurrentRow.Cells[0].Value.ToString()) == true)
+            if (dal_soba.XoaSoBA(dgvDSSoBA.CurrentRow.Cells[0].Value.ToString()) == true)
             {
                 // Hiện lên thông báo khi xóa thành công
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -64,7 +65,7 @@ namespace BUS
         //Sửa sổ bệnh án
         public void SuaSoBA(ET_SoBA etSBA)
         {
-            if (DAL_SoBA.Instance.SuaSoBenhAn(etSBA) == true)
+            if (dal_soba.SuaSoBenhAn(etSBA) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -77,13 +78,13 @@ namespace BUS
         //Tạo tự động mã sổ bệnh án
         public string TaoMaSoBATuDong(string maBN)
         {
-            return DAL_SoBA.Instance.TaoMaSoBATuDong(maBN);
+            return dal_soba.TaoMaSoBATuDong(maBN);
         }
 
         //Kiểm tra bệnh nhân có sổ bệnh án chưa
         public bool KiemTraBNCoSoBAChua(string maBN)
         {
-            if (DAL_SoBA.Instance.KiemTraHoSoBACuaBN(maBN) == true)
+            if (dal_soba.KiemTraHoSoBACuaBN(maBN) == true)
             {
                 return false;
             }
@@ -92,13 +93,13 @@ namespace BUS
         // Lấy tên bệnh nhân nhờ mã bệnh nhân
         public string LayTenBNNhoMaBN(string maBN)
         {
-            return DAL_SoBA.Instance.LayTenBNNhoMaBN(maBN);
+            return dal_soba.LayTenBNNhoMaBN(maBN);
         }
 
         //Lấy danh sách bệnh nhân trong sổ bệnh án
         public void DoDLBenhNhanVaoComboBox(ComboBox cboDSBN)
         {
-            cboDSBN.DataSource = DAL_SoBA.Instance.DoDLBenhNhanVaoComboBox();
+            cboDSBN.DataSource = dal_soba.DoDLBenhNhanVaoComboBox();
             cboDSBN.ValueMember = "MaBN";
             cboDSBN.DisplayMember = "HienThi";
         }

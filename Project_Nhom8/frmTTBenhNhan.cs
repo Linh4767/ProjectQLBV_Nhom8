@@ -235,12 +235,14 @@ namespace Project_Nhom8
                     }
                     // Kiểm tra ngày cấp và ngày hết hạn của thẻ BHYT
                     DateTime ngayCap = Convert.ToDateTime(dtpNgayCap.Text);
-                    DateTime ngayHH = Convert.ToDateTime(dtpNgayHH.Text);
-                    if (ngayCap >= ngayHH)
-                    {
-                        MessageBox.Show("Ngày cấp thẻ BHYT phải nhỏ hơn ngày hết hạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    //DateTime ngayHH = Convert.ToDateTime(dtpNgayHH.Text);
+                    //if (ngayCap >= ngayHH)
+                    //{
+                    //    MessageBox.Show("Ngày cấp thẻ BHYT phải nhỏ hơn ngày hết hạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    return;
+                    //}
+                    DateTime ngayHetHan = ngayCap.AddYears(5);
+                    dtpNgayHH.Value = ngayHetHan;
                 }
 
                 string gioiTinh = "";

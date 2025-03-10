@@ -49,11 +49,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.btnThoat = new Guna.UI2.WinForms.Guna2Button();
             this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
-            this.btnTaiKham = new Guna.UI2.WinForms.Guna2Button();
             this.btnChuanDoan = new Guna.UI2.WinForms.Guna2Button();
             this.btnDKySDDichVu = new Guna.UI2.WinForms.Guna2Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnDatLich = new Guna.UI2.WinForms.Guna2Button();
             this.btnThemKB = new Guna.UI2.WinForms.Guna2Button();
             this.cboPKB = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSKhamBenhTheoNgay)).BeginInit();
@@ -348,23 +346,6 @@
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
-            // btnTaiKham
-            // 
-            this.btnTaiKham.BorderRadius = 5;
-            this.btnTaiKham.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTaiKham.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTaiKham.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTaiKham.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTaiKham.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaiKham.ForeColor = System.Drawing.Color.White;
-            this.btnTaiKham.Location = new System.Drawing.Point(830, 30);
-            this.btnTaiKham.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTaiKham.Name = "btnTaiKham";
-            this.btnTaiKham.Size = new System.Drawing.Size(139, 53);
-            this.btnTaiKham.TabIndex = 5;
-            this.btnTaiKham.Text = "Tái khám";
-            this.btnTaiKham.Click += new System.EventHandler(this.btnTaiKham_Click);
-            // 
             // btnChuanDoan
             // 
             this.btnChuanDoan.BorderRadius = 5;
@@ -401,38 +382,20 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnDatLich);
             this.groupBox5.Controls.Add(this.btnLamMoi);
-            this.groupBox5.Controls.Add(this.btnTaiKham);
             this.groupBox5.Controls.Add(this.btnChuanDoan);
             this.groupBox5.Controls.Add(this.btnDKySDDichVu);
             this.groupBox5.Controls.Add(this.btnSuaKB);
             this.groupBox5.Controls.Add(this.btnThemKB);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(162, 340);
+            this.groupBox5.Location = new System.Drawing.Point(320, 332);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(1160, 96);
+            this.groupBox5.Size = new System.Drawing.Size(845, 96);
             this.groupBox5.TabIndex = 93;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Thanh công cụ";
-            // 
-            // btnDatLich
-            // 
-            this.btnDatLich.BorderRadius = 5;
-            this.btnDatLich.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDatLich.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDatLich.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDatLich.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDatLich.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDatLich.ForeColor = System.Drawing.Color.White;
-            this.btnDatLich.Location = new System.Drawing.Point(1002, 30);
-            this.btnDatLich.Name = "btnDatLich";
-            this.btnDatLich.Size = new System.Drawing.Size(139, 53);
-            this.btnDatLich.TabIndex = 7;
-            this.btnDatLich.Text = "Đặt lịch";
-            this.btnDatLich.Click += new System.EventHandler(this.btnDatLich_Click);
             // 
             // btnThemKB
             // 
@@ -523,12 +486,10 @@
         private System.Windows.Forms.Label label17;
         private Guna.UI2.WinForms.Guna2Button btnThoat;
         private Guna.UI2.WinForms.Guna2Button btnLamMoi;
-        private Guna.UI2.WinForms.Guna2Button btnTaiKham;
         private Guna.UI2.WinForms.Guna2Button btnChuanDoan;
         private Guna.UI2.WinForms.Guna2Button btnDKySDDichVu;
         private System.Windows.Forms.GroupBox groupBox5;
         private Guna.UI2.WinForms.Guna2Button btnThemKB;
         private Guna.UI2.WinForms.Guna2ComboBox cboPKB;
-        private Guna.UI2.WinForms.Guna2Button btnDatLich;
     }
 }

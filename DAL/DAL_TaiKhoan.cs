@@ -20,7 +20,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
         //Check thông tin đăng nhập
         public bool KiemTraNhanVienCoThongTinKhong(string tenTK)
         {
@@ -49,6 +49,13 @@ namespace DAL
                                 where ds.TenTaiKhoan == tenTK
                                 select ds.MatKhau).FirstOrDefault();
             return matKhauDaLuu == matKhau;
+        }
+        public string LayTenNVNhoTenTK(string tenTK)
+        {
+            string tenNV = (from dl in db.NhanViens
+                            where dl.MaNV == tenTK
+                            select dl.TenNV).FirstOrDefault();
+            return tenNV;
         }
     }
 }

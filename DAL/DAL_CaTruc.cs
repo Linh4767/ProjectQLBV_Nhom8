@@ -11,7 +11,7 @@ namespace DAL
     public class DAL_CaTruc
     {
         private static DAL_CaTruc instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_CaTruc Instance
         {
@@ -28,17 +28,18 @@ namespace DAL
         public DAL_CaTruc() { }
 
         //lấy danh sách ca trực
-        public IQueryable LayDanhSachCaTruc()
+        public IQueryable LayDanhSachCaTruc(DateTime ngayTruc)
         {
             IQueryable caTruc = from ct in db.CaTrucs
                                 join phong in db.Phongs
                                 on ct.MaPhong equals phong.MSPhong
                                 join nv in db.NhanViens
                                 on ct.MaNV equals nv.MaNV
-                                orderby ct.NgayTruc descending
+                                where ct.NgayTruc.Date == ngayTruc.Date
                                 select new { ct.MaCT, ct.MaPhong, phong.TenPhong, ct.MaNV, nv.TenNV, ct.Ca, ct.NgayTruc, phong.MaKhoa };
             return caTruc;
         }
+
         //Lấy khoa
         public Khoa LayKhoa(string maKhoa)
         {
@@ -115,6 +116,18 @@ namespace DAL
             string maCTMoi = tienToCa + "CT" + maHienTai.ToString("D3"); // đảm bảo ít nhất 3 chữ số
             return maCTMoi;
         }
+
+        // Kiểm tra số lượng nhân viên trong cùng ca trực của phòng, nếu đã có 4 nhân viên trở lên thì không cho phép thêm
+        public bool KiemTraSoLuongNV(ET_CaTruc eT_CaTruc)
+        {
+            int soLuong = db.CaTrucs.Count(e => e.MaPhong == eT_CaTruc.MaPhong && e.Ca == eT_CaTruc.Ca && e.NgayTruc.Date == eT_CaTruc.NgayTruc.Date);
+            if (soLuong >= 4)
+            {
+                return false; // Đã đạt tối đa số nhân viên cho ca trực này
+            }
+            return true;
+        }
+
 
         //Thêm ca trực mới
         public bool ThemCaTruc(ET_CaTruc eT_CaTruc)
@@ -193,7 +206,7 @@ namespace DAL
         }
 
         //Tìm nhân viên
-        public IQueryable TimNhanVien(string key)
+        public IQueryable TimNhanVien(string key, DateTime ngayTruc)
         {
             IQueryable nhanVien = from ca in db.CaTrucs
                                   join nv in db.NhanViens
@@ -201,7 +214,7 @@ namespace DAL
                                   join phong in db.Phongs
                                   on ca.MaPhong equals phong.MSPhong
                                   where nv.MaNV == key || nv.TenNV.Contains(key)
-                                  orderby ca.NgayTruc descending
+                                  where ca.NgayTruc.Date == ngayTruc.Date
                                   select new { ca.MaCT, ca.MaPhong, phong.TenPhong, ca.MaNV, nv.TenNV, ca.Ca, ca.NgayTruc, phong.MaKhoa };
             return nhanVien;
         }

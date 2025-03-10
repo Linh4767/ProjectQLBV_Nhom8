@@ -21,7 +21,7 @@ namespace DAL
                 return instance;
             }
         }
-        private QLBVDataContext db = new QLBVDataContext();
+        private QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
         //Xem danh sách chuẩn đoán theo ngày
         public IQueryable XemDSChuanDoanTheoNgay(DateTime dtpNgay)
         {

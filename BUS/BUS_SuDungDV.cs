@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_SuDungDV
     {
         private static BUS_SuDungDV instance;
+        private DAL_SuDungDV dal_sudungdv = new DAL_SuDungDV();
 
         public static BUS_SuDungDV Instance
         {
@@ -26,56 +27,56 @@ namespace BUS
         }
         public string TaoMaDVTuDong(string maPhieuKB)
         {
-            return DAL_SuDungDV.Instance.TaoMaDVTuDong(maPhieuKB);
+            return dal_sudungdv.TaoMaDVTuDong(maPhieuKB);
         }
         public void LayDSPhieuKhamBenhDaKham(ComboBox cboPKB, DateTime dtp)
         {
-            cboPKB.DataSource = DAL_SuDungDV.Instance.LayDSPhieuKhamBenhDaKham(dtp);
+            cboPKB.DataSource = dal_sudungdv.LayDSPhieuKhamBenhDaKham(dtp);
             cboPKB.ValueMember = "MaPhieuKB";
             cboPKB.DisplayMember = "HienThi";
         }
 
         public void LayNhanVienThucHienKhamChoPhieuKhamBenh(ComboBox cboNVYC, string maPKB)
         {
-            cboNVYC.DataSource = DAL_SuDungDV.Instance.LayNhanVienThucHienKhamChoPhieuKhamBenh(maPKB);
+            cboNVYC.DataSource = dal_sudungdv.LayNhanVienThucHienKhamChoPhieuKhamBenh(maPKB);
             cboNVYC.ValueMember = "MaNV";
             cboNVYC.DisplayMember = "HienThi";
         }
 
         public void LayDSKhoaLoadVaoCombobox(ComboBox cboKhoa)
         {
-            cboKhoa.DataSource = DAL_SuDungDV.Instance.LayDSKhoaLoadVaoCombobox();
+            cboKhoa.DataSource = dal_sudungdv.LayDSKhoaLoadVaoCombobox();
             cboKhoa.ValueMember = "MaKhoa";
             cboKhoa.DisplayMember = "HienThi";
         }
 
         public void LayPhongTheoPhanCong(ComboBox cboPhong, DateTime dtpNgayTH, DateTime dtpTGTH, string maKhoa)
         {
-            cboPhong.DataSource = DAL_SuDungDV.Instance.LayPhongTheoPhanCong(dtpTGTH, dtpNgayTH, maKhoa);
+            cboPhong.DataSource = dal_sudungdv.LayPhongTheoPhanCong(dtpTGTH, dtpNgayTH, maKhoa);
             cboPhong.ValueMember = "MSPhong";
             cboPhong.DisplayMember = "HienThi";
         }
 
         public void LayNhanVienTheoPhanCongVaPhong(ComboBox cboNVTH, DateTime dtpNgayTH, DateTime dtpThoiGianTH, string maPhong)
         {
-            cboNVTH.DataSource = DAL_SuDungDV.Instance.LayNhanVienTheoPhanCongVaPhong(dtpNgayTH, dtpThoiGianTH, maPhong);
+            cboNVTH.DataSource = dal_sudungdv.LayNhanVienTheoPhanCongVaPhong(dtpNgayTH, dtpThoiGianTH, maPhong);
             cboNVTH.ValueMember = "MaNV";
             cboNVTH.DisplayMember = "HienThi";
         }
 
         public void HienThiDSSuDungDVTheoNgay(DataGridView dgvDS, DateTime dtpNgay)
         {
-            dgvDS.DataSource = DAL_SuDungDV.Instance.HienThiDSSuDungDVTheoNgay(dtpNgay);
+            dgvDS.DataSource = dal_sudungdv.HienThiDSSuDungDVTheoNgay(dtpNgay);
         }
         public void HienThiDSDVTheoKhoa(ComboBox cboNVTH, string maKhoa)
         {
-            cboNVTH.DataSource = DAL_SuDungDV.Instance.HienThiDSDVTheoKhoa(maKhoa);
+            cboNVTH.DataSource = dal_sudungdv.HienThiDSDVTheoKhoa(maKhoa);
             cboNVTH.ValueMember = "MaDV";
             cboNVTH.DisplayMember = "HienThi";
         }
         public bool KiemTraXemThucHienDVChua(string maSuDungDV, string maNVThucHien)
         {
-            if (DAL_SuDungDV.Instance.KiemTraXemThucHienDVChua(maSuDungDV, maNVThucHien) == true)
+            if (dal_sudungdv.KiemTraXemThucHienDVChua(maSuDungDV, maNVThucHien) == true)
             {
                 return false;
             }
@@ -83,7 +84,7 @@ namespace BUS
         }
         public bool KiemTraXemNgayThucHienCoLonHonBangNgayYeuCau(DateTime ngayYeuCau, DateTime ngayThucHien)
         {
-            if (DAL_SuDungDV.Instance.KiemTraXemNgayThucHienCoLonHonBangNgayYeuCau(ngayYeuCau, ngayThucHien) == true)
+            if (dal_sudungdv.KiemTraXemNgayThucHienCoLonHonBangNgayYeuCau(ngayYeuCau, ngayThucHien) == true)
             {
                 return true;
             }
@@ -92,7 +93,7 @@ namespace BUS
 
         public bool KiemTraXemTGThucHienCoLonHonTGYeuCau(DateTime TGYeuCau, DateTime TGThucHien)
         {
-            if (DAL_SuDungDV.Instance.KiemTraXemTGThucHienCoLonHonTGYeuCau(TGYeuCau, TGThucHien) == true)
+            if (dal_sudungdv.KiemTraXemTGThucHienCoLonHonTGYeuCau(TGYeuCau, TGThucHien) == true)
             {
                 return true;
             }
@@ -101,7 +102,7 @@ namespace BUS
 
         public void ThemThongTinSuDungDV(ET_SuDungDV etSDDV)
         {
-            if (DAL_SuDungDV.Instance.ThemThongTinSuDungDV(etSDDV) == false)
+            if (dal_sudungdv.ThemThongTinSuDungDV(etSDDV) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -115,7 +116,7 @@ namespace BUS
 
         public void XoaTTSuDungDV(string maSDDV)
         {
-            if (DAL_SuDungDV.Instance.XoaTTSuDungDV(maSDDV) == true)
+            if (dal_sudungdv.XoaTTSuDungDV(maSDDV) == true)
             {
                 // Hiện lên thông báo khi xóa thành công
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -129,7 +130,7 @@ namespace BUS
 
         public void SuaThongTinSuDungDV(ET_SuDungDV etSuDungDV)
         {
-            if (DAL_SuDungDV.Instance.SuaThongTinSuDungDV(etSuDungDV) == true)
+            if (dal_sudungdv.SuaThongTinSuDungDV(etSuDungDV) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -141,25 +142,25 @@ namespace BUS
 
         public float TinhTienSuDungDV(string maPKB)
         {
-            return DAL_SuDungDV.Instance.TinhTienSuDungDV(maPKB);
+            return dal_sudungdv.TinhTienSuDungDV(maPKB);
         }
         public DateTime LayNgayKhamCuaPKB(string maPKB)
         {
-            return DAL_SuDungDV.Instance.LayNgayKhamCuaPKB(maPKB);
+            return dal_sudungdv.LayNgayKhamCuaPKB(maPKB);
         }
         public DateTime LayTGCD(string maPKB)
         {
-            return DAL_SuDungDV.Instance.LayTGCD(maPKB);
+            return dal_sudungdv.LayTGCD(maPKB);
         }
 
         public void TimKiemSDDVTheoTen(DataGridView dgv, string tenBN, DateTime dtp)
         {
-            dgv.DataSource = DAL_SuDungDV.Instance.TimKiemSDDVTheoTen(tenBN, dtp);
+            dgv.DataSource = dal_sudungdv.TimKiemSDDVTheoTen(tenBN, dtp);
         }
 
         public bool KiemTraXemPhaiDVPT(string maDV)
         {
-            if (DAL_SuDungDV.Instance.KiemTraXemPhaiDVPT(maDV) == true)
+            if (dal_sudungdv.KiemTraXemPhaiDVPT(maDV) == true)
             {
                 return true;
             }
@@ -168,7 +169,7 @@ namespace BUS
 
         public bool KiemTraPKBMoiNhat(string maPKB)
         {
-            if (DAL_SuDungDV.Instance.KiemTraPKBMoiNhat(maPKB) == true)
+            if (dal_sudungdv.KiemTraPKBMoiNhat(maPKB) == true)
             {
                 return true;
             }
@@ -177,7 +178,7 @@ namespace BUS
 
         public bool KiemTraPKBMoi(string maPKB)
         {
-            if (DAL_SuDungDV.Instance.KiemTraPKBMoiNhat(maPKB))
+            if (dal_sudungdv.KiemTraPKBMoiNhat(maPKB))
             {
                 return true;
             }
@@ -185,7 +186,7 @@ namespace BUS
         }
         public bool KiemTraPhongConGiuongTrongNgay(string maPhong, DateTime ngayThucHien)
         {
-            if (DAL_SuDungDV.Instance.KiemTraPhongConGiuongTrongNgay(maPhong,ngayThucHien))
+            if (dal_sudungdv.KiemTraPhongConGiuongTrongNgay(maPhong,ngayThucHien))
             {
                 return true;
             }
