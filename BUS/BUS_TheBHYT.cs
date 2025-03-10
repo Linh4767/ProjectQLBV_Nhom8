@@ -11,7 +11,7 @@ namespace BUS
     public class BUS_TheBHYT
     {
         private static BUS_TheBHYT instance;
-
+        private DAL_TheBHYT dal_thebhyt = new DAL_TheBHYT();
         public static BUS_TheBHYT Instance
         {
             get
@@ -29,7 +29,7 @@ namespace BUS
         //Thêm thẻ BHYT
         public bool ThemBHYT(ET_TheBHYT eT_TheBHYT)
         {
-            if (DAL_TheBHYT.Instance.ThemBHYT(eT_TheBHYT))
+            if (dal_thebhyt.ThemBHYT(eT_TheBHYT))
             {
                 return true;
             }
@@ -42,7 +42,7 @@ namespace BUS
         //Sửa BHYT
         public bool SuaBHYT(ET_TheBHYT eT_TheBHYT)
         {
-            if (DAL_TheBHYT.Instance.SuaBHYT(eT_TheBHYT))
+            if (dal_thebhyt.SuaBHYT(eT_TheBHYT))
             {
                 return true;
             }

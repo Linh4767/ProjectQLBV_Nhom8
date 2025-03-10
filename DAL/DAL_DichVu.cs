@@ -12,7 +12,7 @@ namespace DAL
     public class DAL_DichVu
     {
         private static DAL_DichVu instance;
-        QLBVDataContext db = new QLBVDataContext();
+        QLBVDataContext db = new QLBVDataContext(Connection_DAL.ConnectionString);
 
         public static DAL_DichVu Instance
         {

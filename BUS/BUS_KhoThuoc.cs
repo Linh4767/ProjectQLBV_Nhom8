@@ -10,7 +10,7 @@ namespace BUS
     public class BUS_KhoThuoc
     {
         public static BUS_KhoThuoc instance;
-
+        private DAL_KhoThuoc dal_khothuoc = new DAL_KhoThuoc();
         public static BUS_KhoThuoc Instance
         {
             get
@@ -24,15 +24,18 @@ namespace BUS
         }
 
         //Thêm số lượng thuốc vào kho
-        public int? ThemSoLuongThuoc(string maThuoc, int soLuongThem)
+        public int? ThemSoLuongThuoc(string maThuoc, string maLo, string tenThuoc, string hamLuong, string loaiThuoc, string xuatXu, int soLuongThem)
         {
-            return DAL_KhoThuoc.Instance.ThemThuocVaoKho(maThuoc, soLuongThem);
+            return dal_khothuoc.ThemThuocVaoKho(maThuoc, maLo, tenThuoc, loaiThuoc, xuatXu,hamLuong, soLuongThem);
         }
 
         //Xóa số lượng thuốc trong kho
-        public int? XoaSoLuongThuoc(string maThuoc, int soLuongXoa)
+        public int XoaNhieuThuocTrongKho(List<Tuple<string, string>> danhSachThuoc)
         {
-            return DAL_KhoThuoc.Instance.XoaThuocTrongKho(maThuoc, soLuongXoa);
+            // Gọi phương thức trong DAL mà không cần phải thêm tham chiếu đến DAL trong form
+            return dal_khothuoc.XoaNhieuThuocTrongKho(danhSachThuoc);
         }
+
+
     }
 }

@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_ChuanDoan
     {
         private static BUS_ChuanDoan instance;
+        private DAL_ChuanDoan dal_chuandoan = new DAL_ChuanDoan();
         public static BUS_ChuanDoan Instance
         {
             get
@@ -25,13 +26,13 @@ namespace BUS
         }
         public void XemDSChuanDoanTheoNgay(DataGridView dgvDS, DateTime dtp)
         {
-            dgvDS.DataSource = DAL_ChuanDoan.Instance.XemDSChuanDoanTheoNgay(dtp);
+            dgvDS.DataSource = dal_chuandoan.XemDSChuanDoanTheoNgay(dtp);
         }
 
         //Thêm thông tin chẩn đoán
         public void ThemTTChuanDoan(ET_ChuanDoan et_CD)
         {
-            if (DAL_ChuanDoan.Instance.ThemThongTinCD(et_CD) == true)
+            if (dal_chuandoan.ThemThongTinCD(et_CD) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -43,7 +44,7 @@ namespace BUS
         //Cập nhật thông tin chẩn đoán
         public void CapNhatTTChuanDoan(ET_ChuanDoan et_CD)
         {
-            if (DAL_ChuanDoan.Instance.SuaThongTinCD(et_CD) == true)
+            if (dal_chuandoan.SuaThongTinCD(et_CD) == true)
             {
                 MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -55,12 +56,12 @@ namespace BUS
         //Lấy thông tin bệnh nhân
         public string LayTTBN(string maPKB)
         {
-            return DAL_ChuanDoan.Instance.LayBNDuaTrenPKB(maPKB);
+            return dal_chuandoan.LayBNDuaTrenPKB(maPKB);
         }
 
         public void TimKiemDuaVaoTenBN(DataGridView dgv, string tuKhoa, DateTime dtp)
         {
-            dgv.DataSource = DAL_ChuanDoan.Instance.TimKiemDuaVaoTenBN(tuKhoa, dtp);
+            dgv.DataSource = dal_chuandoan.TimKiemDuaVaoTenBN(tuKhoa, dtp);
         }
     }
 }

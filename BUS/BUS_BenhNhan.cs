@@ -12,7 +12,7 @@ namespace BUS
     public class BUS_BenhNhan
     {
         private static BUS_BenhNhan instance;
-
+        private DAL_BenhNhan dal_bn = new DAL_BenhNhan();
         public static BUS_BenhNhan Instance
         {
             get
@@ -29,19 +29,19 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaTuDong()
         {
-            return DAL_BenhNhan.Instance.TaoMaTuDong();
+            return dal_bn.TaoMaTuDong();
         }
 
         //lấy danh sách bệnh nhân
         public void LayDSBenhNhan(DataGridView data)
         {
-            data.DataSource = DAL_BenhNhan.Instance.LayDSBenhNhan();
+            data.DataSource = dal_bn.LayDSBenhNhan();
         }
 
         //Lấy thông tin thẻ BHYT
         public string[] layTheBHYT(string maBN)
         {
-            BHYT bhyt = DAL_BenhNhan.Instance.LayTheBHYT(maBN);
+            BHYT bhyt = dal_bn.LayTheBHYT(maBN);
 
             if (bhyt != null)
             {
@@ -54,7 +54,7 @@ namespace BUS
         //Thêm bệnh nhân
         public string ThemBenhNhan(ET_BenhNhan eT_BenhNhan, ET_TheBHYT eT_TheBHYT)
         {
-            if (DAL_BenhNhan.Instance.ThemBenhNhan(eT_BenhNhan))
+            if (dal_bn.ThemBenhNhan(eT_BenhNhan))
             {
                 if (!string.IsNullOrEmpty(eT_TheBHYT.MaBHYT))
                 {
@@ -79,10 +79,10 @@ namespace BUS
         //Sửa thông tin bệnh nhân
         public string SuaTTBenhNhan(ET_BenhNhan eT_BenhNhan, ET_TheBHYT eT_TheBHYT)
         {
-            if (DAL_BenhNhan.Instance.SuaBenhNhan(eT_BenhNhan))
+            if (dal_bn.SuaBenhNhan(eT_BenhNhan))
             {
                 // Kiểm tra xem thẻ BHYT đã tồn tại hay chưa
-                BHYT bhyt = DAL_BenhNhan.Instance.LayTheBHYT(eT_BenhNhan.MaBN);
+                BHYT bhyt = dal_bn.LayTheBHYT(eT_BenhNhan.MaBN);
 
                 if (bhyt != null)
                 {
@@ -126,9 +126,9 @@ namespace BUS
         //Tìm kiếm bệnh nhân
         public void TimKiemBenhNhan(string keyword, DataGridView dgv)
         {
-            if (DAL_BenhNhan.Instance.KiemTraTonTai(keyword))
+            if (dal_bn.KiemTraTonTai(keyword))
             {
-                dgv.DataSource = DAL_BenhNhan.Instance.TimKiemBenhNhan(keyword);
+                dgv.DataSource = dal_bn.TimKiemBenhNhan(keyword);
             }
             else
             {

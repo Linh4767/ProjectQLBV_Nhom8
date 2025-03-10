@@ -12,7 +12,7 @@ namespace BUS
     public class BUS_ChuyenNganh
     {
         public static BUS_ChuyenNganh instance;
-
+        private DAL_ChuyenNganh dal_chuyennganh = new DAL_ChuyenNganh();
         public static BUS_ChuyenNganh Instance
         {
             get
@@ -28,13 +28,13 @@ namespace BUS
         //Hiển thị danh sách chuyên ngành
         public void HienThiChuyenNganh(DataGridView dgv)
         {
-            dgv.DataSource = DAL_ChuyenNganh.Instance.HienThiDanhSachChuyenNganh();
+            dgv.DataSource = dal_chuyennganh.HienThiDanhSachChuyenNganh();
         }
 
         //Hiển thị combobox Khoa
         public void HienThiComboboxKhoa(ComboBox cboKhoa)
         {
-            cboKhoa.DataSource = DAL_ChuyenNganh.Instance.HienThiComboboxKhoa();
+            cboKhoa.DataSource = dal_chuyennganh.HienThiComboboxKhoa();
             cboKhoa.ValueMember = "MaKhoa";
             cboKhoa.DisplayMember = "TenKhoa";
         }
@@ -42,13 +42,13 @@ namespace BUS
         //Tìm kiếm chuyên ngành
         public void TimKiemChuyenNganh(string keyword, DataGridView dgv)
         {
-            dgv.DataSource = DAL_ChuyenNganh.Instance.TimKiemChuyenNganh(keyword);
+            dgv.DataSource = dal_chuyennganh.TimKiemChuyenNganh(keyword);
         }
 
         //Thêm Chuyên Ngành
         public void ThemChuyenNganh(ET_ChuyenNganh eT_ChuyenNganh)
         {
-            if (DAL_ChuyenNganh.Instance.ThemChuyenNganh(eT_ChuyenNganh) == true)
+            if (dal_chuyennganh.ThemChuyenNganh(eT_ChuyenNganh) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -62,7 +62,7 @@ namespace BUS
         //Xóa Chuyên Ngành
         public void XoaChuyenNganh(string maCN)
         {
-            if (DAL_ChuyenNganh.Instance.XoaChuyenNganh(maCN) == true)
+            if (dal_chuyennganh.XoaChuyenNganh(maCN) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -75,7 +75,7 @@ namespace BUS
         //Sửa Chuyên Ngành
         public void SuaChuyeNganh(ET_ChuyenNganh eT_ChuyenNganh)
         {
-            if (DAL_ChuyenNganh.Instance.SuaChuyenNganh(eT_ChuyenNganh) == true)
+            if (dal_chuyennganh.SuaChuyenNganh(eT_ChuyenNganh) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -89,13 +89,13 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaTuDong(string tenKhoa)
         {
-            return DAL_ChuyenNganh.Instance.TaoMaTuDong(tenKhoa);
+            return dal_chuyennganh.TaoMaTuDong(tenKhoa);
         }
 
         //Hiển thị tên khoa
         public string HienThiTenKhoa(string maKhoa)
         {
-            return DAL_ChuyenNganh.Instance.HienThiTenKhoa(maKhoa);
+            return dal_chuyennganh.HienThiTenKhoa(maKhoa);
         }
     }
 }

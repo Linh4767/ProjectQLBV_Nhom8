@@ -1,4 +1,5 @@
 ﻿using BUS;
+using ET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Project_Nhom8
 {
     public partial class frm_Login : Form
@@ -52,6 +52,8 @@ namespace Project_Nhom8
                     else
                     {
                         string tenTaiKhoan = txtTaiKhoan.Text.ToUpper();
+                        CurrentUser.EmployeeId = txtTaiKhoan.Text.ToUpper();
+                        CurrentUser.UserName = BUS_TaiKhoan.Instance.LayTenNVNhoTK(txtTaiKhoan.Text.ToUpper());
                         MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         frmMain formMenu = new frmMain(tenTaiKhoan);
                         this.Hide();
@@ -131,6 +133,46 @@ namespace Project_Nhom8
                 MessageBox.Show("Mật khẩu đang nhập quá ký tự cho phép là 12", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtMatKhau.Clear();
             }
+        }
+
+        private void pnlOverlay_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlLogin_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

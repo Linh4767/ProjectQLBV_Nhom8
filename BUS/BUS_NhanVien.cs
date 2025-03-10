@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_NhanVien
     {
         public static BUS_NhanVien instance;
+        private DAL_NhanVien dal_nhanvien = new DAL_NhanVien();
 
         public static BUS_NhanVien Instance
         {
@@ -28,13 +29,13 @@ namespace BUS
         //Hiển thị danh sách nhân viên
         public void HienThiNhanVien(DataGridView dgv)
         {
-            dgv.DataSource = DAL_NhanVien.Instance.HienThiDanhSachNhanVien();
+            dgv.DataSource = dal_nhanvien.HienThiDanhSachNhanVien();
         }
 
         //Hiển thị combobox Chức Vụ
         public void HienThiComboboxChucVu(ComboBox cbo)
         {
-            cbo.DataSource = DAL_NhanVien.Instance.DoDuLieuLenCBCV();
+            cbo.DataSource = dal_nhanvien.DoDuLieuLenCBCV();
             cbo.ValueMember = "MaCV";
             cbo.DisplayMember = "TenCV";
         }
@@ -42,7 +43,7 @@ namespace BUS
         //Hiển thị combobox Chuyên Ngành
         public void HienThiComboboxChuyenNganh(ComboBox cboCN)
         {
-            cboCN.DataSource = DAL_NhanVien.Instance.DoDuLieuLenCBCN();
+            cboCN.DataSource = dal_nhanvien.DoDuLieuLenCBCN();
             cboCN.ValueMember = "MaChuyenNganh";
             cboCN.DisplayMember = "TenChuyenNganh";
         }
@@ -50,7 +51,7 @@ namespace BUS
         //Hiển thị chuyên ngành dựa vào khoa
         public void HienThiChuyenNganh(string maKhoa, ComboBox cboCN)
         {
-            cboCN.DataSource = DAL_NhanVien.Instance.LayChuyenNganhDuaVaoKhoa(maKhoa);
+            cboCN.DataSource = dal_nhanvien.LayChuyenNganhDuaVaoKhoa(maKhoa);
             cboCN.ValueMember = "MaChuyenNganh";
             cboCN.DisplayMember = "TenChuyenNganh";
         }
@@ -58,13 +59,13 @@ namespace BUS
         //Tìm kiếm nhân viên
         public void TimKiemNhanVien(string keyword, DataGridView dgv)
         {
-            dgv.DataSource = DAL_NhanVien.Instance.TimKiemNhanVien(keyword);
+            dgv.DataSource = dal_nhanvien.TimKiemNhanVien(keyword);
         }
 
         //Thêm Nhân Viên
         public void ThemNhanVien(ET_NhanVien eT_NhanVien)
         {
-            if (DAL_NhanVien.Instance.ThemNhanVien(eT_NhanVien) == true)
+            if (dal_nhanvien.ThemNhanVien(eT_NhanVien) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -78,7 +79,7 @@ namespace BUS
         //Xóa nhân viên
         public void XoaNhanVien(string maNV)
         {
-            if (DAL_NhanVien.Instance.XoaNhanVien(maNV) == true)
+            if (dal_nhanvien.XoaNhanVien(maNV) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -91,7 +92,7 @@ namespace BUS
         //Sửa nhân viên
         public void SuaNhanVien(ET_NhanVien eT_NhanVien)
         {
-            if (DAL_NhanVien.Instance.SuaNhanVien(eT_NhanVien) == true)
+            if (dal_nhanvien.SuaNhanVien(eT_NhanVien) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -105,13 +106,13 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaTuDong(string tenCN)
         {
-            return DAL_NhanVien.Instance.TaoMaTuDong(tenCN);
+            return dal_nhanvien.TaoMaTuDong(tenCN);
         }
 
         //Hiển thị tên khoa
         public string HienThiTenCN(string maCN)
         {
-            return DAL_NhanVien.Instance.HienThiTenChuyenNganh(maCN);
+            return dal_nhanvien.HienThiTenChuyenNganh(maCN);
         }
     }
 }

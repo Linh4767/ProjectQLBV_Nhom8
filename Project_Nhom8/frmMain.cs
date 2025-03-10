@@ -33,7 +33,6 @@ namespace Project_Nhom8
             pnlKhambenh.Visible = false;
             pnlNoiTru.Visible = false;
             pnlTraCu.Visible = false;
-            pnlBaoCao.Visible = false;
             pnlQuanTri.Visible = false;
 
         }
@@ -56,10 +55,6 @@ namespace Project_Nhom8
             if (pnlTraCu.Visible)
             {
                 pnlTraCu.Visible = false;
-            }
-            if (pnlBaoCao.Visible)
-            {
-                pnlBaoCao.Visible = false;
             }
             if (pnlQuanTri.Visible)
             {
@@ -117,7 +112,6 @@ namespace Project_Nhom8
 
         private void btnBaoCao_Click(object sender, EventArgs e)
         {
-            showSubMenu(pnlBaoCao);
         }
 
         private void btnQuanTri_Click(object sender, EventArgs e)
@@ -305,18 +299,21 @@ namespace Project_Nhom8
             openChildForm(new frmDichVu());
             hideSubMenu();
         }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             hideSubMenu();
+            // Tắt nút thu nhỏ (nếu cần)
+            this.MinimizeBox = false;
+
+            // Tắt nút phóng to
+            this.MaximizeBox = false;
             if (BUS_TaiKhoan.Instance.KiemTraPhanQuyen(tenTaiKhoan) == true)
             {
                 btnQuanTri.Visible = true;
                 btnNoiTru.Visible = false;
                 btnBN.Visible = false;
                 btnKhamBenh.Visible = false;
-                btnTraCuu.Visible = false;
-                btnBaoCao.Visible = false;
+                btnTraCuu.Visible = true;
             }
             else
             {
@@ -325,9 +322,43 @@ namespace Project_Nhom8
                 btnBN.Visible = true;
                 btnKhamBenh.Visible = true;
                 btnTraCuu.Visible = true;
-                btnBaoCao.Visible = true;
             }
         }
 
+        private void btnPhatThuocTheoKhoa_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmPhatThuocTheoKhoa());
+            hideSubMenu();
+        }
+
+        private void btnThongKeDoanhThu_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmTraCuuDoanhThu());
+            hideSubMenu();
+        }
+
+        private void btnHoaDonDV_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmTraCuuHoaDonDV());
+            hideSubMenu();
+        }
+
+        private void btnTraCuuBNNoiTru_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmDSBenhNhanNoiTru());
+            hideSubMenu();
+        }
+
+        private void btnTraCuuDonThuoc_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmInDonThuoc());
+            hideSubMenu();
+        }
+
+        private void btnDSBNTheoKhoa_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmBaoCaoTheoDoiDieuTri());
+            hideSubMenu();
+        }
     }
 }

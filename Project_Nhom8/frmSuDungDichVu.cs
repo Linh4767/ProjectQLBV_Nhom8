@@ -1,5 +1,6 @@
 ﻿using BUS;
 using ET;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,7 @@ namespace Project_Nhom8
             txtKetQuaDichVu.Enabled = false;
             dtpDSNgaySuDungDV.Value = DateTime.Now;
             dtpNgayThucHienDV.Value = DateTime.Now;
+            btnInSuDungDV.Enabled = false;
             BUS_SuDungDV.Instance.LayDSKhoaLoadVaoCombobox(cboKhoa);
             BUS_SuDungDV.Instance.LayDSPhieuKhamBenhDaKham(cboPhieuKhamBenhSuDungDV, dtpDSNgaySuDungDV.Value);
             if (cboPhieuKhamBenhSuDungDV.SelectedValue != null)
@@ -79,6 +81,8 @@ namespace Project_Nhom8
             btnXoa.Enabled = false;
             btnSuaSD.Enabled = false;
             btnLamMoi.Enabled = false;
+            this.rptInHDSSDV.RefreshReport();
+            rptInHDSSDV.Visible = false;
         }
 
 
@@ -569,6 +573,7 @@ namespace Project_Nhom8
         private void dgvSuDungDV_Click(object sender, EventArgs e)
         {
             ktr = false;
+            btnInSuDungDV.Enabled = true;
             //dgvSuDungDV.SelectionChanged += dgvSuDungDV_SelectionChanged;
             dtpNgayThucHienDV.Enabled = true;
             dtpTGThucHienDV.Enabled = true;
@@ -655,6 +660,8 @@ namespace Project_Nhom8
         {
             btnSuaSD.Enabled = false;
             btnXoa.Enabled = false;
+            btnInSuDungDV.Enabled = false;
+            rptInHDSSDV.Visible = false;
             //btnThemSuDung.Enabled = true;
             btnLamMoi.Enabled = false;
             cboPhieuKhamBenhSuDungDV.Enabled = true;
@@ -710,6 +717,58 @@ namespace Project_Nhom8
 
         private void dgvSuDungDV_SelectionChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnPhanGiuong_Click(object sender, EventArgs e)
+        {
+            string maBN = cboPhieuKhamBenhSuDungDV.Text;
+            string maNVYC = cboNVYeuCauDV.Text;
+            string maNVTH = cboNhanVienThucHienDichVu.Text;
+            string khoa = cboKhoa.Text;
+            string phong = cboPhongDichVu.Text;
+            DateTime ngayNhan = dtpNgayThucHienDV.Value;
+            DateTime thoiGianNhan = dtpTGThucHienDV.Value;
+            if (string.IsNullOrEmpty(maBN) && string.IsNullOrEmpty(maNVYC) && string.IsNullOrEmpty(maNVTH) && string.IsNullOrEmpty(khoa) && string.IsNullOrEmpty(phong))
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin");
+                return;
+            }
+
+            //Tạo tham chiếu đến frmMain
+            frmMain mainForm = (frmMain)this.ParentForm;
+            //Gọi phương thức mở frmPhanGiuong_TheoDoiDieuTri từ frmMain
+            mainForm.openChildForm(new frmPhanGiuong(maBN, maNVYC, maNVTH,khoa, phong, ngayNhan, thoiGianNhan));
+        }
+
+        private void btnInSuDungDV_Click(object sender, EventArgs e)
+        {
+            rptInHDSSDV.Visible = true;
+            if(cboPhieuKhamBenhSuDungDV.SelectedValue != null)
+            {
+                var tongTien = BUS_TraCuuHoaDonDV.Instance.ThongKeHoaDonSuDungDV(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                var ds = BUS_TraCuuHoaDonDV.Instance.ChiTietDSSDVTheoTenHoacPhieu(cboPhieuKhamBenhSuDungDV.SelectedValue.ToString());
+                try
+                {
+                    //Clear previous data sources
+                    rptInHDSSDV.LocalReport.DataSources.Clear();
+
+                    //Setup new data sources
+                    ReportDataSource rds1 = new ReportDataSource("DataSetTienSDDVCuaPKB", tongTien);
+                    ReportDataSource rds2 = new ReportDataSource("DataSetDSSDDVCuaPKB", ds);
+                    string userName = CurrentUser.UserName;
+                    ReportParameter[] reportParameters = new ReportParameter[1];
+                    reportParameters[0] = new ReportParameter("TenNV", userName);
+                    rptInHDSSDV.LocalReport.SetParameters(reportParameters);
+                    rptInHDSSDV.LocalReport.DataSources.Add(rds1);
+                    rptInHDSSDV.LocalReport.DataSources.Add(rds2);
+                    //Refresh and show the report
+                    rptInHDSSDV.RefreshReport();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load report: " + ex.Message);
+                }
+            }
         }
     }
 }

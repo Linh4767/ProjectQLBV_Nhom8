@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_KhamBenh
     {
         private static BUS_KhamBenh instance;
+        private DAL_KhamBenh dal_khambenh = new DAL_KhamBenh();
         public static BUS_KhamBenh Instance
         {
             get
@@ -27,13 +28,13 @@ namespace BUS
         //Xem danh sách khám bệnh theo ngày
         public void HienThiDSKhamBenhTheoNgay(DataGridView dgvDSKhamBenh, DateTime ngayKham, string maPhong)
         {
-            dgvDSKhamBenh.DataSource = DAL_KhamBenh.Instance.XemDSKhamBenhTheoNgay(ngayKham, maPhong);
+            dgvDSKhamBenh.DataSource = dal_khambenh.XemDSKhamBenhTheoNgay(ngayKham, maPhong);
         }
 
         //Thêm thông tin khám bệnh
         public void ThemThongTinKB(ET_KhamBenh etKB)
         {
-            if (DAL_KhamBenh.Instance.ThemThongTinKB(etKB) == false)
+            if (dal_khambenh.ThemThongTinKB(etKB) == false)
             {
                 // Khi mã hoặc tên trùng sẽ hiển thị thông báo 
                 MessageBox.Show("Dữ liệu đã có trong hệ thống !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -48,7 +49,7 @@ namespace BUS
         //Sửa thông tin khám bệnh
         public void SuaThongTinKB(ET_KhamBenh etKB)
         {
-            if (DAL_KhamBenh.Instance.SuaThongTinKB(etKB) == true)
+            if (dal_khambenh.SuaThongTinKB(etKB) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -61,21 +62,21 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaKBTuDong(string maPKB)
         {
-            return DAL_KhamBenh.Instance.TaoMaKBTuDong(maPKB);
+            return dal_khambenh.TaoMaKBTuDong(maPKB);
         }
 
         //Lấy danh sách phiếu khám bệnh theo ngày
         public void LayPKBTheoNgayKham(ComboBox cboPKB, DateTime dtp)
         {
-            cboPKB.DataSource = DAL_KhamBenh.Instance.LayPKBTheoNgayKham(dtp);
+            cboPKB.DataSource = dal_khambenh.LayPKBTheoNgayKham(dtp);
             cboPKB.ValueMember = "MaPhieuKB";
             cboPKB.DisplayMember = "HienThi";
         }
         //Lấy danh sách phòng có phân công nhân viên trong bảng ca trực theo ngày
         public void LayPhongTheoPhanCong(ComboBox cboPhong, DateTime dtp, string maKhoa, string maPKB)
         {
-            var danhsachPhong = DAL_KhamBenh.Instance.LayPhongTheoPhanCong(dtp, maKhoa, maPKB);
-            cboPhong.DataSource = DAL_KhamBenh.Instance.LayPhongTheoPhanCong(dtp, maKhoa, maPKB);
+            var danhsachPhong = dal_khambenh.LayPhongTheoPhanCong(dtp, maKhoa, maPKB);
+            cboPhong.DataSource = dal_khambenh.LayPhongTheoPhanCong(dtp, maKhoa, maPKB);
             cboPhong.ValueMember = "MSPhong";
             cboPhong.DisplayMember = "HienThi";
         }
@@ -83,7 +84,7 @@ namespace BUS
         //Lấy danh sách nhân viên theo phòng và theo phân công
         public void LayDanhSachNhanVienTheoPhongVaCa(ComboBox cboNV, DateTime dtp, string maPhong, string maPhieuKB)
         {
-            cboNV.DataSource = DAL_KhamBenh.Instance.LayNhanVienTheoPhanCongVaPhong(dtp, maPhong, maPhieuKB);
+            cboNV.DataSource = dal_khambenh.LayNhanVienTheoPhanCongVaPhong(dtp, maPhong, maPhieuKB);
             cboNV.ValueMember = "MaNV";
             cboNV.DisplayMember = "HienThi";
         }
@@ -91,7 +92,7 @@ namespace BUS
         //Kiểm tra phiếu khám bệnh có chuẩn đoán không
         public bool KiemTraCoChuanDoanChua(string maPhieuKB)
         {
-            if (DAL_KhamBenh.Instance.KiemTraCoChuanDoanChua(maPhieuKB) == true)
+            if (dal_khambenh.KiemTraCoChuanDoanChua(maPhieuKB) == true)
             {
                 return false;
             }
@@ -101,7 +102,7 @@ namespace BUS
         //Kiểm tra xem bệnh nhân đi khám chưa
         public bool KiemTraDiKhamChua(string maPhieuKB)
         {
-            if (DAL_KhamBenh.Instance.KiemTraDiKhamChua(maPhieuKB) == true)
+            if (dal_khambenh.KiemTraDiKhamChua(maPhieuKB) == true)
             {
                 return false;
             }
@@ -121,19 +122,19 @@ namespace BUS
         //Lấy danh sách khoa
         public void LayDSKhoaLoadVaoCombobox(ComboBox cboKhoa)
         {
-            cboKhoa.DataSource = DAL_KhamBenh.Instance.LayDSKhoaLoadVaoCombobox();
+            cboKhoa.DataSource = dal_khambenh.LayDSKhoaLoadVaoCombobox();
             cboKhoa.DisplayMember = "HienThi";
             cboKhoa.ValueMember = "MaKhoa";
         }
 
         public void layDSPhong(DataGridView dgv)
         {
-            dgv.DataSource = DAL_KhamBenh.Instance.layDSPhong();
+            dgv.DataSource = dal_khambenh.layDSPhong();
         }
 
         public string LayTrieuChungCuaPKB(string maPKB)
         {
-            return DAL_KhamBenh.Instance.LayTrieuChungCuaPhieuKB(maPKB);
+            return dal_khambenh.LayTrieuChungCuaPhieuKB(maPKB);
         }
     }
 }

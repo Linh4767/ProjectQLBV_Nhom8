@@ -12,6 +12,7 @@ namespace BUS
     public class BUS_GiuongBenh
     {
         public static BUS_GiuongBenh instance;
+        private DAL_GiuongBenh dal_giuongbenh = new DAL_GiuongBenh();
 
         public static BUS_GiuongBenh Instance
         {
@@ -28,13 +29,13 @@ namespace BUS
         //Hiển thị danh sách giường bệnh
         public void HienThiGiuongBenh(DataGridView dgv, string maKhoa)
         {
-            dgv.DataSource = DAL_GiuongBenh.Instance.HienThiDanhSachGiuongBenhTheoKhoa(maKhoa);
+            dgv.DataSource = dal_giuongbenh.HienThiDanhSachGiuongBenhTheoKhoa(maKhoa);
         }
 
         //Hiển thị combobox khoa
         public void HienThiComboboxKhoa(ComboBox cboKhoa)
         {
-            cboKhoa.DataSource = DAL_GiuongBenh.Instance.HienThiComboboxKhoa();
+            cboKhoa.DataSource = dal_giuongbenh.HienThiComboboxKhoa();
             cboKhoa.ValueMember = "MaKhoa";
             cboKhoa.DisplayMember = "TenKhoa";
         }
@@ -42,7 +43,7 @@ namespace BUS
         //Hiển thị combobox Phòng
         public void HienThiComboboxPhong(ComboBox cboPhong, string maKhoa)
         {
-            cboPhong.DataSource = DAL_GiuongBenh.Instance.HienThiPhongTheoKhoa(maKhoa);
+            cboPhong.DataSource = dal_giuongbenh.HienThiPhongTheoKhoa(maKhoa);
             cboPhong.ValueMember = "MSPhong";
             cboPhong.DisplayMember = "TenPhong";
 
@@ -57,28 +58,28 @@ namespace BUS
         //Tìm kiếm giường bệnh
         public void TimKiemGiuongBenh(string keyword, DataGridView dgv)
         {
-            dgv.DataSource = DAL_GiuongBenh.Instance.TimKiemPhong(keyword);
+            dgv.DataSource = dal_giuongbenh.TimKiemPhong(keyword);
         }
 
 
         //Tạo mã tự động
         public string TaoMaTuDong(int numberic, string maPhong, string maKhoa)
         {
-            return DAL_GiuongBenh.Instance.TaoMaTuDong(numberic, maPhong, maKhoa);
+            return dal_giuongbenh.TaoMaTuDong(numberic, maPhong, maKhoa);
         }
 
         //Hiển thị combobox Phòng
         //public string HienThiMaPhong(string tenPhong)
         //{
-        //    return DAL_GiuongBenh.Instance.HienThiMaPhong(tenPhong);
+        //    return dal_giuongbenh.HienThiMaPhong(tenPhong);
         //}
 
         //Thêm Giường Bệnh
         public void ThemGiuongBenh(ET_GiuongBenh et_giuongbenh)
         {
-            if (DAL_GiuongBenh.Instance.KiemTraSoGiuong(et_giuongbenh.MaPhong) == true)
+            if (dal_giuongbenh.KiemTraSoGiuong(et_giuongbenh.MaPhong) == true)
             {
-                if (DAL_GiuongBenh.Instance.ThemGiuongBenh(et_giuongbenh) == true)
+                if (dal_giuongbenh.ThemGiuongBenh(et_giuongbenh) == true)
                 {
                     MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -98,7 +99,7 @@ namespace BUS
         //Xóa Giường Bệnh
         public void XoaGiuongBenh(string maGiuong)
         {
-            if (DAL_GiuongBenh.Instance.XoaGiuongBenh(maGiuong) == true)
+            if (dal_giuongbenh.XoaGiuongBenh(maGiuong) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -111,7 +112,7 @@ namespace BUS
         //Sửa Giường Bệnh
         public void SuaGiuongBenh(ET_GiuongBenh et_giuongbenh)
         {
-            if (DAL_GiuongBenh.Instance.SuaGiuongBenh(et_giuongbenh) == true)
+            if (dal_giuongbenh.SuaGiuongBenh(et_giuongbenh) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -16,7 +16,7 @@ namespace Project_Nhom8
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Login());
+            Application.Run(new frmKetNoi());
         }
     }
 }

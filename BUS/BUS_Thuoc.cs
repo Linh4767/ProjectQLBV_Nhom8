@@ -12,7 +12,7 @@ namespace BUS
     public class BUS_Thuoc
     {
         public static BUS_Thuoc instance;
-
+        private DAL_Thuoc dal_thuoc = new DAL_Thuoc();
         public static BUS_Thuoc Instance
         {
             get
@@ -28,26 +28,26 @@ namespace BUS
         //Hiển thị danh sách thuốc
         public void HienThiThuoc(DataGridView dgv)
         {
-            dgv.DataSource = DAL_Thuoc.Instance.HienThiDanhSachThuoc();
+            dgv.DataSource = dal_thuoc.HienThiDanhSachThuoc();
         }
 
         //Lấy mã thuốc
         public ET_Thuoc LayThuocByMa(string maThuoc)
         {
-            return DAL_Thuoc.Instance.LayThuocByMa(maThuoc);
+            return dal_thuoc.LayThuocByMa(maThuoc);
         }
 
 
         //Tìm kiếm thuốc
         public void TimKiemThuoc(string keyword, DataGridView dgv)
         {
-            dgv.DataSource = DAL_Thuoc.Instance.TimKiemThuoc(keyword);
+            dgv.DataSource = dal_thuoc.TimKiemThuoc(keyword);
         }
 
         //Thêm thuốc
         public void ThemThuoc(ET_Thuoc et_Thuoc)
         {
-            if (DAL_Thuoc.Instance.ThemThuoc(et_Thuoc) == true)
+            if (dal_thuoc.ThemThuoc(et_Thuoc) == true)
             {
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -59,9 +59,9 @@ namespace BUS
         }
 
         //Xóa Thuốc
-        public void XoaThuoc(string maThuoc)
+        public void XoaThuoc(string maThuoc, string maLo)
         {
-            if (DAL_Thuoc.Instance.XoaThuoc(maThuoc) == true)
+            if (dal_thuoc.XoaThuoc(maThuoc, maLo) == true)
             {
                 MessageBox.Show("Xóa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -72,9 +72,9 @@ namespace BUS
         }
 
         //Sửa thuốc
-        public void SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG)
+        public void SuaThuoc(string maThuoc, float gia, string trangThai, string donViTinh, string quyCachDongGoi, int soLuongDVT, int? soLuongQCDG, string maLo, DateTime hSD, int soLuongHop, DateTime ngaySX)
         {
-            if (DAL_Thuoc.Instance.SuaThuoc(maThuoc, gia, trangThai, donViTinh, quyCachDongGoi, soLuongDVT, soLuongQCDG) == true)
+            if (dal_thuoc.SuaThuoc(maThuoc, gia, trangThai, donViTinh, quyCachDongGoi, soLuongDVT, soLuongQCDG, maLo,hSD, soLuongHop, ngaySX) == true)
             {
                 MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -88,7 +88,24 @@ namespace BUS
         //Tạo mã tự động
         public string TaoMaTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong)
         {
-            return DAL_Thuoc.Instance.TaoMaTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong);
+            return dal_thuoc.TaoMaTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong);
         }
+
+        //Tạo mã lô tự động
+        public string TaoMaLoTuDong(string tenThuoc, string xuatXu, string nhaCungCap, string loaiThuoc, string hamLuong, DateTime ngaySanXuat)
+        {
+            return dal_thuoc.TaoMaLoTuDong(tenThuoc, xuatXu, nhaCungCap, loaiThuoc, hamLuong, ngaySanXuat);
+        }
+
+        public void HienThịThuocSapHetHan(DataGridView dgv, int soNgayCanhBao = 60)
+        {
+            dgv.DataSource = dal_thuoc.HienThiDanhSachThuocSapHetHan(soNgayCanhBao);
+        }
+
+        public void HienThịThuocHetHan(DataGridView dgv)
+        {
+            dgv.DataSource = dal_thuoc.HienThiDanhSachThuocDaHetHan();
+        }
+
     }
 }
